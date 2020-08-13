@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["BadTokenError","Error type returned when a key ([`Token`]) doesn't fit in a keyhole ([`TokenLock::keyhole`])."],["TokenLock","A mutual exclusive primitive that can be accessed using a [`Token`]`<I>` with a very low over-head."]],"trait":[["Token","Trait for an unforgeable token used to access the contents of a [`TokenLock`]."]]});
