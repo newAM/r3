@@ -1,3 +1,3 @@
 (function() {var implementors = {};
-implementors["constance"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/ops/bit/trait.BitOrAssign.html\" title=\"trait core::ops::bit::BitOrAssign\">BitOrAssign</a>&lt;<a class=\"struct\" href=\"constance/kernel/struct.EventGroupWaitFlags.html\" title=\"struct constance::kernel::EventGroupWaitFlags\">EventGroupWaitFlags</a>&gt; for <a class=\"struct\" href=\"constance/kernel/struct.EventGroupWaitFlags.html\" title=\"struct constance::kernel::EventGroupWaitFlags\">EventGroupWaitFlags</a>","synthetic":false,"types":["constance::kernel::event_group::EventGroupWaitFlags"]}];
+implementors["constance"] = [{"text":"impl BitOrAssign&lt;EventGroupWaitFlags&gt; for EventGroupWaitFlags","synthetic":false,"types":[]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
