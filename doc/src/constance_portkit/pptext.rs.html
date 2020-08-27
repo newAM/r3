@@ -315,17 +315,6 @@
 <span id="314">314</span>
 <span id="315">315</span>
 <span id="316">316</span>
-<span id="317">317</span>
-<span id="318">318</span>
-<span id="319">319</span>
-<span id="320">320</span>
-<span id="321">321</span>
-<span id="322">322</span>
-<span id="323">323</span>
-<span id="324">324</span>
-<span id="325">325</span>
-<span id="326">326</span>
-<span id="327">327</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Conditional string literal generation</span>
 
@@ -462,35 +451,24 @@
             }
             $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest_text</span>:<span class="ident">tt</span>)<span class="op">*</span>
         }],
-        <span class="ident">free_idents</span>: [{ <span class="macro-nonterminal">$</span><span class="macro-nonterminal">free_ident</span>:<span class="ident">ident</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest_free_idents</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
-        <span class="ident">private_mod</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">private_mod</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
-        <span class="ident">macro_inner</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">macro_inner</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
-        <span class="ident">define_macro</span>: [{ <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vis</span>:<span class="ident">vis</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> }],
+        <span class="ident">free_idents</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">free_idents</span>:<span class="ident">tt</span>],
+        <span class="ident">private_mod</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">private_mod</span>:<span class="ident">tt</span>],
+        <span class="ident">macro_inner</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">macro_inner</span>:<span class="ident">tt</span>],
+        <span class="ident">define_macro</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">define_macro</span>:<span class="ident">tt</span>],
     ) <span class="op">=&gt;</span> {
         <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_text_macro</span><span class="macro">!</span> {
             @<span class="ident">internal</span>,
-            <span class="ident">text</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest_text</span>)<span class="op">*</span> }],
-            <span class="ident">free_idents</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest_free_idents</span>)<span class="op">*</span> }],
-            <span class="ident">private_mod</span>: [{
-                $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">private_mod</span>)<span class="op">*</span>
-
-                <span class="attribute">#[<span class="ident">cfg</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">cfg</span>)<span class="kw-2">*</span>)]</span>
-                <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_text_macro</span><span class="macro">!</span> {
-                    <span class="kw">pub</span> <span class="kw">macro</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">free_ident</span> { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">true_text</span>)<span class="op">*</span> }
-                }
-
-                <span class="comment">// FIXME: Using `pub` in place of `pub(super)` work arounds</span>
-                <span class="comment">//        “visibilities can only be restricted to ancestor modules”</span>
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">cfg</span>)<span class="kw-2">*</span>))]</span>
-                <span class="kw">pub</span> <span class="kw">macro</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">free_ident</span> () { <span class="string">&quot;&quot;</span> }
+            <span class="ident">text</span>: [{
+                <span class="comment">// Expand to if-else</span>
+                <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>( $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">cfg</span>)<span class="op">*</span> ) {
+                    $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">true_text</span>)<span class="op">*</span>
+                } <span class="kw">else</span> {}
+                $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest_text</span>)<span class="op">*</span>
             }],
-            <span class="ident">macro_inner</span>: [{
-                $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">macro_inner</span>)<span class="op">*</span>
-
-                <span class="comment">// Refers to the macro in the generated private module</span>
-                <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">free_ident</span><span class="op">!</span>(),
-            }],
-            <span class="ident">define_macro</span>: [{ <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vis</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span> }],
+            <span class="ident">free_idents</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">free_idents</span>],
+            <span class="ident">private_mod</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">private_mod</span>],
+            <span class="ident">macro_inner</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">macro_inner</span>],
+            <span class="ident">define_macro</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">define_macro</span>],
         }
     },
 
