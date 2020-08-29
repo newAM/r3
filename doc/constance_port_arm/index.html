@@ -65,7 +65,7 @@ rustflags = [&quot;-C&quot;, &quot;link-arg=-Tlink_ram.x&quot;]
     <span class="comment">//</span>
     <span class="comment">// This was designed after Arm-M&#39;s exception frame.</span>
     <span class="comment">//</span>
-    <span class="comment">// The GPR potion is comprised of callee-saved registers. In an exception</span>
+    <span class="comment">// The GPR potion is comprised of caller-saved registers. In an exception</span>
     <span class="comment">// handler, saving/restoring this set of registers at entry and exit allows</span>
     <span class="comment">// it to call Rust functions.</span>
     <span class="comment">//</span>

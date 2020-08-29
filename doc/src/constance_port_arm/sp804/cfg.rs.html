@@ -142,6 +142,8 @@
 <span id="141">141</span>
 <span id="142">142</span>
 <span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! The public interface for the SP804 Dual Timer driver.</span>
 <span class="kw">use</span> <span class="ident">constance</span>::<span class="ident">kernel</span>::{<span class="ident">InterruptNum</span>, <span class="ident">InterruptPriority</span>};
@@ -222,6 +224,8 @@
                     <span class="ident">hw_freq_num</span>: <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span> <span class="kw">as</span> <span class="ident">Sp804Options</span><span class="op">&gt;</span>::<span class="ident">FREQUENCY</span>,
                     <span class="ident">hw_freq_denom</span>: <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span> <span class="kw">as</span> <span class="ident">Sp804Options</span><span class="op">&gt;</span>::<span class="ident">FREQUENCY_DENOMINATOR</span>,
                     <span class="ident">hw_headroom_ticks</span>: <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span> <span class="kw">as</span> <span class="ident">Sp804Options</span><span class="op">&gt;</span>::<span class="ident">HEADROOM</span>,
+                    <span class="ident">force_full_hw_period</span>: <span class="bool-val">false</span>,
+                    <span class="ident">resettable</span>: <span class="bool-val">false</span>,
                 }) {
                     <span class="prelude-val">Ok</span>(<span class="ident">x</span>) <span class="op">=&gt;</span> <span class="ident">x</span>,
                     <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=&gt;</span> <span class="ident">e</span>.<span class="ident">panic</span>(),
