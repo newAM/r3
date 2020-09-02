@@ -172,6 +172,11 @@
 <span id="171">171</span>
 <span id="172">172</span>
 <span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">constance</span>::<span class="ident">kernel</span>::<span class="ident">InterruptNum</span>;
 
@@ -268,6 +273,11 @@
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
                 <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">enter_cpu_lock</span>() {
                     <span class="ident">PORT_STATE</span>.<span class="ident">enter_cpu_lock</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>()
+                }
+
+                <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
+                <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">try_enter_cpu_lock</span>() <span class="op">-&gt;</span> <span class="ident">bool</span> {
+                    <span class="ident">PORT_STATE</span>.<span class="ident">try_enter_cpu_lock</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>()
                 }
 
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
