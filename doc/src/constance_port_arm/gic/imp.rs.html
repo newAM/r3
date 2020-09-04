@@ -197,6 +197,11 @@
 <span id="196">196</span>
 <span id="197">197</span>
 <span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Under the hood</span>
 <span class="kw">use</span> <span class="ident">constance</span>::<span class="ident">kernel</span>::{
@@ -271,6 +276,11 @@
 
     <span class="comment">// Unmask all priorities in range `0..255`</span>
     <span class="ident">cpu_interface</span>.<span class="ident">PMR</span>.<span class="ident">set</span>(<span class="number">0xff</span>);
+
+    <span class="comment">// Deactivate any active interrupts</span>
+    <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">x</span>) <span class="op">=</span> <span class="ident">acknowledge_interrupt</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>() {
+        <span class="ident">end_interrupt</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>(<span class="ident">x</span>);
+    }
 
     <span class="comment">// Allocate all priority bits for group priority</span>
     <span class="ident">cpu_interface</span>.<span class="ident">BPR</span>.<span class="ident">set</span>(<span class="number">0</span>);
