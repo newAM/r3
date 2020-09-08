@@ -81,6 +81,7 @@ rustflags = [&quot;-C&quot;, &quot;link-arg=-Tlink_ram.x&quot;]
     <span class="ident">cpsr</span>: <span class="ident">u32</span>,
 }</pre></div>
 <p><code>sp</code> is stored in <a href="../constance/kernel/task/struct.TaskCb.html#structfield.port_task_state"><code>TaskCb::port_task_state</code></a>.</p>
+<p>When a task is activated, a new context state is created inside the task's stack. By default, only essential registers are preloaded with known values. The <strong><code>preload-registers</code></strong> Cargo feature enables preloading for all GPRs, which might help in debugging at the cost of performance and code size.</p>
 <p>For the idle task, saving and restoring the context store is essentially replaced with no-op or loads of hard-coded values. In particular, <code>pc</code> is always “restored” with the entry point of the idle task.</p>
 <h2 id="processor-modes" class="section-header"><a href="#processor-modes">Processor Modes</a></h2>
 <ul>
