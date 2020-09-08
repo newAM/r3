@@ -354,14 +354,149 @@
 <span id="353">353</span>
 <span id="354">354</span>
 <span id="355">355</span>
+<span id="356">356</span>
+<span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
+<span id="363">363</span>
+<span id="364">364</span>
+<span id="365">365</span>
+<span id="366">366</span>
+<span id="367">367</span>
+<span id="368">368</span>
+<span id="369">369</span>
+<span id="370">370</span>
+<span id="371">371</span>
+<span id="372">372</span>
+<span id="373">373</span>
+<span id="374">374</span>
+<span id="375">375</span>
+<span id="376">376</span>
+<span id="377">377</span>
+<span id="378">378</span>
+<span id="379">379</span>
+<span id="380">380</span>
+<span id="381">381</span>
+<span id="382">382</span>
+<span id="383">383</span>
+<span id="384">384</span>
+<span id="385">385</span>
+<span id="386">386</span>
+<span id="387">387</span>
+<span id="388">388</span>
+<span id="389">389</span>
+<span id="390">390</span>
+<span id="391">391</span>
+<span id="392">392</span>
+<span id="393">393</span>
+<span id="394">394</span>
+<span id="395">395</span>
+<span id="396">396</span>
+<span id="397">397</span>
+<span id="398">398</span>
+<span id="399">399</span>
+<span id="400">400</span>
+<span id="401">401</span>
+<span id="402">402</span>
+<span id="403">403</span>
+<span id="404">404</span>
+<span id="405">405</span>
+<span id="406">406</span>
+<span id="407">407</span>
+<span id="408">408</span>
+<span id="409">409</span>
+<span id="410">410</span>
+<span id="411">411</span>
+<span id="412">412</span>
+<span id="413">413</span>
+<span id="414">414</span>
+<span id="415">415</span>
+<span id="416">416</span>
+<span id="417">417</span>
+<span id="418">418</span>
+<span id="419">419</span>
+<span id="420">420</span>
+<span id="421">421</span>
+<span id="422">422</span>
+<span id="423">423</span>
+<span id="424">424</span>
+<span id="425">425</span>
+<span id="426">426</span>
+<span id="427">427</span>
+<span id="428">428</span>
+<span id="429">429</span>
+<span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
+<span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
+<span id="463">463</span>
+<span id="464">464</span>
+<span id="465">465</span>
+<span id="466">466</span>
+<span id="467">467</span>
+<span id="468">468</span>
+<span id="469">469</span>
+<span id="470">470</span>
+<span id="471">471</span>
+<span id="472">472</span>
+<span id="473">473</span>
+<span id="474">474</span>
+<span id="475">475</span>
+<span id="476">476</span>
+<span id="477">477</span>
+<span id="478">478</span>
+<span id="479">479</span>
+<span id="480">480</span>
+<span id="481">481</span>
+<span id="482">482</span>
+<span id="483">483</span>
+<span id="484">484</span>
+<span id="485">485</span>
+<span id="486">486</span>
+<span id="487">487</span>
+<span id="488">488</span>
+<span id="489">489</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Threading library similar to `std::thread` but supporting the remote park</span>
 <span class="doccomment">//! operation ([`Thread::park`]).</span>
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">utils</span>::<span class="ident">Atomic</span>;
 <span class="kw">use</span> <span class="ident">std</span>::{
+    <span class="ident">cell</span>::<span class="ident">Cell</span>,
     <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>,
     <span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-    <span class="ident">ptr</span>::<span class="ident">null_mut</span>,
+    <span class="ident">ptr</span>::{<span class="ident">null_mut</span>, <span class="ident">NonNull</span>},
     <span class="ident">sync</span>::{
         <span class="ident">atomic</span>::{<span class="ident">AtomicPtr</span>, <span class="ident">AtomicUsize</span>, <span class="ident">Ordering</span>},
         <span class="ident">Arc</span>, <span class="ident">Once</span>,
@@ -371,10 +506,15 @@
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">thread</span>::<span class="ident">ThreadId</span>;
 
+<span class="macro">thread_local</span><span class="macro">!</span> {
+    <span class="kw">static</span> <span class="ident">EXIT_JMP_BUF</span>: <span class="ident">Cell</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">JmpBuf</span><span class="op">&gt;&gt;</span> <span class="op">=</span> <span class="ident">Cell</span>::<span class="ident">new</span>(<span class="prelude-val">None</span>);
+}
+
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">exit_thread</span>() <span class="op">-&gt;</span> <span class="op">!</span> {
-    <span class="kw">unsafe</span> {
-        <span class="ident">libc</span>::<span class="ident">pthread_exit</span>(<span class="ident">std</span>::<span class="ident">ptr</span>::<span class="ident">null_mut</span>());
-    }
+    <span class="kw">let</span> <span class="ident">jmp_buf</span> <span class="op">=</span> <span class="ident">EXIT_JMP_BUF</span>
+        .<span class="ident">with</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span>.<span class="ident">get</span>())
+        .<span class="ident">expect</span>(<span class="string">&quot;this thread wasn&#39;t started by `threading::spawn`&quot;</span>);
+    <span class="kw">unsafe</span> { <span class="ident">longjmp</span>(<span class="ident">jmp_buf</span>) };
 }
 
 <span class="doccomment">/// [`std::thread::JoinHandle`] with extra functionalities.</span>
@@ -385,7 +525,7 @@
 }
 
 <span class="doccomment">/// Spawn a new thread.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">spawn</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Send</span><span class="op">&gt;</span>(<span class="ident">f</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>() <span class="op">-&gt;</span> <span class="ident">T</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>) <span class="op">-&gt;</span> <span class="ident">JoinHandle</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">spawn</span>(<span class="ident">f</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>() <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>) <span class="op">-&gt;</span> <span class="ident">JoinHandle</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">parent_thread</span> <span class="op">=</span> <span class="ident">thread</span>::<span class="ident">current</span>();
 
     <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">ThreadData</span>::<span class="ident">new</span>());
@@ -400,10 +540,14 @@
         <span class="comment">// Move `data2` into `THREAD_DATA`</span>
         <span class="ident">THREAD_DATA</span>.<span class="ident">store</span>(<span class="ident">Arc</span>::<span class="ident">into_raw</span>(<span class="ident">data2</span>) <span class="kw">as</span> <span class="kw">_</span>, <span class="ident">Ordering</span>::<span class="ident">Relaxed</span>);
 
-        <span class="ident">parent_thread</span>.<span class="ident">unpark</span>();
-        <span class="ident">drop</span>(<span class="ident">parent_thread</span>);
+        <span class="ident">catch_longjmp</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">jmp_buf</span><span class="op">|</span> {
+            <span class="ident">EXIT_JMP_BUF</span>.<span class="ident">with</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span>.<span class="ident">set</span>(<span class="prelude-val">Some</span>(<span class="ident">jmp_buf</span>)));
 
-        <span class="ident">f</span>()
+            <span class="ident">parent_thread</span>.<span class="ident">unpark</span>();
+            <span class="ident">drop</span>(<span class="ident">parent_thread</span>);
+
+            <span class="ident">f</span>()
+        });
     });
 
     <span class="kw">let</span> <span class="ident">thread</span> <span class="op">=</span> <span class="ident">Thread</span> {
@@ -668,6 +812,106 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="kw">struct</span> <span class="ident">JmpBuf</span> {
+    <span class="ident">sp</span>: <span class="ident">NonNull</span><span class="op">&lt;</span>()<span class="op">&gt;</span>,
+}
+
+<span class="doccomment">/// Call `cb`, preserving the current context state in `JmpBuf`, which</span>
+<span class="doccomment">/// can be later used by [`longjmp`] to immediately return from this function,</span>
+<span class="doccomment">/// bypassing destructors and unwinding mechanisms such as</span>
+<span class="doccomment">/// &lt;https://github.com/rust-lang/rust/pull/70212&gt;.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [The native `setjmp`] isn&#39;t supported by Rust at the point of writing.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [The native `setjmp`]: https://github.com/rust-lang/rfcs/issues/2625</span>
+<span class="attribute">#[<span class="ident">inline</span>]</span>
+<span class="kw">fn</span> <span class="ident">catch_longjmp</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="ident">JmpBuf</span>)<span class="op">&gt;</span>(<span class="ident">cb</span>: <span class="ident">F</span>) {
+    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">never</span>)]</span> <span class="comment">// ensure all caller-saved regs are trash-able</span>
+    <span class="kw">fn</span> <span class="ident">catch_longjmp_inner</span>(<span class="ident">f</span>: <span class="kw">fn</span>(<span class="kw-2">*</span><span class="kw-2">mut</span> (), <span class="ident">JmpBuf</span>), <span class="ident">ctx</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ()) {
+        <span class="kw">unsafe</span> {
+            <span class="kw">match</span> () {
+                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>)]</span>
+                () <span class="op">=&gt;</span> {
+                    <span class="macro">asm</span><span class="macro">!</span>(
+                        <span class="string">&quot;
+                            # push context
+                            push rbp
+                            lea rbx, [rip + 0f]
+                            push rbx
+
+                            # do f(ctx, jmp_buf)
+                            # [rdi = ctx, rsp = jmp_buf]
+                            mov rsi, rsp
+                            call {f}
+
+                            jmp 1f
+                        0:
+                            # longjmp called. restore context
+                            mov rbp, [rsp + 8]
+
+                        1:
+                            # discard context
+                            add rsp, 16
+                        &quot;</span>,
+                        <span class="ident">f</span> <span class="op">=</span> <span class="ident">inlateout</span>(<span class="ident">reg</span>) <span class="ident">f</span> <span class="op">=&gt;</span> <span class="kw">_</span>,
+                        <span class="ident">inlateout</span>(<span class="string">&quot;rdi&quot;</span>) <span class="ident">ctx</span> <span class="op">=&gt;</span> <span class="kw">_</span>,
+                        <span class="ident">lateout</span>(<span class="string">&quot;rsi&quot;</span>) <span class="kw">_</span>,
+                        <span class="comment">// System V ABI callee-saved registers</span>
+                        <span class="comment">// (note: Windows uses a different ABI)</span>
+                        <span class="ident">out</span>(<span class="string">&quot;rbx&quot;</span>) <span class="kw">_</span>,
+                        <span class="ident">lateout</span>(<span class="string">&quot;r12&quot;</span>) <span class="kw">_</span>,
+                        <span class="ident">lateout</span>(<span class="string">&quot;r13&quot;</span>) <span class="kw">_</span>,
+                        <span class="ident">lateout</span>(<span class="string">&quot;r14&quot;</span>) <span class="kw">_</span>,
+                        <span class="ident">lateout</span>(<span class="string">&quot;r15&quot;</span>) <span class="kw">_</span>,
+                    );
+                }
+            }
+        }
+    }
+
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cb</span> <span class="op">=</span> <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">ManuallyDrop</span>::<span class="ident">new</span>(<span class="ident">cb</span>);
+
+    <span class="ident">catch_longjmp_inner</span>(
+        <span class="op">|</span><span class="ident">ctx</span>, <span class="ident">jmp_buf</span><span class="op">|</span> <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> (<span class="ident">ctx</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">F</span>).<span class="ident">read</span>();
+            <span class="ident">ctx</span>(<span class="ident">jmp_buf</span>);
+        },
+        (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">cb</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> (),
+    );
+}
+
+<span class="doccomment">/// Return from a call to [`catch_longjmp`] using the preserved context state in</span>
+<span class="doccomment">/// `jmp_buf`.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Safety</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///  - This function bypasses all destructor calls that stand between the call</span>
+<span class="doccomment">///    site of this function and the call to `catch_longjmp` corresponding to</span>
+<span class="doccomment">///    the given `JmpBuf`.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///  - The call to `catch_longjmp` corresponding to the given `JmpBuf` should be</span>
+<span class="doccomment">///    still active (it must be in the call stack when this function is called).</span>
+<span class="doccomment">///</span>
+<span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">longjmp</span>(<span class="ident">jmp_buf</span>: <span class="ident">JmpBuf</span>) <span class="op">-&gt;</span> <span class="op">!</span> {
+    <span class="kw">unsafe</span> {
+        <span class="kw">match</span> () {
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>)]</span>
+            () <span class="op">=&gt;</span> {
+                <span class="macro">asm</span><span class="macro">!</span>(
+                    <span class="string">&quot;
+                        mov rsp, {}
+                        jmp [rsp]
+                    &quot;</span>,
+                    <span class="kw">in</span>(<span class="ident">reg</span>) <span class="ident">jmp_buf</span>.<span class="ident">sp</span>.<span class="ident">as_ptr</span>(),
+                    <span class="ident">options</span>(<span class="ident">noreturn</span>),
+                );
+            }
+        }
+    }
+}
+
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
@@ -708,6 +952,30 @@
 
         <span class="comment">// `jh` should be the sole owner of `ThreadData` now</span>
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Arc</span>::<span class="ident">strong_count</span>(<span class="kw-2">&amp;</span><span class="ident">jh</span>.<span class="ident">thread</span>.<span class="ident">data</span>), <span class="number">1</span>);
+    }
+
+    <span class="kw">struct</span> <span class="ident">PanicOnDrop</span>;
+
+    <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">PanicOnDrop</span> {
+        <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+            <span class="macro">unreachable</span><span class="macro">!</span>();
+        }
+    }
+
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">test_longjmp</span>() {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="number">42</span>;
+        <span class="ident">catch_longjmp</span>(<span class="op">|</span><span class="ident">jmp_buf</span><span class="op">|</span> {
+            <span class="kw">let</span> <span class="ident">_hoge</span> <span class="op">=</span> <span class="ident">PanicOnDrop</span>;
+            <span class="ident">std</span>::<span class="ident">panic</span>::<span class="ident">catch_unwind</span>(<span class="ident">std</span>::<span class="ident">panic</span>::<span class="ident">AssertUnwindSafe</span>(<span class="op">||</span> <span class="kw">loop</span> {
+                <span class="ident">buf</span> <span class="op">+=</span> <span class="number">1</span>;
+                <span class="kw">if</span> <span class="ident">buf</span> <span class="op">==</span> <span class="number">50</span> {
+                    <span class="kw">unsafe</span> { <span class="ident">longjmp</span>(<span class="ident">jmp_buf</span>) };
+                }
+            }))
+            .<span class="ident">unwrap</span>();
+        });
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">buf</span>, <span class="number">50</span>);
     }
 }
 </pre></div>
