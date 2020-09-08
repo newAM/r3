@@ -44,13 +44,13 @@
 
 <span class="kw">impl</span> <span class="ident">Mvendorid</span> {
     <span class="doccomment">/// Returns the contents of the register as raw bits</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get</span>()
     }
 
     <span class="doccomment">/// Returns the JEDEC manufacturer ID</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">jedec_manufacturer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">bits</span>() <span class="op">&gt;&gt;</span> <span class="number">7</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">jedec_manufacturer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+        <span class="self">self</span>.<span class="ident">bits</span>() <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">7</span>
     }
 }
 
@@ -58,7 +58,7 @@
 
 <span class="doccomment">/// Reads the CSR</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Mvendorid</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Mvendorid</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">r</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">_read</span>() };
     <span class="comment">// When mvendorid is hardwired to zero it means that the mvendorid</span>
     <span class="comment">// csr isn&#39;t implemented.</span>

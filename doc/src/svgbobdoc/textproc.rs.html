@@ -295,11 +295,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">TextProcState</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> { <span class="ident">code_block</span>: <span class="prelude-val">None</span> }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">step</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">fragment</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">span</span>: <span class="ident">Span</span>) <span class="op">-&gt;</span> <span class="ident">TextProcOutput</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">step</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">fragment</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">span</span>: <span class="ident">Span</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextProcOutput</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">i</span> <span class="op">=</span> <span class="number">0</span>;
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">new_frag</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
@@ -309,14 +309,14 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">passthrough</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">code_block</span> {
             <span class="prelude-val">Some</span>(<span class="ident">CodeBlock</span> {
                 <span class="ident">captured</span>: <span class="prelude-val">Some</span>(<span class="kw">_</span>), ..
-            }) <span class="op">=&gt;</span> <span class="bool-val">false</span>,
-            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="bool-val">true</span>,
+            }) <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">false</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">true</span>,
         };
 
         <span class="comment">// Disables &quot;pass-through&quot; mode, preparing `new_frag` for custom</span>
         <span class="comment">// generation.</span>
         <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">prepare_nonpassthrough_emission</span> {
-            () <span class="op">=&gt;</span> {
+            () <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="kw">if</span> <span class="ident">new_frag</span>.<span class="ident">is_none</span>() {
                     <span class="ident">new_frag</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="kw">if</span> <span class="ident">passthrough</span> {
                         <span class="ident">fragment</span>[<span class="number">0</span>..<span class="ident">i</span>].<span class="ident">to_owned</span>()
@@ -339,11 +339,11 @@
             }
         }
 
-        <span class="kw">fn</span> <span class="ident">remove_indent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="ident">line</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="kw-2">mut</span> <span class="ident">indent</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span> {
+        <span class="kw">fn</span> <span class="ident">remove_indent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="ident">line</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="kw-2">mut</span> <span class="ident">indent</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span> {
             <span class="kw">while</span> <span class="ident">line</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="number">0</span>
                 <span class="op">&amp;&amp;</span> <span class="ident">indent</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="number">0</span>
-                <span class="op">&amp;&amp;</span> <span class="ident">line</span>.<span class="ident">as_bytes</span>()[<span class="number">0</span>] <span class="op">==</span> <span class="ident">indent</span>.<span class="ident">as_bytes</span>()[<span class="number">0</span>]
-                <span class="op">&amp;&amp;</span> (<span class="ident">indent</span>.<span class="ident">as_bytes</span>()[<span class="number">0</span>] <span class="op">==</span> <span class="string">b&#39; &#39;</span> <span class="op">||</span> <span class="ident">indent</span>.<span class="ident">as_bytes</span>()[<span class="number">0</span>] <span class="op">==</span> <span class="string">b&#39;\t&#39;</span>)
+                <span class="op">&amp;&amp;</span> <span class="ident">line</span>.<span class="ident">as_bytes</span>()[<span class="number">0</span>] <span class="op">=</span><span class="op">=</span> <span class="ident">indent</span>.<span class="ident">as_bytes</span>()[<span class="number">0</span>]
+                <span class="op">&amp;&amp;</span> (<span class="ident">indent</span>.<span class="ident">as_bytes</span>()[<span class="number">0</span>] <span class="op">=</span><span class="op">=</span> <span class="string">b&#39; &#39;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">indent</span>.<span class="ident">as_bytes</span>()[<span class="number">0</span>] <span class="op">=</span><span class="op">=</span> <span class="string">b&#39;\t&#39;</span>)
             {
                 <span class="ident">line</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">line</span>[<span class="number">1</span>..];
                 <span class="ident">indent</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">indent</span>[<span class="number">1</span>..];
@@ -365,7 +365,7 @@
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">passthrough_line</span> <span class="op">=</span> <span class="bool-val">true</span>;
 
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">code_block</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">code_block</span> {
-                <span class="kw">if</span> <span class="ident">line</span> <span class="op">==</span> <span class="ident">code_block</span>.<span class="ident">fence</span> {
+                <span class="kw">if</span> <span class="ident">line</span> <span class="op">=</span><span class="op">=</span> <span class="ident">code_block</span>.<span class="ident">fence</span> {
                     <span class="comment">// Reached the end of the code block</span>
                     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">mut</span> <span class="ident">captured</span>) <span class="op">=</span> <span class="ident">code_block</span>.<span class="ident">captured</span>.<span class="ident">take</span>() {
                         <span class="ident">passthrough_line</span> <span class="op">=</span> <span class="bool-val">false</span>;
@@ -379,7 +379,7 @@
                     <span class="ident">close_code_block</span> <span class="op">=</span> <span class="bool-val">true</span>;
                 } <span class="kw">else</span> {
                     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">captured</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">code_block</span>.<span class="ident">captured</span> {
-                        <span class="ident">captured</span>.<span class="ident">content</span> <span class="op">+=</span> <span class="ident">remove_indent</span>(<span class="ident">line</span>, <span class="kw-2">&amp;</span><span class="ident">code_block</span>.<span class="ident">fence</span>);
+                        <span class="ident">captured</span>.<span class="ident">content</span> <span class="op">+</span><span class="op">=</span> <span class="ident">remove_indent</span>(<span class="ident">line</span>, <span class="kw-2">&amp;</span><span class="ident">code_block</span>.<span class="ident">fence</span>);
                         <span class="ident">captured</span>.<span class="ident">content</span>.<span class="ident">push</span>(<span class="string">&#39;\n&#39;</span>);
                         <span class="ident">passthrough_line</span> <span class="op">=</span> <span class="bool-val">false</span>;
                     }
@@ -396,7 +396,7 @@
                         <span class="ident">start</span>: <span class="ident">span</span>,
                     };
 
-                    <span class="kw">if</span> <span class="ident">language</span> <span class="op">==</span> <span class="string">&quot;svgbob&quot;</span> <span class="op">||</span> <span class="ident">language</span>.<span class="ident">starts_with</span>(<span class="string">&quot;svgbob,&quot;</span>) {
+                    <span class="kw">if</span> <span class="ident">language</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;svgbob&quot;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">language</span>.<span class="ident">starts_with</span>(<span class="string">&quot;svgbob,&quot;</span>) {
                         <span class="comment">// This is the code blcok we are interested in.</span>
                         <span class="comment">// Capture the contents.</span>
                         <span class="ident">passthrough_line</span> <span class="op">=</span> <span class="bool-val">false</span>;
@@ -415,7 +415,7 @@
 
             <span class="kw">if</span> <span class="ident">passthrough_line</span> {
                 <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">new_frag</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">new_frag</span> {
-                    <span class="kw-2">*</span><span class="ident">new_frag</span> <span class="op">+=</span> <span class="ident">line</span>;
+                    <span class="kw-2">*</span><span class="ident">new_frag</span> <span class="op">+</span><span class="op">=</span> <span class="ident">line</span>;
                     <span class="kw">if</span> <span class="ident">next_break</span>.<span class="ident">is_some</span>() {
                         <span class="ident">new_frag</span>.<span class="ident">push</span>(<span class="string">&#39;\n&#39;</span>);
                     }
@@ -427,7 +427,7 @@
             }
 
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">next_break</span>) <span class="op">=</span> <span class="ident">next_break</span> {
-                <span class="ident">i</span> <span class="op">+=</span> <span class="ident">next_break</span> <span class="op">+</span> <span class="number">1</span>;
+                <span class="ident">i</span> <span class="op">+</span><span class="op">=</span> <span class="ident">next_break</span> <span class="op">+</span> <span class="number">1</span>;
             } <span class="kw">else</span> {
                 <span class="kw">break</span>;
             }
@@ -442,7 +442,7 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">finalize</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">finalize</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">code_block</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">code_block</span> {
             <span class="kw">if</span> <span class="ident">code_block</span>.<span class="ident">captured</span>.<span class="ident">is_some</span>() {
                 <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">new</span>(<span class="ident">code_block</span>.<span class="ident">start</span>, <span class="string">&quot;unclosed code block&quot;</span>));
@@ -504,20 +504,20 @@
 <span class="doccomment">/// Get the EAW width of an XML-escaped string.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This function only supports entities generated by `svg_escape`.</span>
-<span class="kw">fn</span> <span class="ident">width_xml_text</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+<span class="kw">fn</span> <span class="ident">width_xml_text</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
     <span class="kw">use</span> <span class="ident">unicode_width</span>::<span class="ident">UnicodeWidthStr</span>;
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">i</span> <span class="op">=</span> <span class="number">0</span>;
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">width</span> <span class="op">=</span> <span class="number">0</span>;
     <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">k</span>) <span class="op">=</span> <span class="ident">s</span>[<span class="ident">i</span>..].<span class="ident">find</span>(<span class="string">&#39;&amp;&#39;</span>) {
-        <span class="ident">width</span> <span class="op">+=</span> <span class="ident">s</span>[<span class="ident">i</span>..<span class="ident">i</span> <span class="op">+</span> <span class="ident">k</span>].<span class="ident">width</span>();
-        <span class="ident">width</span> <span class="op">+=</span> <span class="number">1</span>; <span class="comment">// Characters escaped by `svg_escape` are always single-cell wide</span>
-        <span class="ident">i</span> <span class="op">+=</span> <span class="ident">k</span>;
+        <span class="ident">width</span> <span class="op">+</span><span class="op">=</span> <span class="ident">s</span>[<span class="ident">i</span>..<span class="ident">i</span> <span class="op">+</span> <span class="ident">k</span>].<span class="ident">width</span>();
+        <span class="ident">width</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>; <span class="comment">// Characters escaped by `svg_escape` are always single-cell wide</span>
+        <span class="ident">i</span> <span class="op">+</span><span class="op">=</span> <span class="ident">k</span>;
 
         <span class="comment">// Skip to the corresponding `;`</span>
-        <span class="ident">i</span> <span class="op">+=</span> <span class="ident">s</span>[<span class="ident">i</span>..].<span class="ident">find</span>(<span class="string">&#39;;&#39;</span>).<span class="ident">unwrap_or</span>(<span class="ident">s</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="ident">i</span> <span class="op">-</span> <span class="number">1</span>) <span class="op">+</span> <span class="number">1</span>;
+        <span class="ident">i</span> <span class="op">+</span><span class="op">=</span> <span class="ident">s</span>[<span class="ident">i</span>..].<span class="ident">find</span>(<span class="string">&#39;;&#39;</span>).<span class="ident">unwrap_or</span>(<span class="ident">s</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="ident">i</span> <span class="op">-</span> <span class="number">1</span>) <span class="op">+</span> <span class="number">1</span>;
     }
-    <span class="ident">width</span> <span class="op">+=</span> <span class="ident">s</span>[<span class="ident">i</span>..].<span class="ident">width</span>();
+    <span class="ident">width</span> <span class="op">+</span><span class="op">=</span> <span class="ident">s</span>[<span class="ident">i</span>..].<span class="ident">width</span>();
     <span class="ident">width</span>
 }
 </pre></div>

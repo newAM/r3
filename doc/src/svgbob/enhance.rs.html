@@ -384,12 +384,12 @@
 <span class="kw">use</span> <span class="ident">fragments</span>::{<span class="ident">line</span>, <span class="ident">arc</span>, <span class="ident">arrow_line</span>, <span class="ident">open_circle</span>, <span class="ident">clear_arrow_line</span>};
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Enhance</span> {
-    <span class="kw">fn</span> <span class="ident">enhance</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Fragment</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Location</span><span class="op">&gt;</span>);
+    <span class="kw">fn</span> <span class="ident">enhance</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Fragment</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Location</span><span class="op">&gt;</span>);
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;g</span><span class="op">&gt;</span> <span class="ident">Enhance</span> <span class="kw">for</span> <span class="ident">FocusChar</span><span class="op">&lt;</span><span class="lifetime">&#39;g</span><span class="op">&gt;</span> {
 
-    <span class="kw">fn</span> <span class="ident">enhance</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Fragment</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Location</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">enhance</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Fragment</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Location</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">elm</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">consumed</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
         <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">PointBlock</span>::<span class="ident">block</span>(<span class="ident">A</span>);
@@ -418,21 +418,21 @@
         <span class="comment">//let _x = &amp;PointBlock::block(X);</span>
         <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">PointBlock</span>::<span class="ident">block</span>(<span class="ident">Y</span>);
 
-        <span class="kw">let</span> <span class="ident">this</span> <span class="op">=</span> <span class="op">||</span> <span class="ident">Location</span>::<span class="ident">this</span>();
-        <span class="kw">let</span> <span class="ident">top</span> <span class="op">=</span> <span class="op">||</span> <span class="ident">Location</span>::<span class="ident">go</span>(<span class="ident">Top</span>);
-        <span class="kw">let</span> <span class="ident">bottom</span> <span class="op">=</span> <span class="op">||</span> <span class="ident">Location</span>::<span class="ident">go</span>(<span class="ident">Bottom</span>);
-        <span class="kw">let</span> <span class="ident">left</span> <span class="op">=</span> <span class="op">||</span> <span class="ident">Location</span>::<span class="ident">go</span>(<span class="ident">Left</span>);
-        <span class="kw">let</span> <span class="ident">right</span> <span class="op">=</span> <span class="op">||</span> <span class="ident">Location</span>::<span class="ident">go</span>(<span class="ident">Right</span>);
-        <span class="kw">let</span> <span class="ident">top_left</span> <span class="op">=</span> <span class="op">||</span> <span class="ident">Location</span>::<span class="ident">go</span>(<span class="ident">TopLeft</span>);
-        <span class="kw">let</span> <span class="ident">top_right</span> <span class="op">=</span> <span class="op">||</span> <span class="ident">Location</span>::<span class="ident">go</span>(<span class="ident">TopRight</span>);
-        <span class="kw">let</span> <span class="ident">bottom_left</span> <span class="op">=</span> <span class="op">||</span> <span class="ident">Location</span>::<span class="ident">go</span>(<span class="ident">BottomLeft</span>);
-        <span class="kw">let</span> <span class="ident">bottom_right</span> <span class="op">=</span> <span class="op">||</span> <span class="ident">Location</span>::<span class="ident">go</span>(<span class="ident">BottomRight</span>);
+        <span class="kw">let</span> <span class="ident">this</span> <span class="op">=</span> <span class="op">|</span><span class="op">|</span> <span class="ident">Location</span>::<span class="ident">this</span>();
+        <span class="kw">let</span> <span class="ident">top</span> <span class="op">=</span> <span class="op">|</span><span class="op">|</span> <span class="ident">Location</span>::<span class="ident">go</span>(<span class="ident">Top</span>);
+        <span class="kw">let</span> <span class="ident">bottom</span> <span class="op">=</span> <span class="op">|</span><span class="op">|</span> <span class="ident">Location</span>::<span class="ident">go</span>(<span class="ident">Bottom</span>);
+        <span class="kw">let</span> <span class="ident">left</span> <span class="op">=</span> <span class="op">|</span><span class="op">|</span> <span class="ident">Location</span>::<span class="ident">go</span>(<span class="ident">Left</span>);
+        <span class="kw">let</span> <span class="ident">right</span> <span class="op">=</span> <span class="op">|</span><span class="op">|</span> <span class="ident">Location</span>::<span class="ident">go</span>(<span class="ident">Right</span>);
+        <span class="kw">let</span> <span class="ident">top_left</span> <span class="op">=</span> <span class="op">|</span><span class="op">|</span> <span class="ident">Location</span>::<span class="ident">go</span>(<span class="ident">TopLeft</span>);
+        <span class="kw">let</span> <span class="ident">top_right</span> <span class="op">=</span> <span class="op">|</span><span class="op">|</span> <span class="ident">Location</span>::<span class="ident">go</span>(<span class="ident">TopRight</span>);
+        <span class="kw">let</span> <span class="ident">bottom_left</span> <span class="op">=</span> <span class="op">|</span><span class="op">|</span> <span class="ident">Location</span>::<span class="ident">go</span>(<span class="ident">BottomLeft</span>);
+        <span class="kw">let</span> <span class="ident">bottom_right</span> <span class="op">=</span> <span class="op">|</span><span class="op">|</span> <span class="ident">Location</span>::<span class="ident">go</span>(<span class="ident">BottomRight</span>);
         <span class="comment">//let top2 = || Location::jump(Top,2);</span>
 
-        <span class="kw">let</span> <span class="ident">top_left2</span> <span class="op">=</span> <span class="op">||</span> <span class="ident">top</span>().<span class="ident">go_left</span>(<span class="number">2</span>);
-        <span class="kw">let</span> <span class="ident">top_right2</span> <span class="op">=</span> <span class="op">||</span> <span class="ident">top</span>().<span class="ident">go_right</span>(<span class="number">2</span>);
-        <span class="kw">let</span> <span class="ident">bottom_right2</span> <span class="op">=</span> <span class="op">||</span> <span class="ident">bottom</span>().<span class="ident">go_right</span>(<span class="number">2</span>);
-        <span class="kw">let</span> <span class="ident">bottom_left2</span> <span class="op">=</span> <span class="op">||</span> <span class="ident">bottom</span>().<span class="ident">go_left</span>(<span class="number">2</span>);
+        <span class="kw">let</span> <span class="ident">top_left2</span> <span class="op">=</span> <span class="op">|</span><span class="op">|</span> <span class="ident">top</span>().<span class="ident">go_left</span>(<span class="number">2</span>);
+        <span class="kw">let</span> <span class="ident">top_right2</span> <span class="op">=</span> <span class="op">|</span><span class="op">|</span> <span class="ident">top</span>().<span class="ident">go_right</span>(<span class="number">2</span>);
+        <span class="kw">let</span> <span class="ident">bottom_right2</span> <span class="op">=</span> <span class="op">|</span><span class="op">|</span> <span class="ident">bottom</span>().<span class="ident">go_right</span>(<span class="number">2</span>);
+        <span class="kw">let</span> <span class="ident">bottom_left2</span> <span class="op">=</span> <span class="op">|</span><span class="op">|</span> <span class="ident">bottom</span>().<span class="ident">go_left</span>(<span class="number">2</span>);
         <span class="comment">//let top2_right = || top2().right();</span>
 
         <span class="comment">// _ underscore</span>

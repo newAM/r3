@@ -41,12 +41,12 @@
 };
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="ident">hunk</span>: <span class="ident">Hunk</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">UnsafeCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span>,
+    <span class="ident">hunk</span>: <span class="ident">Hunk</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">UnsafeCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">_phantom</span>: <span class="ident">PhantomData</span><span class="op">&lt;</span>(<span class="ident">System</span>, <span class="ident">T</span>)<span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span>, <span class="ident">T</span>: <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
         <span class="comment">// TODO: Display the contents if unlocked</span>
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Mutex&quot;</span>).<span class="ident">field</span>(<span class="string">&quot;hunk&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">hunk</span>).<span class="ident">finish</span>()
     }
@@ -57,9 +57,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a configuration function. Call this method from your app&#39;s</span>
     <span class="doccomment">/// configuration function.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">b</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CfgBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">b</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CfgBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
-            <span class="ident">hunk</span>: <span class="ident">Hunk</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">UnsafeCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span>::<span class="ident">build</span>().<span class="ident">finish</span>(<span class="ident">b</span>),
+            <span class="ident">hunk</span>: <span class="ident">Hunk</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">UnsafeCell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">build</span>().<span class="ident">finish</span>(<span class="ident">b</span>),
             <span class="ident">_phantom</span>: <span class="ident">PhantomData</span>,
         }
     }

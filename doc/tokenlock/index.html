@@ -19,7 +19,7 @@ but only the thread holding the original <code>Token</code> can access its conte
 <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">TokenLock</span>::<span class="ident">new</span>(<span class="ident">token</span>.<span class="ident">id</span>(), <span class="number">1</span>));
 
 <span class="kw">let</span> <span class="ident">lock_1</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="ident">lock</span>);
-<span class="ident">thread</span>::<span class="ident">Builder</span>::<span class="ident">new</span>().<span class="ident">spawn</span>(<span class="kw">move</span> <span class="op">||</span> {
+<span class="ident">thread</span>::<span class="ident">Builder</span>::<span class="ident">new</span>().<span class="ident">spawn</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
     <span class="kw">let</span> <span class="ident">lock_1</span> <span class="op">=</span> <span class="ident">lock_1</span>;
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">token_1</span> <span class="op">=</span> <span class="ident">token</span>;
 
@@ -55,11 +55,11 @@ there already is a mutable reference to it:</p>
 <span class="kw">let</span> <span class="ident">read_guard1</span> <span class="op">=</span> <span class="ident">lock</span>.<span class="ident">read</span>(<span class="kw-2">&amp;</span><span class="ident">token</span>);
 <span class="kw">let</span> <span class="ident">read_guard2</span> <span class="op">=</span> <span class="ident">lock</span>.<span class="ident">read</span>(<span class="kw-2">&amp;</span><span class="ident">token</span>);</pre></div>
 </div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
-<table><tr class='module-item'><td><a class="struct" href="struct.BadTokenError.html" title='tokenlock::BadTokenError struct'>BadTokenError</a></td><td class='docblock-short'><p>Error type returned when a key (<a href="../tokenlock/trait.Token.html" title="`Token`"><code>Token</code></a>) doesn't fit in a keyhole
-(<a href="../tokenlock/struct.TokenLock.html#method.keyhole" title="`TokenLock::keyhole`"><code>TokenLock::keyhole</code></a>).</p>
-</td></tr><tr class='module-item'><td><a class="struct" href="struct.TokenLock.html" title='tokenlock::TokenLock struct'>TokenLock</a></td><td class='docblock-short'><p>A mutual exclusive primitive that can be accessed using a <a href="../tokenlock/trait.Token.html" title="`Token`"><code>Token</code></a><code>&lt;I&gt;</code>
+<table><tr class='module-item'><td><a class="struct" href="struct.BadTokenError.html" title='tokenlock::BadTokenError struct'>BadTokenError</a></td><td class='docblock-short'><p>Error type returned when a key (<a href="../tokenlock/trait.Token.html" title="Token"><code>Token</code></a>) doesn't fit in a keyhole
+(<a href="../tokenlock/struct.TokenLock.html#method.keyhole" title="TokenLock::keyhole"><code>TokenLock::keyhole</code></a>).</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.TokenLock.html" title='tokenlock::TokenLock struct'>TokenLock</a></td><td class='docblock-short'><p>A mutual exclusive primitive that can be accessed using a <a href="../tokenlock/trait.Token.html" title="Token"><code>Token</code></a><code>&lt;I&gt;</code>
 with a very low over-head.</p>
 </td></tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
 <table><tr class='module-item'><td><a class="trait" href="trait.Token.html" title='tokenlock::Token trait'>Token</a></td><td class='docblock-short'><p>Trait for an unforgeable token used to access the contents of a
-<a href="../tokenlock/struct.TokenLock.html" title="`TokenLock`"><code>TokenLock</code></a>.</p>
+<a href="../tokenlock/struct.TokenLock.html" title="TokenLock"><code>TokenLock</code></a>.</p>
 </td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../";window.currentCrate = "tokenlock";</script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>

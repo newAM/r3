@@ -36,8 +36,8 @@
 <span class="comment">// FIXME: This is a work-around for `TryFrom` being unavailable in `const fn`</span>
 
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">try_i32_into_u32</span>(<span class="ident">x</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="ident">x</span> <span class="op">&gt;=</span> <span class="number">0</span> {
+<span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">try_i32_into_u32</span>(<span class="ident">x</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> {
+    <span class="kw">if</span> <span class="ident">x</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span> {
         <span class="prelude-val">Some</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">u32</span>)
     } <span class="kw">else</span> {
         <span class="prelude-val">None</span>

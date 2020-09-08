@@ -431,19 +431,19 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This type alias tries to choose the most efficient data type to do the job.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Wrapping</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">MAX</span>: <span class="ident">u64</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">If</span><span class="macro">!</span> {
-    <span class="kw">if</span> (<span class="ident">MAX</span> <span class="op">==</span> <span class="number">0</span>) {
+    <span class="kw">if</span> (<span class="ident">MAX</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span>) {
         ()
     } <span class="kw">else</span> <span class="kw">if</span> (<span class="ident">MAX</span> <span class="op">&lt;</span> <span class="ident">u8</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u64</span>) {
         <span class="ident">FractionalWrapping</span><span class="op">&lt;</span><span class="ident">u8</span>, <span class="ident">MAX</span><span class="op">&gt;</span>
-    } <span class="kw">else</span> <span class="kw">if</span> (<span class="ident">MAX</span> <span class="op">==</span> <span class="ident">u8</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u64</span>) {
+    } <span class="kw">else</span> <span class="kw">if</span> (<span class="ident">MAX</span> <span class="op">=</span><span class="op">=</span> <span class="ident">u8</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u64</span>) {
         <span class="ident">u8</span>
     } <span class="kw">else</span> <span class="kw">if</span> (<span class="ident">MAX</span> <span class="op">&lt;</span> <span class="ident">u16</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u64</span>) {
         <span class="ident">FractionalWrapping</span><span class="op">&lt;</span><span class="ident">u16</span>, <span class="ident">MAX</span><span class="op">&gt;</span>
-    } <span class="kw">else</span> <span class="kw">if</span> (<span class="ident">MAX</span> <span class="op">==</span> <span class="ident">u16</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u64</span>) {
+    } <span class="kw">else</span> <span class="kw">if</span> (<span class="ident">MAX</span> <span class="op">=</span><span class="op">=</span> <span class="ident">u16</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u64</span>) {
         <span class="ident">u16</span>
     } <span class="kw">else</span> <span class="kw">if</span> (<span class="ident">MAX</span> <span class="op">&lt;</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u64</span>) {
         <span class="ident">FractionalWrapping</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">MAX</span><span class="op">&gt;</span>
-    } <span class="kw">else</span> <span class="kw">if</span> (<span class="ident">MAX</span> <span class="op">==</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u64</span>) {
+    } <span class="kw">else</span> <span class="kw">if</span> (<span class="ident">MAX</span> <span class="op">=</span><span class="op">=</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u64</span>) {
         <span class="ident">u32</span>
     } <span class="kw">else</span> <span class="kw">if</span> (<span class="ident">MAX</span> <span class="op">&lt;</span> <span class="ident">u64</span>::<span class="ident">MAX</span>) {
         <span class="ident">FractionalWrapping</span><span class="op">&lt;</span><span class="ident">u64</span>, <span class="ident">MAX</span><span class="op">&gt;</span>
@@ -458,118 +458,118 @@
     <span class="doccomment">/// Add a value to `self`. Returns `true` iff wrap-around has occurred.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `rhs` must be less than or equal to `MAX`.</span>
-    <span class="kw">fn</span> <span class="ident">wrapping_add_assign64</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u64</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">wrapping_add_assign64</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Add a value to `self`. Returns the number of times for which wrap-around</span>
     <span class="doccomment">/// has occurred.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The result must not overflow.</span>
-    <span class="kw">fn</span> <span class="ident">wrapping_add_assign128_multi32</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u128</span>) <span class="op">-&gt;</span> <span class="ident">u32</span>;
+    <span class="kw">fn</span> <span class="ident">wrapping_add_assign128_multi32</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u128</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_u128</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u128</span>;
+    <span class="kw">fn</span> <span class="ident">to_u128</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u128</span>;
 }
 
 <span class="kw">impl</span> <span class="ident">WrappingTrait</span> <span class="kw">for</span> () {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">wrapping_add_assign64</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u64</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
-        <span class="ident">rhs</span> <span class="op">!=</span> <span class="number">0</span>
+    <span class="kw">fn</span> <span class="ident">wrapping_add_assign64</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="ident">rhs</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">wrapping_add_assign128_multi32</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u128</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">wrapping_add_assign128_multi32</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u128</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="ident">rhs</span> <span class="kw">as</span> <span class="ident">u32</span>
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">to_u128</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u128</span> {
+    <span class="kw">fn</span> <span class="ident">to_u128</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u128</span> {
         <span class="number">0</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">WrappingTrait</span> <span class="kw">for</span> <span class="ident">u8</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">wrapping_add_assign64</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u64</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">wrapping_add_assign64</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">let</span> (<span class="ident">out</span>, <span class="ident">overflow</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">overflowing_add</span>(<span class="ident">rhs</span> <span class="kw">as</span> <span class="ident">u8</span>);
         <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident">out</span>;
         <span class="ident">overflow</span>
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">wrapping_add_assign128_multi32</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u128</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
-        <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">rhs</span> <span class="op">&lt;</span> (<span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">40</span>));
+    <span class="kw">fn</span> <span class="ident">wrapping_add_assign128_multi32</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u128</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+        <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">rhs</span> <span class="op">&lt;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">40</span>));
         <span class="kw">let</span> <span class="ident">new_value</span> <span class="op">=</span> <span class="kw-2">*</span><span class="self">self</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">+</span> <span class="ident">rhs</span> <span class="kw">as</span> <span class="ident">u64</span>;
         <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident">new_value</span> <span class="kw">as</span> <span class="ident">u8</span>;
-        (<span class="ident">new_value</span> <span class="op">&gt;&gt;</span> <span class="number">8</span>) <span class="kw">as</span> <span class="ident">u32</span>
+        (<span class="ident">new_value</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">8</span>) <span class="kw">as</span> <span class="ident">u32</span>
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">to_u128</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u128</span> {
+    <span class="kw">fn</span> <span class="ident">to_u128</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u128</span> {
         <span class="kw-2">*</span><span class="self">self</span> <span class="kw">as</span> <span class="ident">u128</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">WrappingTrait</span> <span class="kw">for</span> <span class="ident">u16</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">wrapping_add_assign64</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u64</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">wrapping_add_assign64</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">let</span> (<span class="ident">out</span>, <span class="ident">overflow</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">overflowing_add</span>(<span class="ident">rhs</span> <span class="kw">as</span> <span class="ident">u16</span>);
         <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident">out</span>;
         <span class="ident">overflow</span>
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">wrapping_add_assign128_multi32</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u128</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
-        <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">rhs</span> <span class="op">&lt;</span> (<span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">48</span>));
+    <span class="kw">fn</span> <span class="ident">wrapping_add_assign128_multi32</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u128</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+        <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">rhs</span> <span class="op">&lt;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">48</span>));
         <span class="kw">let</span> <span class="ident">new_value</span> <span class="op">=</span> <span class="kw-2">*</span><span class="self">self</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">+</span> <span class="ident">rhs</span> <span class="kw">as</span> <span class="ident">u64</span>;
         <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident">new_value</span> <span class="kw">as</span> <span class="ident">u16</span>;
-        (<span class="ident">new_value</span> <span class="op">&gt;&gt;</span> <span class="number">16</span>) <span class="kw">as</span> <span class="ident">u32</span>
+        (<span class="ident">new_value</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">16</span>) <span class="kw">as</span> <span class="ident">u32</span>
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">to_u128</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u128</span> {
+    <span class="kw">fn</span> <span class="ident">to_u128</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u128</span> {
         <span class="kw-2">*</span><span class="self">self</span> <span class="kw">as</span> <span class="ident">u128</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">WrappingTrait</span> <span class="kw">for</span> <span class="ident">u32</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">wrapping_add_assign64</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u64</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">wrapping_add_assign64</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">let</span> (<span class="ident">out</span>, <span class="ident">overflow</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">overflowing_add</span>(<span class="ident">rhs</span> <span class="kw">as</span> <span class="ident">u32</span>);
         <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident">out</span>;
         <span class="ident">overflow</span>
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">wrapping_add_assign128_multi32</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u128</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
-        <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">rhs</span> <span class="op">&lt;</span> (<span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">64</span>));
+    <span class="kw">fn</span> <span class="ident">wrapping_add_assign128_multi32</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u128</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+        <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">rhs</span> <span class="op">&lt;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">64</span>));
         <span class="kw">let</span> <span class="ident">new_value</span> <span class="op">=</span> <span class="kw-2">*</span><span class="self">self</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">+</span> <span class="ident">rhs</span> <span class="kw">as</span> <span class="ident">u64</span>;
         <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident">new_value</span> <span class="kw">as</span> <span class="ident">u32</span>;
-        (<span class="ident">new_value</span> <span class="op">&gt;&gt;</span> <span class="number">32</span>) <span class="kw">as</span> <span class="ident">u32</span>
+        (<span class="ident">new_value</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">32</span>) <span class="kw">as</span> <span class="ident">u32</span>
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">to_u128</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u128</span> {
+    <span class="kw">fn</span> <span class="ident">to_u128</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u128</span> {
         <span class="kw-2">*</span><span class="self">self</span> <span class="kw">as</span> <span class="ident">u128</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">WrappingTrait</span> <span class="kw">for</span> <span class="ident">u64</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">wrapping_add_assign64</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u64</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">wrapping_add_assign64</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">let</span> (<span class="ident">out</span>, <span class="ident">overflow</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">overflowing_add</span>(<span class="ident">rhs</span> <span class="kw">as</span> <span class="ident">u64</span>);
         <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident">out</span>;
         <span class="ident">overflow</span>
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">wrapping_add_assign128_multi32</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u128</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
-        <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">rhs</span> <span class="op">&lt;</span> (<span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">96</span>));
+    <span class="kw">fn</span> <span class="ident">wrapping_add_assign128_multi32</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u128</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+        <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">rhs</span> <span class="op">&lt;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">96</span>));
         <span class="kw">let</span> <span class="ident">new_value</span> <span class="op">=</span> <span class="kw-2">*</span><span class="self">self</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">+</span> <span class="ident">rhs</span>;
         <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident">new_value</span> <span class="kw">as</span> <span class="ident">u64</span>;
-        (<span class="ident">new_value</span> <span class="op">&gt;&gt;</span> <span class="number">64</span>) <span class="kw">as</span> <span class="ident">u32</span>
+        (<span class="ident">new_value</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">64</span>) <span class="kw">as</span> <span class="ident">u32</span>
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">to_u128</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u128</span> {
+    <span class="kw">fn</span> <span class="ident">to_u128</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u128</span> {
         <span class="kw-2">*</span><span class="self">self</span> <span class="kw">as</span> <span class="ident">u128</span>
     }
 }
@@ -603,7 +603,7 @@
         <span class="op">+</span> <span class="ident">core</span>::<span class="ident">fmt</span>::<span class="ident">Debug</span>,
 {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">wrapping_add_assign64</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u64</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">wrapping_add_assign64</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="ident">t_max</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">x</span>) <span class="op">=</span> <span class="ident">T</span>::<span class="ident">try_from</span>(<span class="ident">MAX</span>) {
             <span class="ident">x</span>
         } <span class="kw">else</span> {
@@ -623,8 +623,8 @@
             <span class="comment">// not overflow `T`.</span>
             <span class="kw">let</span> <span class="ident">new_value</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">inner</span> <span class="op">+</span> <span class="ident">t_rhs</span>;
             <span class="self">self</span>.<span class="ident">inner</span> <span class="op">=</span> <span class="ident">new_value</span> <span class="op">%</span> (<span class="ident">t_max</span> <span class="op">+</span> <span class="ident">T</span>::<span class="ident">from</span>(<span class="number">1</span>));
-            <span class="ident">new_value</span> <span class="op">&gt;=</span> <span class="ident">t_max</span> <span class="op">+</span> <span class="ident">T</span>::<span class="ident">from</span>(<span class="number">1</span>)
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">t_max</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">inner</span> <span class="op">&gt;=</span> <span class="ident">t_rhs</span> {
+            <span class="ident">new_value</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">t_max</span> <span class="op">+</span> <span class="ident">T</span>::<span class="ident">from</span>(<span class="number">1</span>)
+        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">t_max</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">inner</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">t_rhs</span> {
             <span class="self">self</span>.<span class="ident">inner</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">inner</span> <span class="op">+</span> <span class="ident">t_rhs</span>;
             <span class="bool-val">false</span>
         } <span class="kw">else</span> {
@@ -634,17 +634,17 @@
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">wrapping_add_assign128_multi32</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u128</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">wrapping_add_assign128_multi32</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u128</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="kw">let</span> <span class="ident">new_value</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">into</span>() <span class="kw">as</span> <span class="ident">u128</span> <span class="op">+</span> <span class="ident">rhs</span>;
         <span class="self">self</span>.<span class="ident">inner</span> <span class="op">=</span> <span class="ident">T</span>::<span class="ident">try_from</span>(<span class="ident">new_value</span> <span class="op">%</span> (<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">+</span> <span class="number">1</span>)).<span class="ident">ok</span>().<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">wrap_count</span> <span class="op">=</span> <span class="ident">new_value</span> <span class="op">/</span> (<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">+</span> <span class="number">1</span>);
-        <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">wrap_count</span> <span class="op">&lt;=</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>);
+        <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">wrap_count</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>);
         <span class="ident">wrap_count</span> <span class="kw">as</span> <span class="ident">u32</span>
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">to_u128</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u128</span> {
+    <span class="kw">fn</span> <span class="ident">to_u128</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u128</span> {
         <span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">into</span>()
     }
 }
@@ -669,27 +669,27 @@
     }
 
     <span class="kw">impl</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">MAX</span>: <span class="ident">u64</span><span class="op">&gt;</span> <span class="ident">WrappingTrait</span> <span class="kw">for</span> <span class="ident">NaiveWrapping</span><span class="op">&lt;</span><span class="ident">MAX</span><span class="op">&gt;</span> {
-        <span class="kw">fn</span> <span class="ident">wrapping_add_assign64</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u64</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
-            <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">rhs</span> <span class="op">&lt;=</span> <span class="ident">MAX</span>);
+        <span class="kw">fn</span> <span class="ident">wrapping_add_assign64</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+            <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">rhs</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">MAX</span>);
             <span class="kw">let</span> <span class="ident">new_value</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">inner</span> <span class="op">+</span> <span class="ident">rhs</span> <span class="kw">as</span> <span class="ident">u128</span>;
             <span class="self">self</span>.<span class="ident">inner</span> <span class="op">=</span> <span class="ident">new_value</span> <span class="op">%</span> (<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">+</span> <span class="number">1</span>);
             <span class="ident">new_value</span> <span class="op">&gt;</span> <span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>
         }
 
-        <span class="kw">fn</span> <span class="ident">wrapping_add_assign128_multi32</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u128</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+        <span class="kw">fn</span> <span class="ident">wrapping_add_assign128_multi32</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">u128</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
             <span class="kw">let</span> <span class="ident">new_value</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">inner</span> <span class="op">+</span> <span class="ident">rhs</span>;
             <span class="self">self</span>.<span class="ident">inner</span> <span class="op">=</span> <span class="ident">new_value</span> <span class="op">%</span> (<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">+</span> <span class="number">1</span>);
             <span class="kw">let</span> <span class="ident">wrap_count</span> <span class="op">=</span> <span class="ident">new_value</span> <span class="op">/</span> (<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">+</span> <span class="number">1</span>);
             <span class="ident">wrap_count</span>.<span class="ident">try_into</span>().<span class="ident">unwrap</span>()
         }
 
-        <span class="kw">fn</span> <span class="ident">to_u128</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u128</span> {
+        <span class="kw">fn</span> <span class="ident">to_u128</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u128</span> {
             <span class="self">self</span>.<span class="ident">inner</span>
         }
     }
 
     <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">gen_counter_tests</span> {
-        ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> <span class="op">=&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">max</span>:<span class="ident">expr</span> ,)<span class="kw-2">*</span>) <span class="op">=&gt;</span> {$(
+        ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">max</span>:<span class="ident">expr</span> ,)<span class="kw-2">*</span>) <span class="op">=</span><span class="op">&gt;</span> {$(
             <span class="kw">mod</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span> {
                 <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
 
@@ -739,12 +739,12 @@
                     <span class="ident">do_test_add_assign64</span>(<span class="ident">cmds</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="kw-2">&amp;</span><span class="ident">cmd</span><span class="op">|</span> {
                         <span class="kw">let</span> <span class="ident">max</span> <span class="op">=</span> <span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u64</span>;
                         <span class="kw">match</span> <span class="ident">cmd</span> <span class="op">%</span> <span class="number">4</span> {
-                            <span class="number">0</span> <span class="op">=&gt;</span> <span class="ident">max</span> <span class="op">/</span> <span class="number">2</span>,
-                            <span class="number">1</span> <span class="op">=&gt;</span> (<span class="ident">max</span> <span class="op">/</span> <span class="number">2</span>).<span class="ident">saturating_add</span>(<span class="number">1</span>).<span class="ident">min</span>(<span class="ident">max</span>),
-                            <span class="number">2</span> <span class="op">=&gt;</span> <span class="ident">max</span>.<span class="ident">saturating_sub</span>(<span class="number">1</span>),
-                            <span class="number">3</span> <span class="op">=&gt;</span> <span class="ident">max</span>,
-                            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
-                        }.<span class="ident">saturating_sub</span>(<span class="ident">cmd</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">&gt;&gt;</span> <span class="number">2</span>).<span class="ident">min</span>(<span class="ident">max</span>)
+                            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">max</span> <span class="op">/</span> <span class="number">2</span>,
+                            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">max</span> <span class="op">/</span> <span class="number">2</span>).<span class="ident">saturating_add</span>(<span class="number">1</span>).<span class="ident">min</span>(<span class="ident">max</span>),
+                            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">max</span>.<span class="ident">saturating_sub</span>(<span class="number">1</span>),
+                            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">max</span>,
+                            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+                        }.<span class="ident">saturating_sub</span>(<span class="ident">cmd</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">2</span>).<span class="ident">min</span>(<span class="ident">max</span>)
                     }));
                 }
 
@@ -807,16 +807,16 @@
                 <span class="kw">fn</span> <span class="ident">add_assign128_multi32_quickcheck</span>(<span class="ident">cmds</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) {
                     <span class="ident">do_test_add_assign128_multi32</span>(<span class="ident">cmds</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="kw-2">&amp;</span><span class="ident">cmd</span><span class="op">|</span> {
                         <span class="kw">match</span> <span class="ident">cmd</span> <span class="op">%</span> <span class="number">8</span> {
-                            <span class="number">0</span> <span class="op">=&gt;</span> <span class="ident">MAX</span> <span class="op">/</span> <span class="number">2</span>,
-                            <span class="number">1</span> <span class="op">=&gt;</span> <span class="ident">MAX</span> <span class="op">/</span> <span class="number">2</span> <span class="op">+</span> <span class="number">1</span>,
-                            <span class="number">2</span> <span class="op">=&gt;</span> <span class="ident">MAX</span>.<span class="ident">saturating_sub</span>(<span class="number">1</span>),
-                            <span class="number">3</span> <span class="op">=&gt;</span> <span class="ident">MAX</span>,
-                            <span class="number">4</span> <span class="op">=&gt;</span> (<span class="ident">MAX</span> <span class="op">*</span> <span class="number">2</span>).<span class="ident">saturating_sub</span>(<span class="number">1</span>),
-                            <span class="number">5</span> <span class="op">=&gt;</span> <span class="ident">MAX</span> <span class="op">*</span> <span class="number">2</span> <span class="op">+</span> <span class="number">1</span>,
-                            <span class="number">6</span> <span class="op">=&gt;</span> <span class="ident">MAX</span> <span class="op">*</span> <span class="number">0x1_0000_0000</span>,
-                            <span class="number">7</span> <span class="op">=&gt;</span> (<span class="ident">MAX</span> <span class="op">+</span> <span class="number">1</span>) <span class="op">*</span> <span class="number">0x1_0000_0000</span> <span class="op">-</span> <span class="number">1</span>,
-                            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
-                        }.<span class="ident">saturating_sub</span>(<span class="ident">cmd</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">&gt;&gt;</span> <span class="number">2</span>).<span class="ident">min</span>(<span class="ident">MAX</span>)
+                            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MAX</span> <span class="op">/</span> <span class="number">2</span>,
+                            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MAX</span> <span class="op">/</span> <span class="number">2</span> <span class="op">+</span> <span class="number">1</span>,
+                            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MAX</span>.<span class="ident">saturating_sub</span>(<span class="number">1</span>),
+                            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MAX</span>,
+                            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">MAX</span> <span class="op">*</span> <span class="number">2</span>).<span class="ident">saturating_sub</span>(<span class="number">1</span>),
+                            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MAX</span> <span class="op">*</span> <span class="number">2</span> <span class="op">+</span> <span class="number">1</span>,
+                            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MAX</span> <span class="op">*</span> <span class="number">0x1_0000_0000</span>,
+                            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">MAX</span> <span class="op">+</span> <span class="number">1</span>) <span class="op">*</span> <span class="number">0x1_0000_0000</span> <span class="op">-</span> <span class="number">1</span>,
+                            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+                        }.<span class="ident">saturating_sub</span>(<span class="ident">cmd</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">2</span>).<span class="ident">min</span>(<span class="ident">MAX</span>)
                     }));
                 }
             }
@@ -824,22 +824,22 @@
     }
 
     <span class="macro">gen_counter_tests</span><span class="macro">!</span>(
-        <span class="ident">c0</span> <span class="op">=&gt;</span> <span class="number">0</span>,
-        <span class="ident">c1</span> <span class="op">=&gt;</span> <span class="number">1</span>,
-        <span class="ident">c_u8_max_m1</span> <span class="op">=&gt;</span> <span class="ident">u8</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">-</span> <span class="number">1</span>,
-        <span class="ident">c_u8_max</span> <span class="op">=&gt;</span> <span class="ident">u8</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>,
-        <span class="ident">c_u8_max2</span> <span class="op">=&gt;</span> <span class="ident">u8</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">*</span> <span class="number">2</span>,
-        <span class="ident">c_u8_max_p1</span> <span class="op">=&gt;</span> <span class="ident">u8</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">+</span> <span class="number">1</span>,
-        <span class="ident">c_u16_max_m1</span> <span class="op">=&gt;</span> <span class="ident">u16</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">-</span> <span class="number">1</span>,
-        <span class="ident">c_u16_max</span> <span class="op">=&gt;</span> <span class="ident">u16</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>,
-        <span class="ident">c_u16_max2</span> <span class="op">=&gt;</span> <span class="ident">u16</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">*</span> <span class="number">2</span>,
-        <span class="ident">c_u16_max_p1</span> <span class="op">=&gt;</span> <span class="ident">u16</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">+</span> <span class="number">1</span>,
-        <span class="ident">c_u32_max_m1</span> <span class="op">=&gt;</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">-</span> <span class="number">1</span>,
-        <span class="ident">c_u32_max</span> <span class="op">=&gt;</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>,
-        <span class="ident">c_u32_max2</span> <span class="op">=&gt;</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">*</span> <span class="number">2</span>,
-        <span class="ident">c_u32_max_p1</span> <span class="op">=&gt;</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">+</span> <span class="number">1</span>,
-        <span class="ident">c_u64_max_m1</span> <span class="op">=&gt;</span> <span class="ident">u64</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">-</span> <span class="number">1</span>,
-        <span class="ident">c_u64_max</span> <span class="op">=&gt;</span> <span class="ident">u64</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>,
+        <span class="ident">c0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="number">0</span>,
+        <span class="ident">c1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="number">1</span>,
+        <span class="ident">c_u8_max_m1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u8</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">-</span> <span class="number">1</span>,
+        <span class="ident">c_u8_max</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u8</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>,
+        <span class="ident">c_u8_max2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u8</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">*</span> <span class="number">2</span>,
+        <span class="ident">c_u8_max_p1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u8</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">+</span> <span class="number">1</span>,
+        <span class="ident">c_u16_max_m1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u16</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">-</span> <span class="number">1</span>,
+        <span class="ident">c_u16_max</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u16</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>,
+        <span class="ident">c_u16_max2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u16</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">*</span> <span class="number">2</span>,
+        <span class="ident">c_u16_max_p1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u16</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">+</span> <span class="number">1</span>,
+        <span class="ident">c_u32_max_m1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">-</span> <span class="number">1</span>,
+        <span class="ident">c_u32_max</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>,
+        <span class="ident">c_u32_max2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">*</span> <span class="number">2</span>,
+        <span class="ident">c_u32_max_p1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">+</span> <span class="number">1</span>,
+        <span class="ident">c_u64_max_m1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u64</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">-</span> <span class="number">1</span>,
+        <span class="ident">c_u64_max</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u64</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>,
     );
 }
 </pre></div>

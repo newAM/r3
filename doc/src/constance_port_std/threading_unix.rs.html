@@ -507,10 +507,10 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">thread</span>::<span class="ident">ThreadId</span>;
 
 <span class="macro">thread_local</span><span class="macro">!</span> {
-    <span class="kw">static</span> <span class="ident">EXIT_JMP_BUF</span>: <span class="ident">Cell</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">JmpBuf</span><span class="op">&gt;&gt;</span> <span class="op">=</span> <span class="ident">Cell</span>::<span class="ident">new</span>(<span class="prelude-val">None</span>);
+    <span class="kw">static</span> <span class="ident">EXIT_JMP_BUF</span>: <span class="ident">Cell</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">JmpBuf</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Cell</span>::<span class="ident">new</span>(<span class="prelude-val">None</span>);
 }
 
-<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">exit_thread</span>() <span class="op">-&gt;</span> <span class="op">!</span> {
+<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">exit_thread</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="op">!</span> {
     <span class="kw">let</span> <span class="ident">jmp_buf</span> <span class="op">=</span> <span class="ident">EXIT_JMP_BUF</span>
         .<span class="ident">with</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span>.<span class="ident">get</span>())
         .<span class="ident">expect</span>(<span class="string">&quot;this thread wasn&#39;t started by `threading::spawn`&quot;</span>);
@@ -525,13 +525,13 @@
 }
 
 <span class="doccomment">/// Spawn a new thread.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">spawn</span>(<span class="ident">f</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>() <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>) <span class="op">-&gt;</span> <span class="ident">JoinHandle</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">spawn</span>(<span class="ident">f</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>() <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">JoinHandle</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">parent_thread</span> <span class="op">=</span> <span class="ident">thread</span>::<span class="ident">current</span>();
 
     <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">ThreadData</span>::<span class="ident">new</span>());
     <span class="kw">let</span> <span class="ident">data2</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>);
 
-    <span class="kw">let</span> <span class="ident">std_handle</span> <span class="op">=</span> <span class="ident">thread</span>::<span class="ident">spawn</span>(<span class="kw">move</span> <span class="op">||</span> {
+    <span class="kw">let</span> <span class="ident">std_handle</span> <span class="op">=</span> <span class="ident">thread</span>::<span class="ident">spawn</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
         <span class="comment">// Set up a destructor for `THREAD_DATA`</span>
         <span class="ident">THREAD_DATA_DTOR</span>.<span class="ident">with</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> {});
 
@@ -562,7 +562,7 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">JoinHandle</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">thread</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">Thread</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">thread</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">Thread</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">thread</span>
     }
 }
@@ -604,7 +604,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">ThreadData</span> {
-    <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">park_sock</span> <span class="op">=</span> <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">park_sock</span> <span class="op">=</span> <span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
             <span class="ident">ok_or_errno</span>(<span class="ident">libc</span>::<span class="ident">socketpair</span>(
@@ -631,12 +631,12 @@
     }
 
     <span class="doccomment">/// Get the FD to read a park token.</span>
-    <span class="kw">fn</span> <span class="ident">park_sock_token_source</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">c_int</span> {
+    <span class="kw">fn</span> <span class="ident">park_sock_token_source</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span> {
         <span class="self">self</span>.<span class="ident">park_sock</span>[<span class="number">0</span>]
     }
 
     <span class="doccomment">/// Get the FD to write a park token.</span>
-    <span class="kw">fn</span> <span class="ident">park_sock_token_sink</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">c_int</span> {
+    <span class="kw">fn</span> <span class="ident">park_sock_token_sink</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span> {
         <span class="self">self</span>.<span class="ident">park_sock</span>[<span class="number">1</span>]
     }
 }
@@ -650,7 +650,7 @@
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current</span>() <span class="op">-&gt;</span> <span class="ident">Thread</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Thread</span> {
     <span class="kw">let</span> <span class="ident">data_ptr</span> <span class="op">=</span> <span class="ident">THREAD_DATA</span>.<span class="ident">load</span>(<span class="ident">Ordering</span>::<span class="ident">Relaxed</span>);
 
     <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">data_ptr</span>.<span class="ident">is_null</span>() {
@@ -693,18 +693,18 @@
                 <span class="number">0</span>,
             )
         }) {
-            <span class="prelude-val">Ok</span>(<span class="number">1</span>) <span class="op">=&gt;</span> {}
-            <span class="prelude-val">Ok</span>(<span class="number">0</span>) <span class="op">|</span> <span class="prelude-val">Err</span>(<span class="ident">errno</span>::<span class="ident">Errno</span>(<span class="ident">libc</span>::<span class="ident">EAGAIN</span>)) <span class="op">=&gt;</span> {
+            <span class="prelude-val">Ok</span>(<span class="number">1</span>) <span class="op">=</span><span class="op">&gt;</span> {}
+            <span class="prelude-val">Ok</span>(<span class="number">0</span>) <span class="op">|</span> <span class="prelude-val">Err</span>(<span class="ident">errno</span>::<span class="ident">Errno</span>(<span class="ident">libc</span>::<span class="ident">EAGAIN</span>)) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="comment">// It was a spurious wakeup (this can be caused by how `unpark`</span>
                 <span class="comment">// is implemented). Try again.</span>
                 <span class="kw">continue</span>;
             }
-            <span class="prelude-val">Err</span>(<span class="ident">errno</span>::<span class="ident">Errno</span>(<span class="ident">libc</span>::<span class="ident">EINTR</span>)) <span class="op">=&gt;</span> {
+            <span class="prelude-val">Err</span>(<span class="ident">errno</span>::<span class="ident">Errno</span>(<span class="ident">libc</span>::<span class="ident">EINTR</span>)) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="comment">// Interrupted while waiting. Try again.</span>
                 <span class="kw">continue</span>;
             }
-            <span class="prelude-val">Ok</span>(<span class="ident">i</span>) <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;unexpected return value: {}&quot;</span>, <span class="ident">i</span>),
-            <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;failed to evict park token: {}&quot;</span>, <span class="ident">e</span>),
+            <span class="prelude-val">Ok</span>(<span class="ident">i</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;unexpected return value: {}&quot;</span>, <span class="ident">i</span>),
+            <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;failed to evict park token: {}&quot;</span>, <span class="ident">e</span>),
         }
 
         <span class="kw">break</span>;
@@ -712,7 +712,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Thread</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">ThreadId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ThreadId</span> {
         <span class="self">self</span>.<span class="ident">std_thread</span>.<span class="ident">id</span>()
     }
 
@@ -752,7 +752,7 @@
         <span class="ident">ok_or_errno</span>(<span class="kw">unsafe</span> { <span class="ident">libc</span>::<span class="ident">pthread_kill</span>(<span class="ident">pthread_id</span>, <span class="ident">SIGNAL_REMOTE_PARK</span>) }).<span class="ident">unwrap</span>();
 
         <span class="comment">// Wait until the signal is delivered.</span>
-        <span class="kw">while</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">park_count</span>.<span class="ident">load</span>(<span class="ident">Ordering</span>::<span class="ident">Relaxed</span>) <span class="op">!=</span> <span class="number">0</span> {
+        <span class="kw">while</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">park_count</span>.<span class="ident">load</span>(<span class="ident">Ordering</span>::<span class="ident">Relaxed</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
             <span class="ident">std</span>::<span class="ident">thread</span>::<span class="ident">yield_now</span>();
         }
     }
@@ -787,7 +787,7 @@
         <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">current_ptr</span>.<span class="ident">is_null</span>());
         <span class="kw">let</span> <span class="ident">current</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">current_ptr</span> };
 
-        <span class="kw">while</span> <span class="ident">current</span>.<span class="ident">park_count</span>.<span class="ident">load</span>(<span class="ident">Ordering</span>::<span class="ident">Relaxed</span>) <span class="op">!=</span> <span class="number">0</span> {
+        <span class="kw">while</span> <span class="ident">current</span>.<span class="ident">park_count</span>.<span class="ident">load</span>(<span class="ident">Ordering</span>::<span class="ident">Relaxed</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
             <span class="ident">current</span>.<span class="ident">park_count</span>.<span class="ident">fetch_sub</span>(<span class="number">1</span>, <span class="ident">Ordering</span>::<span class="ident">Relaxed</span>);
 
             <span class="comment">// Park the current thread</span>
@@ -796,16 +796,16 @@
     }
 }
 
-<span class="kw">fn</span> <span class="ident">isize_ok_or_errno</span>(<span class="ident">x</span>: <span class="ident">isize</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">isize</span>, <span class="ident">errno</span>::<span class="ident">Errno</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="ident">x</span> <span class="op">&gt;=</span> <span class="number">0</span> {
+<span class="kw">fn</span> <span class="ident">isize_ok_or_errno</span>(<span class="ident">x</span>: <span class="ident">isize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">isize</span>, <span class="ident">errno</span>::<span class="ident">Errno</span><span class="op">&gt;</span> {
+    <span class="kw">if</span> <span class="ident">x</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span> {
         <span class="prelude-val">Ok</span>(<span class="ident">x</span>)
     } <span class="kw">else</span> {
         <span class="prelude-val">Err</span>(<span class="ident">errno</span>::<span class="ident">errno</span>())
     }
 }
 
-<span class="kw">fn</span> <span class="ident">ok_or_errno</span>(<span class="ident">x</span>: <span class="ident">c_int</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">c_int</span>, <span class="ident">errno</span>::<span class="ident">Errno</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="ident">x</span> <span class="op">&gt;=</span> <span class="number">0</span> {
+<span class="kw">fn</span> <span class="ident">ok_or_errno</span>(<span class="ident">x</span>: <span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">c_int</span>, <span class="ident">errno</span>::<span class="ident">Errno</span><span class="op">&gt;</span> {
+    <span class="kw">if</span> <span class="ident">x</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span> {
         <span class="prelude-val">Ok</span>(<span class="ident">x</span>)
     } <span class="kw">else</span> {
         <span class="prelude-val">Err</span>(<span class="ident">errno</span>::<span class="ident">errno</span>())
@@ -833,7 +833,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">match</span> () {
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>)]</span>
-                () <span class="op">=&gt;</span> {
+                () <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="macro">asm</span><span class="macro">!</span>(
                         <span class="string">&quot;
                             # push context
@@ -855,8 +855,8 @@
                             # discard context
                             add rsp, 16
                         &quot;</span>,
-                        <span class="ident">f</span> <span class="op">=</span> <span class="ident">inlateout</span>(<span class="ident">reg</span>) <span class="ident">f</span> <span class="op">=&gt;</span> <span class="kw">_</span>,
-                        <span class="ident">inlateout</span>(<span class="string">&quot;rdi&quot;</span>) <span class="ident">ctx</span> <span class="op">=&gt;</span> <span class="kw">_</span>,
+                        <span class="ident">f</span> <span class="op">=</span> <span class="ident">inlateout</span>(<span class="ident">reg</span>) <span class="ident">f</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">_</span>,
+                        <span class="ident">inlateout</span>(<span class="string">&quot;rdi&quot;</span>) <span class="ident">ctx</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">_</span>,
                         <span class="ident">lateout</span>(<span class="string">&quot;rsi&quot;</span>) <span class="kw">_</span>,
                         <span class="comment">// System V ABI callee-saved registers</span>
                         <span class="comment">// (note: Windows uses a different ABI)</span>
@@ -894,11 +894,11 @@
 <span class="doccomment">///  - The call to `catch_longjmp` corresponding to the given `JmpBuf` should be</span>
 <span class="doccomment">///    still active (it must be in the call stack when this function is called).</span>
 <span class="doccomment">///</span>
-<span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">longjmp</span>(<span class="ident">jmp_buf</span>: <span class="ident">JmpBuf</span>) <span class="op">-&gt;</span> <span class="op">!</span> {
+<span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">longjmp</span>(<span class="ident">jmp_buf</span>: <span class="ident">JmpBuf</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="op">!</span> {
     <span class="kw">unsafe</span> {
         <span class="kw">match</span> () {
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>)]</span>
-            () <span class="op">=&gt;</span> {
+            () <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="macro">asm</span><span class="macro">!</span>(
                     <span class="string">&quot;
                         mov rsp, {}
@@ -921,7 +921,7 @@
     <span class="doccomment">/// by returning.</span>
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">returning_releases_thread_data</span>() {
-        <span class="kw">let</span> <span class="ident">jh</span> <span class="op">=</span> <span class="ident">spawn</span>(<span class="op">||</span> {
+        <span class="kw">let</span> <span class="ident">jh</span> <span class="op">=</span> <span class="ident">spawn</span>(<span class="op">|</span><span class="op">|</span> {
             <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Arc</span>::<span class="ident">strong_count</span>(<span class="kw-2">&amp;</span><span class="ident">current</span>().<span class="ident">data</span>), <span class="number">3</span>);
             <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Arc</span>::<span class="ident">strong_count</span>(<span class="kw-2">&amp;</span><span class="ident">current</span>().<span class="ident">data</span>), <span class="number">3</span>);
         });
@@ -941,7 +941,7 @@
     <span class="doccomment">/// (relatively) scarce resources.</span>
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">exit_thread_releases_thread_data</span>() {
-        <span class="kw">let</span> <span class="ident">jh</span> <span class="op">=</span> <span class="ident">spawn</span>(<span class="op">||</span> {
+        <span class="kw">let</span> <span class="ident">jh</span> <span class="op">=</span> <span class="ident">spawn</span>(<span class="op">|</span><span class="op">|</span> {
             <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Arc</span>::<span class="ident">strong_count</span>(<span class="kw-2">&amp;</span><span class="ident">current</span>().<span class="ident">data</span>), <span class="number">3</span>);
             <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Arc</span>::<span class="ident">strong_count</span>(<span class="kw-2">&amp;</span><span class="ident">current</span>().<span class="ident">data</span>), <span class="number">3</span>);
             <span class="kw">unsafe</span> { <span class="ident">exit_thread</span>() };
@@ -967,9 +967,9 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="number">42</span>;
         <span class="ident">catch_longjmp</span>(<span class="op">|</span><span class="ident">jmp_buf</span><span class="op">|</span> {
             <span class="kw">let</span> <span class="ident">_hoge</span> <span class="op">=</span> <span class="ident">PanicOnDrop</span>;
-            <span class="ident">std</span>::<span class="ident">panic</span>::<span class="ident">catch_unwind</span>(<span class="ident">std</span>::<span class="ident">panic</span>::<span class="ident">AssertUnwindSafe</span>(<span class="op">||</span> <span class="kw">loop</span> {
-                <span class="ident">buf</span> <span class="op">+=</span> <span class="number">1</span>;
-                <span class="kw">if</span> <span class="ident">buf</span> <span class="op">==</span> <span class="number">50</span> {
+            <span class="ident">std</span>::<span class="ident">panic</span>::<span class="ident">catch_unwind</span>(<span class="ident">std</span>::<span class="ident">panic</span>::<span class="ident">AssertUnwindSafe</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">loop</span> {
+                <span class="ident">buf</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+                <span class="kw">if</span> <span class="ident">buf</span> <span class="op">=</span><span class="op">=</span> <span class="number">50</span> {
                     <span class="kw">unsafe</span> { <span class="ident">longjmp</span>(<span class="ident">jmp_buf</span>) };
                 }
             }))

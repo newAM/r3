@@ -78,16 +78,16 @@
 <span class="doccomment">//! Assembly instructions</span>
 
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">instruction</span> {
-    ($(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="kw-2">*</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">fnname</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">asm</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">asm_fn</span>:<span class="ident">ident</span>) <span class="op">=&gt;</span> (
+    ($(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="kw-2">*</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">fnname</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">asm</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">asm_fn</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> (
         $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
         <span class="attribute">#[<span class="ident">inline</span>]</span>
         <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">fnname</span>() {
             <span class="kw">match</span> () {
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">riscv</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-asm&quot;</span>))]</span>
-                () <span class="op">=&gt;</span> <span class="macro">llvm_asm</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">asm</span> :::: <span class="string">&quot;volatile&quot;</span>),
+                () <span class="op">=</span><span class="op">&gt;</span> <span class="macro">llvm_asm</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">asm</span> :::: <span class="string">&quot;volatile&quot;</span>),
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">riscv</span>, <span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-asm&quot;</span>)))]</span>
-                () <span class="op">=&gt;</span> {
+                () <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
                         <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">asm_fn</span>();
                     }
@@ -96,7 +96,7 @@
                 }
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">riscv</span>))]</span>
-                () <span class="op">=&gt;</span> <span class="macro">unimplemented</span><span class="macro">!</span>(),
+                () <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unimplemented</span><span class="macro">!</span>(),
             }
         }
     )
@@ -135,10 +135,10 @@
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">sfence_vma</span>(<span class="ident">asid</span>: <span class="ident">usize</span>, <span class="ident">addr</span>: <span class="ident">usize</span>) {
     <span class="kw">match</span> () {
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">riscv</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-asm&quot;</span>))]</span>
-        () <span class="op">=&gt;</span> <span class="macro">llvm_asm</span><span class="macro">!</span>(<span class="string">&quot;sfence.vma $0, $1&quot;</span> :: <span class="string">&quot;r&quot;</span>(<span class="ident">asid</span>), <span class="string">&quot;r&quot;</span>(<span class="ident">addr</span>) :: <span class="string">&quot;volatile&quot;</span>),
+        () <span class="op">=</span><span class="op">&gt;</span> <span class="macro">llvm_asm</span><span class="macro">!</span>(<span class="string">&quot;sfence.vma $0, $1&quot;</span> :: <span class="string">&quot;r&quot;</span>(<span class="ident">asid</span>), <span class="string">&quot;r&quot;</span>(<span class="ident">addr</span>) :: <span class="string">&quot;volatile&quot;</span>),
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">riscv</span>, <span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-asm&quot;</span>)))]</span>
-        () <span class="op">=&gt;</span> {
+        () <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
                 <span class="kw">fn</span> <span class="ident">__sfence_vma</span>(<span class="ident">asid</span>: <span class="ident">usize</span>, <span class="ident">addr</span>: <span class="ident">usize</span>);
             }
@@ -147,7 +147,7 @@
         }
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">riscv</span>))]</span>
-        () <span class="op">=&gt;</span> <span class="macro">unimplemented</span><span class="macro">!</span>(),
+        () <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unimplemented</span><span class="macro">!</span>(),
     }
 }
 </pre></div>

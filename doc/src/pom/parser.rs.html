@@ -752,25 +752,25 @@
 
 <span class="doccomment">/// Parser combinator.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span> {
-	<span class="ident">method</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">O</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+	<span class="ident">method</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">O</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span> {
 	<span class="doccomment">/// Create new parser.</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>(<span class="ident">parse</span>: <span class="ident">P</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span>
-		<span class="kw">where</span> <span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">O</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;a</span>
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>(<span class="ident">parse</span>: <span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span>
+		<span class="kw">where</span> <span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">O</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;a</span>
 	{
 		<span class="ident">Parser</span> { <span class="ident">method</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">parse</span>) }
 	}
 
 	<span class="doccomment">/// Apply the parser to parse input.</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">O</span><span class="op">&gt;</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">O</span><span class="op">&gt;</span> {
 		(<span class="self">self</span>.<span class="ident">method</span>)(<span class="ident">input</span>)
 	}
 
 	<span class="doccomment">/// Convert parser result to desired value.</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">map</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">F</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span>
-		<span class="kw">where</span> <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">O</span>) <span class="op">-&gt;</span> <span class="ident">U</span> <span class="op">+</span> <span class="lifetime">&#39;a</span>,
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">map</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">F</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span>
+		<span class="kw">where</span> <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">O</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">U</span> <span class="op">+</span> <span class="lifetime">&#39;a</span>,
 			  <span class="ident">I</span>: <span class="lifetime">&#39;static</span>,
 			  <span class="ident">O</span>: <span class="lifetime">&#39;static</span>,
 			  <span class="ident">U</span>: <span class="lifetime">&#39;static</span>
@@ -781,8 +781,8 @@
 	}
 
 	<span class="doccomment">/// Convert parser result to desired value, fail in case of conversion error.</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">convert</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span>, <span class="ident">F</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span>
-		<span class="kw">where</span> <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">O</span>) <span class="op">-&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;a</span>,
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">convert</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span>, <span class="ident">F</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span>
+		<span class="kw">where</span> <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">O</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;a</span>,
 			  <span class="ident">E</span>: <span class="ident">Debug</span>,
 			  <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 			  <span class="ident">O</span>: <span class="lifetime">&#39;static</span>,
@@ -792,8 +792,8 @@
 			<span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">position</span>();
 			<span class="self">self</span>.<span class="ident">parse</span>(<span class="ident">input</span>).<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">res</span><span class="op">|</span>{
 				<span class="kw">match</span> <span class="ident">f</span>(<span class="ident">res</span>) {
-					<span class="prelude-val">Ok</span>(<span class="ident">out</span>) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">out</span>),
-					<span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> {
+					<span class="prelude-val">Ok</span>(<span class="ident">out</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">out</span>),
+					<span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> {
 						<span class="ident">input</span>.<span class="ident">jump_to</span>(<span class="ident">start</span>);
 						<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">Conversion</span>{
 							<span class="ident">message</span>: <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Conversion error: {:?}&quot;</span>, <span class="ident">err</span>),
@@ -806,7 +806,7 @@
 	}
 
 	<span class="doccomment">/// Get input position after matching parser.</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pos</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">usize</span><span class="op">&gt;</span>
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pos</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">usize</span><span class="op">&gt;</span>
 		<span class="kw">where</span> <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 			  <span class="ident">O</span>: <span class="lifetime">&#39;static</span>
 	{
@@ -816,7 +816,7 @@
 	}
 
 	<span class="doccomment">/// Collect all matched input symbols.</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">collect</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;&gt;</span>
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">collect</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">&gt;</span>
 		<span class="kw">where</span> <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 			  <span class="ident">O</span>: <span class="lifetime">&#39;static</span>
 	{
@@ -830,7 +830,7 @@
 	}
 
 	<span class="doccomment">/// Discard parser output.</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">discard</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, ()<span class="op">&gt;</span>
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">discard</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, ()<span class="op">&gt;</span>
 		<span class="kw">where</span> <span class="ident">I</span>: <span class="lifetime">&#39;static</span>,
 			  <span class="ident">O</span>: <span class="lifetime">&#39;static</span>
 	{
@@ -840,14 +840,14 @@
 	}
 
 	<span class="doccomment">/// Make parser optional.</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">opt</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">O</span><span class="op">&gt;&gt;</span>
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">opt</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">O</span><span class="op">&gt;</span><span class="op">&gt;</span>
 		<span class="kw">where</span> <span class="ident">I</span>: <span class="lifetime">&#39;static</span>,
 			  <span class="ident">O</span>: <span class="lifetime">&#39;static</span>
 	{
 		<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
 			<span class="kw">match</span> <span class="self">self</span>.<span class="ident">parse</span>(<span class="ident">input</span>) {
-				<span class="prelude-val">Ok</span>(<span class="ident">out</span>) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">out</span>)),
-				<span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
+				<span class="prelude-val">Ok</span>(<span class="ident">out</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">out</span>)),
+				<span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
 			}
 		})
 	}
@@ -856,7 +856,7 @@
 	<span class="doccomment">/// `p.repeat(0..)` repeat p zero or more times</span>
 	<span class="doccomment">/// `p.repeat(1..)` repeat p one or more times</span>
 	<span class="doccomment">/// `p.repeat(1..4)` match p at least 1 and at most 3 times</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">repeat</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">range</span>: <span class="ident">R</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">O</span><span class="op">&gt;&gt;</span>
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">repeat</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">range</span>: <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">O</span><span class="op">&gt;</span><span class="op">&gt;</span>
 		<span class="kw">where</span> <span class="ident">R</span>: <span class="ident">RangeArgument</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="lifetime">&#39;a</span>,
 			  <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 			  <span class="ident">O</span>: <span class="lifetime">&#39;static</span>
@@ -866,9 +866,9 @@
 			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">items</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
 			<span class="kw">loop</span> {
 				<span class="kw">match</span> <span class="ident">range</span>.<span class="ident">end</span>() {
-					<span class="ident">Included</span>(<span class="kw-2">&amp;</span><span class="ident">end</span>) <span class="op">=&gt;</span> <span class="kw">if</span> <span class="ident">items</span>.<span class="ident">len</span>() <span class="op">&gt;=</span> <span class="ident">end</span> { <span class="kw">break</span>; },
-					<span class="ident">Excluded</span>(<span class="kw-2">&amp;</span><span class="ident">end</span>) <span class="op">=&gt;</span> <span class="kw">if</span> <span class="ident">items</span>.<span class="ident">len</span>() <span class="op">+</span> <span class="number">1</span> <span class="op">&gt;=</span> <span class="ident">end</span> { <span class="kw">break</span>; },
-					<span class="ident">Unbounded</span> <span class="op">=&gt;</span> (),
+					<span class="ident">Included</span>(<span class="kw-2">&amp;</span><span class="ident">end</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">if</span> <span class="ident">items</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="ident">end</span> { <span class="kw">break</span>; },
+					<span class="ident">Excluded</span>(<span class="kw-2">&amp;</span><span class="ident">end</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">if</span> <span class="ident">items</span>.<span class="ident">len</span>() <span class="op">+</span> <span class="number">1</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">end</span> { <span class="kw">break</span>; },
+					<span class="ident">Unbounded</span> <span class="op">=</span><span class="op">&gt;</span> (),
 				}
 
 				<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">item</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">parse</span>(<span class="ident">input</span>) {
@@ -891,17 +891,17 @@
 	}
 
 	<span class="doccomment">/// Give parser a name to identify parsing errors.</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span>
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span>
 		<span class="kw">where</span> <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 			  <span class="ident">O</span>: <span class="lifetime">&#39;static</span>
 	{
 		<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
 			<span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">position</span>();
 			<span class="kw">match</span> <span class="self">self</span>.<span class="ident">parse</span>(<span class="ident">input</span>) {
-				<span class="prelude-val">Ok</span>(<span class="ident">out</span>) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">out</span>),
-				<span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="kw">match</span> <span class="ident">err</span> {
-					<span class="ident">Error</span>::<span class="ident">Custom</span>{..} <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">err</span>),
-					<span class="kw">_</span> <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">Custom</span> {
+				<span class="prelude-val">Ok</span>(<span class="ident">out</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">out</span>),
+				<span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">match</span> <span class="ident">err</span> {
+					<span class="ident">Error</span>::<span class="ident">Custom</span>{..} <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">err</span>),
+					<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">Custom</span> {
 						<span class="ident">message</span>: <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;failed to parse {}&quot;</span>, <span class="ident">name</span>),
 						<span class="ident">position</span>: <span class="ident">start</span>,
 						<span class="ident">inner</span>: <span class="prelude-val">Some</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">err</span>)),
@@ -912,15 +912,15 @@
 	}
 
 	<span class="doccomment">/// Mark parser as expected, abort early when failed in ordered choice.</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">expect</span>(<span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span>
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">expect</span>(<span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span>
 		<span class="kw">where</span> <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 			  <span class="ident">O</span>: <span class="lifetime">&#39;static</span>
 	{
 		<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
 			<span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">position</span>();
 			<span class="kw">match</span> <span class="self">self</span>.<span class="ident">parse</span>(<span class="ident">input</span>) {
-				<span class="prelude-val">Ok</span>(<span class="ident">out</span>) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">out</span>),
-				<span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">Expect</span> {
+				<span class="prelude-val">Ok</span>(<span class="ident">out</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">out</span>),
+				<span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">Expect</span> {
 					<span class="ident">message</span>: <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Expect {}&quot;</span>, <span class="ident">name</span>),
 					<span class="ident">position</span>: <span class="ident">start</span>,
 					<span class="ident">inner</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">err</span>),
@@ -931,17 +931,17 @@
 }
 
 <span class="doccomment">/// Always succeeds, consume no input.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">empty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span><span class="op">&gt;</span>() <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, ()<span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">empty</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span><span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, ()<span class="op">&gt;</span> {
 	<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="op">|</span><span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> <span class="prelude-val">Ok</span>(()))
 }
 
 <span class="doccomment">/// Success when current input symbol equals `t`.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sym</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span><span class="op">&gt;</span>(<span class="ident">t</span>: <span class="ident">I</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">I</span><span class="op">&gt;</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sym</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span><span class="op">&gt;</span>(<span class="ident">t</span>: <span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">I</span><span class="op">&gt;</span>
 	<span class="kw">where</span> <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">PartialEq</span> <span class="op">+</span> <span class="ident">Display</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>
 {
 	<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
 		<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">s</span>) <span class="op">=</span> <span class="ident">input</span>.<span class="ident">current</span>() {
-			<span class="kw">if</span> <span class="ident">t</span> <span class="op">==</span> <span class="ident">s</span> {
+			<span class="kw">if</span> <span class="ident">t</span> <span class="op">=</span><span class="op">=</span> <span class="ident">s</span> {
 				<span class="ident">input</span>.<span class="ident">advance</span>();
 				<span class="prelude-val">Ok</span>(<span class="ident">t</span>)
 			} <span class="kw">else</span> {
@@ -957,7 +957,7 @@
 }
 
 <span class="doccomment">/// Success when sequence of symbols matches current input.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">seq</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">train</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;&gt;</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">seq</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">train</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">&gt;</span>
 	<span class="kw">where</span> <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">PartialEq</span> <span class="op">+</span> <span class="ident">Display</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 		  <span class="ident">T</span>: <span class="ident">Train</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span>
 {
@@ -968,12 +968,12 @@
 		<span class="kw">let</span> <span class="ident">result</span>;
 
 		<span class="kw">loop</span> {
-			<span class="kw">if</span> <span class="ident">index</span> <span class="op">==</span> <span class="ident">tag</span>.<span class="ident">len</span>() {
+			<span class="kw">if</span> <span class="ident">index</span> <span class="op">=</span><span class="op">=</span> <span class="ident">tag</span>.<span class="ident">len</span>() {
 				<span class="ident">result</span> <span class="op">=</span> <span class="prelude-val">Ok</span>(<span class="ident">tag</span>);
 				<span class="kw">break</span>;
 			}
 			<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">s</span>) <span class="op">=</span> <span class="ident">input</span>.<span class="ident">current</span>() {
-				<span class="kw">if</span> <span class="ident">tag</span>[<span class="ident">index</span>] <span class="op">==</span> <span class="ident">s</span> {
+				<span class="kw">if</span> <span class="ident">tag</span>[<span class="ident">index</span>] <span class="op">=</span><span class="op">=</span> <span class="ident">s</span> {
 					<span class="ident">input</span>.<span class="ident">advance</span>();
 				} <span class="kw">else</span> {
 					<span class="ident">result</span> <span class="op">=</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">Mismatch</span> {
@@ -986,7 +986,7 @@
 				<span class="ident">result</span> <span class="op">=</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">Incomplete</span>);
 				<span class="kw">break</span>;
 			}
-			<span class="ident">index</span> <span class="op">+=</span> <span class="number">1</span>;
+			<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
 		};
 		<span class="kw">if</span> <span class="ident">result</span>.<span class="ident">is_err</span>() {
 			<span class="ident">input</span>.<span class="ident">jump_to</span>(<span class="ident">start</span>);
@@ -996,7 +996,7 @@
 }
 
 <span class="doccomment">/// Parse separated list.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">list</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span>, <span class="ident">U</span><span class="op">&gt;</span>(<span class="ident">parser</span>: <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span>, <span class="ident">separator</span>: <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">O</span><span class="op">&gt;&gt;</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">list</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span>, <span class="ident">U</span><span class="op">&gt;</span>(<span class="ident">parser</span>: <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span>, <span class="ident">separator</span>: <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">O</span><span class="op">&gt;</span><span class="op">&gt;</span>
 	<span class="kw">where</span> <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 		  <span class="ident">O</span>: <span class="lifetime">&#39;static</span>,
 		  <span class="ident">U</span>: <span class="lifetime">&#39;static</span>
@@ -1008,8 +1008,8 @@
 			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">position</span>();
 			<span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span> <span class="ident">separator</span>.<span class="ident">parse</span>(<span class="ident">input</span>) {
 				<span class="kw">match</span> <span class="ident">parser</span>.<span class="ident">parse</span>(<span class="ident">input</span>) {
-					<span class="prelude-val">Ok</span>(<span class="ident">more_item</span>) <span class="op">=&gt;</span> <span class="ident">items</span>.<span class="ident">push</span>(<span class="ident">more_item</span>),
-					<span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=&gt;</span> {
+					<span class="prelude-val">Ok</span>(<span class="ident">more_item</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">items</span>.<span class="ident">push</span>(<span class="ident">more_item</span>),
+					<span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
 						<span class="ident">input</span>.<span class="ident">jump_to</span>(<span class="ident">start</span>);
 						<span class="kw">break</span>;
 					}
@@ -1022,7 +1022,7 @@
 }
 
 <span class="doccomment">/// Success when current input symbol is one of the set.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">one_of</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">S</span><span class="op">&gt;</span>(<span class="ident">set</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">S</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">I</span><span class="op">&gt;</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">one_of</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">S</span><span class="op">&gt;</span>(<span class="ident">set</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">I</span><span class="op">&gt;</span>
 	<span class="kw">where</span> <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">PartialEq</span> <span class="op">+</span> <span class="ident">Display</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 		  <span class="ident">S</span>: <span class="ident">Set</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span>
 {
@@ -1044,7 +1044,7 @@
 }
 
 <span class="doccomment">/// Success when current input symbol is none of the set.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">none_of</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">S</span><span class="op">&gt;</span>(<span class="ident">set</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">S</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">I</span><span class="op">&gt;</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">none_of</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">S</span><span class="op">&gt;</span>(<span class="ident">set</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">I</span><span class="op">&gt;</span>
 	<span class="kw">where</span> <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">PartialEq</span> <span class="op">+</span> <span class="ident">Display</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 		  <span class="ident">S</span>: <span class="ident">Set</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span>
 {
@@ -1067,9 +1067,9 @@
 
 
 <span class="doccomment">/// Success when predicate returns true on current input symbol.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_a</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">F</span><span class="op">&gt;</span>(<span class="ident">predicate</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">I</span><span class="op">&gt;</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_a</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">F</span><span class="op">&gt;</span>(<span class="ident">predicate</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">I</span><span class="op">&gt;</span>
 	<span class="kw">where</span> <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">PartialEq</span> <span class="op">+</span> <span class="ident">Display</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
-		  <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">I</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;a</span>
+		  <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;a</span>
 {
 	<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
 		<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">s</span>) <span class="op">=</span> <span class="ident">input</span>.<span class="ident">current</span>() {
@@ -1089,9 +1089,9 @@
 }
 
 <span class="doccomment">/// Success when predicate returns false on current input symbol.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">not_a</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">F</span><span class="op">&gt;</span>(<span class="ident">predicate</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">I</span><span class="op">&gt;</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">not_a</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">F</span><span class="op">&gt;</span>(<span class="ident">predicate</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">I</span><span class="op">&gt;</span>
 	<span class="kw">where</span> <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">PartialEq</span> <span class="op">+</span> <span class="ident">Display</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
-		  <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">I</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;a</span>
+		  <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;a</span>
 {
 	<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
 		<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">s</span>) <span class="op">=</span> <span class="ident">input</span>.<span class="ident">current</span>() {
@@ -1111,7 +1111,7 @@
 }
 
 <span class="doccomment">/// Read n symbols.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">take</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span><span class="op">&gt;</span>(<span class="ident">n</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;&gt;</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">take</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span><span class="op">&gt;</span>(<span class="ident">n</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">&gt;</span>
 	<span class="kw">where</span> <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>
 {
 	<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
@@ -1121,7 +1121,7 @@
 			<span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">symbol</span>) <span class="op">=</span> <span class="ident">input</span>.<span class="ident">current</span>() {
 				<span class="ident">input</span>.<span class="ident">advance</span>();
 				<span class="ident">symbols</span>.<span class="ident">push</span>(<span class="ident">symbol</span>);
-				<span class="kw">if</span> <span class="ident">symbols</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="ident">n</span> {
+				<span class="kw">if</span> <span class="ident">symbols</span>.<span class="ident">len</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">n</span> {
 					<span class="kw">break</span>;
 				}
 			}
@@ -1136,7 +1136,7 @@
 }
 
 <span class="doccomment">/// Skip n symbols.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">skip</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span><span class="op">&gt;</span>(<span class="ident">n</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, ()<span class="op">&gt;</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">skip</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span><span class="op">&gt;</span>(<span class="ident">n</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, ()<span class="op">&gt;</span>
 	<span class="kw">where</span> <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>
 {
 	<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
@@ -1145,8 +1145,8 @@
 		<span class="kw">if</span> <span class="ident">n</span> <span class="op">&gt;</span> <span class="number">0</span> {
 			<span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw">_</span>) <span class="op">=</span> <span class="ident">input</span>.<span class="ident">current</span>() {
 				<span class="ident">input</span>.<span class="ident">advance</span>();
-				<span class="ident">count</span> <span class="op">+=</span> <span class="number">1</span>;
-				<span class="kw">if</span> <span class="ident">count</span> <span class="op">==</span> <span class="ident">n</span> {
+				<span class="ident">count</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+				<span class="kw">if</span> <span class="ident">count</span> <span class="op">=</span><span class="op">=</span> <span class="ident">n</span> {
 					<span class="kw">break</span>;
 				}
 			}
@@ -1161,10 +1161,10 @@
 }
 
 <span class="doccomment">/// Call a parser factory, can be used to create recursive parsers.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">call</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span>, <span class="ident">F</span><span class="op">&gt;</span>(<span class="ident">parser_factory</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">call</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span>, <span class="ident">F</span><span class="op">&gt;</span>(<span class="ident">parser_factory</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span>
 	<span class="kw">where</span> <span class="ident">I</span>: <span class="lifetime">&#39;static</span>,
 		  <span class="ident">O</span>: <span class="lifetime">&#39;static</span>,
-		  <span class="ident">F</span>: <span class="ident">Fn</span>() <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;a</span>
+		  <span class="ident">F</span>: <span class="ident">Fn</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;a</span>
 {
 	<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
 		<span class="kw">let</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">parser_factory</span>();
@@ -1173,7 +1173,7 @@
 }
 
 <span class="doccomment">/// Success when end of input is reached.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">end</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span><span class="op">&gt;</span>() <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, ()<span class="op">&gt;</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">end</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span><span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, ()<span class="op">&gt;</span>
 	<span class="kw">where</span> <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">Display</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>
 {
 	<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
@@ -1189,10 +1189,10 @@
 }
 
 <span class="doccomment">/// Sequence reserve value</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;a</span>: <span class="lifetime">&#39;b</span>, <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>, <span class="ident">O</span>: <span class="lifetime">&#39;static</span>, <span class="ident">U</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">Add</span><span class="op">&lt;</span><span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;&gt;</span> <span class="kw">for</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;a</span>: <span class="lifetime">&#39;b</span>, <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>, <span class="ident">O</span>: <span class="lifetime">&#39;static</span>, <span class="ident">U</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">Add</span><span class="op">&lt;</span><span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span> {
 	<span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, (<span class="ident">O</span>, <span class="ident">U</span>)<span class="op">&gt;</span>;
 
-	<span class="kw">fn</span> <span class="ident">add</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
+	<span class="kw">fn</span> <span class="ident">add</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
 		<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
 			<span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">position</span>();
 			<span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">parse</span>(<span class="ident">input</span>).<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">out1</span><span class="op">|</span> <span class="ident">other</span>.<span class="ident">parse</span>(<span class="ident">input</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">out2</span><span class="op">|</span> (<span class="ident">out1</span>, <span class="ident">out2</span>)));
@@ -1205,10 +1205,10 @@
 }
 
 <span class="doccomment">/// Sequence discard second value</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>: <span class="lifetime">&#39;a</span>, <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>, <span class="ident">O</span>: <span class="lifetime">&#39;static</span>, <span class="ident">U</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">Sub</span><span class="op">&lt;</span><span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;&gt;</span> <span class="kw">for</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>: <span class="lifetime">&#39;a</span>, <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>, <span class="ident">O</span>: <span class="lifetime">&#39;static</span>, <span class="ident">U</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">Sub</span><span class="op">&lt;</span><span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span> {
 	<span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span>;
 
-	<span class="kw">fn</span> <span class="ident">sub</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
+	<span class="kw">fn</span> <span class="ident">sub</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
 		<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
 			<span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">position</span>();
 			<span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">parse</span>(<span class="ident">input</span>).<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">out1</span><span class="op">|</span> <span class="ident">other</span>.<span class="ident">parse</span>(<span class="ident">input</span>).<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">out1</span>));
@@ -1221,10 +1221,10 @@
 }
 
 <span class="doccomment">/// Sequence discard first value</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;a</span>: <span class="lifetime">&#39;b</span>, <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>, <span class="ident">O</span>: <span class="lifetime">&#39;static</span>, <span class="ident">U</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">Mul</span><span class="op">&lt;</span><span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;&gt;</span> <span class="kw">for</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;a</span>: <span class="lifetime">&#39;b</span>, <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>, <span class="ident">O</span>: <span class="lifetime">&#39;static</span>, <span class="ident">U</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">Mul</span><span class="op">&lt;</span><span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span> {
 	<span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span>;
 
-	<span class="kw">fn</span> <span class="ident">mul</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
+	<span class="kw">fn</span> <span class="ident">mul</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
 		<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
 			<span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">position</span>();
 			<span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">parse</span>(<span class="ident">input</span>).<span class="ident">and_then</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">other</span>.<span class="ident">parse</span>(<span class="ident">input</span>));
@@ -1237,10 +1237,10 @@
 }
 
 <span class="doccomment">/// Chain two passers where the second parser depends on the first&#39;s result.</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;a</span>: <span class="lifetime">&#39;b</span>, <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>, <span class="ident">O</span>: <span class="lifetime">&#39;static</span>, <span class="ident">U</span>: <span class="lifetime">&#39;static</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">O</span>) <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">Shr</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;a</span>: <span class="lifetime">&#39;b</span>, <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>, <span class="ident">O</span>: <span class="lifetime">&#39;static</span>, <span class="ident">U</span>: <span class="lifetime">&#39;static</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">O</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">Shr</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span> {
 	<span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">I</span>, <span class="ident">U</span><span class="op">&gt;</span>;
 
-	<span class="kw">fn</span> <span class="ident">shr</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
+	<span class="kw">fn</span> <span class="ident">shr</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
 		<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
 			<span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">position</span>();
 			<span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">parse</span>(<span class="ident">input</span>).<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">out1</span><span class="op">|</span> <span class="ident">other</span>(<span class="ident">out1</span>).<span class="ident">parse</span>(<span class="ident">input</span>));
@@ -1256,13 +1256,13 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>: <span class="lifetime">&#39;static</span>, <span class="ident">O</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">BitOr</span> <span class="kw">for</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span> {
 	<span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span>;
 
-	<span class="kw">fn</span> <span class="ident">bitor</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
+	<span class="kw">fn</span> <span class="ident">bitor</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
 		<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
 			<span class="kw">match</span> <span class="self">self</span>.<span class="ident">parse</span>(<span class="ident">input</span>) {
-				<span class="prelude-val">Ok</span>(<span class="ident">out</span>) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">out</span>),
-				<span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="kw">match</span> <span class="ident">err</span> {
-					<span class="ident">Error</span>::<span class="ident">Expect</span>{..} <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">err</span>),
-					<span class="kw">_</span> <span class="op">=&gt;</span> <span class="ident">other</span>.<span class="ident">parse</span>(<span class="ident">input</span>)
+				<span class="prelude-val">Ok</span>(<span class="ident">out</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">out</span>),
+				<span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">match</span> <span class="ident">err</span> {
+					<span class="ident">Error</span>::<span class="ident">Expect</span>{..} <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">err</span>),
+					<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">other</span>.<span class="ident">parse</span>(<span class="ident">input</span>)
 				}
 			}
 		})
@@ -1273,7 +1273,7 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>, <span class="ident">O</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">Neg</span> <span class="kw">for</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span> {
 	<span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">bool</span><span class="op">&gt;</span>;
 
-	<span class="kw">fn</span> <span class="ident">neg</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
+	<span class="kw">fn</span> <span class="ident">neg</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
 		<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
 			<span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">position</span>();
 			<span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">parse</span>(<span class="ident">input</span>);
@@ -1287,17 +1287,17 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>, <span class="ident">O</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">Not</span> <span class="kw">for</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">O</span><span class="op">&gt;</span> {
 	<span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">I</span>, <span class="ident">bool</span><span class="op">&gt;</span>;
 
-	<span class="kw">fn</span> <span class="ident">not</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
+	<span class="kw">fn</span> <span class="ident">not</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
 		<span class="ident">Parser</span>::<span class="ident">new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Input</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">|</span> {
 			<span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">position</span>();
 			<span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">parse</span>(<span class="ident">input</span>);
 			<span class="ident">input</span>.<span class="ident">jump_to</span>(<span class="ident">start</span>);
 			<span class="kw">match</span> <span class="ident">result</span> {
-				<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">Mismatch</span>{
+				<span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">Mismatch</span>{
 					<span class="ident">message</span>: <span class="string">&quot;not predicate failed&quot;</span>.<span class="ident">to_string</span>(),
 					<span class="ident">position</span>: <span class="ident">start</span>,
 				}),
-				<span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>),
+				<span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>),
 			}
 		})
 	}
@@ -1343,7 +1343,7 @@
 			<span class="ident">Empty</span>,
 			<span class="ident">Group</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span>)
 		}
-		<span class="kw">fn</span> <span class="ident">expr</span>() <span class="op">-&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">u8</span>, <span class="ident">Expr</span><span class="op">&gt;</span> {
+		<span class="kw">fn</span> <span class="ident">expr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Parser</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">u8</span>, <span class="ident">Expr</span><span class="op">&gt;</span> {
 			(<span class="ident">sym</span>(<span class="string">b&#39;(&#39;</span>) <span class="op">+</span> <span class="ident">call</span>(<span class="ident">expr</span>) <span class="op">-</span> <span class="ident">sym</span>(<span class="string">b&#39;)&#39;</span>)).<span class="ident">map</span>(<span class="op">|</span>(<span class="kw">_</span>, <span class="ident">e</span>)<span class="op">|</span><span class="ident">Expr</span>::<span class="ident">Group</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">e</span>)))
 			<span class="op">|</span> <span class="ident">empty</span>().<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span><span class="ident">Expr</span>::<span class="ident">Empty</span>)
 		}
@@ -1357,7 +1357,7 @@
 	<span class="kw">fn</span> <span class="ident">chain_parser</span>() {
 		<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">input</span> <span class="op">=</span> <span class="ident">DataInput</span>::<span class="ident">new</span>(<span class="string">b&quot;5oooooooo&quot;</span>);
 		<span class="comment">// let parser = one_of(b&quot;0123456789&quot;).map(|c|c - b&#39;0&#39;) &gt;&gt; |n| take(n as usize) + sym(b&#39;o&#39;).repeat(0..);</span>
-		<span class="kw">let</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">skip</span>(<span class="number">1</span>) <span class="op">*</span> <span class="ident">take</span>(<span class="number">3</span>) <span class="op">&gt;&gt;</span> <span class="op">|</span><span class="ident">v</span>:<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">|</span>{
+		<span class="kw">let</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">skip</span>(<span class="number">1</span>) <span class="op">*</span> <span class="ident">take</span>(<span class="number">3</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">v</span>:<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">|</span>{
 			<span class="ident">take</span>(<span class="ident">v</span>.<span class="ident">len</span>()<span class="op">+</span><span class="number">2</span>).<span class="ident">map</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">u</span><span class="op">|</span>{
 				(<span class="ident">u</span>, <span class="ident">v</span>.<span class="ident">clone</span>())
 			})

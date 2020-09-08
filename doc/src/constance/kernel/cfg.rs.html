@@ -353,7 +353,7 @@
 <span class="doccomment">/// [`KernelCfg2`]: crate::kernel::KernelCfg2</span>
 <span class="attribute">#[<span class="ident">macro_export</span>]</span>
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">build</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">configure</span>:<span class="ident">expr</span> <span class="op">=&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">id_map_ty</span>:<span class="ident">ty</span>) <span class="op">=&gt;</span> {{
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">configure</span>:<span class="ident">expr</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">id_map_ty</span>:<span class="ident">ty</span>) <span class="op">=</span><span class="op">&gt;</span> {{
         <span class="kw">use</span> <span class="macro-nonterminal">$</span><span class="kw">crate</span>::{
             <span class="macro-nonterminal">kernel</span>::{
                 <span class="ident">cfg</span>::{
@@ -376,7 +376,7 @@
         <span class="comment">// calculate the values of generic parameters based on its contents.</span>
         <span class="kw">const</span> <span class="ident">CFG</span>: <span class="ident">CfgBuilderInner</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">get_cfg</span>();
 
-        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">get_cfg</span>() <span class="op">-&gt;</span> <span class="ident">CfgBuilderInner</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span> {
+        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">get_cfg</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CfgBuilderInner</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span> {
             <span class="comment">// FIXME: Unable to do this inside a `const` item because of</span>
             <span class="comment">//        &lt;https://github.com/rust-lang/rust/pull/72934&gt;</span>
 
@@ -389,7 +389,7 @@
 
         <span class="comment">// The second value can be just `let`</span>
         <span class="comment">// Safety: We are `build!`, so it&#39;s okay to use `CfgBuilder::new`</span>
-        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">id_map</span>() <span class="op">-&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">id_map_ty</span> {
+        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">id_map</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">id_map_ty</span> {
             <span class="comment">// FIXME: Unable to do this inside a `const` item because of</span>
             <span class="comment">//        &lt;https://github.com/rust-lang/rust/pull/72934&gt;</span>
             <span class="comment">//        This is also why `$id_map_ty` has to be given.</span>
@@ -399,8 +399,8 @@
 
         <span class="comment">// Set up task priority levels</span>
         <span class="kw">type</span> <span class="ident">TaskPriority</span> <span class="op">=</span> <span class="ident">UIntegerWithBound</span><span class="op">&lt;</span>{ <span class="ident">CFG</span>.<span class="ident">num_task_priority_levels</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">-</span> <span class="number">1</span> }<span class="op">&gt;</span>;
-        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">array_item_from_fn</span><span class="op">!</span> {
-            <span class="kw">const</span> <span class="ident">TASK_PRIORITY_LEVELS</span>: [<span class="ident">TaskPriority</span>; <span class="kw">_</span>] <span class="op">=</span>
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro">array_item_from_fn</span><span class="macro">!</span> {
+            <span class="kw">const</span> <span class="macro-nonterminal">TASK_PRIORITY_LEVELS</span>: [<span class="ident">TaskPriority</span>; <span class="kw">_</span>] <span class="op">=</span>
                 (<span class="number">0</span>..<span class="ident">CFG</span>.<span class="ident">num_task_priority_levels</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="ident">i</span> <span class="kw">as</span> <span class="kw">_</span>);
         };
 
@@ -412,8 +412,8 @@
         }
 
         <span class="comment">// Instantiiate task structures</span>
-        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">array_item_from_fn</span><span class="op">!</span> {
-            <span class="kw">const</span> <span class="ident">TASK_ATTR_POOL</span>: [<span class="ident">TaskAttr</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span>; <span class="kw">_</span>] <span class="op">=</span>
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro">array_item_from_fn</span><span class="macro">!</span> {
+            <span class="kw">const</span> <span class="macro-nonterminal">TASK_ATTR_POOL</span>: [<span class="ident">TaskAttr</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span>; <span class="kw">_</span>] <span class="op">=</span>
                 (<span class="number">0</span>..<span class="ident">CFG</span>.<span class="ident">tasks</span>.<span class="ident">len</span>()).<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="ident">CFG</span>.<span class="ident">tasks</span>.<span class="ident">get</span>(<span class="ident">i</span>).<span class="ident">to_attr</span>());
             <span class="kw">static</span> <span class="ident">TASK_CB_POOL</span>:
                 [<span class="ident">TaskCb</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span>; <span class="kw">_</span>] <span class="op">=</span>
@@ -421,15 +421,15 @@
         }
 
         <span class="comment">// Instantiiate event group structures</span>
-        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">array_item_from_fn</span><span class="op">!</span> {
-            <span class="kw">static</span> <span class="ident">EVENT_GROUP_CB_POOL</span>:
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro">array_item_from_fn</span><span class="macro">!</span> {
+            <span class="kw">static</span> <span class="macro-nonterminal">EVENT_GROUP_CB_POOL</span>:
                 [<span class="ident">EventGroupCb</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span>; <span class="kw">_</span>] <span class="op">=</span>
                     (<span class="number">0</span>..<span class="ident">CFG</span>.<span class="ident">event_groups</span>.<span class="ident">len</span>()).<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="ident">CFG</span>.<span class="ident">event_groups</span>.<span class="ident">get</span>(<span class="ident">i</span>).<span class="ident">to_state</span>());
         }
 
         <span class="comment">// Instantiiate timer structures</span>
-        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">array_item_from_fn</span><span class="op">!</span> {
-            <span class="kw">const</span> <span class="ident">TIMER_ATTR_POOL</span>: [<span class="ident">TimerAttr</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span>; <span class="kw">_</span>] <span class="op">=</span>
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro">array_item_from_fn</span><span class="macro">!</span> {
+            <span class="kw">const</span> <span class="macro-nonterminal">TIMER_ATTR_POOL</span>: [<span class="ident">TimerAttr</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span>; <span class="kw">_</span>] <span class="op">=</span>
                 (<span class="number">0</span>..<span class="ident">CFG</span>.<span class="ident">timers</span>.<span class="ident">len</span>()).<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="ident">CFG</span>.<span class="ident">timers</span>.<span class="ident">get</span>(<span class="ident">i</span>).<span class="ident">to_attr</span>());
             <span class="kw">static</span> <span class="ident">TIMER_CB_POOL</span>:
                 [<span class="ident">TimerCb</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span>; <span class="kw">_</span>] <span class="op">=</span>
@@ -437,7 +437,7 @@
         }
 
         <span class="comment">// Instantiate hunks</span>
-        <span class="kw">static</span> <span class="ident">HUNK_POOL</span>: <span class="ident">RawCell</span><span class="op">&lt;</span><span class="ident">AlignedStorage</span><span class="op">&lt;</span>{ <span class="ident">CFG</span>.<span class="ident">hunk_pool_len</span> }, { <span class="ident">CFG</span>.<span class="ident">hunk_pool_align</span> }<span class="op">&gt;&gt;</span> <span class="op">=</span>
+        <span class="kw">static</span> <span class="ident">HUNK_POOL</span>: <span class="ident">RawCell</span><span class="op">&lt;</span><span class="ident">AlignedStorage</span><span class="op">&lt;</span>{ <span class="ident">CFG</span>.<span class="ident">hunk_pool_len</span> }, { <span class="ident">CFG</span>.<span class="ident">hunk_pool_align</span> }<span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span>
             <span class="ident">Init</span>::<span class="ident">INIT</span>;
         <span class="kw">const</span> <span class="ident">HUNK_INITS</span>: [<span class="ident">HunkInitAttr</span>; { <span class="ident">CFG</span>.<span class="ident">hunks</span>.<span class="ident">len</span>() }] <span class="op">=</span> <span class="ident">CFG</span>.<span class="ident">hunks</span>.<span class="ident">to_array</span>();
 
@@ -475,15 +475,15 @@
         };
 
         <span class="comment">// Construct a table of interrupt line initiializers</span>
-        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">array_item_from_fn</span><span class="op">!</span> {
-            <span class="kw">const</span> <span class="ident">INTERRUPT_LINE_INITS</span>:
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro">array_item_from_fn</span><span class="macro">!</span> {
+            <span class="kw">const</span> <span class="macro-nonterminal">INTERRUPT_LINE_INITS</span>:
                 [<span class="ident">InterruptLineInit</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span>; <span class="kw">_</span>] <span class="op">=</span>
                     (<span class="number">0</span>..<span class="ident">CFG</span>.<span class="ident">interrupt_lines</span>.<span class="ident">len</span>()).<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="ident">CFG</span>.<span class="ident">interrupt_lines</span>.<span class="ident">get</span>(<span class="ident">i</span>).<span class="ident">to_init</span>());
         }
 
         <span class="comment">// Construct a table of startup hooks</span>
-        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">array_item_from_fn</span><span class="op">!</span> {
-            <span class="kw">const</span> <span class="ident">STARTUP_HOOKS</span>:
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro">array_item_from_fn</span><span class="macro">!</span> {
+            <span class="kw">const</span> <span class="macro-nonterminal">STARTUP_HOOKS</span>:
                 [<span class="ident">StartupHookAttr</span>; <span class="kw">_</span>] <span class="op">=</span>
                     (<span class="number">0</span>..<span class="ident">CFG</span>.<span class="ident">startup_hooks</span>.<span class="ident">len</span>()).<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="ident">CFG</span>.<span class="ident">startup_hooks</span>.<span class="ident">get</span>(<span class="ident">i</span>).<span class="ident">to_attr</span>());
         }
@@ -495,16 +495,16 @@
         <span class="comment">// Safety: We are `build!`, so it&#39;s okay to `impl` this</span>
         <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">KernelCfg2</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span> {
             <span class="kw">type</span> <span class="ident">TaskReadyBitmap</span> <span class="op">=</span> <span class="ident">TaskReadyBitmap</span>;
-            <span class="kw">type</span> <span class="ident">TaskReadyQueue</span> <span class="op">=</span> [<span class="ident">StaticListHead</span><span class="op">&lt;</span><span class="ident">TaskCb</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;&gt;</span>; <span class="ident">CFG</span>.<span class="ident">num_task_priority_levels</span>];
+            <span class="kw">type</span> <span class="ident">TaskReadyQueue</span> <span class="op">=</span> [<span class="ident">StaticListHead</span><span class="op">&lt;</span><span class="ident">TaskCb</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span>; <span class="ident">CFG</span>.<span class="ident">num_task_priority_levels</span>];
             <span class="kw">type</span> <span class="ident">TimeoutHeap</span> <span class="op">=</span> <span class="ident">TimeoutHeap</span>;
 
             <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-            <span class="kw">fn</span> <span class="ident">state</span>() <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">KernelState</span> {
+            <span class="kw">fn</span> <span class="ident">state</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">KernelState</span> {
                 <span class="kw-2">&amp;</span><span class="ident">KERNEL_STATE</span>
             }
 
             <span class="kw">const</span> <span class="ident">HUNK_ATTR</span>: <span class="ident">HunkAttr</span> <span class="op">=</span> <span class="ident">HunkAttr</span> {
-                <span class="ident">hunk_pool</span>: <span class="op">||</span> <span class="ident">HUNK_POOL</span>.<span class="ident">get</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
+                <span class="ident">hunk_pool</span>: <span class="op">|</span><span class="op">|</span> <span class="ident">HUNK_POOL</span>.<span class="ident">get</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
                 <span class="ident">inits</span>: <span class="kw-2">&amp;</span><span class="ident">HUNK_INITS</span>,
             };
 
@@ -517,17 +517,17 @@
             <span class="kw">const</span> <span class="ident">STARTUP_HOOKS</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">StartupHookAttr</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">STARTUP_HOOKS</span>;
 
             <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-            <span class="kw">fn</span> <span class="ident">task_cb_pool</span>() <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">TaskCb</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span>] {
+            <span class="kw">fn</span> <span class="ident">task_cb_pool</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">TaskCb</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span>] {
                 <span class="kw-2">&amp;</span><span class="ident">TASK_CB_POOL</span>
             }
 
             <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-            <span class="kw">fn</span> <span class="ident">event_group_cb_pool</span>() <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">EventGroupCb</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span>] {
+            <span class="kw">fn</span> <span class="ident">event_group_cb_pool</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">EventGroupCb</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span>] {
                 <span class="kw-2">&amp;</span><span class="ident">EVENT_GROUP_CB_POOL</span>
             }
 
             <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-            <span class="kw">fn</span> <span class="ident">timer_cb_pool</span>() <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">TimerCb</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span>] {
+            <span class="kw">fn</span> <span class="ident">timer_cb_pool</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">TimerCb</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span><span class="op">&gt;</span>] {
                 <span class="kw-2">&amp;</span><span class="ident">TIMER_CB_POOL</span>
             }
         }
@@ -541,7 +541,7 @@
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">array_item_from_fn</span> {
     ($(
         <span class="macro-nonterminal">$</span><span class="macro-nonterminal">static_or_const</span>:<span class="ident">tt</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">out</span>:<span class="ident">ident</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ty</span>; <span class="kw">_</span>] <span class="op">=</span> (<span class="number">0</span>..<span class="macro-nonterminal">$</span><span class="macro-nonterminal">len</span>:<span class="ident">expr</span>).<span class="ident">map</span>(<span class="op">|</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">var</span>:<span class="ident">ident</span><span class="op">|</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">map</span>:<span class="ident">expr</span>);
-    )<span class="kw-2">*</span>) <span class="op">=&gt;</span> {$(
+    )<span class="kw-2">*</span>) <span class="op">=</span><span class="op">&gt;</span> {$(
         <span class="macro-nonterminal">$</span><span class="macro-nonterminal">static_or_const</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">out</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>; { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">len</span> }] <span class="op">=</span> {
             <span class="kw">use</span> <span class="macro-nonterminal">$</span><span class="kw">crate</span>::{<span class="macro-nonterminal">core</span>::<span class="ident">mem</span>::<span class="ident">MaybeUninit</span>, <span class="ident">utils</span>::<span class="ident">mem</span>};
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">values</span>: [<span class="ident">MaybeUninit</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span><span class="op">&gt;</span>; { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">len</span> }] <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">uninit_array</span>();
@@ -551,7 +551,7 @@
                     <span class="kw">let</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">var</span> <span class="op">=</span> <span class="ident">i</span>;
                     <span class="macro-nonterminal">$</span><span class="macro-nonterminal">map</span>
                 });
-                <span class="ident">i</span> <span class="op">+=</span> <span class="number">1</span>;
+                <span class="ident">i</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
             }
 
             <span class="comment">// Safety:  The memory layout of `[MaybeUninit&lt;$ty&gt;; $len]` is</span>
@@ -577,7 +577,7 @@
     <span class="kw">pub</span> <span class="ident">hunks</span>: <span class="ident">ComptimeVec</span><span class="op">&lt;</span><span class="kw">super</span>::<span class="ident">HunkInitAttr</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">hunk_pool_len</span>: <span class="ident">usize</span>,
     <span class="kw">pub</span> <span class="ident">hunk_pool_align</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span> <span class="ident">tasks</span>: <span class="ident">ComptimeVec</span><span class="op">&lt;</span><span class="ident">CfgBuilderTask</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">tasks</span>: <span class="ident">ComptimeVec</span><span class="op">&lt;</span><span class="ident">CfgBuilderTask</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">num_task_priority_levels</span>: <span class="ident">usize</span>,
     <span class="kw">pub</span> <span class="ident">interrupt_lines</span>: <span class="ident">ComptimeVec</span><span class="op">&lt;</span><span class="ident">CfgBuilderInterruptLine</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">interrupt_handlers</span>: <span class="ident">ComptimeVec</span><span class="op">&lt;</span><span class="ident">CfgBuilderInterruptHandler</span><span class="op">&gt;</span>,
@@ -597,7 +597,7 @@
     <span class="doccomment">/// a given `CfgBuilder` with another one can be used to circumvent the</span>
     <span class="doccomment">/// compile-time access control of kernel objects.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">inner</span>: <span class="ident">CfgBuilderInner</span> {
                 <span class="ident">_phantom</span>: <span class="ident">PhantomData</span>,
@@ -617,17 +617,17 @@
 
     <span class="doccomment">/// Get `CfgBuilderInner`, consuming `self`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">into_inner</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">CfgBuilderInner</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">into_inner</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CfgBuilderInner</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">inner</span>
     }
 
     <span class="doccomment">/// Specify the number of task priority levels. The default value is `16`.</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">num_task_priority_levels</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">new_value</span>: <span class="ident">usize</span>) {
-        <span class="kw">if</span> <span class="ident">new_value</span> <span class="op">==</span> <span class="number">0</span> {
+        <span class="kw">if</span> <span class="ident">new_value</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
             <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;`num_task_priority_levels` must be greater than zero&quot;</span>);
         } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">new_value</span> <span class="op">&gt;</span> <span class="ident">FIXED_PRIO_BITMAP_MAX_LEN</span> {
             <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;`num_task_priority_levels` must be less than or equal to `FIXED_PRIO_BITMAP_MAX_LEN`&quot;</span>);
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">new_value</span> <span class="op">&gt;=</span> <span class="ident">isize</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">usize</span> {
+        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">new_value</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">isize</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">usize</span> {
             <span class="comment">// Limiting priority values in range `0..(isize::MAX - 1)`</span>
             <span class="comment">// leaves room for special values outside the extremities.</span>
             <span class="comment">//</span>

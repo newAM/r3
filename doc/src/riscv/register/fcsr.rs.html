@@ -170,31 +170,31 @@
 <span class="kw">impl</span> <span class="ident">Flags</span> {
     <span class="doccomment">/// Inexact</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">nx</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">nx</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="number">0</span>.<span class="ident">get_bit</span>(<span class="number">0</span>)
     }
 
     <span class="doccomment">/// Underflow</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uf</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uf</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="number">0</span>.<span class="ident">get_bit</span>(<span class="number">1</span>)
     }
 
     <span class="doccomment">/// Overflow</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">of</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">of</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="number">0</span>.<span class="ident">get_bit</span>(<span class="number">2</span>)
     }
 
     <span class="doccomment">/// Divide by Zero</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dz</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dz</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="number">0</span>.<span class="ident">get_bit</span>(<span class="number">3</span>)
     }
 
     <span class="doccomment">/// Invalid Operation</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">nv</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">nv</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="number">0</span>.<span class="ident">get_bit</span>(<span class="number">4</span>)
     }
 }
@@ -212,26 +212,26 @@
 
 <span class="kw">impl</span> <span class="ident">FCSR</span> {
     <span class="doccomment">/// Returns the contents of the register as raw bits</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="self">self</span>.<span class="ident">bits</span>
     }
 
     <span class="doccomment">/// Accrued Exception Flags</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fflags</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Flags</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fflags</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Flags</span> {
         <span class="ident">Flags</span>(<span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bits</span>(<span class="number">0</span>..<span class="number">5</span>))
     }
 
     <span class="doccomment">/// Rounding Mode</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frm</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">RoundingMode</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frm</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RoundingMode</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bits</span>(<span class="number">5</span>..<span class="number">8</span>) {
-            <span class="number">0b000</span> <span class="op">=&gt;</span> <span class="ident">RoundingMode</span>::<span class="ident">RoundToNearestEven</span>,
-            <span class="number">0b001</span> <span class="op">=&gt;</span> <span class="ident">RoundingMode</span>::<span class="ident">RoundTowardsZero</span>,
-            <span class="number">0b010</span> <span class="op">=&gt;</span> <span class="ident">RoundingMode</span>::<span class="ident">RoundDown</span>,
-            <span class="number">0b011</span> <span class="op">=&gt;</span> <span class="ident">RoundingMode</span>::<span class="ident">RoundUp</span>,
-            <span class="number">0b100</span> <span class="op">=&gt;</span> <span class="ident">RoundingMode</span>::<span class="ident">RoundToNearestMaxMagnitude</span>,
-            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="ident">RoundingMode</span>::<span class="ident">Invalid</span>,
+            <span class="number">0b000</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">RoundingMode</span>::<span class="ident">RoundToNearestEven</span>,
+            <span class="number">0b001</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">RoundingMode</span>::<span class="ident">RoundTowardsZero</span>,
+            <span class="number">0b010</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">RoundingMode</span>::<span class="ident">RoundDown</span>,
+            <span class="number">0b011</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">RoundingMode</span>::<span class="ident">RoundUp</span>,
+            <span class="number">0b100</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">RoundingMode</span>::<span class="ident">RoundToNearestMaxMagnitude</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">RoundingMode</span>::<span class="ident">Invalid</span>,
         }
     }
 }
@@ -242,7 +242,7 @@
 
 <span class="doccomment">/// Reads the CSR</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span>() <span class="op">-&gt;</span> <span class="ident">FCSR</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FCSR</span> {
     <span class="ident">FCSR</span> {
         <span class="ident">bits</span>: <span class="kw">unsafe</span> { <span class="ident">_read</span>() <span class="kw">as</span> <span class="ident">u32</span> },
     }
@@ -252,7 +252,7 @@
 <span class="attribute">#[<span class="ident">inline</span>]</span>
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">set_rounding_mode</span>(<span class="ident">frm</span>: <span class="ident">RoundingMode</span>) {
     <span class="kw">let</span> <span class="ident">old</span> <span class="op">=</span> <span class="ident">read</span>();
-    <span class="kw">let</span> <span class="ident">bits</span> <span class="op">=</span> ((<span class="ident">frm</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&lt;&lt;</span> <span class="number">5</span>) <span class="op">|</span> <span class="ident">old</span>.<span class="ident">fflags</span>().<span class="number">0</span>;
+    <span class="kw">let</span> <span class="ident">bits</span> <span class="op">=</span> ((<span class="ident">frm</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>) <span class="op">|</span> <span class="ident">old</span>.<span class="ident">fflags</span>().<span class="number">0</span>;
     <span class="ident">_write</span>(<span class="ident">bits</span> <span class="kw">as</span> <span class="ident">usize</span>);
 }
 

@@ -193,7 +193,7 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Port</span><span class="op">&gt;</span> <span class="ident">timer</span>::<span class="ident">Timer</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Construct a `CfgTimerBuilder` to define a timer in [a configuration</span>
     <span class="doccomment">/// function](crate#static-configuration).</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">build</span>() <span class="op">-&gt;</span> <span class="ident">CfgTimerBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">build</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CfgTimerBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
         <span class="ident">CfgTimerBuilder</span>::<span class="ident">new</span>()
     }
 }
@@ -212,7 +212,7 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Port</span><span class="op">&gt;</span> <span class="ident">CfgTimerBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
-    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">_phantom</span>: <span class="ident">PhantomData</span>,
             <span class="ident">start</span>: <span class="prelude-val">None</span>,
@@ -225,7 +225,7 @@
 
     <span class="doccomment">/// [**Required**] Specify the timer&#39;s entry point. It will be called</span>
     <span class="doccomment">/// in an interrupt context.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">start</span>(<span class="self">self</span>, <span class="ident">start</span>: <span class="kw">fn</span>(<span class="ident">usize</span>)) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">start</span>(<span class="self">self</span>, <span class="ident">start</span>: <span class="kw">fn</span>(<span class="ident">usize</span>)) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">start</span>: <span class="prelude-val">Some</span>(<span class="ident">start</span>),
             ..<span class="self">self</span>
@@ -233,13 +233,13 @@
     }
 
     <span class="doccomment">/// Specify the parameter to `start`. Defaults to `0`.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">param</span>(<span class="self">self</span>, <span class="ident">param</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">param</span>(<span class="self">self</span>, <span class="ident">param</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> { <span class="ident">param</span>, ..<span class="self">self</span> }
     }
 
     <span class="doccomment">/// Specify whether the timer should be started at system startup.</span>
     <span class="doccomment">/// Defaults to `false` (don&#39;t activate).</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">active</span>(<span class="self">self</span>, <span class="ident">active</span>: <span class="ident">bool</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">active</span>(<span class="self">self</span>, <span class="ident">active</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> { <span class="ident">active</span>, ..<span class="self">self</span> }
     }
 
@@ -247,7 +247,7 @@
     <span class="doccomment">/// Defaults to `None` (infinity; the timer will never fire).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [delay]: crate::kernel::Timer::set_delay</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">delay</span>(<span class="self">self</span>, <span class="ident">delay</span>: <span class="ident">Duration</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">delay</span>(<span class="self">self</span>, <span class="ident">delay</span>: <span class="ident">Duration</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">delay</span>: <span class="prelude-val">Some</span>(<span class="ident">delay</span>),
             ..<span class="self">self</span>
@@ -259,7 +259,7 @@
     <span class="doccomment">/// tick).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [period]: crate::kernel::Timer::set_period</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">period</span>(<span class="self">self</span>, <span class="ident">period</span>: <span class="ident">Duration</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">period</span>(<span class="self">self</span>, <span class="ident">period</span>: <span class="ident">Duration</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">period</span>: <span class="prelude-val">Some</span>(<span class="ident">period</span>),
             ..<span class="self">self</span>
@@ -267,7 +267,7 @@
     }
 
     <span class="doccomment">/// Complete the definition of a timer, returning a reference to the timer.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">finish</span>(<span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CfgBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">timer</span>::<span class="ident">Timer</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">finish</span>(<span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CfgBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">timer</span>::<span class="ident">Timer</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">cfg</span>.<span class="ident">inner</span>;
 
         <span class="kw">let</span> <span class="ident">period</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">period</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">period</span> {
@@ -321,7 +321,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">CfgBuilderTimer</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">start</span>: <span class="self">self</span>.<span class="ident">start</span>,
             <span class="ident">param</span>: <span class="self">self</span>.<span class="ident">param</span>,
@@ -340,10 +340,10 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">attr</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">timer</span>::<span class="ident">TimerAttr</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
         <span class="ident">i</span>: <span class="ident">usize</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">timer</span>::<span class="ident">TimerCb</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">timer</span>::<span class="ident">TimerCb</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">timeout</span> <span class="op">=</span> <span class="ident">timeout</span>::<span class="ident">Timeout</span>::<span class="ident">new</span>(<span class="ident">timer</span>::<span class="ident">timer_timeout_handler</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>, <span class="ident">i</span>);
 
-        <span class="kw">let</span> <span class="ident">timeout</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">delay</span> <span class="op">==</span> <span class="ident">timeout</span>::<span class="ident">BAD_DURATION32</span> {
+        <span class="kw">let</span> <span class="ident">timeout</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">delay</span> <span class="op">=</span><span class="op">=</span> <span class="ident">timeout</span>::<span class="ident">BAD_DURATION32</span> {
             <span class="ident">timeout</span>.<span class="ident">with_at_raw</span>(<span class="self">self</span>.<span class="ident">delay</span>)
         } <span class="kw">else</span> {
             <span class="ident">timeout</span>.<span class="ident">with_expiration_at</span>(<span class="self">self</span>.<span class="ident">delay</span>)
@@ -357,7 +357,7 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">to_attr</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Port</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">timer</span>::<span class="ident">TimerAttr</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">to_attr</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Port</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">timer</span>::<span class="ident">TimerAttr</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
         <span class="ident">timer</span>::<span class="ident">TimerAttr</span> {
             <span class="ident">entry_point</span>: <span class="self">self</span>.<span class="ident">start</span>,
             <span class="ident">entry_param</span>: <span class="self">self</span>.<span class="ident">param</span>,

@@ -377,12 +377,12 @@
     <span class="ident">column</span>: <span class="ident">usize</span>,
     <span class="ident">offset</span>: <span class="ident">usize</span>,
     <span class="ident">content</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l</span> <span class="ident">str</span>,
-    <span class="ident">cursor</span>: <span class="ident">Peekable</span><span class="op">&lt;</span><span class="ident">Chars</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;&gt;</span>,
+    <span class="ident">cursor</span>: <span class="ident">Peekable</span><span class="op">&lt;</span><span class="ident">Chars</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> <span class="ident">Reader</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">content</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l</span> <span class="ident">str</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">content</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l</span> <span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">Reader</span> {
             <span class="ident">line</span>: <span class="number">1</span>,
             <span class="ident">column</span>: <span class="number">1</span>,
@@ -392,9 +392,9 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">capture</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">block</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;l</span> <span class="ident">str</span><span class="op">&gt;</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">capture</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">block</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;l</span> <span class="ident">str</span><span class="op">&gt;</span>
     <span class="kw">where</span>
-        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Reader</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>,
+        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Reader</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>,
     {
         <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">offset</span>;
         <span class="kw">if</span> <span class="op">!</span><span class="ident">block</span>(<span class="self">self</span>) {
@@ -409,22 +409,22 @@
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_all</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_all</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">consume_while</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="bool-val">true</span>)
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_any</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_any</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">consume_while</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">chars</span>.<span class="ident">contains</span>(<span class="ident">c</span>))
     }
 
     <span class="comment">// https://www.w3.org/TR/REC-xml/#NT-Attribute</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_attribute</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_attribute</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">consume_name</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">consume_equality</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">consume_attribute_value</span>()
     }
 
     <span class="comment">// https://www.w3.org/TR/REC-xml/#NT-AttValue</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_attribute_value</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_attribute_value</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">consume_char</span>(<span class="string">&#39;\&#39;&#39;</span>) {
             <span class="self">self</span>.<span class="ident">consume_until_any</span>(<span class="string">&quot;&lt;&amp;&#39;&quot;</span>);
             <span class="self">self</span>.<span class="ident">consume_char</span>(<span class="string">&#39;\&#39;&#39;</span>)
@@ -436,46 +436,46 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_char</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">target</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_char</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">target</span>: <span class="ident">char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">peek</span>() {
-            <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="kw">if</span> <span class="ident">c</span> <span class="op">==</span> <span class="ident">target</span> <span class="op">=&gt;</span> {
+            <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="kw">if</span> <span class="ident">c</span> <span class="op">=</span><span class="op">=</span> <span class="ident">target</span> <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="self">self</span>.<span class="ident">next</span>();
                 <span class="bool-val">true</span>
             }
-            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="bool-val">false</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">false</span>,
         }
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_digits</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">consume_while</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span> <span class="op">&gt;=</span> <span class="string">&#39;0&#39;</span> <span class="op">&amp;&amp;</span> <span class="ident">c</span> <span class="op">&lt;=</span> <span class="string">&#39;9&#39;</span>)
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_digits</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">consume_while</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span> <span class="op">&gt;</span><span class="op">=</span> <span class="string">&#39;0&#39;</span> <span class="op">&amp;&amp;</span> <span class="ident">c</span> <span class="op">&lt;</span><span class="op">=</span> <span class="string">&#39;9&#39;</span>)
     }
 
     <span class="comment">// https://www.w3.org/TR/REC-xml/#NT-Eq</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_equality</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_equality</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">consume_whitespace</span>();
         <span class="kw">let</span> <span class="ident">consumed</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">consume_char</span>(<span class="string">&#39;=&#39;</span>);
         <span class="self">self</span>.<span class="ident">consume_whitespace</span>();
         <span class="ident">consumed</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_if</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">check</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_if</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">check</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>
     <span class="kw">where</span>
-        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>,
+        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>,
     {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">peek</span>() {
-            <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="op">=&gt;</span> <span class="kw">if</span> <span class="ident">check</span>(<span class="ident">c</span>) {
+            <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">if</span> <span class="ident">check</span>(<span class="ident">c</span>) {
                 <span class="self">self</span>.<span class="ident">next</span>();
                 <span class="bool-val">true</span>
             } <span class="kw">else</span> {
                 <span class="bool-val">false</span>
             },
-            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="bool-val">false</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">false</span>,
         }
     }
 
     <span class="comment">// https://www.w3.org/TR/REC-xml/#NT-Name</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_name</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_name</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">consume_name_start_char</span>() <span class="op">&amp;&amp;</span> {
             <span class="kw">while</span> <span class="self">self</span>.<span class="ident">consume_name_char</span>() {}
             <span class="bool-val">true</span>
@@ -483,20 +483,20 @@
     }
 
     <span class="comment">// https://www.w3.org/TR/REC-xml/#NT-NameChar</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_name_char</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">consume_name_start_char</span>() <span class="op">||</span> <span class="self">self</span>.<span class="ident">consume_if</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">c</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_name_char</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">consume_name_start_char</span>() <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">consume_if</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">c</span> {
             <span class="string">&#39;-&#39;</span>
             <span class="op">|</span> <span class="string">&#39;.&#39;</span>
             <span class="op">|</span> <span class="string">&#39;0&#39;</span>...<span class="string">&#39;9&#39;</span>
             <span class="op">|</span> <span class="string">&#39;\u{B7}&#39;</span>
             <span class="op">|</span> <span class="string">&#39;\u{0300}&#39;</span>...<span class="string">&#39;\u{036F}&#39;</span>
-            <span class="op">|</span> <span class="string">&#39;\u{203F}&#39;</span>...<span class="string">&#39;\u{2040}&#39;</span> <span class="op">=&gt;</span> <span class="bool-val">true</span>,
-            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="bool-val">false</span>,
+            <span class="op">|</span> <span class="string">&#39;\u{203F}&#39;</span>...<span class="string">&#39;\u{2040}&#39;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">true</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">false</span>,
         })
     }
 
     <span class="comment">// https://www.w3.org/TR/REC-xml/#NT-NameStartChar</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_name_start_char</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_name_start_char</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">consume_if</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">c</span> {
             <span class="string">&#39;:&#39;</span>
             <span class="op">|</span> <span class="string">&#39;A&#39;</span>...<span class="string">&#39;Z&#39;</span>
@@ -513,20 +513,20 @@
             <span class="op">|</span> <span class="string">&#39;\u{3001}&#39;</span>...<span class="string">&#39;\u{D7FF}&#39;</span>
             <span class="op">|</span> <span class="string">&#39;\u{F900}&#39;</span>...<span class="string">&#39;\u{FDCF}&#39;</span>
             <span class="op">|</span> <span class="string">&#39;\u{FDF0}&#39;</span>...<span class="string">&#39;\u{FFFD}&#39;</span>
-            <span class="op">|</span> <span class="string">&#39;\u{10000}&#39;</span>...<span class="string">&#39;\u{EFFFF}&#39;</span> <span class="op">=&gt;</span> <span class="bool-val">true</span>,
-            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="bool-val">false</span>,
+            <span class="op">|</span> <span class="string">&#39;\u{10000}&#39;</span>...<span class="string">&#39;\u{EFFFF}&#39;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">true</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">false</span>,
         })
     }
 
     <span class="comment">// https://www.w3.org/TR/SVG/types.html#DataTypeNumber</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_number</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_number</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">consume_sign</span>();
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">consume_digits</span>() {
             <span class="kw">if</span> <span class="self">self</span>.<span class="ident">consume_char</span>(<span class="string">&#39;.&#39;</span>) <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">consume_digits</span>() {
                 <span class="kw">return</span> <span class="bool-val">false</span>;
             }
         } <span class="kw">else</span> {
-            <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">consume_char</span>(<span class="string">&#39;.&#39;</span>) <span class="op">||</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">consume_digits</span>() {
+            <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">consume_char</span>(<span class="string">&#39;.&#39;</span>) <span class="op">|</span><span class="op">|</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">consume_digits</span>() {
                 <span class="kw">return</span> <span class="bool-val">false</span>;
             }
         }
@@ -537,23 +537,23 @@
         <span class="self">self</span>.<span class="ident">consume_digits</span>()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_sign</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">consume_char</span>(<span class="string">&#39;+&#39;</span>) <span class="op">||</span> <span class="self">self</span>.<span class="ident">consume_char</span>(<span class="string">&#39;-&#39;</span>)
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_sign</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">consume_char</span>(<span class="string">&#39;+&#39;</span>) <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">consume_char</span>(<span class="string">&#39;-&#39;</span>)
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_until_any</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_until_any</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">consume_while</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="op">!</span><span class="ident">chars</span>.<span class="ident">contains</span>(<span class="ident">c</span>))
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_until_char</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">target</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">consume_while</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span> <span class="op">!=</span> <span class="ident">target</span>)
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_until_char</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">target</span>: <span class="ident">char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">consume_while</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span> <span class="op">!</span><span class="op">=</span> <span class="ident">target</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_while</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">check</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_while</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">check</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>
     <span class="kw">where</span>
-        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>,
+        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>,
     {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">consumed</span> <span class="op">=</span> <span class="bool-val">false</span>;
         <span class="kw">while</span> <span class="self">self</span>.<span class="ident">consume_if</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">check</span>(<span class="ident">c</span>)) {
@@ -564,22 +564,22 @@
 
     <span class="comment">// https://www.w3.org/TR/REC-xml/#NT-S</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_whitespace</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">consume_whitespace</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">consume_any</span>(<span class="string">&quot;\x20\x09\x0D\x0A&quot;</span>)
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">offset</span> <span class="op">==</span> <span class="self">self</span>.<span class="ident">content</span>.<span class="ident">len</span>()
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">offset</span> <span class="op">=</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">content</span>.<span class="ident">len</span>()
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">peek</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">peek</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">cursor</span>.<span class="ident">peek</span>().<span class="ident">and_then</span>(<span class="op">|</span><span class="kw-2">&amp;</span><span class="ident">c</span><span class="op">|</span> <span class="prelude-val">Some</span>(<span class="ident">c</span>))
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> (<span class="ident">usize</span>, <span class="ident">usize</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">usize</span>, <span class="ident">usize</span>) {
         (<span class="self">self</span>.<span class="ident">line</span>, <span class="self">self</span>.<span class="ident">column</span>)
     }
 }
@@ -587,19 +587,19 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">Reader</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> {
     <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">char</span>;
 
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">cursor</span>.<span class="ident">next</span>() {
-            <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="op">=&gt;</span> {
-                <span class="kw">if</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;\n&#39;</span> {
-                    <span class="self">self</span>.<span class="ident">line</span> <span class="op">+=</span> <span class="number">1</span>;
+            <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="kw">if</span> <span class="ident">c</span> <span class="op">=</span><span class="op">=</span> <span class="string">&#39;\n&#39;</span> {
+                    <span class="self">self</span>.<span class="ident">line</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
                     <span class="self">self</span>.<span class="ident">column</span> <span class="op">=</span> <span class="number">1</span>;
                 } <span class="kw">else</span> {
-                    <span class="self">self</span>.<span class="ident">column</span> <span class="op">+=</span> <span class="number">1</span>;
+                    <span class="self">self</span>.<span class="ident">column</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
                 }
-                <span class="self">self</span>.<span class="ident">offset</span> <span class="op">+=</span> <span class="number">1</span>;
+                <span class="self">self</span>.<span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
                 <span class="prelude-val">Some</span>(<span class="ident">c</span>)
             }
-            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="prelude-val">None</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
         }
     }
 }
@@ -622,7 +622,7 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">consume_attribute</span>() {
         <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">test</span>(
-            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> ({
+            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> ({
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">Reader</span>::<span class="ident">new</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>);
                 <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">reader</span>.<span class="ident">consume_attribute</span>());
             });
@@ -633,7 +633,7 @@
         <span class="macro">test</span><span class="macro">!</span>(<span class="string">&quot;foo= \&quot;bar\&quot;&quot;</span>);
 
         <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">test</span>(
-            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> ({
+            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> ({
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">Reader</span>::<span class="ident">new</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>);
                 <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">reader</span>.<span class="ident">consume_attribute</span>());
             });
@@ -649,7 +649,7 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">consume_name</span>() {
         <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">test</span>(
-            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">value</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> ({
+            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">value</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> ({
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">Reader</span>::<span class="ident">new</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>);
                 <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">capture</span>(<span class="op">|</span><span class="ident">reader</span><span class="op">|</span> <span class="ident">reader</span>.<span class="ident">consume_name</span>());
                 <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">value</span>.<span class="ident">unwrap</span>(), <span class="macro-nonterminal">$</span><span class="macro-nonterminal">value</span>);
@@ -663,7 +663,7 @@
         <span class="macro">test</span><span class="macro">!</span>(<span class="string">&quot;foo/&quot;</span>, <span class="string">&quot;foo&quot;</span>);
 
         <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">test</span>(
-            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> ({
+            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> ({
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">Reader</span>::<span class="ident">new</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>);
                 <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">reader</span>.<span class="ident">consume_name</span>());
             });
@@ -678,7 +678,7 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">consume_number</span>() {
         <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">test</span>(
-            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">value</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> ({
+            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">value</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> ({
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">Reader</span>::<span class="ident">new</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>);
                 <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">capture</span>(<span class="op">|</span><span class="ident">reader</span><span class="op">|</span> <span class="ident">reader</span>.<span class="ident">consume_number</span>());
                 <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">value</span>.<span class="ident">unwrap</span>(), <span class="macro-nonterminal">$</span><span class="macro-nonterminal">value</span>);
@@ -717,7 +717,7 @@
         <span class="macro">test</span><span class="macro">!</span>(<span class="string">&quot;+1.2e+3&quot;</span>, <span class="string">&quot;+1.2e+3&quot;</span>);
 
         <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">test</span>(
-            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> ({
+            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> ({
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">Reader</span>::<span class="ident">new</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">content</span>);
                 <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">reader</span>.<span class="ident">capture</span>(<span class="op">|</span><span class="ident">reader</span><span class="op">|</span> <span class="ident">reader</span>.<span class="ident">consume_number</span>()).<span class="ident">is_none</span>());
             });

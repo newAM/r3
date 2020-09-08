@@ -4,8 +4,7 @@
     const <a href='#associatedconstant.USE_WFI' class="constant"><b>USE_WFI</b></a>: bool;
     unsafe fn <a href='#method.interrupt_stack_top' class='fnname'>interrupt_stack_top</a>() -&gt; usize { ... }
 }</pre></div><div class='docblock'><p>The configuration of the port.</p>
-</div>
-            <h2 id='associated-const' class='small-section-header'>Associated Constants<a href='#associated-const' class='anchor'></a></h2><div class='methods'><h3 id='associatedconstant.CPU_LOCK_PRIORITY_MASK' class='method'><code>const <a href='#associatedconstant.CPU_LOCK_PRIORITY_MASK' class="constant"><b>CPU_LOCK_PRIORITY_MASK</b></a>: u8</code></h3><div class='docblock'><p>The priority value to which CPU Lock boosts the current execution
+</div><h2 id='associated-const' class='small-section-header'>Associated Constants<a href='#associated-const' class='anchor'></a></h2><div class='methods'><h3 id='associatedconstant.CPU_LOCK_PRIORITY_MASK' class='method'><code>const <a href='#associatedconstant.CPU_LOCK_PRIORITY_MASK' class="constant"><b>CPU_LOCK_PRIORITY_MASK</b></a>: u8</code></h3><div class='docblock'><p>The priority value to which CPU Lock boosts the current execution
 priority. Must be in range <code>0..256</code>. Defaults to <code>0</code> when unspecified.</p>
 <p>The lower bound of <a href="../constance/kernel/trait.PortInterrupts.html#associatedconstant.MANAGED_INTERRUPT_PRIORITY_RANGE"><code>MANAGED_INTERRUPT_PRIORITY_RANGE</code></a> is bound to this
 value.</p>
@@ -13,10 +12,8 @@ value.</p>
 <code>BASEPRI</code>.</p>
 </div><h3 id='associatedconstant.USE_WFI' class='method'><code>const <a href='#associatedconstant.USE_WFI' class="constant"><b>USE_WFI</b></a>: bool</code></h3><div class='docblock'><p>Enables the use of the <code>wfi</code> instruction in the idle task to save power.
 Defaults to <code>true</code>.</p>
-</div></div><span class='loading-content'>Loading content...</span>
-            <h2 id='provided-methods' class='small-section-header'>Provided methods<a href='#provided-methods' class='anchor'></a></h2><div class='methods'><h3 id='method.interrupt_stack_top' class='method'><code>unsafe fn <a href='#method.interrupt_stack_top' class='fnname'>interrupt_stack_top</a>() -&gt; usize</code></h3><div class='docblock'><p>Get the top of the interrupt stack. Defaults to
+</div></div><span class='loading-content'>Loading content...</span><h2 id='provided-methods' class='small-section-header'>Provided methods<a href='#provided-methods' class='anchor'></a></h2><div class='methods'><h3 id='method.interrupt_stack_top' class='method'><code>unsafe fn <a href='#method.interrupt_stack_top' class='fnname'>interrupt_stack_top</a>() -&gt; usize</code></h3><div class='docblock'><p>Get the top of the interrupt stack. Defaults to
 <code>*(SCB.VTOR as *const u32)</code>.</p>
 <h1 id="safety" class="section-header"><a href="#safety">Safety</a></h1>
 <p>This only can be called by the port.</p>
-</div></div><span class='loading-content'>Loading content...</span>
-            <h2 id='implementors' class='small-section-header'>Implementors<a href='#implementors' class='anchor'></a></h2><div class='item-list' id='implementors-list'></div><span class='loading-content'>Loading content...</span><script type="text/javascript" src="../implementors/constance_port_arm_m/trait.ThreadingOptions.js" async></script></section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../";window.currentCrate = "constance_port_arm_m";</script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>
+</div></div><span class='loading-content'>Loading content...</span><h2 id='implementors' class='small-section-header'>Implementors<a href='#implementors' class='anchor'></a></h2><div class='item-list' id='implementors-list'></div><span class='loading-content'>Loading content...</span><script type="text/javascript" src="../implementors/constance_port_arm_m/trait.ThreadingOptions.js" async></script></section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../";window.currentCrate = "constance_port_arm_m";</script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>

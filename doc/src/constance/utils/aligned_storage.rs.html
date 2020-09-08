@@ -86,7 +86,7 @@
     <span class="doccomment">/// Implements `TypeFn` on `AlignedStorageFn` for each possible alignemtn</span>
     <span class="doccomment">/// value.</span>
     <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">impl_aligned_storage_fn</span> {
-        (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">align</span>:<span class="ident">tt</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) <span class="op">=&gt;</span> {
+        (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">align</span>:<span class="ident">tt</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">TypeFn</span>, <span class="ident">Init</span>, <span class="ident">AlignedStorageFn</span>};
 
             <span class="kw">impl</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">LEN</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">TypeFn</span> <span class="kw">for</span> <span class="ident">AlignedStorageFn</span><span class="op">&lt;</span><span class="ident">LEN</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">align</span><span class="op">&gt;</span> {
@@ -113,7 +113,7 @@
                 <span class="macro">impl_aligned_storage_fn</span><span class="macro">!</span> { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="op">*</span> }
             }
         };
-        () <span class="op">=&gt;</span> {};
+        () <span class="op">=</span><span class="op">&gt;</span> {};
     }
 
     <span class="macro">impl_aligned_storage_fn</span><span class="macro">!</span> {

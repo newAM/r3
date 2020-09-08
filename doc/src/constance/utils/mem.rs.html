@@ -60,7 +60,7 @@
 <span class="doccomment">/// # Safety</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// See `core::mem::transmute`.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">transmute</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span><span class="op">&gt;</span>(<span class="ident">x</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">U</span> {
+<span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">transmute</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span><span class="op">&gt;</span>(<span class="ident">x</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">U</span> {
     <span class="kw">unsafe</span> {
         <span class="ident">ManuallyDrop</span>::<span class="ident">into_inner</span>(
             <span class="ident">Xmute</span> {
@@ -72,7 +72,7 @@
 }
 
 <span class="doccomment">/// Construct a `[MaybeUninit&lt;T&gt;; LEN]` whose elements are uninitialized.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">uninit_array</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="kw">const</span> <span class="ident">LEN</span>: <span class="ident">usize</span><span class="op">&gt;</span>() <span class="op">-&gt;</span> [<span class="ident">MaybeUninit</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>; <span class="ident">LEN</span>] {
+<span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">uninit_array</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="kw">const</span> <span class="ident">LEN</span>: <span class="ident">usize</span><span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">MaybeUninit</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>; <span class="ident">LEN</span>] {
     <span class="kw">unsafe</span> { <span class="ident">transmute</span>(()) }
 }
 

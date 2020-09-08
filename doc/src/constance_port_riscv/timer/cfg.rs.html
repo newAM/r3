@@ -203,7 +203,7 @@
 <span class="doccomment">///</span>
 <span class="attribute">#[<span class="ident">macro_export</span>]</span>
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">use_timer</span> {
-    (<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">PortTimer</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ty</span>) <span class="op">=&gt;</span> {
+    (<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">PortTimer</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ty</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="kw">const</span> <span class="kw">_</span>: () <span class="op">=</span> {
             <span class="kw">use</span> <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">constance</span>::{
                 <span class="ident">kernel</span>::{<span class="ident">cfg</span>::<span class="ident">CfgBuilder</span>, <span class="ident">PortTimer</span>, <span class="ident">UTicks</span>},
@@ -216,7 +216,7 @@
                 <span class="kw">const</span> <span class="ident">MAX_TICK_COUNT</span>: <span class="ident">UTicks</span> <span class="op">=</span> <span class="ident">u32</span>::<span class="ident">MAX</span>;
                 <span class="kw">const</span> <span class="ident">MAX_TIMEOUT</span>: <span class="ident">UTicks</span> <span class="op">=</span> <span class="ident">u32</span>::<span class="ident">MAX</span>;
 
-                <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">tick_count</span>() <span class="op">-&gt;</span> <span class="ident">UTicks</span> {
+                <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">tick_count</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UTicks</span> {
                     <span class="comment">// Safety: We are just forwarding the call</span>
                     <span class="kw">unsafe</span> { <span class="ident">timer</span>::<span class="ident">imp</span>::<span class="ident">tick_count</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>() }
                 }
@@ -251,8 +251,8 @@
                     <span class="comment">// starting value of `mtime` by calling `reset`.</span>
                     <span class="ident">resettable</span>: <span class="op">!</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span> <span class="kw">as</span> <span class="ident">TimerOptions</span><span class="op">&gt;</span>::<span class="ident">RESET_MTIME</span>,
                 }) {
-                    <span class="prelude-val">Ok</span>(<span class="ident">x</span>) <span class="op">=&gt;</span> <span class="ident">x</span>,
-                    <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=&gt;</span> <span class="ident">e</span>.<span class="ident">panic</span>(),
+                    <span class="prelude-val">Ok</span>(<span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">x</span>,
+                    <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">e</span>.<span class="ident">panic</span>(),
                 };
 
             <span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">TIMER_STATE</span>: <span class="ident">tickless</span>::<span class="ident">TicklessState</span><span class="op">&lt;</span><span class="ident">TICKLESS_CFG</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Init</span>::<span class="ident">INIT</span>;
@@ -263,7 +263,7 @@
 
                 <span class="kw">type</span> <span class="ident">TicklessState</span> <span class="op">=</span> <span class="ident">tickless</span>::<span class="ident">TicklessState</span><span class="op">&lt;</span><span class="ident">TICKLESS_CFG</span><span class="op">&gt;</span>;
 
-                <span class="kw">fn</span> <span class="ident">tickless_state</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="self">Self</span>::<span class="ident">TicklessState</span> {
+                <span class="kw">fn</span> <span class="ident">tickless_state</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="self">Self</span>::<span class="ident">TicklessState</span> {
                     <span class="comment">// FIXME: Use `core::ptr::raw_mut!` when it&#39;s stable</span>
                     <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TIMER_STATE</span> }
                 }
@@ -323,7 +323,7 @@
     <span class="kw">const</span> <span class="ident">INTERRUPT_NUM</span>: <span class="ident">InterruptNum</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">INTERRUPT_TIMER</span>;
 }
 
-<span class="kw">const</span> <span class="kw">fn</span> <span class="ident">min128</span>(<span class="ident">x</span>: <span class="ident">u128</span>, <span class="ident">y</span>: <span class="ident">u128</span>) <span class="op">-&gt;</span> <span class="ident">u128</span> {
+<span class="kw">const</span> <span class="kw">fn</span> <span class="ident">min128</span>(<span class="ident">x</span>: <span class="ident">u128</span>, <span class="ident">y</span>: <span class="ident">u128</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u128</span> {
     <span class="kw">if</span> <span class="ident">x</span> <span class="op">&lt;</span> <span class="ident">y</span> {
         <span class="ident">x</span>
     } <span class="kw">else</span> {

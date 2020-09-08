@@ -145,7 +145,7 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Port</span><span class="op">&gt;</span> <span class="ident">startup</span>::<span class="ident">StartupHook</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Construct a `CfgStartupHookBuilder` to register a startup hook in</span>
     <span class="doccomment">/// [a configuration function](crate#static-configuration).</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">build</span>() <span class="op">-&gt;</span> <span class="ident">CfgStartupHookBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">build</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CfgStartupHookBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
         <span class="ident">CfgStartupHookBuilder</span>::<span class="ident">new</span>()
     }
 }
@@ -163,7 +163,7 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Port</span><span class="op">&gt;</span> <span class="ident">CfgStartupHookBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
-    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">_phantom</span>: <span class="ident">PhantomData</span>,
             <span class="ident">start</span>: <span class="prelude-val">None</span>,
@@ -174,7 +174,7 @@
     }
 
     <span class="doccomment">/// [**Required**] Specify the entry point.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">start</span>(<span class="self">self</span>, <span class="ident">start</span>: <span class="kw">fn</span>(<span class="ident">usize</span>)) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">start</span>(<span class="self">self</span>, <span class="ident">start</span>: <span class="kw">fn</span>(<span class="ident">usize</span>)) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">start</span>: <span class="prelude-val">Some</span>(<span class="ident">start</span>),
             ..<span class="self">self</span>
@@ -182,7 +182,7 @@
     }
 
     <span class="doccomment">/// Specify the parameter to `start`. Defaults to `0`.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">param</span>(<span class="self">self</span>, <span class="ident">param</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">param</span>(<span class="self">self</span>, <span class="ident">param</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> { <span class="ident">param</span>, ..<span class="self">self</span> }
     }
 
@@ -194,7 +194,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// `priority` must not be negative. This limitation can be relaxed by</span>
     <span class="doccomment">/// calling [`Self::unchecked`].</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">priority</span>(<span class="self">self</span>, <span class="ident">priority</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">priority</span>(<span class="self">self</span>, <span class="ident">priority</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> { <span class="ident">priority</span>, ..<span class="self">self</span> }
     }
 
@@ -206,7 +206,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Startup hooks with negative priority values can rely on their execution</span>
     <span class="doccomment">/// order for memory safety.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">unchecked</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">unchecked</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">unchecked</span>: <span class="bool-val">true</span>,
             ..<span class="self">self</span>
@@ -215,7 +215,7 @@
 
     <span class="doccomment">/// Complete the registration of a startup hook, returning an `StartupHook`</span>
     <span class="doccomment">/// object.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">finish</span>(<span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CfgBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">startup</span>::<span class="ident">StartupHook</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">finish</span>(<span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CfgBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">startup</span>::<span class="ident">StartupHook</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">cfg</span>.<span class="ident">inner</span>;
 
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">priority</span> <span class="op">&lt;</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">unchecked</span> {
@@ -254,7 +254,7 @@
     <span class="macro">sort_unstable_by</span><span class="macro">!</span>(
         <span class="ident">startup_hooks</span>.<span class="ident">len</span>(),
         <span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="ident">startup_hooks</span>.<span class="ident">get_mut</span>(<span class="ident">i</span>),
-        <span class="op">|</span><span class="ident">x</span>, <span class="ident">y</span><span class="op">|</span> <span class="kw">if</span> <span class="ident">x</span>.<span class="ident">priority</span> <span class="op">!=</span> <span class="ident">y</span>.<span class="ident">priority</span> {
+        <span class="op">|</span><span class="ident">x</span>, <span class="ident">y</span><span class="op">|</span> <span class="kw">if</span> <span class="ident">x</span>.<span class="ident">priority</span> <span class="op">!</span><span class="op">=</span> <span class="ident">y</span>.<span class="ident">priority</span> {
             <span class="ident">x</span>.<span class="ident">priority</span> <span class="op">&lt;</span> <span class="ident">y</span>.<span class="ident">priority</span>
         } <span class="kw">else</span> {
             <span class="ident">x</span>.<span class="ident">order</span> <span class="op">&lt;</span> <span class="ident">y</span>.<span class="ident">order</span>
@@ -263,7 +263,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CfgBuilderStartupHook</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">to_attr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">startup</span>::<span class="ident">StartupHookAttr</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">to_attr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">startup</span>::<span class="ident">StartupHookAttr</span> {
         <span class="ident">startup</span>::<span class="ident">StartupHookAttr</span> {
             <span class="ident">start</span>: <span class="self">self</span>.<span class="ident">start</span>,
             <span class="ident">param</span>: <span class="self">self</span>.<span class="ident">param</span>,

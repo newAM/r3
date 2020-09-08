@@ -224,7 +224,7 @@
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">error</span>::<span class="ident">BadContextError</span>, <span class="ident">Kernel</span>};
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">utils</span>::{<span class="ident">intrusive_list</span>::<span class="ident">CellLike</span>, <span class="ident">Init</span>};
 
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">expect_cpu_lock_inactive</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">BadContextError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">expect_cpu_lock_inactive</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">BadContextError</span><span class="op">&gt;</span> {
     <span class="kw">if</span> <span class="ident">System</span>::<span class="ident">is_cpu_lock_active</span>() {
         <span class="prelude-val">Err</span>(<span class="ident">BadContextError</span>::<span class="ident">BadContext</span>)
     } <span class="kw">else</span> {
@@ -243,15 +243,15 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">CpuLockKeyhole</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;CpuLockKeyhole&quot;</span>).<span class="ident">finish</span>()
     }
 }
 
 <span class="comment">// This is safe because `CpuLockToken` only can be borrowed from `CpuLockGuard`,</span>
 <span class="comment">// and there is only one instance of `CpuLockGuard` at any point of time</span>
-<span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> <span class="ident">Token</span><span class="op">&lt;</span><span class="ident">CpuLockKeyhole</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;&gt;</span> <span class="kw">for</span> <span class="ident">CpuLockToken</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">eq_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">CpuLockKeyhole</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> <span class="ident">Token</span><span class="op">&lt;</span><span class="ident">CpuLockKeyhole</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CpuLockToken</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">eq_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">CpuLockKeyhole</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="bool-val">true</span>
     }
 }
@@ -264,17 +264,17 @@
 
 <span class="doccomment">/// Cell type that can be accessed by [`CpuLockToken`] (which can be obtained</span>
 <span class="doccomment">/// by [`lock_cpu`]).</span>
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct</span> <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">T</span>: <span class="question-mark">?</span><span class="ident">Sized</span><span class="op">&gt;</span>(<span class="ident">TokenLock</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">CpuLockKeyhole</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;&gt;</span>);
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct</span> <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">T</span>: <span class="question-mark">?</span><span class="ident">Sized</span><span class="op">&gt;</span>(<span class="ident">TokenLock</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">CpuLockKeyhole</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span>);
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">T</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span>(<span class="ident">TokenLock</span>::<span class="ident">new</span>(<span class="ident">CpuLockKeyhole</span>::<span class="ident">INIT</span>, <span class="ident">x</span>))
     }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span>, <span class="ident">T</span>: <span class="ident">fmt</span>::<span class="ident">Debug</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">lock</span>) <span class="op">=</span> <span class="ident">lock_cpu</span>() {
             <span class="ident">f</span>.<span class="ident">debug_tuple</span>(<span class="string">&quot;CpuLockCell&quot;</span>)
                 .<span class="ident">field</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">read</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">lock</span>))
@@ -290,24 +290,24 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="ident">ops</span>::<span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">TokenLock</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">CpuLockKeyhole</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;&gt;</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Target</span> {
+    <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">TokenLock</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">CpuLockKeyhole</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Target</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>
     }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="ident">ops</span>::<span class="ident">DerefMut</span> <span class="kw">for</span> <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">deref_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>::<span class="ident">Target</span> {
+    <span class="kw">fn</span> <span class="ident">deref_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>::<span class="ident">Target</span> {
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="number">0</span>
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Element</span>: <span class="ident">Clone</span>, <span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">CellLike</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;&gt;</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Element</span>: <span class="ident">Clone</span>, <span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">CellLike</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span>
     <span class="kw">for</span> <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">Element</span><span class="op">&gt;</span>
 {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">Element</span>;
 
-    <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="op">&amp;&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Target</span> {
+    <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="op">&amp;&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Target</span> {
         <span class="self">self</span>.<span class="ident">read</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">key</span>).<span class="ident">clone</span>()
     }
     <span class="kw">fn</span> <span class="ident">set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>, <span class="ident">value</span>: <span class="self">Self</span>::<span class="ident">Target</span>) {
@@ -315,12 +315,12 @@
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Element</span>: <span class="ident">Clone</span>, <span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">CellLike</span><span class="op">&lt;</span><span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">System</span><span class="op">&gt;&gt;</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Element</span>: <span class="ident">Clone</span>, <span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">CellLike</span><span class="op">&lt;</span><span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span>
     <span class="kw">for</span> <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">Element</span><span class="op">&gt;</span>
 {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">Element</span>;
 
-    <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Target</span> {
+    <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Target</span> {
         <span class="self">self</span>.<span class="ident">read</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">key</span>).<span class="ident">clone</span>()
     }
     <span class="kw">fn</span> <span class="ident">set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">System</span><span class="op">&gt;</span>, <span class="ident">value</span>: <span class="self">Self</span>::<span class="ident">Target</span>) {
@@ -330,7 +330,7 @@
 
 <span class="doccomment">/// Attempt to enter a CPU Lock state and get an RAII guard.</span>
 <span class="doccomment">/// Return `BadContext` if the kernel is already in a CPU Lock state.</span>
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">lock_cpu</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>, <span class="ident">BadContextError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">lock_cpu</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>, <span class="ident">BadContextError</span><span class="op">&gt;</span> {
     <span class="comment">// Safety: `try_enter_cpu_lock` is only meant to be called by the kernel</span>
     <span class="kw">if</span> <span class="kw">unsafe</span> { <span class="ident">System</span>::<span class="ident">try_enter_cpu_lock</span>() } {
         <span class="comment">// Safety: We just entered a CPU Lock state</span>
@@ -345,7 +345,7 @@
 <span class="doccomment">/// # Safety</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// The system must be really in a CPU Lock state.</span>
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">assume_cpu_lock</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>() <span class="op">-&gt;</span> <span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">assume_cpu_lock</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
     <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">System</span>::<span class="ident">is_cpu_lock_active</span>());
 
     <span class="ident">CpuLockGuard</span> {
@@ -364,7 +364,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Construct a [`CpuLockGuardBorrowMut`] by borrowing `self`.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">borrow_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">borrow_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span> {
         <span class="ident">CpuLockGuardBorrowMut</span> {
             <span class="comment">// Safety: The original `token` is inaccessible while</span>
             <span class="comment">// `CpuLockGuardBorrowMut` exists, so this is safe</span>
@@ -386,13 +386,13 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">ops</span>::<span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">CpuLockToken</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Target</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Target</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">token</span>
     }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">ops</span>::<span class="ident">DerefMut</span> <span class="kw">for</span> <span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">deref_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>::<span class="ident">Target</span> {
+    <span class="kw">fn</span> <span class="ident">deref_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>::<span class="ident">Target</span> {
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">token</span>
     }
 }
@@ -409,12 +409,12 @@
 <span class="doccomment">/// [`borrow_mut`]: CpuLockGuardBorrowMut::borrow_mut</span>
 <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct</span> <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> {
     <span class="ident">token</span>: <span class="ident">CpuLockToken</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
-    <span class="ident">_phantom</span>: <span class="ident">PhantomData</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;&gt;</span>,
+    <span class="ident">_phantom</span>: <span class="ident">PhantomData</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Construct a `CpuLockGuardBorrowMut` by reborrowing `self`.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">borrow_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">borrow_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span> {
         <span class="ident">CpuLockGuardBorrowMut</span> {
             <span class="comment">// Safety: The original `token` is inaccessible while</span>
             <span class="comment">// the new `CpuLockGuardBorrowMut` exists, so this is safe</span>
@@ -426,13 +426,13 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">ops</span>::<span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">CpuLockToken</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Target</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Target</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">token</span>
     }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">ops</span>::<span class="ident">DerefMut</span> <span class="kw">for</span> <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">deref_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>::<span class="ident">Target</span> {
+    <span class="kw">fn</span> <span class="ident">deref_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>::<span class="ident">Target</span> {
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">token</span>
     }
 }

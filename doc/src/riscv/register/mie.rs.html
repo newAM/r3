@@ -116,61 +116,61 @@
 <span class="kw">impl</span> <span class="ident">Mie</span> {
     <span class="doccomment">/// Returns the contents of the register as raw bits</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
         <span class="self">self</span>.<span class="ident">bits</span>
     }
 
     <span class="doccomment">/// User Software Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">usoft</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">usoft</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">0</span>)
     }
 
     <span class="doccomment">/// Supervisor Software Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ssoft</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ssoft</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">1</span>)
     }
 
     <span class="doccomment">/// Machine Software Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">msoft</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">msoft</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">3</span>)
     }
 
     <span class="doccomment">/// User Timer Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">utimer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">utimer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">4</span>)
     }
 
     <span class="doccomment">/// Supervisor Timer Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stimer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stimer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">5</span>)
     }
 
     <span class="doccomment">/// Machine Timer Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mtimer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mtimer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">7</span>)
     }
 
     <span class="doccomment">/// User External Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uext</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uext</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">8</span>)
     }
 
     <span class="doccomment">/// Supervisor External Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sext</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sext</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">9</span>)
     }
 
     <span class="doccomment">/// Machine External Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mext</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mext</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">11</span>)
     }
 }
@@ -181,30 +181,30 @@
 
 <span class="macro">set_clear_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// User Software Interrupt Enable</span>
-    , <span class="ident">set_usoft</span>, <span class="ident">clear_usoft</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">0</span>);
+    , <span class="ident">set_usoft</span>, <span class="ident">clear_usoft</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0</span>);
 <span class="macro">set_clear_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// Supervisor Software Interrupt Enable</span>
-    , <span class="ident">set_ssoft</span>, <span class="ident">clear_ssoft</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">1</span>);
+    , <span class="ident">set_ssoft</span>, <span class="ident">clear_ssoft</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>);
 <span class="macro">set_clear_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// Machine Software Interrupt Enable</span>
-    , <span class="ident">set_msoft</span>, <span class="ident">clear_msoft</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">3</span>);
+    , <span class="ident">set_msoft</span>, <span class="ident">clear_msoft</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>);
 <span class="macro">set_clear_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// User Timer Interrupt Enable</span>
-    , <span class="ident">set_utimer</span>, <span class="ident">clear_utimer</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">4</span>);
+    , <span class="ident">set_utimer</span>, <span class="ident">clear_utimer</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">4</span>);
 <span class="macro">set_clear_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// Supervisor Timer Interrupt Enable</span>
-    , <span class="ident">set_stimer</span>, <span class="ident">clear_stimer</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">5</span>);
+    , <span class="ident">set_stimer</span>, <span class="ident">clear_stimer</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>);
 <span class="macro">set_clear_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// Machine Timer Interrupt Enable</span>
-    , <span class="ident">set_mtimer</span>, <span class="ident">clear_mtimer</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">7</span>);
+    , <span class="ident">set_mtimer</span>, <span class="ident">clear_mtimer</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">7</span>);
 <span class="macro">set_clear_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// User External Interrupt Enable</span>
-    , <span class="ident">set_uext</span>, <span class="ident">clear_uext</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">8</span>);
+    , <span class="ident">set_uext</span>, <span class="ident">clear_uext</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>);
 <span class="macro">set_clear_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// Supervisor External Interrupt Enable</span>
-    , <span class="ident">set_sext</span>, <span class="ident">clear_sext</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">9</span>);
+    , <span class="ident">set_sext</span>, <span class="ident">clear_sext</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">9</span>);
 <span class="macro">set_clear_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// Machine External Interrupt Enable</span>
-    , <span class="ident">set_mext</span>, <span class="ident">clear_mext</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">11</span>);
+    , <span class="ident">set_mext</span>, <span class="ident">clear_mext</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">11</span>);
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "riscv";</script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>

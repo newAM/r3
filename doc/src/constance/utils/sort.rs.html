@@ -139,17 +139,17 @@
         <span class="macro-nonterminal">$</span><span class="macro-nonterminal">len</span>:<span class="ident">expr</span>,
         <span class="op">|</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>:<span class="ident">ident</span><span class="op">|</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">accessor</span>:<span class="ident">expr</span>,
         <span class="op">|</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">y</span>: <span class="ident">ident</span><span class="op">|</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">less_than</span>:<span class="ident">expr</span>
-    ) <span class="op">=&gt;</span> {{
+    ) <span class="op">=</span><span class="op">&gt;</span> {{
         <span class="comment">// FIXME: Work-around for closures being uncallable in `const fn`</span>
         <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">index_mut</span> {
-            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">i2</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> {{
+            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">i2</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {{
                 <span class="kw">let</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">i2</span>;
                 <span class="macro-nonterminal">$</span><span class="macro-nonterminal">accessor</span>
             }};
         }
 
         <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">less_than</span> {
-            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x2</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">y2</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> {{
+            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x2</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">y2</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {{
                 <span class="kw">let</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">x2</span>;
                 <span class="kw">let</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">y</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">y2</span>;
                 <span class="macro-nonterminal">$</span><span class="macro-nonterminal">less_than</span>
@@ -163,10 +163,10 @@
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">i</span> <span class="op">=</span> (<span class="ident">len</span> <span class="op">-</span> <span class="number">2</span>) <span class="op">/</span> <span class="number">2</span>;
             <span class="kw">while</span> {
                 <span class="macro">sift_down</span><span class="macro">!</span>(<span class="ident">len</span>, <span class="ident">i</span>);
-                <span class="kw">if</span> <span class="ident">i</span> <span class="op">==</span> <span class="number">0</span> {
+                <span class="kw">if</span> <span class="ident">i</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
                     <span class="bool-val">false</span>
                 } <span class="kw">else</span> {
-                    <span class="ident">i</span> <span class="op">-=</span> <span class="number">1</span>;
+                    <span class="ident">i</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
                     <span class="bool-val">true</span>
                 }
             } {}
@@ -185,7 +185,7 @@
                 <span class="kw-2">*</span><span class="macro">index_mut</span><span class="macro">!</span>(<span class="ident">i</span>) <span class="op">=</span> <span class="ident">x</span>;
 
                 <span class="comment">// Shrink the heap by one</span>
-                <span class="ident">i</span> <span class="op">-=</span> <span class="number">1</span>;
+                <span class="ident">i</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
 
                 <span class="comment">// Restore the heap invariant</span>
                 <span class="macro">sift_down</span><span class="macro">!</span>(<span class="ident">i</span> <span class="op">+</span> <span class="number">1</span>, <span class="number">0</span>);
@@ -197,7 +197,7 @@
 <span class="doccomment">/// Used internally by `sort_unstable_by`. Based on `sift_down` from the Rust standard</span>
 <span class="doccomment">/// library.</span>
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">sift_down</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">len</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">start</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> {{
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">len</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">start</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {{
         <span class="kw">let</span> <span class="ident">len</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">len</span>;
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">hole</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">start</span>;
@@ -238,7 +238,7 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">const_sort</span>() {
-        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">result</span>() <span class="op">-&gt;</span> [<span class="ident">u32</span>; <span class="number">14</span>] {
+        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">result</span>() <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">u32</span>; <span class="number">14</span>] {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">array</span> <span class="op">=</span> [<span class="number">2</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">9</span>, <span class="number">13</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">12</span>, <span class="number">5</span>, <span class="number">11</span>, <span class="number">14</span>, <span class="number">7</span>, <span class="number">4</span>, <span class="number">10</span>];
             <span class="macro">sort_unstable_by</span><span class="macro">!</span>(<span class="number">14</span>, <span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">array</span>[<span class="ident">i</span>], <span class="op">|</span><span class="ident">x</span>, <span class="ident">y</span><span class="op">|</span> <span class="ident">x</span> <span class="op">&lt;</span> <span class="ident">y</span>);
             <span class="ident">array</span>

@@ -194,7 +194,7 @@
 <span class="kw">const</span> <span class="ident">MAX_LEN</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">256</span>;
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">ComptimeVec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">storage</span>: [<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>(); <span class="ident">MAX_LEN</span>],
             <span class="ident">len</span>: <span class="number">0</span>,
@@ -203,19 +203,19 @@
 
     <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">push</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">T</span>) {
         <span class="self">self</span>.<span class="ident">storage</span>[<span class="self">self</span>.<span class="ident">len</span>] <span class="op">=</span> <span class="ident">MaybeUninit</span>::<span class="ident">new</span>(<span class="ident">x</span>);
-        <span class="self">self</span>.<span class="ident">len</span> <span class="op">+=</span> <span class="number">1</span>;
+        <span class="self">self</span>.<span class="ident">len</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
     }
 
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
         <span class="self">self</span>.<span class="ident">len</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">len</span> <span class="op">==</span> <span class="number">0</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">len</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span>
     }
 
     <span class="comment">// FIXME: Waiting for &lt;https://github.com/rust-lang/rust/issues/67792&gt;</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">i</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">T</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">i</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">T</span> {
         <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">i</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">len</span>(), <span class="string">&quot;out of bounds&quot;</span>);
 
         <span class="comment">// Safety: `self.storage[0..self.len]` is initialized, and `i &lt; self.len`</span>
@@ -224,7 +224,7 @@
     }
 
     <span class="comment">// FIXME: Waiting for &lt;https://github.com/rust-lang/rust/issues/67792&gt;</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">get_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">i</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">get_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">i</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span> {
         <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">i</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">len</span>(), <span class="string">&quot;out of bounds&quot;</span>);
 
         <span class="comment">// Safety: `self.storage[0..self.len]` is initialized, and `i &lt; self.len`</span>
@@ -234,9 +234,9 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">ComptimeVec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">to_array</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">LEN</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> [<span class="ident">T</span>; <span class="ident">LEN</span>] {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">to_array</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">LEN</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">T</span>; <span class="ident">LEN</span>] {
         <span class="comment">// FIXME: Work-around for `assert_eq!` being unsupported in `const fn`</span>
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="ident">LEN</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">len</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">LEN</span>);
 
         <span class="comment">// Safety: This is equivalent to `transmute_copy(&amp;self.storage)`. The</span>
         <span class="comment">// memory layout of `[MaybeUninit&lt;T&gt;; LEN]` is identical to `[T; LEN]`.</span>
@@ -252,17 +252,17 @@
 <span class="doccomment">/// An implementation of `$vec.iter().position(|$item| $predicate)` that is</span>
 <span class="doccomment">/// compatible with a const context.</span>
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">vec_position</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>:<span class="ident">expr</span>, <span class="op">|</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">item</span>:<span class="ident">ident</span><span class="op">|</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">predicate</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> {{
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>:<span class="ident">expr</span>, <span class="op">|</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">item</span>:<span class="ident">ident</span><span class="op">|</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">predicate</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {{
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">i</span> <span class="op">=</span> <span class="number">0</span>;
         <span class="kw">loop</span> {
-            <span class="kw">if</span> <span class="ident">i</span> <span class="op">&gt;=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>.<span class="ident">len</span>() {
+            <span class="kw">if</span> <span class="ident">i</span> <span class="op">&gt;</span><span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>.<span class="ident">len</span>() {
                 <span class="kw">break</span> <span class="prelude-val">None</span>;
             }
             <span class="kw">let</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">item</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>.<span class="ident">get</span>(<span class="ident">i</span>);
             <span class="kw">if</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">predicate</span> {
                 <span class="kw">break</span> <span class="prelude-val">Some</span>(<span class="ident">i</span>);
             }
-            <span class="ident">i</span> <span class="op">+=</span> <span class="number">1</span>;
+            <span class="ident">i</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
         }
     }};
 }
@@ -280,7 +280,7 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">push</span>() {
-        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">vec</span>() <span class="op">-&gt;</span> <span class="ident">ComptimeVec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> {
+        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">vec</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ComptimeVec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> {
             <span class="comment">// FIXME: Unable to do this inside a `const` item because of</span>
             <span class="comment">//        &lt;https://github.com/rust-lang/rust/pull/72934&gt;</span>
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">v</span> <span class="op">=</span> <span class="ident">ComptimeVec</span>::<span class="ident">new</span>();
@@ -298,7 +298,7 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">to_array</span>() {
-        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">array</span>() <span class="op">-&gt;</span> [<span class="ident">u32</span>; <span class="number">3</span>] {
+        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">array</span>() <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">u32</span>; <span class="number">3</span>] {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">v</span> <span class="op">=</span> <span class="ident">ComptimeVec</span>::<span class="ident">new</span>();
             <span class="ident">v</span>.<span class="ident">push</span>(<span class="number">1</span>);
             <span class="ident">v</span>.<span class="ident">push</span>(<span class="number">2</span>);
@@ -310,12 +310,12 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">get_mut</span>() {
-        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">val</span>() <span class="op">-&gt;</span> <span class="ident">u32</span> {
+        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">val</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">v</span> <span class="op">=</span> <span class="ident">ComptimeVec</span>::<span class="ident">new</span>();
             <span class="ident">v</span>.<span class="ident">push</span>(<span class="number">1</span>);
             <span class="ident">v</span>.<span class="ident">push</span>(<span class="number">2</span>);
             <span class="ident">v</span>.<span class="ident">push</span>(<span class="number">3</span>);
-            <span class="kw-2">*</span><span class="ident">v</span>.<span class="ident">get_mut</span>(<span class="number">1</span>) <span class="op">+=</span> <span class="number">2</span>;
+            <span class="kw-2">*</span><span class="ident">v</span>.<span class="ident">get_mut</span>(<span class="number">1</span>) <span class="op">+</span><span class="op">=</span> <span class="number">2</span>;
             <span class="kw-2">*</span><span class="ident">v</span>.<span class="ident">get</span>(<span class="number">1</span>)
         }
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">val</span>(), <span class="number">4</span>);
@@ -323,21 +323,21 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">const_vec_position</span>() {
-        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">pos</span>() <span class="op">-&gt;</span> [<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>; <span class="number">2</span>] {
+        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">pos</span>() <span class="op">-</span><span class="op">&gt;</span> [<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>; <span class="number">2</span>] {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">v</span> <span class="op">=</span> <span class="ident">ComptimeVec</span>::<span class="ident">new</span>();
             <span class="ident">v</span>.<span class="ident">push</span>(<span class="number">42</span>);
             <span class="ident">v</span>.<span class="ident">push</span>(<span class="number">43</span>);
             <span class="ident">v</span>.<span class="ident">push</span>(<span class="number">44</span>);
             [
-                <span class="macro">vec_position</span><span class="macro">!</span>(<span class="ident">v</span>, <span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">i</span> <span class="op">==</span> <span class="number">43</span>),
-                <span class="macro">vec_position</span><span class="macro">!</span>(<span class="ident">v</span>, <span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">i</span> <span class="op">==</span> <span class="number">50</span>),
+                <span class="macro">vec_position</span><span class="macro">!</span>(<span class="ident">v</span>, <span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">i</span> <span class="op">=</span><span class="op">=</span> <span class="number">43</span>),
+                <span class="macro">vec_position</span><span class="macro">!</span>(<span class="ident">v</span>, <span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">i</span> <span class="op">=</span><span class="op">=</span> <span class="number">50</span>),
             ]
         }
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">pos</span>(), [<span class="prelude-val">Some</span>(<span class="number">1</span>), <span class="prelude-val">None</span>]);
     }
 
     <span class="attribute">#[<span class="ident">quickcheck</span>]</span>
-    <span class="kw">fn</span> <span class="ident">vec_position</span>(<span class="ident">values</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">expected_index</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="ident">TestResult</span> {
+    <span class="kw">fn</span> <span class="ident">vec_position</span>(<span class="ident">values</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">expected_index</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TestResult</span> {
         <span class="kw">if</span> <span class="ident">values</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="ident">MAX_LEN</span> {
             <span class="kw">return</span> <span class="ident">TestResult</span>::<span class="ident">discard</span>();
         }
@@ -354,8 +354,8 @@
             <span class="ident">vec</span>.<span class="ident">push</span>(<span class="ident">e</span>);
         }
 
-        <span class="kw">let</span> <span class="ident">got</span> <span class="op">=</span> <span class="macro">vec_position</span><span class="macro">!</span>(<span class="ident">vec</span>, <span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">i</span> <span class="op">==</span> <span class="ident">needle</span>);
-        <span class="kw">let</span> <span class="ident">expected</span> <span class="op">=</span> <span class="ident">values</span>.<span class="ident">iter</span>().<span class="ident">position</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">i</span> <span class="op">==</span> <span class="ident">needle</span>);
+        <span class="kw">let</span> <span class="ident">got</span> <span class="op">=</span> <span class="macro">vec_position</span><span class="macro">!</span>(<span class="ident">vec</span>, <span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">i</span> <span class="op">=</span><span class="op">=</span> <span class="ident">needle</span>);
+        <span class="kw">let</span> <span class="ident">expected</span> <span class="op">=</span> <span class="ident">values</span>.<span class="ident">iter</span>().<span class="ident">position</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">i</span> <span class="op">=</span><span class="op">=</span> <span class="ident">needle</span>);
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">got</span>, <span class="ident">expected</span>);
 

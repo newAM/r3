@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/staticvec-0.10.2/src/string/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../staticvec/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/staticvec-0.10.3/src/string/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../staticvec/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
                 <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
@@ -1240,7 +1240,7 @@
   <span class="doccomment">/// assert!(string.is_empty());</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
     <span class="self">Self</span> {
       <span class="ident">vec</span>: <span class="ident">StaticVec</span>::<span class="ident">new</span>(),
     }
@@ -1253,7 +1253,7 @@
   <span class="doccomment">/// docs and give it a two-underscore prefix as the next best thing.</span>
   <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">__new_from_staticvec</span>(<span class="ident">vec</span>: <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">u8</span>, <span class="ident">N</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">__new_from_staticvec</span>(<span class="ident">vec</span>: <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">u8</span>, <span class="ident">N</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
     <span class="self">Self</span> { <span class="ident">vec</span> }
   }
 
@@ -1272,7 +1272,7 @@
   <span class="doccomment">/// assert_eq!(string, &quot;My String&quot;);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_str_unchecked</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+  <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_str_unchecked</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="ident">res</span>.<span class="ident">push_str_unchecked</span>(<span class="ident">string</span>);
     <span class="ident">res</span>
@@ -1293,13 +1293,13 @@
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">should_implement_trait</span>)]</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_str</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;&gt;</span>(<span class="ident">string</span>: <span class="ident">S</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_str</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">string</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="kw">let</span> <span class="ident">string_ref</span> <span class="op">=</span> <span class="ident">string</span>.<span class="ident">as_ref</span>();
     <span class="kw">unsafe</span> {
-      <span class="kw">match</span> <span class="ident">string_ref</span>.<span class="ident">len</span>() <span class="op">&lt;=</span> <span class="ident">N</span> {
-        <span class="bool-val">false</span> <span class="op">=&gt;</span> <span class="ident">res</span>.<span class="ident">push_str_unchecked</span>(<span class="ident">truncate_str</span>(<span class="ident">string_ref</span>, <span class="ident">N</span>)),
-        <span class="bool-val">true</span> <span class="op">=&gt;</span> <span class="ident">res</span>.<span class="ident">push_str_unchecked</span>(<span class="ident">string_ref</span>),
+      <span class="kw">match</span> <span class="ident">string_ref</span>.<span class="ident">len</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="ident">N</span> {
+        <span class="bool-val">false</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">res</span>.<span class="ident">push_str_unchecked</span>(<span class="ident">truncate_str</span>(<span class="ident">string_ref</span>, <span class="ident">N</span>)),
+        <span class="bool-val">true</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">res</span>.<span class="ident">push_str_unchecked</span>(<span class="ident">string_ref</span>),
       }
     }
     <span class="ident">res</span>
@@ -1319,7 +1319,7 @@
   <span class="doccomment">/// assert!(StaticString::&lt;20&gt;::try_from_str(out_of_bounds).is_err());</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_str</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;&gt;</span>(<span class="ident">string</span>: <span class="ident">S</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">CapacityError</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_str</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">string</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">CapacityError</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="ident">res</span>.<span class="ident">try_push_str</span>(<span class="ident">string</span>)<span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(<span class="ident">res</span>)
@@ -1343,13 +1343,13 @@
   <span class="doccomment">/// # }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_iterator</span><span class="op">&lt;</span><span class="ident">U</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">U</span><span class="op">&gt;&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_iterator</span><span class="op">&lt;</span><span class="ident">U</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">U</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="kw">for</span> <span class="ident">s</span> <span class="kw">in</span> <span class="ident">iter</span> {
       <span class="kw">let</span> <span class="ident">s_ref</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">as_ref</span>();
       <span class="kw">match</span> <span class="ident">res</span>.<span class="ident">remaining_capacity</span>() <span class="op">&lt;</span> <span class="ident">s_ref</span>.<span class="ident">len</span>() {
-        <span class="bool-val">false</span> <span class="op">=&gt;</span> <span class="kw">unsafe</span> { <span class="ident">res</span>.<span class="ident">push_str_unchecked</span>(<span class="ident">s_ref</span>) },
-        <span class="bool-val">true</span> <span class="op">=&gt;</span> <span class="kw">break</span>,
+        <span class="bool-val">false</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> { <span class="ident">res</span>.<span class="ident">push_str_unchecked</span>(<span class="ident">s_ref</span>) },
+        <span class="bool-val">true</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">break</span>,
       }
     }
     <span class="ident">res</span>
@@ -1370,9 +1370,9 @@
   <span class="doccomment">/// assert!(StaticString::&lt;20&gt;::try_from_iterator(out_of_bounds).is_err());</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_iterator</span><span class="op">&lt;</span><span class="ident">U</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">U</span><span class="op">&gt;&gt;</span>(
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_iterator</span><span class="op">&lt;</span><span class="ident">U</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">U</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">iter</span>: <span class="ident">I</span>,
-  ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">CapacityError</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;&gt;</span> {
+  ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">CapacityError</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="kw">for</span> <span class="ident">s</span> <span class="kw">in</span> <span class="ident">iter</span> {
       <span class="ident">res</span>.<span class="ident">try_push_str</span>(<span class="ident">s</span>)<span class="question-mark">?</span>;
@@ -1394,12 +1394,12 @@
   <span class="doccomment">/// assert_eq!(truncate.as_str(), truncated.as_str());</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_chars</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">char</span><span class="op">&gt;&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_chars</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">char</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="kw">for</span> <span class="ident">c</span> <span class="kw">in</span> <span class="ident">iter</span> {
       <span class="kw">match</span> <span class="ident">res</span>.<span class="ident">remaining_capacity</span>() <span class="op">&lt;</span> <span class="ident">c</span>.<span class="ident">len_utf8</span>() {
-        <span class="bool-val">false</span> <span class="op">=&gt;</span> <span class="kw">unsafe</span> { <span class="ident">res</span>.<span class="ident">push_unchecked</span>(<span class="ident">c</span>) },
-        <span class="bool-val">true</span> <span class="op">=&gt;</span> <span class="kw">break</span>,
+        <span class="bool-val">false</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> { <span class="ident">res</span>.<span class="ident">push_unchecked</span>(<span class="ident">c</span>) },
+        <span class="bool-val">true</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">break</span>,
       }
     }
     <span class="ident">res</span>
@@ -1421,7 +1421,7 @@
   <span class="doccomment">/// # }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_chars</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">char</span><span class="op">&gt;&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">StringError</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_chars</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">char</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">StringError</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="kw">for</span> <span class="ident">c</span> <span class="kw">in</span> <span class="ident">iter</span> {
       <span class="ident">res</span>.<span class="ident">try_push</span>(<span class="ident">c</span>)<span class="question-mark">?</span>;
@@ -1452,7 +1452,7 @@
   <span class="doccomment">/// // let ub = unsafe { StaticString::&lt;20&gt;::from_utf8_unchecked(out_of_bounds)) };</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_utf8_unchecked</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;&gt;</span>(<span class="ident">slice</span>: <span class="ident">B</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+  <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_utf8_unchecked</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">slice</span>: <span class="ident">B</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
     <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">from_utf8</span>(<span class="ident">slice</span>.<span class="ident">as_ref</span>()).<span class="ident">is_ok</span>());
     <span class="self">Self</span>::<span class="ident">from_str_unchecked</span>(<span class="ident">from_utf8_unchecked</span>(<span class="ident">slice</span>.<span class="ident">as_ref</span>()))
   }
@@ -1475,7 +1475,7 @@
   <span class="doccomment">/// # }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_utf8</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;&gt;</span>(<span class="ident">slice</span>: <span class="ident">B</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">StringError</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_utf8</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">slice</span>: <span class="ident">B</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">StringError</span><span class="op">&gt;</span> {
     <span class="prelude-val">Ok</span>(<span class="self">Self</span>::<span class="ident">from_str</span>(<span class="ident">from_utf8</span>(<span class="ident">slice</span>.<span class="ident">as_ref</span>())<span class="question-mark">?</span>))
   }
 
@@ -1497,7 +1497,7 @@
   <span class="doccomment">/// # }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_utf8</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;&gt;</span>(<span class="ident">slice</span>: <span class="ident">B</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">StringError</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_utf8</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">slice</span>: <span class="ident">B</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">StringError</span><span class="op">&gt;</span> {
     <span class="prelude-val">Ok</span>(<span class="self">Self</span>::<span class="ident">try_from_str</span>(<span class="ident">from_utf8</span>(<span class="ident">slice</span>.<span class="ident">as_ref</span>())<span class="question-mark">?</span>)<span class="question-mark">?</span>)
   }
 
@@ -1517,7 +1517,7 @@
   <span class="doccomment">/// assert_eq!(StaticString::&lt;20&gt;::from_utf16_lossy(&amp;out_of_bounds).as_str(), &quot;\0&quot;.repeat(20).as_str());</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_utf16_lossy</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u16</span>]<span class="op">&gt;&gt;</span>(<span class="ident">slice</span>: <span class="ident">B</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_utf16_lossy</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u16</span>]<span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">slice</span>: <span class="ident">B</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="kw">for</span> <span class="ident">c</span> <span class="kw">in</span> <span class="ident">decode_utf16</span>(<span class="ident">slice</span>.<span class="ident">as_ref</span>().<span class="ident">iter</span>().<span class="ident">copied</span>()) {
       <span class="kw">if</span> <span class="ident">res</span>.<span class="ident">try_push</span>(<span class="ident">c</span>.<span class="ident">unwrap_or</span>(<span class="ident">REPLACEMENT_CHARACTER</span>)).<span class="ident">is_err</span>() {
@@ -1547,7 +1547,7 @@
   <span class="doccomment">/// # }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_utf16</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u16</span>]<span class="op">&gt;&gt;</span>(<span class="ident">slice</span>: <span class="ident">B</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">StringError</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_utf16</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u16</span>]<span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">slice</span>: <span class="ident">B</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">StringError</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="kw">for</span> <span class="ident">c</span> <span class="kw">in</span> <span class="ident">decode_utf16</span>(<span class="ident">slice</span>.<span class="ident">as_ref</span>().<span class="ident">iter</span>().<span class="ident">copied</span>()) {
       <span class="kw">if</span> <span class="ident">res</span>.<span class="ident">try_push</span>(<span class="ident">c</span><span class="question-mark">?</span>).<span class="ident">is_err</span>() {
@@ -1576,7 +1576,7 @@
   <span class="doccomment">/// # }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_utf16</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u16</span>]<span class="op">&gt;&gt;</span>(<span class="ident">slice</span>: <span class="ident">B</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">StringError</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_utf16</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u16</span>]<span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">slice</span>: <span class="ident">B</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">StringError</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="kw">for</span> <span class="ident">c</span> <span class="kw">in</span> <span class="ident">decode_utf16</span>(<span class="ident">slice</span>.<span class="ident">as_ref</span>().<span class="ident">iter</span>().<span class="ident">copied</span>()) {
       <span class="ident">res</span>.<span class="ident">try_push</span>(<span class="ident">c</span><span class="question-mark">?</span>)<span class="question-mark">?</span>;
@@ -1593,7 +1593,7 @@
   <span class="doccomment">/// assert_eq!(s.as_str(), &quot;My String&quot;);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_str</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_str</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
     <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="self">self</span>.<span class="ident">as_bytes</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> [<span class="ident">u8</span>] <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">str</span>) }
   }
 
@@ -1606,7 +1606,7 @@
   <span class="doccomment">/// assert_eq!(s.as_mut_str(), &quot;My String&quot;);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_mut_str</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">str</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_mut_str</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">str</span> {
     <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span>(<span class="self">self</span>.<span class="ident">as_mut_bytes</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">str</span>) }
   }
 
@@ -1619,7 +1619,7 @@
   <span class="doccomment">/// assert_eq!(s.as_bytes(), &quot;My String&quot;.as_bytes());</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
     <span class="self">self</span>.<span class="ident">vec</span>.<span class="ident">as_slice</span>()
   }
 
@@ -1634,7 +1634,7 @@
   <span class="doccomment">/// assert_eq!(&amp;bytes[..], &amp;[104, 101, 108, 108, 111][..]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_bytes</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">u8</span>, <span class="ident">N</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_bytes</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">u8</span>, <span class="ident">N</span><span class="op">&gt;</span> {
     <span class="self">self</span>.<span class="ident">vec</span>
   }
 
@@ -1655,7 +1655,7 @@
   <span class="doccomment">/// # }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">as_mut_bytes</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">as_mut_bytes</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] {
     <span class="self">self</span>.<span class="ident">vec</span>.<span class="ident">as_mut_slice</span>()
   }
 
@@ -1676,7 +1676,7 @@
   <span class="doccomment">/// # }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">as_mut_staticvec</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">u8</span>, <span class="ident">N</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">as_mut_staticvec</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">u8</span>, <span class="ident">N</span><span class="op">&gt;</span> {
     <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">vec</span>
   }
 
@@ -1690,7 +1690,7 @@
   <span class="doccomment">/// assert_eq!(StaticString::&lt;32&gt;::new().capacity(), 32);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">capacity</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">capacity</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
     <span class="self">self</span>.<span class="ident">vec</span>.<span class="ident">capacity</span>()
   }
 
@@ -1703,7 +1703,7 @@
   <span class="doccomment">/// assert_eq!(StaticString::&lt;32&gt;::from(&quot;abcd&quot;).remaining_capacity(), 28);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">remaining_capacity</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">remaining_capacity</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
     <span class="self">self</span>.<span class="ident">vec</span>.<span class="ident">remaining_capacity</span>()
   }
 
@@ -1725,7 +1725,7 @@
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
   <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">push_str_unchecked</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
     <span class="kw">let</span> <span class="ident">string_length</span> <span class="op">=</span> <span class="ident">string</span>.<span class="ident">len</span>();
-    <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">string_length</span> <span class="op">&lt;=</span> <span class="self">self</span>.<span class="ident">remaining_capacity</span>());
+    <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">string_length</span> <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">remaining_capacity</span>());
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">len</span>();
     <span class="kw">let</span> <span class="ident">dest</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">vec</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">old_length</span>);
     <span class="ident">string</span>.<span class="ident">as_ptr</span>().<span class="ident">copy_to_nonoverlapping</span>(<span class="ident">dest</span>, <span class="ident">string_length</span>);
@@ -1743,10 +1743,10 @@
   <span class="doccomment">/// assert_eq!(s, &quot;foobar&quot;);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_str</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">string</span>: <span class="ident">S</span>) {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_str</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">string</span>: <span class="ident">S</span>) {
     <span class="kw">let</span> <span class="ident">string_ref</span> <span class="op">=</span> <span class="ident">string</span>.<span class="ident">as_ref</span>();
     <span class="macro">assert</span><span class="macro">!</span>(
-      <span class="ident">string_ref</span>.<span class="ident">len</span>() <span class="op">&lt;=</span> <span class="self">self</span>.<span class="ident">remaining_capacity</span>(),
+      <span class="ident">string_ref</span>.<span class="ident">len</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">remaining_capacity</span>(),
       <span class="string">&quot;Insufficient remaining capacity!&quot;</span>
     );
     <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">push_str_unchecked</span>(<span class="ident">string_ref</span>) };
@@ -1770,7 +1770,7 @@
   <span class="doccomment">/// # }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_str_truncating</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">string</span>: <span class="ident">S</span>) {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_str_truncating</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">string</span>: <span class="ident">S</span>) {
     <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">push_str_unchecked</span>(<span class="ident">truncate_str</span>(<span class="ident">string</span>.<span class="ident">as_ref</span>(), <span class="self">self</span>.<span class="ident">remaining_capacity</span>())) };
   }
 
@@ -1787,14 +1787,14 @@
   <span class="doccomment">/// assert!(s.try_push_str(&quot;0&quot;.repeat(300)).is_err());</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_push_str</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">string</span>: <span class="ident">S</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">CapacityError</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_push_str</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">string</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">CapacityError</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">string_ref</span> <span class="op">=</span> <span class="ident">string</span>.<span class="ident">as_ref</span>();
     <span class="kw">match</span> <span class="self">self</span>.<span class="ident">vec</span>.<span class="ident">remaining_capacity</span>() <span class="op">&lt;</span> <span class="ident">string_ref</span>.<span class="ident">len</span>() {
-      <span class="bool-val">false</span> <span class="op">=&gt;</span> {
+      <span class="bool-val">false</span> <span class="op">=</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">push_str_unchecked</span>(<span class="ident">string_ref</span>) };
         <span class="prelude-val">Ok</span>(())
       }
-      <span class="bool-val">true</span> <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">CapacityError</span> {}),
+      <span class="bool-val">true</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">CapacityError</span> {}),
     }
   }
 
@@ -1824,8 +1824,8 @@
   <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">push_unchecked</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">character</span>: <span class="ident">char</span>) {
     <span class="kw">let</span> <span class="ident">char_length</span> <span class="op">=</span> <span class="ident">character</span>.<span class="ident">len_utf8</span>();
     <span class="kw">match</span> <span class="ident">char_length</span> {
-      <span class="number">1</span> <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">vec</span>.<span class="ident">push_unchecked</span>(<span class="ident">character</span> <span class="kw">as</span> <span class="ident">u8</span>),
-      <span class="kw">_</span> <span class="op">=&gt;</span> {
+      <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">vec</span>.<span class="ident">push_unchecked</span>(<span class="ident">character</span> <span class="kw">as</span> <span class="ident">u8</span>),
+      <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">len</span>();
         <span class="ident">character</span>
           .<span class="ident">encode_utf8</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="number">0</span>; <span class="number">4</span>])
@@ -1850,7 +1850,7 @@
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">character</span>: <span class="ident">char</span>) {
     <span class="macro">assert</span><span class="macro">!</span>(
-      <span class="ident">character</span>.<span class="ident">len_utf8</span>() <span class="op">&lt;=</span> <span class="self">self</span>.<span class="ident">remaining_capacity</span>(),
+      <span class="ident">character</span>.<span class="ident">len_utf8</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">remaining_capacity</span>(),
       <span class="string">&quot;Insufficient remaining capacity!&quot;</span>
     );
     <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">push_unchecked</span>(<span class="ident">character</span>) };
@@ -1872,13 +1872,13 @@
   <span class="doccomment">/// # }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_push</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">character</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">StringError</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_push</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">character</span>: <span class="ident">char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">StringError</span><span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="self">self</span>.<span class="ident">remaining_capacity</span>() <span class="op">&lt;</span> <span class="ident">character</span>.<span class="ident">len_utf8</span>() {
-      <span class="bool-val">false</span> <span class="op">=&gt;</span> {
+      <span class="bool-val">false</span> <span class="op">=</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">push_unchecked</span>(<span class="ident">character</span>) }
         <span class="prelude-val">Ok</span>(())
       }
-      <span class="bool-val">true</span> <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">StringError</span>::<span class="ident">OutOfBounds</span>),
+      <span class="bool-val">true</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">StringError</span>::<span class="ident">OutOfBounds</span>),
     }
   }
 
@@ -1901,7 +1901,7 @@
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">new_len</span>: <span class="ident">usize</span>) {
-    <span class="kw">if</span> <span class="ident">new_len</span> <span class="op">&lt;=</span> <span class="self">self</span>.<span class="ident">len</span>() {
+    <span class="kw">if</span> <span class="ident">new_len</span> <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">len</span>() {
       <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">as_str</span>().<span class="ident">is_char_boundary</span>(<span class="ident">new_len</span>));
       <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">vec</span>.<span class="ident">set_len</span>(<span class="ident">new_len</span>) };
     }
@@ -1922,7 +1922,7 @@
   <span class="doccomment">/// # }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span> {
     <span class="self">self</span>.<span class="ident">as_str</span>().<span class="ident">chars</span>().<span class="ident">last</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">character</span><span class="op">|</span> {
       <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">vec</span>.<span class="ident">set_len</span>(<span class="self">self</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="ident">character</span>.<span class="ident">len_utf8</span>()) };
       <span class="ident">character</span>
@@ -1948,23 +1948,23 @@
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">trim</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
     <span class="kw">let</span> <span class="ident">is_whitespace</span> <span class="op">=</span> <span class="op">|</span><span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">index</span>: <span class="ident">usize</span><span class="op">|</span> {
       <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">index</span> <span class="op">&lt;</span> <span class="ident">bytes</span>.<span class="ident">len</span>());
-      <span class="kw">unsafe</span> { <span class="ident">bytes</span>.<span class="ident">get_unchecked</span>(<span class="ident">index</span>) <span class="op">==</span> <span class="kw-2">&amp;</span><span class="string">b&#39; &#39;</span> }
+      <span class="kw">unsafe</span> { <span class="ident">bytes</span>.<span class="ident">get_unchecked</span>(<span class="ident">index</span>) <span class="op">=</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="string">b&#39; &#39;</span> }
     };
     <span class="kw">let</span> (<span class="kw-2">mut</span> <span class="ident">start</span>, <span class="kw-2">mut</span> <span class="ident">end</span>, <span class="kw-2">mut</span> <span class="ident">leave</span>) <span class="op">=</span> (<span class="number">0_usize</span>, <span class="self">self</span>.<span class="ident">len</span>(), <span class="number">0_usize</span>);
     <span class="kw">while</span> <span class="ident">start</span> <span class="op">&lt;</span> <span class="ident">end</span> <span class="op">&amp;&amp;</span> <span class="ident">leave</span> <span class="op">&lt;</span> <span class="number">2</span> {
       <span class="ident">leave</span> <span class="op">=</span> <span class="number">0</span>;
       <span class="kw">if</span> <span class="ident">is_whitespace</span>(<span class="self">self</span>.<span class="ident">as_bytes</span>(), <span class="ident">start</span>) {
-        <span class="ident">start</span> <span class="op">+=</span> <span class="number">1</span>;
-        <span class="kw">if</span> <span class="ident">start</span> <span class="op">&gt;=</span> <span class="ident">end</span> {
+        <span class="ident">start</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">if</span> <span class="ident">start</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">end</span> {
           <span class="kw">continue</span>;
         };
       } <span class="kw">else</span> {
-        <span class="ident">leave</span> <span class="op">+=</span> <span class="number">1</span>;
+        <span class="ident">leave</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
       }
       <span class="kw">if</span> <span class="ident">start</span> <span class="op">&lt;</span> <span class="ident">end</span> <span class="op">&amp;&amp;</span> <span class="ident">is_whitespace</span>(<span class="self">self</span>.<span class="ident">as_bytes</span>(), <span class="ident">end</span> <span class="op">-</span> <span class="number">1</span>) {
-        <span class="ident">end</span> <span class="op">-=</span> <span class="number">1</span>;
+        <span class="ident">end</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
       } <span class="kw">else</span> {
-        <span class="ident">leave</span> <span class="op">+=</span> <span class="number">1</span>;
+        <span class="ident">leave</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
       }
     }
     <span class="kw">unsafe</span> {
@@ -1986,14 +1986,14 @@
   <span class="doccomment">/// assert!(s == &quot;BC🤔&quot;);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="ident">char</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">char</span> {
     <span class="macro">assert</span><span class="macro">!</span>(
       <span class="self">self</span>.<span class="ident">as_str</span>().<span class="ident">is_char_boundary</span>(<span class="ident">index</span>),
       <span class="string">&quot;Out of bounds or invalid character boundary!&quot;</span>
     );
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">len</span>();
     <span class="kw">let</span> <span class="ident">character</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">as_str</span>().<span class="ident">get_unchecked</span>(<span class="ident">index</span>..).<span class="ident">chars</span>().<span class="ident">next</span>() };
-    <span class="kw">let</span> <span class="ident">character</span> <span class="op">=</span> <span class="ident">character</span>.<span class="ident">unwrap_or_else</span>(<span class="op">||</span> <span class="kw">unsafe</span> { <span class="ident">never</span>(<span class="string">&quot;Missing char&quot;</span>) });
+    <span class="kw">let</span> <span class="ident">character</span> <span class="op">=</span> <span class="ident">character</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> { <span class="ident">never</span>(<span class="string">&quot;Missing char&quot;</span>) });
     <span class="kw">let</span> <span class="ident">char_length</span> <span class="op">=</span> <span class="ident">character</span>.<span class="ident">len_utf8</span>();
     <span class="kw">unsafe</span> {
       <span class="ident">shift_left_unchecked</span>(<span class="self">self</span>, <span class="ident">index</span> <span class="op">+</span> <span class="ident">char_length</span>, <span class="ident">index</span>);
@@ -2013,7 +2013,7 @@
   <span class="doccomment">/// assert_eq!(s, &quot;ABCD&quot;);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">retain</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">f</span>: <span class="ident">F</span>) {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">retain</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="ident">char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">f</span>: <span class="ident">F</span>) {
     <span class="comment">// Not the most efficient solution, we could shift left during batch mismatch</span>
     <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">from_chars</span>(<span class="self">self</span>.<span class="ident">as_str</span>().<span class="ident">chars</span>().<span class="ident">filter</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">f</span>(<span class="kw-2">*</span><span class="ident">c</span>)));
   }
@@ -2079,7 +2079,7 @@
   <span class="doccomment">/// # }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_insert</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">character</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">StringError</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_insert</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">character</span>: <span class="ident">char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">StringError</span><span class="op">&gt;</span> {
     <span class="ident">is_inside_boundary</span>(<span class="ident">character</span>.<span class="ident">len_utf8</span>() <span class="op">+</span> <span class="self">self</span>.<span class="ident">len</span>(), <span class="ident">N</span>)<span class="question-mark">?</span>;
     <span class="ident">is_char_boundary</span>(<span class="self">self</span>, <span class="ident">index</span>)<span class="question-mark">?</span>;
     <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">insert_unchecked</span>(<span class="ident">index</span>, <span class="ident">character</span>) };
@@ -2135,10 +2135,10 @@
   <span class="doccomment">/// // unsafe { s.insert_str_unchecked(1, &quot;0&quot;.repeat(20)) };</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">insert_str_unchecked</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">string</span>: <span class="ident">S</span>) {
+  <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">insert_str_unchecked</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">string</span>: <span class="ident">S</span>) {
     <span class="kw">let</span> <span class="ident">string_ref</span> <span class="op">=</span> <span class="ident">string</span>.<span class="ident">as_ref</span>();
     <span class="kw">let</span> <span class="ident">string_length</span> <span class="op">=</span> <span class="ident">string_ref</span>.<span class="ident">len</span>();
-    <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">string_length</span> <span class="op">&lt;=</span> <span class="self">self</span>.<span class="ident">remaining_capacity</span>());
+    <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">string_length</span> <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">remaining_capacity</span>());
     <span class="kw">let</span> <span class="ident">string_ptr</span> <span class="op">=</span> <span class="ident">string_ref</span>.<span class="ident">as_ptr</span>();
     <span class="ident">shift_right_unchecked</span>(<span class="self">self</span>, <span class="ident">index</span>, <span class="ident">index</span> <span class="op">+</span> <span class="ident">string_length</span>);
     <span class="ident">string_ptr</span>.<span class="ident">copy_to_nonoverlapping</span>(<span class="self">self</span>.<span class="ident">vec</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">index</span>), <span class="ident">string_length</span>);
@@ -2161,11 +2161,11 @@
   <span class="doccomment">/// assert_eq!(s.as_str(), &quot;ABCABBCD🤔&quot;);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_str</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">string</span>: <span class="ident">S</span>) {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_str</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">string</span>: <span class="ident">S</span>) {
     <span class="kw">let</span> <span class="ident">string_ref</span> <span class="op">=</span> <span class="ident">string</span>.<span class="ident">as_ref</span>();
     <span class="kw">let</span> <span class="ident">string_length</span> <span class="op">=</span> <span class="ident">string_ref</span>.<span class="ident">len</span>();
     <span class="macro">assert</span><span class="macro">!</span>(
-      <span class="ident">string_length</span> <span class="op">&lt;=</span> <span class="self">self</span>.<span class="ident">remaining_capacity</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">as_str</span>().<span class="ident">is_char_boundary</span>(<span class="ident">index</span>),
+      <span class="ident">string_length</span> <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">remaining_capacity</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">as_str</span>().<span class="ident">is_char_boundary</span>(<span class="ident">index</span>),
       <span class="string">&quot;Insufficient remaining capacity or invalid character boundary!&quot;</span>
     );
     <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">insert_str_unchecked</span>(<span class="ident">index</span>, <span class="ident">string_ref</span>) };
@@ -2193,11 +2193,11 @@
   <span class="doccomment">/// # }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_insert_str</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;&gt;</span>(
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_insert_str</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
     <span class="ident">index</span>: <span class="ident">usize</span>,
     <span class="ident">string</span>: <span class="ident">S</span>,
-  ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">StringError</span><span class="op">&gt;</span>
+  ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">StringError</span><span class="op">&gt;</span>
   {
     <span class="kw">let</span> <span class="ident">string_ref</span> <span class="op">=</span> <span class="ident">string</span>.<span class="ident">as_ref</span>();
     <span class="ident">is_inside_boundary</span>(<span class="self">self</span>.<span class="ident">len</span>() <span class="op">+</span> <span class="ident">string_ref</span>.<span class="ident">len</span>(), <span class="ident">N</span>)<span class="question-mark">?</span>;
@@ -2217,7 +2217,7 @@
   <span class="doccomment">/// assert_eq!(s.len(), 8);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
     <span class="self">self</span>.<span class="ident">vec</span>.<span class="ident">len</span>()
   }
 
@@ -2235,7 +2235,7 @@
   <span class="doccomment">/// # }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
     <span class="self">self</span>.<span class="ident">vec</span>.<span class="ident">is_empty</span>()
   }
 
@@ -2253,7 +2253,7 @@
   <span class="doccomment">/// # }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_full</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_full</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
     <span class="self">self</span>.<span class="ident">vec</span>.<span class="ident">is_full</span>()
   }
 
@@ -2274,9 +2274,9 @@
   <span class="doccomment">/// assert_eq!(cd, &quot;CD&quot;);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">split_off</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">at</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">split_off</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">at</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
     <span class="macro">assert</span><span class="macro">!</span>(
-      <span class="ident">at</span> <span class="op">&lt;=</span> <span class="self">self</span>.<span class="ident">len</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">as_str</span>().<span class="ident">is_char_boundary</span>(<span class="ident">at</span>),
+      <span class="ident">at</span> <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">len</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">as_str</span>().<span class="ident">is_char_boundary</span>(<span class="ident">at</span>),
       <span class="string">&quot;Out of bounds or invalid character boundary!&quot;</span>
     );
     <span class="kw">unsafe</span> {
@@ -2317,32 +2317,32 @@
   <span class="doccomment">/// assert_eq!(s.as_str(), &quot;ABEFGHI🤔&quot;);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">replace_range</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">RangeBounds</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">range</span>: <span class="ident">R</span>, <span class="ident">with</span>: <span class="ident">S</span>) {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">replace_range</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">RangeBounds</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">range</span>: <span class="ident">R</span>, <span class="ident">with</span>: <span class="ident">S</span>) {
     <span class="kw">let</span> <span class="ident">replace_with</span> <span class="op">=</span> <span class="ident">with</span>.<span class="ident">as_ref</span>();
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">len</span>();
     <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">range</span>.<span class="ident">start_bound</span>() {
-      <span class="ident">Bound</span>::<span class="ident">Included</span>(<span class="ident">t</span>) <span class="op">=&gt;</span> <span class="kw-2">*</span><span class="ident">t</span>,
-      <span class="ident">Bound</span>::<span class="ident">Excluded</span>(<span class="ident">t</span>) <span class="op">=&gt;</span> <span class="ident">t</span> <span class="op">+</span> <span class="number">1</span>,
-      <span class="ident">Bound</span>::<span class="ident">Unbounded</span> <span class="op">=&gt;</span> <span class="number">0</span>,
+      <span class="ident">Bound</span>::<span class="ident">Included</span>(<span class="ident">t</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">t</span>,
+      <span class="ident">Bound</span>::<span class="ident">Excluded</span>(<span class="ident">t</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">t</span> <span class="op">+</span> <span class="number">1</span>,
+      <span class="ident">Bound</span>::<span class="ident">Unbounded</span> <span class="op">=</span><span class="op">&gt;</span> <span class="number">0</span>,
     };
     <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">range</span>.<span class="ident">end_bound</span>() {
-      <span class="ident">Bound</span>::<span class="ident">Included</span>(<span class="ident">t</span>) <span class="op">=&gt;</span> <span class="ident">t</span> <span class="op">+</span> <span class="number">1</span>,
-      <span class="ident">Bound</span>::<span class="ident">Excluded</span>(<span class="ident">t</span>) <span class="op">=&gt;</span> <span class="kw-2">*</span><span class="ident">t</span>,
-      <span class="ident">Bound</span>::<span class="ident">Unbounded</span> <span class="op">=&gt;</span> <span class="ident">old_length</span>,
+      <span class="ident">Bound</span>::<span class="ident">Included</span>(<span class="ident">t</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">t</span> <span class="op">+</span> <span class="number">1</span>,
+      <span class="ident">Bound</span>::<span class="ident">Excluded</span>(<span class="ident">t</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">t</span>,
+      <span class="ident">Bound</span>::<span class="ident">Unbounded</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">old_length</span>,
     };
     <span class="kw">let</span> <span class="ident">replace_length</span> <span class="op">=</span> <span class="ident">replace_with</span>.<span class="ident">len</span>();
     <span class="macro">assert</span><span class="macro">!</span>(
-      <span class="ident">start</span> <span class="op">&lt;=</span> <span class="ident">end</span> <span class="op">&amp;&amp;</span> <span class="ident">end</span> <span class="op">&lt;=</span> <span class="ident">old_length</span>,
+      <span class="ident">start</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">end</span> <span class="op">&amp;&amp;</span> <span class="ident">end</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">old_length</span>,
       <span class="string">&quot;Invalid range or out of bounds!&quot;</span>
     );
     <span class="kw">let</span> <span class="ident">replaced</span> <span class="op">=</span> <span class="ident">end</span>.<span class="ident">saturating_sub</span>(<span class="ident">start</span>);
     <span class="macro">assert</span><span class="macro">!</span>(
-      <span class="ident">replaced</span> <span class="op">+</span> <span class="ident">replace_length</span> <span class="op">&lt;=</span> <span class="ident">N</span>
+      <span class="ident">replaced</span> <span class="op">+</span> <span class="ident">replace_length</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">N</span>
         <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">as_str</span>().<span class="ident">is_char_boundary</span>(<span class="ident">start</span>)
         <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">as_str</span>().<span class="ident">is_char_boundary</span>(<span class="ident">end</span>),
       <span class="string">&quot;Out of bounds or invalid character boundary!&quot;</span>
     );
-    <span class="kw">if</span> <span class="ident">replace_length</span> <span class="op">==</span> <span class="number">0</span> {
+    <span class="kw">if</span> <span class="ident">replace_length</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
       <span class="kw">unsafe</span> {
         <span class="self">self</span>
           .<span class="ident">as_ptr</span>()

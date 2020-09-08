@@ -123,8 +123,7 @@ body.theme-ayu span.center img, body.theme-ayu center img {
     };
 })();
 -->
-</script></div>
-            <h2 id='associated-const' class='small-section-header'>Associated Constants<a href='#associated-const' class='anchor'></a></h2><div class='methods'><h3 id='associatedconstant.MAX_TICK_COUNT' class='method'><code>const <a href='#associatedconstant.MAX_TICK_COUNT' class="constant"><b>MAX_TICK_COUNT</b></a>: <a class="type" href="../../constance/kernel/type.UTicks.html" title="type constance::kernel::UTicks">UTicks</a></code></h3><div class='docblock'><p>The maximum value that <a href="../../constance/kernel/trait.PortTimer.html#tymethod.tick_count"><code>tick_count</code></a> can return. Must be greater
+</script></div><h2 id='associated-const' class='small-section-header'>Associated Constants<a href='#associated-const' class='anchor'></a></h2><div class='methods'><h3 id='associatedconstant.MAX_TICK_COUNT' class='method'><code>const <a href='#associatedconstant.MAX_TICK_COUNT' class="constant"><b>MAX_TICK_COUNT</b></a>: <a class="type" href="../../constance/kernel/type.UTicks.html" title="type constance::kernel::UTicks">UTicks</a></code></h3><div class='docblock'><p>The maximum value that <a href="../../constance/kernel/trait.PortTimer.html#tymethod.tick_count"><code>tick_count</code></a> can return. Must be greater
 than zero.</p>
 </div><h3 id='associatedconstant.MAX_TIMEOUT' class='method'><code>const <a href='#associatedconstant.MAX_TIMEOUT' class="constant"><b>MAX_TIMEOUT</b></a>: <a class="type" href="../../constance/kernel/type.UTicks.html" title="type constance::kernel::UTicks">UTicks</a></code></h3><div class='docblock'><p>The maximum value that can be passed to <a href="../../constance/kernel/trait.PortTimer.html#method.pend_tick_after"><code>pend_tick_after</code></a>. Must be
 greater than zero.</p>
@@ -133,15 +132,13 @@ difference determines the kernel's resilience against overdue
 timer interrupts.</p>
 <p>This is ignored and can take any value if <code>pend_tick_after</code> is
 implemented as no-op.</p>
-</div></div><span class='loading-content'>Loading content...</span>
-            <h2 id='required-methods' class='small-section-header'>Required methods<a href='#required-methods' class='anchor'></a></h2><div class='methods'><h3 id='tymethod.tick_count' class='method'><code>unsafe fn <a href='#tymethod.tick_count' class='fnname'>tick_count</a>() -&gt; <a class="type" href="../../constance/kernel/type.UTicks.html" title="type constance::kernel::UTicks">UTicks</a></code></h3><div class='docblock'><p>Read the current tick count (timer value).</p>
+</div></div><span class='loading-content'>Loading content...</span><h2 id='required-methods' class='small-section-header'>Required methods<a href='#required-methods' class='anchor'></a></h2><div class='methods'><h3 id='tymethod.tick_count' class='method'><code>unsafe fn <a href='#tymethod.tick_count' class='fnname'>tick_count</a>() -&gt; <a class="type" href="../../constance/kernel/type.UTicks.html" title="type constance::kernel::UTicks">UTicks</a></code></h3><div class='docblock'><p>Read the current tick count (timer value).</p>
 <p>This value steadily increases over time. When it goes past
 <code>MAX_TICK_COUNT</code>, it “wraps around” to <code>0</code>.</p>
 <p>The returned value must be in range <code>0..=</code><a href="../../constance/kernel/trait.PortTimer.html#associatedconstant.MAX_TICK_COUNT"><code>MAX_TICK_COUNT</code></a>.</p>
 <p>Precondition: CPU Lock active</p>
-</div></div><span class='loading-content'>Loading content...</span>
-            <h2 id='provided-methods' class='small-section-header'>Provided methods<a href='#provided-methods' class='anchor'></a></h2><div class='methods'><h3 id='method.pend_tick_after' class='method'><code>unsafe fn <a href='#method.pend_tick_after' class='fnname'>pend_tick_after</a>(tick_count_delta: <a class="type" href="../../constance/kernel/type.UTicks.html" title="type constance::kernel::UTicks">UTicks</a>)</code></h3><div class='docblock'><p>Indicate that <code>tick_count_delta</code> ticks may elapse before the kernel
-should receive a call to <a href="../../constance/kernel/trait.PortToKernel.html#tymethod.timer_tick" title="`PortToKernel::timer_tick`"><code>PortToKernel::timer_tick</code></a>.</p>
+</div></div><span class='loading-content'>Loading content...</span><h2 id='provided-methods' class='small-section-header'>Provided methods<a href='#provided-methods' class='anchor'></a></h2><div class='methods'><h3 id='method.pend_tick_after' class='method'><code>unsafe fn <a href='#method.pend_tick_after' class='fnname'>pend_tick_after</a>(tick_count_delta: <a class="type" href="../../constance/kernel/type.UTicks.html" title="type constance::kernel::UTicks">UTicks</a>)</code></h3><div class='docblock'><p>Indicate that <code>tick_count_delta</code> ticks may elapse before the kernel
+should receive a call to <a href="../../constance/kernel/trait.PortToKernel.html#tymethod.timer_tick" title="PortToKernel::timer_tick"><code>PortToKernel::timer_tick</code></a>.</p>
 <p>“<code>tick_count_delta</code> ticks” include the current (ongoing) tick. For
 example, <code>tick_count_delta == 1</code> means <code>timer_tick</code> should be
 preferably called right after the next tick boundary.</p>
@@ -157,8 +154,7 @@ the wrap-around behavior into account) is fulfilled and call
 the port driver is implemented in this way.</p>
 <p><code>tick_count_delta</code> must be in range <code>1..=</code><a href="../../constance/kernel/trait.PortTimer.html#associatedconstant.MAX_TIMEOUT"><code>MAX_TIMEOUT</code></a>.</p>
 <p>Precondition: CPU Lock active</p>
-</div><h3 id='method.pend_tick' class='method'><code>unsafe fn <a href='#method.pend_tick' class='fnname'>pend_tick</a>()</code></h3><div class='docblock'><p>Pend a call to <a href="../../constance/kernel/trait.PortToKernel.html#tymethod.timer_tick" title="`PortToKernel::timer_tick`"><code>PortToKernel::timer_tick</code></a> as soon as possible.</p>
+</div><h3 id='method.pend_tick' class='method'><code>unsafe fn <a href='#method.pend_tick' class='fnname'>pend_tick</a>()</code></h3><div class='docblock'><p>Pend a call to <a href="../../constance/kernel/trait.PortToKernel.html#tymethod.timer_tick" title="PortToKernel::timer_tick"><code>PortToKernel::timer_tick</code></a> as soon as possible.</p>
 <p>The default implementation calls <code>pend_tick_after(1)</code>.</p>
 <p>Precondition: CPU Lock active</p>
-</div></div><span class='loading-content'>Loading content...</span>
-            <h2 id='implementors' class='small-section-header'>Implementors<a href='#implementors' class='anchor'></a></h2><div class='item-list' id='implementors-list'></div><span class='loading-content'>Loading content...</span><script type="text/javascript" src="../../implementors/constance/kernel/trait.PortTimer.js" async></script></section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "constance";</script><script src="../../main.js"></script><script defer src="../../search-index.js"></script></body></html>
+</div></div><span class='loading-content'>Loading content...</span><h2 id='implementors' class='small-section-header'>Implementors<a href='#implementors' class='anchor'></a></h2><div class='item-list' id='implementors-list'></div><span class='loading-content'>Loading content...</span><script type="text/javascript" src="../../implementors/constance/kernel/trait.PortTimer.js" async></script></section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "constance";</script><script src="../../main.js"></script><script defer src="../../search-index.js"></script></body></html>

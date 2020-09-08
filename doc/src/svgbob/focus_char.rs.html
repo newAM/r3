@@ -455,13 +455,13 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;g</span><span class="op">&gt;</span> <span class="ident">FocusChar</span><span class="op">&lt;</span><span class="lifetime">&#39;g</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">loc</span>: <span class="kw-2">&amp;</span><span class="ident">Loc</span>, <span class="ident">grid</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;g</span> <span class="ident">Grid</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">loc</span>: <span class="kw-2">&amp;</span><span class="ident">Loc</span>, <span class="ident">grid</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;g</span> <span class="ident">Grid</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="comment">//  make a new focus char from the grid at this location</span>
         <span class="kw">let</span> <span class="ident">s</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">grid</span>.<span class="ident">get</span>(<span class="ident">loc</span>);
         <span class="comment">// if there is a text in this location, take the first char as the focus char</span>
         <span class="kw">let</span> <span class="ident">ch</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">s</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">s</span>) <span class="op">=&gt;</span> <span class="ident">s</span>.<span class="ident">chars</span>().<span class="ident">nth</span>(<span class="number">0</span>).<span class="ident">unwrap_or</span>(<span class="string">&#39;\0&#39;</span>),
-            <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="string">&#39;\0&#39;</span>,
+            <span class="prelude-val">Some</span>(<span class="ident">s</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">s</span>.<span class="ident">chars</span>().<span class="ident">nth</span>(<span class="number">0</span>).<span class="ident">unwrap_or</span>(<span class="string">&#39;\0&#39;</span>),
+            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&#39;\0&#39;</span>,
         };
 
         <span class="self">Self</span> {
@@ -474,32 +474,32 @@
 
     <span class="doccomment">/// get the text of self char, including complex block</span>
     <span class="doccomment">/// concatenated with multiple strings in utf8 encoding</span>
-    <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
+    <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">grid</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">loc</span>) {
-            <span class="prelude-val">Some</span>(<span class="ident">s</span>) <span class="op">=&gt;</span> <span class="ident">s</span>.<span class="ident">to_owned</span>(),
-            <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="string">&quot;&quot;</span>.<span class="ident">to_string</span>(),
+            <span class="prelude-val">Some</span>(<span class="ident">s</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">s</span>.<span class="ident">to_owned</span>(),
+            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;&quot;</span>.<span class="ident">to_string</span>(),
         }
     }
 
     <span class="doccomment">/// get the focus char at this location</span>
-    <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">loc</span>: <span class="kw-2">&amp;</span><span class="ident">Loc</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">loc</span>: <span class="kw-2">&amp;</span><span class="ident">Loc</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">FocusChar</span>::<span class="ident">new</span>(<span class="ident">loc</span>, <span class="self">self</span>.<span class="ident">grid</span>)
     }
 
     <span class="doccomment">/// if the character matches given argument</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">arg</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">arg</span>: <span class="ident">char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">ch</span>.<span class="ident">is</span>(<span class="ident">arg</span>)
     }
 
     <span class="doccomment">/// if character is any character in the string</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">ch</span>.<span class="ident">any</span>(<span class="ident">s</span>)
     }
 
     <span class="doccomment">/// if it&#39;s properties is static such as unicode box drawing</span>
     <span class="doccomment">/// they are automatically used as drawing element</span>
     <span class="doccomment">/// otherwise, check if the the surrounding character can connect to this character</span>
-    <span class="kw">fn</span> <span class="ident">used_as_drawing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>)<span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">used_as_drawing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>)<span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="comment">// all box uncide drawing are static</span>
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">ch</span>.<span class="ident">is_static</span>() {
             <span class="bool-val">true</span>
@@ -507,28 +507,28 @@
         <span class="kw">else</span>{
             <span class="comment">//  --</span>
             (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">O</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">right</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">K</span>))
-            <span class="op">||</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">K</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">left</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">O</span>))
+            <span class="op">|</span><span class="op">|</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">K</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">left</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">O</span>))
             <span class="comment">//   |</span>
             <span class="comment">//   |</span>
-            <span class="op">||</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">C</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">top</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">W</span>))
-            <span class="op">||</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">W</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">bottom</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">C</span>))
+            <span class="op">|</span><span class="op">|</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">C</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">top</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">W</span>))
+            <span class="op">|</span><span class="op">|</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">W</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">bottom</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">C</span>))
             <span class="comment">//   \</span>
             <span class="comment">//    \</span>
-            <span class="op">||</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">A</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">top_left</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">Y</span>))
-            <span class="op">||</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">Y</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">bottom_right</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">A</span>))
+            <span class="op">|</span><span class="op">|</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">A</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">top_left</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">Y</span>))
+            <span class="op">|</span><span class="op">|</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">Y</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">bottom_right</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">A</span>))
             <span class="comment">//    /</span>
             <span class="comment">//   /</span>
-            <span class="op">||</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">E</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">top_right</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">U</span>))
-            <span class="op">||</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">U</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">bottom_left</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">E</span>))
+            <span class="op">|</span><span class="op">|</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">E</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">top_right</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">U</span>))
+            <span class="op">|</span><span class="op">|</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">U</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">bottom_left</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">E</span>))
             <span class="comment">//  __</span>
-            <span class="op">||</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">U</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">left</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">Y</span>))
-            <span class="op">||</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">Y</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">right</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">U</span>))
+            <span class="op">|</span><span class="op">|</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">U</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">left</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">Y</span>))
+            <span class="op">|</span><span class="op">|</span> (<span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">Y</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">right</span>().<span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Block</span>::<span class="ident">U</span>))
         }
     }
 
     <span class="doccomment">/// determine if the character at this location</span>
     <span class="doccomment">/// is used as text or not</span>
-    <span class="kw">fn</span> <span class="ident">used_as_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">used_as_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">used_as_drawing</span>(){
             <span class="bool-val">false</span>
         }
@@ -537,7 +537,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">is_text_char</span>(<span class="kw-2">&amp;</span><span class="self">self</span>)<span class="op">-&gt;</span><span class="ident">bool</span>{
+    <span class="kw">fn</span> <span class="ident">is_text_char</span>(<span class="kw-2">&amp;</span><span class="self">self</span>)<span class="op">-</span><span class="op">&gt;</span><span class="ident">bool</span>{
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">ch</span>.<span class="ident">any</span>(<span class="string">&quot;oO_&quot;</span>){<span class="comment">// exclude letter oO and _underscore in the alphanumeric </span>
             <span class="kw">return</span> <span class="bool-val">false</span>;
         }
@@ -547,16 +547,16 @@
     }
 
 
-    <span class="kw">fn</span> <span class="ident">is_text_surrounded</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">left</span>().<span class="ident">is_text_char</span>() <span class="op">||</span> <span class="self">self</span>.<span class="ident">right</span>().<span class="ident">is_text_char</span>()
+    <span class="kw">fn</span> <span class="ident">is_text_surrounded</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">left</span>().<span class="ident">is_text_char</span>() <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">right</span>().<span class="ident">is_text_char</span>()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_null</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_null</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">is</span>(<span class="string">&#39;\0&#39;</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_blank</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">is_null</span>() <span class="op">||</span> <span class="self">self</span>.<span class="ident">is</span>(<span class="string">&#39; &#39;</span>)
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_blank</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">is_null</span>() <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">is</span>(<span class="string">&#39; &#39;</span>)
     }
 
     <span class="comment">///////////////////////////////////</span>
@@ -565,74 +565,74 @@
     <span class="comment">//</span>
     <span class="comment">///////////////////////////////////</span>
 
-    <span class="kw">fn</span> <span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="ident">block</span>) <span class="op">||</span> <span class="self">self</span>.<span class="ident">can_medium_connect</span>(<span class="ident">block</span>)
+    <span class="kw">fn</span> <span class="ident">can_pass_medium_connect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="ident">block</span>) <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">can_medium_connect</span>(<span class="ident">block</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">can_pass_weakly_connect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="ident">block</span>) <span class="op">||</span> <span class="self">self</span>.<span class="ident">can_medium_connect</span>(<span class="ident">block</span>)
-            <span class="op">||</span> <span class="self">self</span>.<span class="ident">can_weakly_connect</span>(<span class="ident">block</span>)
+    <span class="kw">fn</span> <span class="ident">can_pass_weakly_connect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="ident">block</span>) <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">can_medium_connect</span>(<span class="ident">block</span>)
+            <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">can_weakly_connect</span>(<span class="ident">block</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">can_strongly_connect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">ch</span>.<span class="ident">can_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Strong</span>, <span class="ident">block</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">can_medium_connect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">can_medium_connect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">ch</span>.<span class="ident">can_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Medium</span>, <span class="ident">block</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">can_weakly_connect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">can_weakly_connect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">ch</span>.<span class="ident">can_connect</span>(<span class="kw-2">&amp;</span><span class="ident">Weak</span>, <span class="ident">block</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pb</span>: <span class="kw-2">&amp;</span><span class="ident">PointBlock</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pb</span>: <span class="kw-2">&amp;</span><span class="ident">PointBlock</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="self">self</span>.<span class="ident">loc_block</span>().<span class="ident">to_point</span>(<span class="ident">pb</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">loc_block</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">LocBlock</span> {
+    <span class="kw">fn</span> <span class="ident">loc_block</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LocBlock</span> {
         <span class="ident">LocBlock</span> {
             <span class="ident">loc</span>: <span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">to_owned</span>(),
             <span class="ident">settings</span>: <span class="self">self</span>.<span class="ident">get_settings</span>(),
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">to_element</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">frag</span>: <span class="ident">Fragment</span>) <span class="op">-&gt;</span> <span class="ident">Element</span> {
+    <span class="kw">fn</span> <span class="ident">to_element</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">frag</span>: <span class="ident">Fragment</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Element</span> {
         <span class="kw">let</span> <span class="ident">unit_x</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">loc_block</span>().<span class="ident">unit_x</span>();
         <span class="kw">match</span> <span class="ident">frag</span> {
-            <span class="ident">Fragment</span>::<span class="ident">Line</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=&gt;</span> <span class="ident">line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
-            <span class="ident">Fragment</span>::<span class="ident">CircleStartLine</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=&gt;</span> <span class="ident">circle_start_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
-            <span class="ident">Fragment</span>::<span class="ident">SquareStartLine</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=&gt;</span> <span class="ident">square_start_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
-            <span class="ident">Fragment</span>::<span class="ident">CircleOpenLine</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=&gt;</span> <span class="ident">circle_open_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
-            <span class="ident">Fragment</span>::<span class="ident">BigCircleOpenLine</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=&gt;</span> <span class="ident">big_circle_open_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
-            <span class="ident">Fragment</span>::<span class="ident">DashedLine</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=&gt;</span> <span class="ident">dashed_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
-            <span class="ident">Fragment</span>::<span class="ident">ArrowLine</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=&gt;</span> <span class="ident">arrow_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
-            <span class="ident">Fragment</span>::<span class="ident">ClearArrowLine</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=&gt;</span> <span class="ident">clear_arrow_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
-            <span class="ident">Fragment</span>::<span class="ident">StartArrowLine</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=&gt;</span> <span class="ident">start_arrow_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
-            <span class="ident">Fragment</span>::<span class="ident">Arc</span>(<span class="ident">p1</span>, <span class="ident">p2</span>, <span class="ident">m</span>) <span class="op">=&gt;</span> <span class="ident">arc</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>), <span class="ident">m</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">*</span> <span class="ident">unit_x</span>),
-            <span class="ident">Fragment</span>::<span class="ident">OpenCircle</span>(<span class="ident">c</span>, <span class="ident">m</span>) <span class="op">=&gt;</span> <span class="ident">open_circle</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">c</span>), <span class="ident">m</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">*</span> <span class="ident">unit_x</span>),
-            <span class="ident">Fragment</span>::<span class="ident">Text</span>(<span class="ident">s</span>) <span class="op">=&gt;</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">loc</span>, <span class="kw-2">&amp;</span><span class="ident">s</span>),
+            <span class="ident">Fragment</span>::<span class="ident">Line</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
+            <span class="ident">Fragment</span>::<span class="ident">CircleStartLine</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">circle_start_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
+            <span class="ident">Fragment</span>::<span class="ident">SquareStartLine</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">square_start_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
+            <span class="ident">Fragment</span>::<span class="ident">CircleOpenLine</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">circle_open_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
+            <span class="ident">Fragment</span>::<span class="ident">BigCircleOpenLine</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">big_circle_open_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
+            <span class="ident">Fragment</span>::<span class="ident">DashedLine</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">dashed_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
+            <span class="ident">Fragment</span>::<span class="ident">ArrowLine</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">arrow_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
+            <span class="ident">Fragment</span>::<span class="ident">ClearArrowLine</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">clear_arrow_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
+            <span class="ident">Fragment</span>::<span class="ident">StartArrowLine</span>(<span class="ident">p1</span>, <span class="ident">p2</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">start_arrow_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>)),
+            <span class="ident">Fragment</span>::<span class="ident">Arc</span>(<span class="ident">p1</span>, <span class="ident">p2</span>, <span class="ident">m</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">arc</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p1</span>), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">p2</span>), <span class="ident">m</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">*</span> <span class="ident">unit_x</span>),
+            <span class="ident">Fragment</span>::<span class="ident">OpenCircle</span>(<span class="ident">c</span>, <span class="ident">m</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">open_circle</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="ident">c</span>), <span class="ident">m</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">*</span> <span class="ident">unit_x</span>),
+            <span class="ident">Fragment</span>::<span class="ident">Text</span>(<span class="ident">s</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">loc</span>, <span class="kw-2">&amp;</span><span class="ident">s</span>),
         }
     }
 
     <span class="doccomment">/// TODO: optimize this by getting accumulating the location</span>
     <span class="doccomment">/// and convert it into loc in 1 call</span>
     <span class="doccomment">/// then get the focus char at this location;</span>
-    <span class="kw">fn</span> <span class="ident">from_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">location</span>: <span class="kw-2">&amp;</span><span class="ident">Location</span>) <span class="op">-&gt;</span> <span class="ident">FocusChar</span><span class="op">&lt;</span><span class="lifetime">&#39;g</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">from_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">location</span>: <span class="kw-2">&amp;</span><span class="ident">Location</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FocusChar</span><span class="op">&lt;</span><span class="lifetime">&#39;g</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">loc</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">from_location</span>(<span class="ident">location</span>);
         <span class="self">self</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">loc</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">can_block_pass_connect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>, <span class="ident">signal</span>: <span class="kw-2">&amp;</span><span class="ident">Signal</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">can_block_pass_connect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>, <span class="ident">signal</span>: <span class="kw-2">&amp;</span><span class="ident">Signal</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">signal</span> {
-            <span class="ident">Strong</span> <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="ident">block</span>),
-            <span class="ident">Medium</span> <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">can_pass_medium_connect</span>(<span class="ident">block</span>),
-            <span class="ident">Weak</span> <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">can_pass_weakly_connect</span>(<span class="ident">block</span>),
+            <span class="ident">Strong</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">can_strongly_connect</span>(<span class="ident">block</span>),
+            <span class="ident">Medium</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">can_pass_medium_connect</span>(<span class="ident">block</span>),
+            <span class="ident">Weak</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">can_pass_weakly_connect</span>(<span class="ident">block</span>),
         }
     }
 
     <span class="doccomment">/// return the ehance circle elements and the consumed locations</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_enhance_circle_elements</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Loc</span><span class="op">&gt;</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_enhance_circle_elements</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Loc</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> (<span class="ident">fragments</span>, <span class="ident">consumed_location</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_enhance_circle_fragments</span>();
         <span class="kw">let</span> <span class="ident">elements</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">fragments</span>
             .<span class="ident">into_iter</span>()
@@ -646,7 +646,7 @@
     }
 
     <span class="doccomment">/// return the ehance elements and the consumed locations</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_enhance_elements</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Loc</span><span class="op">&gt;</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_enhance_elements</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Loc</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> (<span class="ident">fragments</span>, <span class="ident">consumed_location</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_enhance_fragments</span>();
         <span class="kw">let</span> <span class="ident">elements</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">fragments</span>
             .<span class="ident">into_iter</span>()
@@ -660,7 +660,7 @@
     }
 
     <span class="doccomment">/// returns the defaults elements</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_elements</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_elements</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">fragments</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_fragments</span>();
         <span class="kw">let</span> <span class="ident">elements</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">fragments</span>
             .<span class="ident">into_iter</span>()
@@ -669,24 +669,24 @@
         (<span class="ident">elements</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">is_satisfied</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">can</span>: <span class="kw-2">&amp;</span><span class="ident">Can</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">is_satisfied</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">can</span>: <span class="kw-2">&amp;</span><span class="ident">Can</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">can</span> {
-            <span class="ident">ConnectTo</span>(<span class="kw-2">ref</span> <span class="ident">cond_block</span>, <span class="kw-2">ref</span> <span class="ident">signal</span>) <span class="op">=&gt;</span> {
+            <span class="ident">ConnectTo</span>(<span class="kw-2">ref</span> <span class="ident">cond_block</span>, <span class="kw-2">ref</span> <span class="ident">signal</span>) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="self">self</span>.<span class="ident">can_block_pass_connect</span>(<span class="kw-2">&amp;</span><span class="ident">cond_block</span>, <span class="ident">signal</span>)
             }
-            <span class="ident">Is</span>(<span class="ident">char</span>) <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">is</span>(<span class="ident">char</span>),
-            <span class="ident">IsStrongAll</span>(<span class="kw-2">ref</span> <span class="ident">blocks</span>) <span class="op">=&gt;</span> <span class="ident">blocks</span>.<span class="ident">iter</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">is_strong_block</span>(<span class="kw-2">&amp;</span><span class="ident">b</span>)),
+            <span class="ident">Is</span>(<span class="ident">char</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">is</span>(<span class="ident">char</span>),
+            <span class="ident">IsStrongAll</span>(<span class="kw-2">ref</span> <span class="ident">blocks</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">blocks</span>.<span class="ident">iter</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">is_strong_block</span>(<span class="kw-2">&amp;</span><span class="ident">b</span>)),
         }
     }
 
     <span class="doccomment">/// check to see if this specified block for this focused</span>
     <span class="doccomment">/// char is intensified to be strong</span>
-    <span class="kw">fn</span> <span class="ident">is_intensified</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">arg_block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">is_intensified</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">arg_block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="ident">character</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Characteristic</span><span class="op">&gt;</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">ch</span>.<span class="ident">get_characteristic</span>();
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">character</span>) <span class="op">=</span> <span class="ident">character</span> {
             <span class="ident">character</span>.<span class="ident">intensify</span>.<span class="ident">iter</span>().<span class="ident">any</span>(<span class="op">|</span><span class="kw-2">&amp;</span>(<span class="kw-2">ref</span> <span class="ident">block</span>, <span class="kw-2">ref</span> <span class="ident">cond</span>)<span class="op">|</span> {
                 <span class="kw">let</span> <span class="ident">fc</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">from_location</span>(<span class="kw-2">&amp;</span><span class="ident">cond</span>.<span class="ident">loc</span>);
-                <span class="ident">block</span> <span class="op">==</span> <span class="ident">arg_block</span> <span class="op">&amp;&amp;</span> <span class="ident">fc</span>.<span class="ident">is_satisfied</span>(<span class="kw-2">&amp;</span><span class="ident">cond</span>.<span class="ident">can</span>)
+                <span class="ident">block</span> <span class="op">=</span><span class="op">=</span> <span class="ident">arg_block</span> <span class="op">&amp;&amp;</span> <span class="ident">fc</span>.<span class="ident">is_satisfied</span>(<span class="kw-2">&amp;</span><span class="ident">cond</span>.<span class="ident">can</span>)
             })
         } <span class="kw">else</span> {
             <span class="bool-val">false</span>
@@ -695,7 +695,7 @@
 
     <span class="doccomment">/// check if this block can be a strong block</span>
     <span class="doccomment">/// when applying the intesifier</span>
-    <span class="kw">fn</span> <span class="ident">can_be_strong_block</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">can_be_strong_block</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_strong_block</span>(<span class="ident">block</span>) {
             <span class="bool-val">true</span>
         } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_intensified</span>(<span class="ident">block</span>) {
@@ -707,11 +707,11 @@
 
     <span class="doccomment">/// check if each blocks in the vectors can be strong when</span>
     <span class="doccomment">/// applying the intesifiers</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">can_be_strong_all_blocks</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">blocks</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Block</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">can_be_strong_all_blocks</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">blocks</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Block</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>{
         <span class="ident">blocks</span>.<span class="ident">iter</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">can_be_strong_block</span>(<span class="ident">b</span>))
     }
 
-    <span class="kw">fn</span> <span class="ident">is_strong_block</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">is_strong_block</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">block</span>: <span class="kw-2">&amp;</span><span class="ident">Block</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="ident">character</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Characteristic</span><span class="op">&gt;</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">ch</span>.<span class="ident">get_characteristic</span>();
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">character</span>) <span class="op">=</span> <span class="ident">character</span> {
             <span class="kw">if</span> <span class="ident">character</span>.<span class="ident">is_strong_block</span>(<span class="ident">block</span>) {
@@ -721,7 +721,7 @@
         <span class="bool-val">false</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">get_enhance_fragments</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Fragment</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Location</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">get_enhance_fragments</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Fragment</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Location</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">elm</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Fragment</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">consumed</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Location</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
         <span class="kw">let</span> (<span class="ident">enhanced</span>, <span class="ident">enhance_consumed</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">enhance</span>();
@@ -734,7 +734,7 @@
         (<span class="ident">elm</span>, <span class="ident">consumed</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">get_enhance_circle_fragments</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Fragment</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Location</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">get_enhance_circle_fragments</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Fragment</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Location</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">elm</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Fragment</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">consumed</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Location</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
         <span class="kw">let</span> (<span class="ident">enhanced</span>, <span class="ident">enhance_consumed</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">enhance_circle</span>();
@@ -750,7 +750,7 @@
 
     <span class="doccomment">/// get the fragements generated at this focus character and the</span>
     <span class="doccomment">/// consumed locations</span>
-    <span class="kw">fn</span> <span class="ident">get_fragments</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Fragment</span><span class="op">&gt;</span>{
+    <span class="kw">fn</span> <span class="ident">get_fragments</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Fragment</span><span class="op">&gt;</span>{
         <span class="kw">let</span> <span class="ident">character</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Characteristic</span><span class="op">&gt;</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">ch</span>.<span class="ident">get_characteristic</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">elm</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Fragment</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
 
@@ -798,53 +798,53 @@
         <span class="ident">elm</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">get_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Settings</span> {
+    <span class="kw">fn</span> <span class="ident">get_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Settings</span> {
         <span class="self">self</span>.<span class="ident">grid</span>.<span class="ident">settings</span>.<span class="ident">clone</span>()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">top</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">top</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">top</span>())
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bottom</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bottom</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">bottom</span>())
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">left</span>())
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">in_left</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">n</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">in_left</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">n</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">in_left</span>(<span class="ident">n</span>))
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">in_right</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">n</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">in_right</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">n</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">in_right</span>(<span class="ident">n</span>))
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">in_top</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">n</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">in_top</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">n</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">in_top</span>(<span class="ident">n</span>))
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">in_bottom</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">n</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">in_bottom</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">n</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">in_bottom</span>(<span class="ident">n</span>))
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">right</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">right</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">right</span>())
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">top_left</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">top_left</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">top_left</span>())
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">top_right</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">top_right</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">top_right</span>())
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bottom_left</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bottom_left</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">bottom_left</span>())
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bottom_right</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bottom_right</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">bottom_right</span>())
     }
 }

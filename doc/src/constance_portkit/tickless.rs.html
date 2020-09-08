@@ -1357,29 +1357,29 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CfgError</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_str</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_str</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="self">Self</span>::<span class="ident">FreqNumZero</span> <span class="op">=&gt;</span> <span class="string">&quot;the numerator of the clock frequency must not be zero&quot;</span>,
-            <span class="self">Self</span>::<span class="ident">FreqDenomZero</span> <span class="op">=&gt;</span> <span class="string">&quot;the denominator of the clock frequency must not be zero&quot;</span>,
-            <span class="self">Self</span>::<span class="ident">FreqTooHigh</span> <span class="op">=&gt;</span> <span class="string">&quot;the timer frequency is too fast&quot;</span>,
-            <span class="self">Self</span>::<span class="ident">InternalOverflow</span> <span class="op">=&gt;</span> {
+            <span class="self">Self</span>::<span class="ident">FreqNumZero</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;the numerator of the clock frequency must not be zero&quot;</span>,
+            <span class="self">Self</span>::<span class="ident">FreqDenomZero</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;the denominator of the clock frequency must not be zero&quot;</span>,
+            <span class="self">Self</span>::<span class="ident">FreqTooHigh</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;the timer frequency is too fast&quot;</span>,
+            <span class="self">Self</span>::<span class="ident">InternalOverflow</span> <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="string">&quot;intermediate calculation overflowed. the clock frequency might \
                  be too complex or too low&quot;</span>
             }
-            <span class="self">Self</span>::<span class="ident">OSMaxTimeoutTooLow</span> <span class="op">=&gt;</span> {
+            <span class="self">Self</span>::<span class="ident">OSMaxTimeoutTooLow</span> <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="string">&quot;the calculated maximum OS timeout is too low. lowering the \
                  interrupt latency headroom might help&quot;</span>
             }
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">panic</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="op">!</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">panic</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="op">!</span> {
         <span class="ident">core</span>::<span class="ident">panicking</span>::<span class="ident">panic</span>(<span class="self">self</span>.<span class="ident">as_str</span>());
     }
 }
 
 <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">CfgError</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="self">self</span>.<span class="ident">as_str</span>())
     }
 }
@@ -1426,10 +1426,10 @@
             <span class="ident">force_full_hw_period</span>,
             <span class="ident">resettable</span>,
         }: <span class="ident">TicklessOptions</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">CfgError</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">hw_freq_denom</span> <span class="op">==</span> <span class="number">0</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">CfgError</span><span class="op">&gt;</span> {
+        <span class="kw">if</span> <span class="ident">hw_freq_denom</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">CfgError</span>::<span class="ident">FreqDenomZero</span>);
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">hw_freq_num</span> <span class="op">==</span> <span class="number">0</span> {
+        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">hw_freq_num</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">CfgError</span>::<span class="ident">FreqNumZero</span>);
         }
 
@@ -1437,16 +1437,16 @@
         <span class="kw">let</span> <span class="ident">hw_ticks_per_micro</span> <span class="op">=</span>
             <span class="ident">Ratio</span>::<span class="ident">new_raw</span>(<span class="ident">hw_freq_num</span> <span class="kw">as</span> <span class="ident">u128</span>, <span class="ident">hw_freq_denom</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">*</span> <span class="number">1_000_000</span>);
         <span class="kw">let</span> <span class="ident">hw_ticks_per_micro</span> <span class="op">=</span> <span class="ident">reduce_ratio128</span>(<span class="ident">hw_ticks_per_micro</span>);
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">numer</span>() <span class="op">&gt;=</span> <span class="number">1</span>);
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">numer</span>() <span class="op">&lt;=</span> <span class="number">0xffff_ffff_ffff_ffff</span>);
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">denom</span>() <span class="op">&gt;=</span> <span class="number">1</span>);
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">denom</span>() <span class="op">&lt;=</span> <span class="number">0xf_423f_ffff_ffff_fff0_bdc0</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">numer</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="number">1</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">numer</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="number">0xffff_ffff_ffff_ffff</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">denom</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="number">1</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">denom</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="number">0xf_423f_ffff_ffff_fff0_bdc0</span>);
 
         <span class="comment">// Split `hw_ticks_per_micro` into integral and fractional parts.</span>
         <span class="kw">let</span> <span class="ident">hw_ticks_per_micro_floor</span> <span class="op">=</span> <span class="ident">floor_ratio128</span>(<span class="ident">hw_ticks_per_micro</span>);
         <span class="kw">let</span> <span class="ident">hw_subticks_per_micro</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">numer</span>() <span class="op">%</span> <span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">denom</span>();
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">hw_ticks_per_micro_floor</span> <span class="op">&lt;=</span> <span class="number">0xffff_ffff_ffff_ffff</span>);
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">hw_subticks_per_micro</span> <span class="op">&lt;=</span> <span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">denom</span>() <span class="op">-</span> <span class="number">1</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">hw_ticks_per_micro_floor</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0xffff_ffff_ffff_ffff</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">hw_subticks_per_micro</span> <span class="op">&lt;</span><span class="op">=</span> <span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">denom</span>() <span class="op">-</span> <span class="number">1</span>);
 
         <span class="kw">if</span> <span class="ident">hw_ticks_per_micro_floor</span> <span class="op">&gt;</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span> {
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">CfgError</span>::<span class="ident">FreqTooHigh</span>);
@@ -1459,9 +1459,9 @@
         <span class="comment">// Try the stateless algorithm first. Find the period at which HW ticks</span>
         <span class="comment">// and OS ticks align. The result is `hw_global_period` HW ticks ==</span>
         <span class="comment">// `global_period` microseconds.</span>
-        <span class="kw">let</span> (<span class="ident">hw_global_period</span>, <span class="ident">global_period</span>) <span class="op">=</span> <span class="kw">if</span> <span class="ident">hw_subticks_per_micro</span> <span class="op">==</span> <span class="number">0</span> {
-            <span class="macro">assert</span><span class="macro">!</span>(<span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">denom</span>() <span class="op">==</span> <span class="number">1</span>);
-            <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">hw_ticks_per_micro_floor</span> <span class="op">!=</span> <span class="number">0</span>);
+        <span class="kw">let</span> (<span class="ident">hw_global_period</span>, <span class="ident">global_period</span>) <span class="op">=</span> <span class="kw">if</span> <span class="ident">hw_subticks_per_micro</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
+            <span class="macro">assert</span><span class="macro">!</span>(<span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">denom</span>() <span class="op">=</span><span class="op">=</span> <span class="number">1</span>);
+            <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">hw_ticks_per_micro_floor</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>);
             (<span class="ident">hw_ticks_per_micro_floor</span>, <span class="number">1</span>)
         } <span class="kw">else</span> {
             <span class="comment">// (1..).map(|i| (i, hw_subticks_per_micro * i))</span>
@@ -1483,19 +1483,19 @@
 
             (<span class="ident">hw_global_period</span>, <span class="ident">global_period</span>)
         };
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">hw_global_period</span> <span class="op">&gt;=</span> <span class="number">1</span>);
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">hw_global_period</span> <span class="op">&lt;=</span> <span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">numer</span>());
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">global_period</span> <span class="op">&gt;=</span> <span class="number">1</span>);
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">global_period</span> <span class="op">&lt;=</span> <span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">denom</span>());
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">hw_global_period</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">1</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">hw_global_period</span> <span class="op">&lt;</span><span class="op">=</span> <span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">numer</span>());
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">global_period</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">1</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">global_period</span> <span class="op">&lt;</span><span class="op">=</span> <span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">denom</span>());
 
-        <span class="kw">let</span> (<span class="ident">algorithm</span>, <span class="ident">max_timeout</span>) <span class="op">=</span> <span class="kw">if</span> <span class="ident">hw_global_period</span> <span class="op">&lt;=</span> <span class="number">0x1_0000_0000</span>
-            <span class="op">&amp;&amp;</span> <span class="ident">global_period</span> <span class="op">&lt;=</span> <span class="number">0x1_0000_0000</span>
+        <span class="kw">let</span> (<span class="ident">algorithm</span>, <span class="ident">max_timeout</span>) <span class="op">=</span> <span class="kw">if</span> <span class="ident">hw_global_period</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0x1_0000_0000</span>
+            <span class="op">&amp;&amp;</span> <span class="ident">global_period</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0x1_0000_0000</span>
             <span class="comment">// Prevent `[hw_]max_tick_count` from being zero</span>
-            <span class="op">&amp;&amp;</span> (<span class="ident">hw_global_period</span> <span class="op">&lt;=</span> <span class="number">0x8000_0000</span> <span class="op">||</span> <span class="ident">global_period</span> <span class="op">&gt;</span> <span class="number">1</span>)
-            <span class="op">&amp;&amp;</span> (<span class="ident">global_period</span> <span class="op">&lt;=</span> <span class="number">0x8000_0000</span> <span class="op">||</span> <span class="ident">hw_global_period</span> <span class="op">&gt;</span> <span class="number">1</span>)
-            <span class="op">&amp;&amp;</span> (<span class="op">!</span><span class="ident">force_full_hw_period</span> <span class="op">||</span>
-                (<span class="number">0x1_0000_0000</span> <span class="op">%</span> <span class="ident">hw_global_period</span> <span class="op">==</span> <span class="number">0</span>
-                 <span class="op">&amp;&amp;</span> <span class="ident">hw_global_period</span> <span class="op">&gt;=</span> <span class="ident">global_period</span>))
+            <span class="op">&amp;&amp;</span> (<span class="ident">hw_global_period</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0x8000_0000</span> <span class="op">|</span><span class="op">|</span> <span class="ident">global_period</span> <span class="op">&gt;</span> <span class="number">1</span>)
+            <span class="op">&amp;&amp;</span> (<span class="ident">global_period</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0x8000_0000</span> <span class="op">|</span><span class="op">|</span> <span class="ident">hw_global_period</span> <span class="op">&gt;</span> <span class="number">1</span>)
+            <span class="op">&amp;&amp;</span> (<span class="op">!</span><span class="ident">force_full_hw_period</span> <span class="op">|</span><span class="op">|</span>
+                (<span class="number">0x1_0000_0000</span> <span class="op">%</span> <span class="ident">hw_global_period</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span>
+                 <span class="op">&amp;&amp;</span> <span class="ident">hw_global_period</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">global_period</span>))
             <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">resettable</span>
         {
             <span class="comment">// If the period is measurable without wrap-around in both ticks,</span>
@@ -1508,7 +1508,7 @@
             <span class="kw">let</span> <span class="ident">max_tick_count</span> <span class="op">=</span> <span class="ident">global_period</span> <span class="op">*</span> <span class="ident">repeat</span> <span class="op">-</span> <span class="number">1</span>;
 
             <span class="kw">if</span> <span class="ident">force_full_hw_period</span> {
-                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">hw_max_tick_count</span> <span class="op">==</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>);
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">hw_max_tick_count</span> <span class="op">=</span><span class="op">=</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>);
             }
 
             <span class="comment">// Find the maximum value of `max_timeout` such that:</span>
@@ -1541,10 +1541,10 @@
                 )
             ) <span class="op">/</span> <span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">numer</span>();
 
-            <span class="kw">if</span> <span class="ident">max_timeout</span> <span class="op">==</span> <span class="number">0</span> {
+            <span class="kw">if</span> <span class="ident">max_timeout</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
                 <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">CfgError</span>::<span class="ident">OSMaxTimeoutTooLow</span>);
             }
-            <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">max_timeout</span> <span class="op">&lt;=</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>);
+            <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">max_timeout</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>);
 
             (
                 <span class="ident">TicklessAlgorithm</span>::<span class="ident">Stateless</span> {
@@ -1601,10 +1601,10 @@
                 ),
             ) <span class="op">/</span> <span class="kw-2">*</span><span class="ident">hw_ticks_per_micro</span>.<span class="ident">numer</span>();
 
-            <span class="kw">if</span> <span class="ident">max_timeout</span> <span class="op">==</span> <span class="number">0</span> {
+            <span class="kw">if</span> <span class="ident">max_timeout</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
                 <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">CfgError</span>::<span class="ident">OSMaxTimeoutTooLow</span>);
             }
-            <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">max_timeout</span> <span class="op">&lt;=</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>);
+            <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">max_timeout</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>);
 
             (<span class="ident">TicklessAlgorithm</span>::<span class="ident">Stateful</span>, <span class="ident">max_timeout</span> <span class="kw">as</span> <span class="ident">u32</span>)
         };
@@ -1620,34 +1620,34 @@
 
     <span class="doccomment">/// Get the maximum hardware tick count (period minus one cycle).</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">hw_max_tick_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">hw_max_tick_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">algorithm</span> {
             <span class="ident">TicklessAlgorithm</span>::<span class="ident">Stateless</span> {
                 <span class="ident">hw_max_tick_count</span>, ..
-            } <span class="op">=&gt;</span> <span class="ident">hw_max_tick_count</span>,
-            <span class="ident">TicklessAlgorithm</span>::<span class="ident">Stateful</span> <span class="op">=&gt;</span> <span class="ident">u32</span>::<span class="ident">MAX</span>,
+            } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">hw_max_tick_count</span>,
+            <span class="ident">TicklessAlgorithm</span>::<span class="ident">Stateful</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u32</span>::<span class="ident">MAX</span>,
         }
     }
 
     <span class="doccomment">/// Get the maximum OS tick count (period minus one cycle).</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">max_tick_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">max_tick_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">algorithm</span> {
-            <span class="ident">TicklessAlgorithm</span>::<span class="ident">Stateless</span> { <span class="ident">max_tick_count</span>, .. } <span class="op">=&gt;</span> <span class="ident">max_tick_count</span>,
-            <span class="ident">TicklessAlgorithm</span>::<span class="ident">Stateful</span> <span class="op">=&gt;</span> <span class="ident">u32</span>::<span class="ident">MAX</span>,
+            <span class="ident">TicklessAlgorithm</span>::<span class="ident">Stateless</span> { <span class="ident">max_tick_count</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">max_tick_count</span>,
+            <span class="ident">TicklessAlgorithm</span>::<span class="ident">Stateful</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u32</span>::<span class="ident">MAX</span>,
         }
     }
 
     <span class="doccomment">/// Get the maximum time interval that can be reliably measured, taking an</span>
     <span class="doccomment">/// interrupt latency into account.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">max_timeout</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">max_timeout</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="self">self</span>.<span class="ident">max_timeout</span>
     }
 
     <span class="doccomment">/// Get the subtick division.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">division</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u64</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">division</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
         <span class="self">self</span>.<span class="ident">division</span>
     }
 }
@@ -1656,7 +1656,7 @@
 <span class="doccomment">/// given [`TicklessCfg`]. All instances implement [`TicklessStateTrait`].</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TicklessState</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">CFG</span>: <span class="ident">TicklessCfg</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">If</span><span class="macro">!</span> {
     <span class="kw">if</span> (<span class="macro">matches</span><span class="macro">!</span>(<span class="ident">CFG</span>.<span class="ident">algorithm</span>, <span class="ident">TicklessAlgorithm</span>::<span class="ident">Stateful</span>)) {
-        <span class="ident">TicklessStateCore</span><span class="op">&lt;</span><span class="ident">Wrapping</span><span class="op">&lt;</span>{ <span class="ident">CFG</span>.<span class="ident">division</span>() <span class="op">-</span> <span class="number">1</span> }<span class="op">&gt;&gt;</span>
+        <span class="ident">TicklessStateCore</span><span class="op">&lt;</span><span class="ident">Wrapping</span><span class="op">&lt;</span>{ <span class="ident">CFG</span>.<span class="ident">division</span>() <span class="op">-</span> <span class="number">1</span> }<span class="op">&gt;</span><span class="op">&gt;</span>
     } <span class="kw">else</span> {
         <span class="ident">TicklessStatelessCore</span>
     }
@@ -1729,7 +1729,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`max_tick_count`]: TicklessCfg::max_tick_count</span>
     <span class="doccomment">/// [`hw_max_tick_count`]: TicklessCfg::hw_max_tick_count</span>
-    <span class="kw">fn</span> <span class="ident">mark_reference</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">hw_tick_count</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span>;
+    <span class="kw">fn</span> <span class="ident">mark_reference</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">hw_tick_count</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
 
     <span class="doccomment">/// [Mark a reference point] and start measuring the specified time interval</span>
     <span class="doccomment">/// `ticks` (measured in OS ticks = microseconds).</span>
@@ -1752,7 +1752,7 @@
         <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>,
         <span class="ident">hw_tick_count</span>: <span class="ident">u32</span>,
         <span class="ident">ticks</span>: <span class="ident">u32</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">Measurement</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Measurement</span> {
         <span class="macro">debug_assert_ne</span><span class="macro">!</span>(<span class="ident">ticks</span>, <span class="number">0</span>);
 
         <span class="kw">let</span> <span class="ident">cur_tick_count</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">mark_reference</span>(<span class="ident">cfg</span>, <span class="ident">hw_tick_count</span>);
@@ -1762,10 +1762,10 @@
 
         <span class="attribute">#[<span class="ident">track_caller</span>]</span>
         <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">fn</span> <span class="ident">add_mod_u32</span>(<span class="ident">x</span>: <span class="ident">u32</span>, <span class="ident">y</span>: <span class="ident">u32</span>, <span class="ident">max</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
-            <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">&lt;=</span> <span class="ident">max</span>);
-            <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">y</span> <span class="op">&lt;=</span> <span class="ident">max</span>);
-            <span class="kw">if</span> <span class="ident">max</span> <span class="op">==</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="op">||</span> (<span class="ident">max</span> <span class="op">-</span> <span class="ident">x</span>) <span class="op">&gt;=</span> <span class="ident">y</span> {
+        <span class="kw">fn</span> <span class="ident">add_mod_u32</span>(<span class="ident">x</span>: <span class="ident">u32</span>, <span class="ident">y</span>: <span class="ident">u32</span>, <span class="ident">max</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+            <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">max</span>);
+            <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">y</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">max</span>);
+            <span class="kw">if</span> <span class="ident">max</span> <span class="op">=</span><span class="op">=</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="op">|</span><span class="op">|</span> (<span class="ident">max</span> <span class="op">-</span> <span class="ident">x</span>) <span class="op">&gt;</span><span class="op">=</span> <span class="ident">y</span> {
                 <span class="ident">x</span>.<span class="ident">wrapping_add</span>(<span class="ident">y</span>)
             } <span class="kw">else</span> {
                 <span class="ident">x</span>.<span class="ident">wrapping_add</span>(<span class="ident">y</span>).<span class="ident">wrapping_add</span>(<span class="ident">u32</span>::<span class="ident">MAX</span> <span class="op">-</span> <span class="ident">max</span>)
@@ -1774,10 +1774,10 @@
 
         <span class="attribute">#[<span class="ident">track_caller</span>]</span>
         <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">fn</span> <span class="ident">sub_mod_u32</span>(<span class="ident">x</span>: <span class="ident">u32</span>, <span class="ident">y</span>: <span class="ident">u32</span>, <span class="ident">max</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
-            <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">&lt;=</span> <span class="ident">max</span>);
-            <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">y</span> <span class="op">&lt;=</span> <span class="ident">max</span>);
-            <span class="kw">if</span> <span class="ident">max</span> <span class="op">==</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="op">||</span> <span class="ident">y</span> <span class="op">&lt;</span> <span class="ident">x</span> {
+        <span class="kw">fn</span> <span class="ident">sub_mod_u32</span>(<span class="ident">x</span>: <span class="ident">u32</span>, <span class="ident">y</span>: <span class="ident">u32</span>, <span class="ident">max</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+            <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">max</span>);
+            <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">y</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">max</span>);
+            <span class="kw">if</span> <span class="ident">max</span> <span class="op">=</span><span class="op">=</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="op">|</span><span class="op">|</span> <span class="ident">y</span> <span class="op">&lt;</span> <span class="ident">x</span> {
                 <span class="ident">x</span>.<span class="ident">wrapping_sub</span>(<span class="ident">y</span>)
             } <span class="kw">else</span> {
                 <span class="ident">x</span>.<span class="ident">wrapping_sub</span>(<span class="ident">y</span>).<span class="ident">wrapping_sub</span>(<span class="ident">u32</span>::<span class="ident">MAX</span> <span class="op">-</span> <span class="ident">max</span>)
@@ -1836,7 +1836,7 @@
     <span class="doccomment">/// [`max_timeout`]: TicklessCfg::max_timeout</span>
     <span class="doccomment">/// [`max_tick_count`]: TicklessCfg::max_tick_count</span>
     <span class="doccomment">/// [`hw_max_tick_count`]: TicklessCfg::hw_max_tick_count</span>
-    <span class="kw">fn</span> <span class="ident">tick_count_to_hw_tick_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">tick_count</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span>;
+    <span class="kw">fn</span> <span class="ident">tick_count_to_hw_tick_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">tick_count</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
 
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc</span>, <span class="ident">svgbobdoc</span>::<span class="ident">transform</span>)]</span>
     <span class="doccomment">/// Get the OS tick count</span>
@@ -1893,7 +1893,7 @@
     <span class="doccomment">/// [`max_timeout`]: TicklessCfg::max_timeout</span>
     <span class="doccomment">/// [`hw_max_tick_count`]: TicklessCfg::hw_max_tick_count</span>
     <span class="doccomment">/// [`mark_reference`]: Self::mark_reference</span>
-    <span class="kw">fn</span> <span class="ident">tick_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">hw_tick_count</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span>;
+    <span class="kw">fn</span> <span class="ident">tick_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">hw_tick_count</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
 }
 
 <span class="doccomment">/// Result type of [`TicklessStateTrait::mark_reference_and_measure`].</span>
@@ -1932,12 +1932,12 @@
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">mark_reference</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">hw_tick_count</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">mark_reference</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">hw_tick_count</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="self">self</span>.<span class="ident">tick_count</span>(<span class="ident">cfg</span>, <span class="ident">hw_tick_count</span>)
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">tick_count_to_hw_tick_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">tick_count</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">tick_count_to_hw_tick_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">tick_count</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="comment">// ceil(tick_count * (hw_ticks_per_micro + hw_subticks_per_micro / division))</span>
         <span class="comment">//  = tick_count * hw_ticks_per_micro + ceil(tick_count * hw_subticks_per_micro / division)</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">hw_tick_count</span> <span class="op">=</span> (<span class="ident">tick_count</span> <span class="op">*</span> <span class="ident">cfg</span>.<span class="ident">hw_ticks_per_micro</span>).<span class="ident">wrapping_add</span>(<span class="ident">ceil_div128</span>(
@@ -1948,16 +1948,16 @@
 
         <span class="comment">// Wrap around</span>
         <span class="kw">let</span> <span class="ident">hw_max_tick_count</span> <span class="op">=</span> <span class="ident">cfg</span>.<span class="ident">hw_max_tick_count</span>();
-        <span class="kw">if</span> <span class="ident">hw_max_tick_count</span> <span class="op">!=</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="op">&amp;&amp;</span> <span class="ident">hw_tick_count</span> <span class="op">==</span> <span class="ident">hw_max_tick_count</span> <span class="op">+</span> <span class="number">1</span> {
+        <span class="kw">if</span> <span class="ident">hw_max_tick_count</span> <span class="op">!</span><span class="op">=</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="op">&amp;&amp;</span> <span class="ident">hw_tick_count</span> <span class="op">=</span><span class="op">=</span> <span class="ident">hw_max_tick_count</span> <span class="op">+</span> <span class="number">1</span> {
             <span class="ident">hw_tick_count</span> <span class="op">=</span> <span class="number">0</span>;
         }
 
-        <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">hw_tick_count</span> <span class="op">&lt;=</span> <span class="ident">hw_max_tick_count</span>);
+        <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">hw_tick_count</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">hw_max_tick_count</span>);
         <span class="ident">hw_tick_count</span>
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">tick_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">hw_tick_count</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">tick_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">hw_tick_count</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="comment">// floor(hw_tick_count /</span>
         <span class="comment">//       (hw_ticks_per_micro + hw_subticks_per_micro / division))</span>
         <span class="comment">//  = floor((hw_tick_count * division) /</span>
@@ -1966,7 +1966,7 @@
             <span class="op">/</span> (<span class="ident">cfg</span>.<span class="ident">hw_ticks_per_micro</span> <span class="kw">as</span> <span class="ident">u128</span> <span class="op">*</span> <span class="ident">cfg</span>.<span class="ident">division</span> <span class="kw">as</span> <span class="ident">u128</span>
                 <span class="op">+</span> <span class="ident">cfg</span>.<span class="ident">hw_subticks_per_micro</span> <span class="kw">as</span> <span class="ident">u128</span>);
 
-        <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">tick_count</span> <span class="op">&lt;=</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>);
+        <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">tick_count</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">u32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u128</span>);
 
         <span class="ident">tick_count</span> <span class="kw">as</span> <span class="ident">u32</span>
     }
@@ -1980,7 +1980,7 @@
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">mark_reference</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">hw_tick_count</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">mark_reference</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">hw_tick_count</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="comment">// Calculate the tick count</span>
         <span class="kw">let</span> <span class="ident">new_ref_tick_count</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">tick_count</span>(<span class="ident">cfg</span>, <span class="ident">hw_tick_count</span>);
 
@@ -2000,7 +2000,7 @@
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">tick_count_to_hw_tick_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">tick_count</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">tick_count_to_hw_tick_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">tick_count</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="macro">debug_assert_ne</span><span class="macro">!</span>(<span class="ident">tick_count</span>, <span class="self">self</span>.<span class="ident">ref_tick_count</span>);
 
         <span class="kw">let</span> <span class="ident">micros</span> <span class="op">=</span> <span class="ident">tick_count</span>.<span class="ident">wrapping_sub</span>(<span class="self">self</span>.<span class="ident">ref_tick_count</span>);
@@ -2026,7 +2026,7 @@
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">tick_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">hw_tick_count</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">tick_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">TicklessCfg</span>, <span class="ident">hw_tick_count</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="comment">// (hw_tick_count - (ref_hw_tick_count + ref_hw_subtick_count / division))</span>
         <span class="comment">//      / (hw_ticks_per_micro + hw_subticks_per_micro / division) + ref_tick_count</span>
         <span class="comment">//  = ((hw_tick_count - ref_hw_tick_count) * division - ref_hw_subtick_count)</span>
@@ -2188,7 +2188,7 @@
 
     <span class="doccomment">/// Choose some values from `x`. The returned values are sorted in an</span>
     <span class="doccomment">/// ascending order and always include the endpoints.</span>
-    <span class="kw">fn</span> <span class="ident">choose_values_from_range</span>(<span class="ident">x</span>: <span class="ident">std</span>::<span class="ident">ops</span>::<span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">u32</span><span class="op">&gt;&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">choose_values_from_range</span>(<span class="ident">x</span>: <span class="ident">std</span>::<span class="ident">ops</span>::<span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">u32</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="ident">x</span>.<span class="ident">end</span>() <span class="op">-</span> <span class="ident">x</span>.<span class="ident">start</span>() <span class="op">&lt;</span> <span class="number">10</span> {
             <span class="comment">// Return all values</span>
             <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">x</span>)
@@ -2206,14 +2206,14 @@
     }
 
     <span class="attribute">#[<span class="ident">track_caller</span>]</span>
-    <span class="kw">fn</span> <span class="ident">add_mod</span>(<span class="ident">x</span>: <span class="ident">u32</span>, <span class="ident">y</span>: <span class="ident">u32</span>, <span class="ident">modulus</span>: <span class="ident">u64</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">add_mod</span>(<span class="ident">x</span>: <span class="ident">u32</span>, <span class="ident">y</span>: <span class="ident">u32</span>, <span class="ident">modulus</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="macro">assert</span><span class="macro">!</span>((<span class="ident">x</span> <span class="kw">as</span> <span class="ident">u64</span>) <span class="op">&lt;</span> <span class="ident">modulus</span>);
         <span class="macro">assert</span><span class="macro">!</span>((<span class="ident">y</span> <span class="kw">as</span> <span class="ident">u64</span>) <span class="op">&lt;</span> <span class="ident">modulus</span>);
         ((<span class="ident">x</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">+</span> <span class="ident">y</span> <span class="kw">as</span> <span class="ident">u64</span>) <span class="op">%</span> <span class="ident">modulus</span>) <span class="kw">as</span> <span class="ident">u32</span>
     }
 
     <span class="attribute">#[<span class="ident">track_caller</span>]</span>
-    <span class="kw">fn</span> <span class="ident">sub_mod</span>(<span class="ident">x</span>: <span class="ident">u32</span>, <span class="ident">y</span>: <span class="ident">u32</span>, <span class="ident">modulus</span>: <span class="ident">u64</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">sub_mod</span>(<span class="ident">x</span>: <span class="ident">u32</span>, <span class="ident">y</span>: <span class="ident">u32</span>, <span class="ident">modulus</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="macro">assert</span><span class="macro">!</span>((<span class="ident">x</span> <span class="kw">as</span> <span class="ident">u64</span>) <span class="op">&lt;</span> <span class="ident">modulus</span>);
         <span class="macro">assert</span><span class="macro">!</span>((<span class="ident">y</span> <span class="kw">as</span> <span class="ident">u64</span>) <span class="op">&lt;</span> <span class="ident">modulus</span>);
         <span class="kw">if</span> <span class="ident">x</span> <span class="op">&lt;</span> <span class="ident">y</span> {
@@ -2241,8 +2241,8 @@
                 <span class="ident">force_full_hw_period</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">force_full_hw_period</span>,
                 <span class="ident">resettable</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">resettable</span>,
             }) {
-                <span class="prelude-val">Ok</span>(<span class="ident">x</span>) <span class="op">=&gt;</span> <span class="ident">x</span>,
-                <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=&gt;</span> <span class="ident">e</span>.<span class="ident">panic</span>(),
+                <span class="prelude-val">Ok</span>(<span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">x</span>,
+                <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">e</span>.<span class="ident">panic</span>(),
             };
             <span class="kw">const</span> <span class="ident">MAX_TIMEOUT</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">CFG</span>.<span class="ident">max_timeout</span>();
             <span class="kw">const</span> <span class="ident">HW_PERIOD</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="ident">CFG</span>.<span class="ident">hw_max_tick_count</span>() <span class="kw">as</span> <span class="ident">u64</span> <span class="op">+</span> <span class="number">1</span>;
@@ -2265,7 +2265,7 @@
                     <span class="comment">// The current implement chooses the stateful algorithm</span>
                     <span class="comment">// (`hw_max_tick_count == u32::MAX`) when `resettable` is</span>
                     <span class="comment">// set</span>
-                    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">hw_tick_count</span> <span class="op">&lt;=</span> <span class="ident">CFG</span>.<span class="ident">hw_max_tick_count</span>());
+                    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">hw_tick_count</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">CFG</span>.<span class="ident">hw_max_tick_count</span>());
 
                     <span class="ident">state</span>.<span class="ident">reset</span>(<span class="kw-2">&amp;</span><span class="ident">CFG</span>, <span class="ident">hw_tick_count</span>);
                 }
@@ -2286,7 +2286,7 @@
                     <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">state</span>.<span class="ident">tick_count</span>(<span class="kw-2">&amp;</span><span class="ident">CFG</span>, <span class="ident">hw_tick_count</span>), <span class="ident">start_tick_count</span>);
 
                     <span class="comment">// How many HW ticks does it take to wait for `op.timeout`?</span>
-                    <span class="kw">let</span> <span class="ident">end_hw_tick_count</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">op</span>.<span class="ident">timeout</span> <span class="op">==</span> <span class="number">0</span> {
+                    <span class="kw">let</span> <span class="ident">end_hw_tick_count</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">op</span>.<span class="ident">timeout</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
                         <span class="ident">hw_tick_count</span>
                     } <span class="kw">else</span> {
                         <span class="kw">let</span> <span class="ident">end_tick_count</span> <span class="op">=</span> <span class="ident">add_mod</span>(<span class="ident">start_tick_count</span>, <span class="ident">op</span>.<span class="ident">timeout</span>, <span class="ident">PERIOD</span>);
@@ -2299,7 +2299,7 @@
                     <span class="comment">// The two results must be congruent. Skip this if `op.timeout</span>
                     <span class="comment">// == 0`, in which case `mark_reference_and_measure` should</span>
                     <span class="comment">// not be used.</span>
-                    <span class="kw">if</span> <span class="ident">op</span>.<span class="ident">timeout</span> <span class="op">!=</span> <span class="number">0</span> {
+                    <span class="kw">if</span> <span class="ident">op</span>.<span class="ident">timeout</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
                         <span class="kw">let</span> <span class="ident">measurement</span> <span class="op">=</span>
                             <span class="ident">state2</span>.<span class="ident">mark_reference_and_measure</span>(<span class="kw-2">&amp;</span><span class="ident">CFG</span>, <span class="ident">hw_tick_count</span>, <span class="ident">op</span>.<span class="ident">timeout</span>);
 
@@ -2315,7 +2315,7 @@
 
                     <span class="comment">// Extend the timeout by an interrupt latency</span>
                     <span class="kw">let</span> <span class="ident">late_len_hw_tick_count</span> <span class="op">=</span> <span class="ident">len_hw_tick_count</span> <span class="op">+</span> <span class="ident">op</span>.<span class="ident">latency</span>;
-                    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">late_len_hw_tick_count</span> <span class="op">&lt;=</span> <span class="ident">CFG</span>.<span class="ident">hw_max_tick_count</span>());
+                    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">late_len_hw_tick_count</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">CFG</span>.<span class="ident">hw_max_tick_count</span>());
 
                     <span class="ident">log</span>::<span class="macro">trace</span><span class="macro">!</span>(<span class="string">&quot;    Will wait for {} HW ticks&quot;</span>, <span class="ident">late_len_hw_tick_count</span>);
 
@@ -2333,7 +2333,7 @@
 
                         <span class="kw">let</span> <span class="ident">hw_tick_count</span> <span class="op">=</span> <span class="ident">add_mod</span>(<span class="ident">hw_tick_count</span>, <span class="ident">hw_elapsed</span>, <span class="ident">HW_PERIOD</span>);
                         <span class="kw">let</span> <span class="ident">tick_count</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">tick_count</span>(<span class="kw-2">&amp;</span><span class="ident">CFG</span>, <span class="ident">hw_tick_count</span>);
-                        <span class="ident">elapsed</span> <span class="op">+=</span> <span class="ident">sub_mod</span>(<span class="ident">tick_count</span>, <span class="ident">last_tick_count</span>, <span class="ident">PERIOD</span>);
+                        <span class="ident">elapsed</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sub_mod</span>(<span class="ident">tick_count</span>, <span class="ident">last_tick_count</span>, <span class="ident">PERIOD</span>);
                         <span class="ident">last_tick_count</span> <span class="op">=</span> <span class="ident">tick_count</span>;
 
                         <span class="ident">log</span>::<span class="macro">trace</span><span class="macro">!</span>(
@@ -2346,7 +2346,7 @@
                         <span class="comment">// The OS tick count shouldn&#39;t increase more than</span>
                         <span class="comment">// `CFG.max_tick_count()` between timer interrupts or</span>
                         <span class="comment">// the kernel would lose track of time</span>
-                        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">elapsed</span> <span class="op">&lt;=</span> <span class="ident">CFG</span>.<span class="ident">max_tick_count</span>());
+                        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">elapsed</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">CFG</span>.<span class="ident">max_tick_count</span>());
 
                         <span class="kw">if</span> <span class="ident">hw_elapsed</span> <span class="op">&lt;</span> <span class="ident">len_hw_tick_count</span> {
                             <span class="comment">// `len_hw_tick_count` must be the minimum amount</span>
@@ -2356,7 +2356,7 @@
                     }
 
                     <span class="comment">// Must wait at least for the specified duration</span>
-                    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">elapsed</span> <span class="op">&gt;=</span> <span class="ident">op</span>.<span class="ident">timeout</span>);
+                    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">elapsed</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">op</span>.<span class="ident">timeout</span>);
 
                     <span class="ident">hw_tick_count</span> <span class="op">=</span> <span class="ident">add_mod</span>(<span class="ident">hw_tick_count</span>, <span class="ident">late_len_hw_tick_count</span>, <span class="ident">HW_PERIOD</span>);
                 }

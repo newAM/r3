@@ -31,7 +31,7 @@
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">reg</span> {
     (
         <span class="macro-nonterminal">$</span><span class="macro-nonterminal">addr</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">csr</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">readf</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">writef</span>:<span class="ident">ident</span>
-    ) <span class="op">=&gt;</span> {
+    ) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="doccomment">/// Physical memory protection address register</span>
         <span class="kw">pub</span> <span class="kw">mod</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">csr</span> {
             <span class="macro">read_csr_as_usize</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">addr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">readf</span>);

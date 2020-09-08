@@ -2586,7 +2586,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;adc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">ADC</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">adc</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">adc</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_5800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -2594,7 +2594,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;adc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">ADC</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">adc</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">adc</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">adc</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">ADC</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -2615,7 +2615,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bsc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">BSC</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">bsc</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">bsc</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0x3fff_c000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -2623,7 +2623,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bsc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">BSC</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">bsc</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">bsc</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">bsc</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">BSC</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -2644,7 +2644,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ceu&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">CEU</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ceu</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ceu</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe821_0000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -2652,7 +2652,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ceu&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">CEU</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">ceu</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ceu</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ceu</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">CEU</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -2673,7 +2673,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cpg&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">CPG</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">cpg</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">cpg</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcfe_0010</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -2681,7 +2681,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cpg&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">CPG</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">cpg</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">cpg</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">cpg</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">CPG</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -2702,7 +2702,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;disc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">DISC0</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">disc0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">disc0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcff_a800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -2710,7 +2710,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;disc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">DISC0</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">disc0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">disc0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">disc0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">DISC0</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -2731,7 +2731,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;disc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">DISC1</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">disc0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">disc0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcff_b000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -2739,7 +2739,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;disc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">DISC1</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">disc0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">disc0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">disc0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">DISC1</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -2756,7 +2756,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dmac&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">DMAC</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">dmac</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">dmac</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe820_0000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -2764,7 +2764,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dmac&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">DMAC</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">dmac</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dmac</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dmac</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">DMAC</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -2785,7 +2785,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dvdec&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">DVDEC1</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">dvdec1</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">dvdec1</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcff_a008</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -2793,7 +2793,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dvdec&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">DVDEC1</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">dvdec1</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dvdec1</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dvdec1</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">DVDEC1</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -2814,7 +2814,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dvdec&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">DVDEC0</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">dvdec1</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">dvdec1</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcff_b808</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -2822,7 +2822,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dvdec&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">DVDEC0</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">dvdec1</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dvdec1</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dvdec1</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">DVDEC0</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -2839,7 +2839,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ether&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">ETHER</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ether</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ether</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe820_3000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -2847,7 +2847,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ether&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">ETHER</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">ether</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ether</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ether</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">ETHER</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -2868,7 +2868,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;flctl&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">FLCTL</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">flctl</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">flctl</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcff_4000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -2876,7 +2876,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;flctl&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">FLCTL</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">flctl</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">flctl</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">flctl</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">FLCTL</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -2897,7 +2897,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gpio&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">GPIO</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gpio</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gpio</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcfe_3004</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -2905,7 +2905,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gpio&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">GPIO</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">gpio</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">gpio</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">gpio</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">GPIO</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -2926,7 +2926,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ieb&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">IEB</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ieb</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ieb</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcfe_f000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -2934,7 +2934,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ieb&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">IEB</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">ieb</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ieb</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ieb</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">IEB</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -2955,7 +2955,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inb&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">INB</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">inb</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">inb</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcfe_1a00</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -2963,7 +2963,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inb&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">INB</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">inb</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">inb</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">inb</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">INB</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -2984,7 +2984,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;intc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">INTC</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">intc</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">intc</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe820_1000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -2992,7 +2992,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;intc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">INTC</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">intc</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">intc</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">intc</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">INTC</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3013,7 +3013,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;irda&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">IRDA</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">irda</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">irda</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe801_4000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3021,7 +3021,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;irda&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">IRDA</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">irda</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">irda</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">irda</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">IRDA</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3042,7 +3042,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;jcu&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">JCU</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">jcu</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">jcu</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe801_7000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3050,7 +3050,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;jcu&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">JCU</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">jcu</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">jcu</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">jcu</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">JCU</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3071,7 +3071,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;l2c&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">L2C</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">l2c</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">l2c</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0x3fff_f000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3079,7 +3079,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;l2c&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">L2C</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">l2c</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">l2c</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">l2c</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">L2C</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3100,7 +3100,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;lin&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">LIN0</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">lin0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">lin0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcfe_9000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3108,7 +3108,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;lin&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">LIN0</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">lin0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">lin0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">lin0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">LIN0</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3129,7 +3129,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;lin&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">LIN1</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">lin0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">lin0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcfe_9800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3137,7 +3137,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;lin&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">LIN1</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">lin0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">lin0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">lin0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">LIN1</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3154,7 +3154,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;lvds&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">LVDS</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">lvds</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">lvds</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcff_7a30</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3162,7 +3162,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;lvds&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">LVDS</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">lvds</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">lvds</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">lvds</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">LVDS</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3183,7 +3183,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mlb&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">MLB</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">mlb</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">mlb</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe803_4000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3191,7 +3191,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mlb&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">MLB</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">mlb</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">mlb</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">mlb</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">MLB</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3212,7 +3212,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mmc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">MMC</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">mmc</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">mmc</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe804_c800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3220,7 +3220,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mmc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">MMC</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">mmc</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">mmc</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">mmc</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">MMC</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3241,7 +3241,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mtu2&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">MTU2</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">mtu2</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">mtu2</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcff_0000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3249,7 +3249,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mtu2&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">MTU2</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">mtu2</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">mtu2</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">mtu2</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">MTU2</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3270,7 +3270,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ostm&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">OSTM0</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ostm0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ostm0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcfe_c000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3278,7 +3278,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ostm&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">OSTM0</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">ostm0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ostm0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ostm0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">OSTM0</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3299,7 +3299,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ostm&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">OSTM1</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ostm0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ostm0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcfe_c400</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3307,7 +3307,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ostm&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">OSTM1</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">ostm0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ostm0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ostm0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">OSTM1</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3324,7 +3324,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;pfv&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">PFV0</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">pfv0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">pfv0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe820_5000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3332,7 +3332,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;pfv&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">PFV0</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">pfv0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">pfv0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">pfv0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">PFV0</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3353,7 +3353,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;pfv&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">PFV1</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">pfv0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">pfv0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe820_5800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3361,7 +3361,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;pfv&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">PFV1</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">pfv0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">pfv0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">pfv0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">PFV1</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3378,7 +3378,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;pwm&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">PWM</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">pwm</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">pwm</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcff_5004</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3386,7 +3386,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;pwm&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">PWM</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">pwm</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">pwm</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">pwm</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">PWM</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3407,7 +3407,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;riic&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">RIIC0</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">riic0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">riic0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcfe_e000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3415,7 +3415,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;riic&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">RIIC0</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">riic0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">riic0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">riic0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">RIIC0</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3436,7 +3436,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;riic&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">RIIC1</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">riic0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">riic0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcfe_e400</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3444,7 +3444,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;riic&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">RIIC1</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">riic0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">riic0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">riic0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">RIIC1</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3461,7 +3461,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;riic&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">RIIC2</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">riic0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">riic0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcfe_e800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3469,7 +3469,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;riic&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">RIIC2</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">riic0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">riic0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">riic0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">RIIC2</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3486,7 +3486,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;riic&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">RIIC3</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">riic0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">riic0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcfe_ec00</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3494,7 +3494,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;riic&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">RIIC3</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">riic0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">riic0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">riic0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">RIIC3</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3511,7 +3511,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;romdec&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">ROMDEC</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">romdec</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">romdec</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_5000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3519,7 +3519,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;romdec&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">ROMDEC</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">romdec</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">romdec</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">romdec</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">ROMDEC</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3540,7 +3540,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rscan&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">RSCAN0</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">rscan0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">rscan0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe803_a000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3548,7 +3548,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rscan&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">RSCAN0</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">rscan0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">rscan0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">rscan0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">RSCAN0</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3569,7 +3569,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rspi&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">RSPI0</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_c800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3577,7 +3577,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rspi&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">RSPI0</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">RSPI0</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3598,7 +3598,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rspi&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">RSPI1</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_d000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3606,7 +3606,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rspi&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">RSPI1</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">RSPI1</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3623,7 +3623,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rspi&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">RSPI2</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_d800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3631,7 +3631,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rspi&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">RSPI2</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">RSPI2</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3648,7 +3648,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rspi&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">RSPI3</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_e000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3656,7 +3656,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rspi&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">RSPI3</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">RSPI3</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3673,7 +3673,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rspi&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">RSPI4</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_e800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3681,7 +3681,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rspi&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">RSPI4</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">rspi0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">RSPI4</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3698,7 +3698,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rtc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">RTC</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">rtc</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">rtc</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcff_1000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3706,7 +3706,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rtc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">RTC</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">rtc</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">rtc</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">rtc</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">RTC</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3727,7 +3727,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SCIF0</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_7000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3735,7 +3735,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SCIF0</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SCIF0</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3756,7 +3756,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SCIF1</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_7800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3764,7 +3764,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SCIF1</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SCIF1</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3781,7 +3781,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SCIF2</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_8000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3789,7 +3789,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SCIF2</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SCIF2</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3806,7 +3806,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SCIF3</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_8800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3814,7 +3814,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SCIF3</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SCIF3</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3831,7 +3831,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SCIF4</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_9000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3839,7 +3839,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SCIF4</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SCIF4</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3856,7 +3856,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SCIF5</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_9800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3864,7 +3864,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SCIF5</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SCIF5</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3881,7 +3881,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SCIF6</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_a000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3889,7 +3889,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SCIF6</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SCIF6</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3906,7 +3906,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SCIF7</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_a800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3914,7 +3914,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SCIF7</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">scif0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SCIF7</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3931,7 +3931,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scim&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SCIM0</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scim0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scim0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_b000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3939,7 +3939,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scim&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SCIM0</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">scim0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scim0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scim0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SCIM0</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3960,7 +3960,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scim&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SCIM1</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scim0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scim0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe800_b800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3968,7 +3968,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scim&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SCIM1</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">scim0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scim0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scim0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SCIM1</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -3985,7 +3985,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scux&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SCUX</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scux</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">scux</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe820_8000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -3993,7 +3993,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;scux&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SCUX</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">scux</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scux</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">scux</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SCUX</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4014,7 +4014,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sdg&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SDG0</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcff_4800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4022,7 +4022,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sdg&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SDG0</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SDG0</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4043,7 +4043,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sdg&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SDG1</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcff_4a00</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4051,7 +4051,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sdg&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SDG1</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SDG1</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4068,7 +4068,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sdg&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SDG2</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcff_4c00</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4076,7 +4076,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sdg&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SDG2</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SDG2</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4093,7 +4093,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sdg&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SDG3</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcff_4e00</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4101,7 +4101,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sdg&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SDG3</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">sdg0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SDG3</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4118,7 +4118,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;spdif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SPDIF</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">spdif</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">spdif</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe801_2000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4126,7 +4126,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;spdif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SPDIF</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">spdif</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">spdif</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">spdif</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SPDIF</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4147,7 +4147,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;spibsc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SPIBSC0</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">spibsc0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">spibsc0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0x3fef_a000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4155,7 +4155,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;spibsc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SPIBSC0</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">spibsc0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">spibsc0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">spibsc0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SPIBSC0</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4176,7 +4176,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;spibsc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SPIBSC1</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">spibsc0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">spibsc0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0x3fef_b000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4184,7 +4184,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;spibsc&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SPIBSC1</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">spibsc0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">spibsc0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">spibsc0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SPIBSC1</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4201,7 +4201,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ssif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SSIF0</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe820_b000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4209,7 +4209,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ssif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SSIF0</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SSIF0</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4230,7 +4230,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ssif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SSIF1</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe820_b800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4238,7 +4238,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ssif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SSIF1</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SSIF1</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4255,7 +4255,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ssif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SSIF2</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe820_c000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4263,7 +4263,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ssif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SSIF2</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SSIF2</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4280,7 +4280,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ssif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SSIF3</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe820_c800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4288,7 +4288,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ssif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SSIF3</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SSIF3</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4305,7 +4305,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ssif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SSIF4</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe820_d000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4313,7 +4313,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ssif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SSIF4</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SSIF4</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4330,7 +4330,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ssif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">SSIF5</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe820_d800</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4338,7 +4338,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ssif&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SSIF5</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ssif0</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SSIF5</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4355,7 +4355,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;usb20&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">USB200</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">usb200</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">usb200</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe801_0000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4363,7 +4363,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;usb20&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">USB200</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">usb200</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">usb200</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">usb200</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">USB200</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4384,7 +4384,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;usb20&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">USB201</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">usb200</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">usb200</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xe820_7000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4392,7 +4392,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;usb20&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">USB201</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">usb200</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">usb200</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">usb200</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">USB201</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4409,7 +4409,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;vdc5&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">VDC50</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">vdc50</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">vdc50</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcff_7400</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4417,7 +4417,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;vdc5&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">VDC50</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">vdc50</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">vdc50</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">vdc50</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">VDC50</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4438,7 +4438,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;vdc5&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">VDC51</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">vdc50</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">vdc50</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcff_9400</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4446,7 +4446,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;vdc5&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">VDC51</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">vdc50</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">vdc50</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">vdc50</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">VDC51</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4463,7 +4463,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wdt&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">WDT</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Returns a pointer to the register block&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">wdt</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">wdt</span>::<span class="ident">RegisterBlock</span> {
         <span class="number">0xfcfe_0000</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>
     }
 }
@@ -4471,7 +4471,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wdt&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">WDT</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">wdt</span>::<span class="ident">RegisterBlock</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">wdt</span>::<span class="ident">RegisterBlock</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">wdt</span>::<span class="ident">RegisterBlock</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">WDT</span>::<span class="ident">ptr</span>() }
     }
 }
@@ -4769,7 +4769,7 @@
 }
 <span class="kw">impl</span> <span class="ident">Peripherals</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">r&quot; Unchecked version of `Peripherals::take`&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">steal</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">steal</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">DEVICE_PERIPHERALS</span>);
         <span class="ident">DEVICE_PERIPHERALS</span> <span class="op">=</span> <span class="bool-val">true</span>;
         <span class="ident">Peripherals</span> {

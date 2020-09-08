@@ -5,26 +5,26 @@
         @<span class="ident">internal</span>,
         <span class="ident">unprocessed</span>: [{ , $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">unprocessed</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">code</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">code</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
-    ) <span class="op">=&gt;</span> { ... };
+    ) <span class="op">=</span><span class="op">&gt;</span> { ... };
     (
         @<span class="ident">internal</span>,
         <span class="ident">unprocessed</span>: [{}],
         <span class="ident">code</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">code</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
-    ) <span class="op">=&gt;</span> { ... };
+    ) <span class="op">=</span><span class="op">&gt;</span> { ... };
     (
         @<span class="ident">internal</span>,
         <span class="ident">unprocessed</span>: [{ <span class="macro-nonterminal">$</span><span class="macro-nonterminal">fragment</span>:<span class="ident">tt</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">unprocessed</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">code</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">code</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
-    ) <span class="op">=&gt;</span> { ... };
+    ) <span class="op">=</span><span class="op">&gt;</span> { ... };
     (
         @<span class="ident">done</span>,
         <span class="ident">unprocessed</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">unprocessed</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">code</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">code</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
-    ) <span class="op">=&gt;</span> { ... };
+    ) <span class="op">=</span><span class="op">&gt;</span> { ... };
     (
         <span class="comment">// TODO: remove `$l:lit`</span>
         <span class="macro-nonterminal">$</span><span class="macro-nonterminal">l</span>:<span class="ident">literal</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span>
-    ) <span class="op">=&gt;</span> { ... };
+    ) <span class="op">=</span><span class="op">&gt;</span> { ... };
 }</pre></div>
 </div><div class='docblock'><p>Preprocessed <code>asm!</code>.</p>
 <h1 id="examples" class="section-header"><a href="#examples">Examples</a></h1>

@@ -275,7 +275,7 @@
     <span class="doccomment">///  - The processor should be in M-mode and have M-mode interrupts masked.</span>
     <span class="doccomment">///  - This method hasn&#39;t been entered yet.</span>
     <span class="doccomment">///</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">start</span>() <span class="op">-&gt;</span> <span class="op">!</span>;
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">start</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="op">!</span>;
 
     <span class="doccomment">/// The trap handler.</span>
     <span class="doccomment">///</span>
@@ -285,7 +285,7 @@
     <span class="doccomment">///  - The register state of the background context should be preserved so</span>
     <span class="doccomment">///    that the handler can restore it later.</span>
     <span class="doccomment">///</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">exception_handler</span>() <span class="op">-&gt;</span> <span class="op">!</span>;
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">exception_handler</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="op">!</span>;
 }
 
 <span class="doccomment">/// An abstract inferface to a port timer driver. Implemented by</span>
@@ -333,7 +333,7 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">set_interrupt_line_priority</span>(
         <span class="ident">_line</span>: <span class="ident">InterruptNum</span>,
         <span class="ident">_priority</span>: <span class="ident">InterruptPriority</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">SetInterruptLinePriorityError</span><span class="op">&gt;</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">SetInterruptLinePriorityError</span><span class="op">&gt;</span> {
         <span class="prelude-val">Err</span>(<span class="ident">SetInterruptLinePriorityError</span>::<span class="ident">BadParam</span>)
     }
 
@@ -344,7 +344,7 @@
     <span class="doccomment">/// [`INTERRUPT_PLATFORM_START`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`PortInterrupts::enable_interrupt_line`]: constance::kernel::PortInterrupts::enable_interrupt_line</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">enable_interrupt_line</span>(<span class="ident">_line</span>: <span class="ident">InterruptNum</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">EnableInterruptLineError</span><span class="op">&gt;</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">enable_interrupt_line</span>(<span class="ident">_line</span>: <span class="ident">InterruptNum</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">EnableInterruptLineError</span><span class="op">&gt;</span> {
         <span class="prelude-val">Err</span>(<span class="ident">EnableInterruptLineError</span>::<span class="ident">BadParam</span>)
     }
 
@@ -355,7 +355,7 @@
     <span class="doccomment">/// [`INTERRUPT_PLATFORM_START`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`PortInterrupts::disable_interrupt_line`]: constance::kernel::PortInterrupts::disable_interrupt_line</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">disable_interrupt_line</span>(<span class="ident">_line</span>: <span class="ident">InterruptNum</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">EnableInterruptLineError</span><span class="op">&gt;</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">disable_interrupt_line</span>(<span class="ident">_line</span>: <span class="ident">InterruptNum</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">EnableInterruptLineError</span><span class="op">&gt;</span> {
         <span class="prelude-val">Err</span>(<span class="ident">EnableInterruptLineError</span>::<span class="ident">BadParam</span>)
     }
 
@@ -366,7 +366,7 @@
     <span class="doccomment">/// [`INTERRUPT_PLATFORM_START`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`PortInterrupts::pend_interrupt_line`]: constance::kernel::PortInterrupts::pend_interrupt_line</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">pend_interrupt_line</span>(<span class="ident">_line</span>: <span class="ident">InterruptNum</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">PendInterruptLineError</span><span class="op">&gt;</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">pend_interrupt_line</span>(<span class="ident">_line</span>: <span class="ident">InterruptNum</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">PendInterruptLineError</span><span class="op">&gt;</span> {
         <span class="prelude-val">Err</span>(<span class="ident">PendInterruptLineError</span>::<span class="ident">BadParam</span>)
     }
 
@@ -377,7 +377,7 @@
     <span class="doccomment">/// [`INTERRUPT_PLATFORM_START`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`PortInterrupts::clear_interrupt_line`]: constance::kernel::PortInterrupts::clear_interrupt_line</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">clear_interrupt_line</span>(<span class="ident">_line</span>: <span class="ident">InterruptNum</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">ClearInterruptLineError</span><span class="op">&gt;</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">clear_interrupt_line</span>(<span class="ident">_line</span>: <span class="ident">InterruptNum</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">ClearInterruptLineError</span><span class="op">&gt;</span> {
         <span class="prelude-val">Err</span>(<span class="ident">ClearInterruptLineError</span>::<span class="ident">BadParam</span>)
     }
 
@@ -390,7 +390,7 @@
     <span class="doccomment">/// [`PortInterrupts::is_interrupt_line_pending`]: constance::kernel::PortInterrupts::is_interrupt_line_pending</span>
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">is_interrupt_line_pending</span>(
         <span class="ident">_line</span>: <span class="ident">InterruptNum</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">QueryInterruptLineError</span><span class="op">&gt;</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">QueryInterruptLineError</span><span class="op">&gt;</span> {
         <span class="prelude-val">Err</span>(<span class="ident">QueryInterruptLineError</span>::<span class="ident">BadParam</span>)
     }
 }

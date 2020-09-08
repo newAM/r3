@@ -160,16 +160,16 @@
 }
 
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">implement</span> {
-    ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">command</span>:<span class="ident">ident</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">position</span>:<span class="ident">ident</span>) <span class="op">=&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">letter</span>:<span class="ident">expr</span>,)<span class="kw-2">*</span>) <span class="op">=&gt;</span> (
+    ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">command</span>:<span class="ident">ident</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">position</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">letter</span>:<span class="ident">expr</span>,)<span class="kw-2">*</span>) <span class="op">=</span><span class="op">&gt;</span> (
         <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Command</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">String</span> {
-            <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">command</span>: <span class="ident">Command</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+            <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">command</span>: <span class="ident">Command</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
                 <span class="kw">use</span> <span class="self">self</span>::<span class="ident">Command</span>::<span class="kw-2">*</span>;
                 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">Position</span>::<span class="kw-2">*</span>;
                 <span class="kw">match</span> <span class="ident">command</span> {
-                    $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">command</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">position</span>, <span class="ident">parameters</span>) <span class="op">=&gt;</span> {
+                    $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">command</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">position</span>, <span class="ident">parameters</span>) <span class="op">=</span><span class="op">&gt;</span> {
                         <span class="macro">format</span><span class="macro">!</span>(<span class="macro">concat</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">letter</span>, <span class="string">&quot;{}&quot;</span>), <span class="ident">String</span>::<span class="ident">from</span>(<span class="ident">parameters</span>))
                     })<span class="op">*</span>
-                    <span class="ident">Close</span> <span class="op">=&gt;</span> <span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;z&quot;</span>),
+                    <span class="ident">Close</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;z&quot;</span>),
                 }
             }
         }
@@ -177,24 +177,24 @@
 }
 
 <span class="macro">implement</span><span class="macro">!</span> {
-    <span class="ident">Move</span>(<span class="ident">Absolute</span>) <span class="op">=&gt;</span> <span class="string">&quot;M&quot;</span>,
-    <span class="ident">Move</span>(<span class="ident">Relative</span>) <span class="op">=&gt;</span> <span class="string">&quot;m&quot;</span>,
-    <span class="ident">Line</span>(<span class="ident">Absolute</span>) <span class="op">=&gt;</span> <span class="string">&quot;L&quot;</span>,
-    <span class="ident">Line</span>(<span class="ident">Relative</span>) <span class="op">=&gt;</span> <span class="string">&quot;l&quot;</span>,
-    <span class="ident">HorizontalLine</span>(<span class="ident">Absolute</span>) <span class="op">=&gt;</span> <span class="string">&quot;H&quot;</span>,
-    <span class="ident">HorizontalLine</span>(<span class="ident">Relative</span>) <span class="op">=&gt;</span> <span class="string">&quot;h&quot;</span>,
-    <span class="ident">VerticalLine</span>(<span class="ident">Absolute</span>) <span class="op">=&gt;</span> <span class="string">&quot;V&quot;</span>,
-    <span class="ident">VerticalLine</span>(<span class="ident">Relative</span>) <span class="op">=&gt;</span> <span class="string">&quot;v&quot;</span>,
-    <span class="ident">QuadraticCurve</span>(<span class="ident">Absolute</span>) <span class="op">=&gt;</span> <span class="string">&quot;Q&quot;</span>,
-    <span class="ident">QuadraticCurve</span>(<span class="ident">Relative</span>) <span class="op">=&gt;</span> <span class="string">&quot;q&quot;</span>,
-    <span class="ident">SmoothQuadraticCurve</span>(<span class="ident">Absolute</span>) <span class="op">=&gt;</span> <span class="string">&quot;T&quot;</span>,
-    <span class="ident">SmoothQuadraticCurve</span>(<span class="ident">Relative</span>) <span class="op">=&gt;</span> <span class="string">&quot;t&quot;</span>,
-    <span class="ident">CubicCurve</span>(<span class="ident">Absolute</span>) <span class="op">=&gt;</span> <span class="string">&quot;C&quot;</span>,
-    <span class="ident">CubicCurve</span>(<span class="ident">Relative</span>) <span class="op">=&gt;</span> <span class="string">&quot;c&quot;</span>,
-    <span class="ident">SmoothCubicCurve</span>(<span class="ident">Absolute</span>) <span class="op">=&gt;</span> <span class="string">&quot;S&quot;</span>,
-    <span class="ident">SmoothCubicCurve</span>(<span class="ident">Relative</span>) <span class="op">=&gt;</span> <span class="string">&quot;s&quot;</span>,
-    <span class="ident">EllipticalArc</span>(<span class="ident">Absolute</span>) <span class="op">=&gt;</span> <span class="string">&quot;A&quot;</span>,
-    <span class="ident">EllipticalArc</span>(<span class="ident">Relative</span>) <span class="op">=&gt;</span> <span class="string">&quot;a&quot;</span>,
+    <span class="ident">Move</span>(<span class="ident">Absolute</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;M&quot;</span>,
+    <span class="ident">Move</span>(<span class="ident">Relative</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;m&quot;</span>,
+    <span class="ident">Line</span>(<span class="ident">Absolute</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;L&quot;</span>,
+    <span class="ident">Line</span>(<span class="ident">Relative</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;l&quot;</span>,
+    <span class="ident">HorizontalLine</span>(<span class="ident">Absolute</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;H&quot;</span>,
+    <span class="ident">HorizontalLine</span>(<span class="ident">Relative</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;h&quot;</span>,
+    <span class="ident">VerticalLine</span>(<span class="ident">Absolute</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;V&quot;</span>,
+    <span class="ident">VerticalLine</span>(<span class="ident">Relative</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;v&quot;</span>,
+    <span class="ident">QuadraticCurve</span>(<span class="ident">Absolute</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Q&quot;</span>,
+    <span class="ident">QuadraticCurve</span>(<span class="ident">Relative</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;q&quot;</span>,
+    <span class="ident">SmoothQuadraticCurve</span>(<span class="ident">Absolute</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;T&quot;</span>,
+    <span class="ident">SmoothQuadraticCurve</span>(<span class="ident">Relative</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;t&quot;</span>,
+    <span class="ident">CubicCurve</span>(<span class="ident">Absolute</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;C&quot;</span>,
+    <span class="ident">CubicCurve</span>(<span class="ident">Relative</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;c&quot;</span>,
+    <span class="ident">SmoothCubicCurve</span>(<span class="ident">Absolute</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;S&quot;</span>,
+    <span class="ident">SmoothCubicCurve</span>(<span class="ident">Relative</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;s&quot;</span>,
+    <span class="ident">EllipticalArc</span>(<span class="ident">Absolute</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;A&quot;</span>,
+    <span class="ident">EllipticalArc</span>(<span class="ident">Relative</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;a&quot;</span>,
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../../../";window.currentCrate = "svg";</script><script src="../../../../../main.js"></script><script src="../../../../../source-script.js"></script><script src="../../../../../source-files.js"></script><script defer src="../../../../../search-index.js"></script></body></html>

@@ -247,183 +247,183 @@
 }
 
 <span class="kw">impl</span> <span class="ident">LocBlock</span> {
-    <span class="kw">fn</span> <span class="ident">text_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">fn</span> <span class="ident">text_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         <span class="self">self</span>.<span class="ident">settings</span>.<span class="ident">text_width</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">text_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">fn</span> <span class="ident">text_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         <span class="self">self</span>.<span class="ident">settings</span>.<span class="ident">text_height</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">loc_x</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">fn</span> <span class="ident">loc_x</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         <span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f32</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">loc_y</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">fn</span> <span class="ident">loc_y</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         <span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f32</span>
     }
 
     <span class="doccomment">/// 1 unit in x dimension is 1/4 of the textwidth</span>
     <span class="doccomment">/// used in calculating the radius, adjustments</span>
     <span class="doccomment">/// in the Fragment PointBlock</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unit_x</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unit_x</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         <span class="self">self</span>.<span class="ident">text_width</span>() <span class="op">*</span> <span class="number">1.0</span> <span class="op">/</span> <span class="number">4.0</span>
     }
 
     <span class="doccomment">/// 1 unit along y dimension is 1/4 of the textwidth</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">unit_y</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">fn</span> <span class="ident">unit_y</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         <span class="self">self</span>.<span class="ident">text_height</span>() <span class="op">*</span> <span class="number">1.0</span> <span class="op">/</span> <span class="number">4.0</span>
     }
 
     <span class="doccomment">/// x coordinate on increment of 1/4 of text width</span>
-    <span class="kw">fn</span> <span class="ident">x0</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">fn</span> <span class="ident">x0</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         <span class="self">self</span>.<span class="ident">loc_x</span>() <span class="op">*</span> <span class="self">self</span>.<span class="ident">text_width</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">x1</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">fn</span> <span class="ident">x1</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         (<span class="self">self</span>.<span class="ident">loc_x</span>() <span class="op">+</span> <span class="number">1.0</span> <span class="op">/</span> <span class="number">4.0</span>) <span class="op">*</span> <span class="self">self</span>.<span class="ident">text_width</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">x2</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">fn</span> <span class="ident">x2</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         (<span class="self">self</span>.<span class="ident">loc_x</span>() <span class="op">+</span> <span class="number">1.0</span> <span class="op">/</span> <span class="number">2.0</span>) <span class="op">*</span> <span class="self">self</span>.<span class="ident">text_width</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">x3</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">fn</span> <span class="ident">x3</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         (<span class="self">self</span>.<span class="ident">loc_x</span>() <span class="op">+</span> <span class="number">3.0</span> <span class="op">/</span> <span class="number">4.0</span>) <span class="op">*</span> <span class="self">self</span>.<span class="ident">text_width</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">x4</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">fn</span> <span class="ident">x4</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         (<span class="self">self</span>.<span class="ident">loc_x</span>() <span class="op">+</span> <span class="number">1.0</span>) <span class="op">*</span> <span class="self">self</span>.<span class="ident">text_width</span>()
     }
 
     <span class="doccomment">/// y coordinate on increment of 1/4 of text_height</span>
-    <span class="kw">fn</span> <span class="ident">y0</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">fn</span> <span class="ident">y0</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         <span class="self">self</span>.<span class="ident">loc_y</span>() <span class="op">*</span> <span class="self">self</span>.<span class="ident">text_height</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">y1</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">fn</span> <span class="ident">y1</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         (<span class="self">self</span>.<span class="ident">loc_y</span>() <span class="op">+</span> <span class="number">1.0</span> <span class="op">/</span> <span class="number">4.0</span>) <span class="op">*</span> <span class="self">self</span>.<span class="ident">text_height</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">y2</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">fn</span> <span class="ident">y2</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         (<span class="self">self</span>.<span class="ident">loc_y</span>() <span class="op">+</span> <span class="number">1.0</span> <span class="op">/</span> <span class="number">2.0</span>) <span class="op">*</span> <span class="self">self</span>.<span class="ident">text_height</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">y3</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">fn</span> <span class="ident">y3</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         (<span class="self">self</span>.<span class="ident">loc_y</span>() <span class="op">+</span> <span class="number">3.0</span> <span class="op">/</span> <span class="number">4.0</span>) <span class="op">*</span> <span class="self">self</span>.<span class="ident">text_height</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">y4</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">fn</span> <span class="ident">y4</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         (<span class="self">self</span>.<span class="ident">loc_y</span>() <span class="op">+</span> <span class="number">1.0</span>) <span class="op">*</span> <span class="self">self</span>.<span class="ident">text_height</span>()
     }
 
     <span class="doccomment">/// 1st row a,b,c,d,e</span>
-    <span class="kw">fn</span> <span class="ident">a</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">a</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x0</span>(), <span class="self">self</span>.<span class="ident">y0</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">b</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">b</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x1</span>(), <span class="self">self</span>.<span class="ident">y0</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">c</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">c</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x2</span>(), <span class="self">self</span>.<span class="ident">y0</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">d</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">d</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x3</span>(), <span class="self">self</span>.<span class="ident">y0</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">e</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">e</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x4</span>(), <span class="self">self</span>.<span class="ident">y0</span>())
     }
 
     <span class="doccomment">/// 2nd row f,g,h,i,j</span>
-    <span class="kw">fn</span> <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x0</span>(), <span class="self">self</span>.<span class="ident">y1</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">g</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">g</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x1</span>(), <span class="self">self</span>.<span class="ident">y1</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">h</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">h</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x2</span>(), <span class="self">self</span>.<span class="ident">y1</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">i</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">i</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x3</span>(), <span class="self">self</span>.<span class="ident">y1</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">j</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">j</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x4</span>(), <span class="self">self</span>.<span class="ident">y1</span>())
     }
 
     <span class="doccomment">/// 3rd row k,l,m,n,o</span>
-    <span class="kw">fn</span> <span class="ident">k</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">k</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x0</span>(), <span class="self">self</span>.<span class="ident">y2</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">l</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">l</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x1</span>(), <span class="self">self</span>.<span class="ident">y2</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">m</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">m</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x2</span>(), <span class="self">self</span>.<span class="ident">y2</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">n</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">n</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x3</span>(), <span class="self">self</span>.<span class="ident">y2</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">o</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">o</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x4</span>(), <span class="self">self</span>.<span class="ident">y2</span>())
     }
 
     <span class="doccomment">/// 4th row p,q,r,s,t</span>
-    <span class="kw">fn</span> <span class="ident">p</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">p</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x0</span>(), <span class="self">self</span>.<span class="ident">y3</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">q</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">q</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x1</span>(), <span class="self">self</span>.<span class="ident">y3</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">r</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">r</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x2</span>(), <span class="self">self</span>.<span class="ident">y3</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">s</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">s</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x3</span>(), <span class="self">self</span>.<span class="ident">y3</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">t</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">t</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x4</span>(), <span class="self">self</span>.<span class="ident">y3</span>())
     }
 
     <span class="doccomment">/// 5th row u,v,w,x,y</span>
-    <span class="kw">fn</span> <span class="ident">u</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">u</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x0</span>(), <span class="self">self</span>.<span class="ident">y4</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">v</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">v</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x1</span>(), <span class="self">self</span>.<span class="ident">y4</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">w</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">w</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x2</span>(), <span class="self">self</span>.<span class="ident">y4</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">x</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">x</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x3</span>(), <span class="self">self</span>.<span class="ident">y4</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">y</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">fn</span> <span class="ident">y</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="ident">Point</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">x4</span>(), <span class="self">self</span>.<span class="ident">y4</span>())
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_point</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pb</span>: <span class="kw-2">&amp;</span><span class="ident">PointBlock</span>) <span class="op">-&gt;</span> <span class="ident">Point</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_point</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pb</span>: <span class="kw-2">&amp;</span><span class="ident">PointBlock</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span> {
         <span class="comment">// move loc to the additional location relative to itself</span>
         <span class="kw">let</span> <span class="ident">loc</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">pbloc</span>) <span class="op">=</span> <span class="ident">pb</span>.<span class="ident">location</span> {
             <span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">from_location</span>(<span class="kw-2">&amp;</span><span class="ident">pbloc</span>)
@@ -435,31 +435,31 @@
             <span class="ident">settings</span>: <span class="self">self</span>.<span class="ident">settings</span>.<span class="ident">clone</span>(),
         };
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">p</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">pb</span>.<span class="ident">block</span> {
-            <span class="ident">A</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">a</span>(),
-            <span class="ident">B</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">b</span>(),
-            <span class="ident">C</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">c</span>(),
-            <span class="ident">D</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">d</span>(),
-            <span class="ident">E</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">e</span>(),
-            <span class="ident">F</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">f</span>(),
-            <span class="ident">G</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">g</span>(),
-            <span class="ident">H</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">h</span>(),
-            <span class="ident">I</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">i</span>(),
-            <span class="ident">J</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">j</span>(),
-            <span class="ident">K</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">k</span>(),
-            <span class="ident">L</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">l</span>(),
-            <span class="ident">M</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">m</span>(),
-            <span class="ident">N</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">n</span>(),
-            <span class="ident">O</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">o</span>(),
-            <span class="ident">P</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">p</span>(),
-            <span class="ident">Q</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">q</span>(),
-            <span class="ident">R</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">r</span>(),
-            <span class="ident">S</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">s</span>(),
-            <span class="ident">T</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">t</span>(),
-            <span class="ident">U</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">u</span>(),
-            <span class="ident">V</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">v</span>(),
-            <span class="ident">W</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">w</span>(),
-            <span class="ident">X</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">x</span>(),
-            <span class="ident">Y</span> <span class="op">=&gt;</span> <span class="ident">lb</span>.<span class="ident">y</span>(),
+            <span class="ident">A</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">a</span>(),
+            <span class="ident">B</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">b</span>(),
+            <span class="ident">C</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">c</span>(),
+            <span class="ident">D</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">d</span>(),
+            <span class="ident">E</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">e</span>(),
+            <span class="ident">F</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">f</span>(),
+            <span class="ident">G</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">g</span>(),
+            <span class="ident">H</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">h</span>(),
+            <span class="ident">I</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">i</span>(),
+            <span class="ident">J</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">j</span>(),
+            <span class="ident">K</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">k</span>(),
+            <span class="ident">L</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">l</span>(),
+            <span class="ident">M</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">m</span>(),
+            <span class="ident">N</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">n</span>(),
+            <span class="ident">O</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">o</span>(),
+            <span class="ident">P</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">p</span>(),
+            <span class="ident">Q</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">q</span>(),
+            <span class="ident">R</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">r</span>(),
+            <span class="ident">S</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">s</span>(),
+            <span class="ident">T</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">t</span>(),
+            <span class="ident">U</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">u</span>(),
+            <span class="ident">V</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">v</span>(),
+            <span class="ident">W</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">w</span>(),
+            <span class="ident">X</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">x</span>(),
+            <span class="ident">Y</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">lb</span>.<span class="ident">y</span>(),
         };
         <span class="kw">let</span> <span class="ident">unit</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">unit_x</span>();
         <span class="ident">p</span>.<span class="ident">adjust</span>(<span class="ident">pb</span>.<span class="ident">adjust_x</span> <span class="op">*</span> <span class="ident">unit</span>, <span class="ident">pb</span>.<span class="ident">adjust_y</span> <span class="op">*</span> <span class="ident">unit</span>);

@@ -438,7 +438,7 @@
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">ZeroInit</span> <span class="kw">for</span> <span class="ident">Duration</span> {}
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Duration</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span>::<span class="ident">INIT</span>
     }
 }
@@ -455,7 +455,7 @@
 
     <span class="doccomment">/// Construct a new `Duration` from the specified number of microseconds.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_micros</span>(<span class="ident">micros</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_micros</span>(<span class="ident">micros</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> { <span class="ident">micros</span> }
     }
 
@@ -463,7 +463,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Pancis if `millis` overflows the representable range of `Duration`.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_millis</span>(<span class="ident">millis</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_millis</span>(<span class="ident">millis</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="comment">// FIXME: `Option::expect` is not `const fn` yet</span>
         <span class="self">Self</span>::<span class="ident">from_micros</span>(<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">x</span>) <span class="op">=</span> <span class="ident">millis</span>.<span class="ident">checked_mul</span>(<span class="number">1_000</span>) {
             <span class="ident">x</span>
@@ -476,7 +476,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Pancis if `secs` overflows the representable range of `Duration`.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_secs</span>(<span class="ident">secs</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_secs</span>(<span class="ident">secs</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="comment">// FIXME: `Option::expect` is not `const fn` yet</span>
         <span class="self">Self</span>::<span class="ident">from_micros</span>(<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">x</span>) <span class="op">=</span> <span class="ident">secs</span>.<span class="ident">checked_mul</span>(<span class="number">1_000_000</span>) {
             <span class="ident">x</span>
@@ -487,19 +487,19 @@
 
     <span class="doccomment">/// Get the total number of whole microseconds contained by this `Duration`.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_micros</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_micros</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
         <span class="self">self</span>.<span class="ident">micros</span>
     }
 
     <span class="doccomment">/// Get the total number of whole milliseconds contained by this `Duration`.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_millis</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_millis</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
         <span class="self">self</span>.<span class="ident">micros</span> <span class="op">/</span> <span class="number">1_000</span>
     }
 
     <span class="doccomment">/// Get the total number of whole seconds contained by this `Duration`.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_secs</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_secs</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
         <span class="self">self</span>.<span class="ident">micros</span> <span class="op">/</span> <span class="number">1_000_000</span>
     }
 
@@ -514,7 +514,7 @@
     <span class="doccomment">/// assert_eq!(dur.as_secs_f64(), 1201.25);</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_secs_f64</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f64</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_secs_f64</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
         <span class="self">self</span>.<span class="ident">micros</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">/</span> <span class="number">1_000_000.0</span>
     }
 
@@ -529,7 +529,7 @@
     <span class="doccomment">/// assert_eq!(dur.as_secs_f32(), 1201.25);</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_secs_f32</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_secs_f32</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         <span class="comment">// An integer larger than 16777216 can&#39;t be converted to `f32`</span>
         <span class="comment">// accurately. Split `self` into an integer part and fractional part and</span>
         <span class="comment">// convert them separately so that integral values are preserved</span>
@@ -539,20 +539,20 @@
 
     <span class="doccomment">/// Return `true` if and only if `self` is positive.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_positive</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_positive</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">micros</span>.<span class="ident">is_positive</span>()
     }
 
     <span class="doccomment">/// Return `true` if and only if `self` is negative.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_negative</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_negative</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">micros</span>.<span class="ident">is_negative</span>()
     }
 
     <span class="doccomment">/// Multiply `self` by the specified value, returning `None` if the result</span>
     <span class="doccomment">/// overflows.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">checked_mul</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">checked_mul</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="comment">// FIXME: `Option::map` is not `const fn` yet</span>
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">x</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">micros</span>.<span class="ident">checked_mul</span>(<span class="ident">other</span>) {
             <span class="prelude-val">Some</span>(<span class="self">Self</span>::<span class="ident">from_micros</span>(<span class="ident">x</span>))
@@ -564,7 +564,7 @@
     <span class="doccomment">/// Divide `self` by the specified value, returning `None` if the result</span>
     <span class="doccomment">/// overflows or `other` is zero.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">checked_div</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">checked_div</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="comment">// FIXME: `Option::map` is not `const fn` yet</span>
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">x</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">micros</span>.<span class="ident">checked_div</span>(<span class="ident">other</span>) {
             <span class="prelude-val">Some</span>(<span class="self">Self</span>::<span class="ident">from_micros</span>(<span class="ident">x</span>))
@@ -576,7 +576,7 @@
     <span class="doccomment">/// Calculate the absolute value of `self`, returning `None` if</span>
     <span class="doccomment">/// `self == MIN`.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">checked_abs</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">checked_abs</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="comment">// FIXME: `Option::map` is not `const fn` yet</span>
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">x</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">micros</span>.<span class="ident">checked_abs</span>() {
             <span class="prelude-val">Some</span>(<span class="self">Self</span>::<span class="ident">from_micros</span>(<span class="ident">x</span>))
@@ -588,7 +588,7 @@
     <span class="doccomment">/// Add the specified value to `self`, returning `None` if the result</span>
     <span class="doccomment">/// overflows.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">checked_add</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">checked_add</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="comment">// FIXME: `Option::map` is not `const fn` yet</span>
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">x</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">micros</span>.<span class="ident">checked_add</span>(<span class="ident">other</span>.<span class="ident">micros</span>) {
             <span class="prelude-val">Some</span>(<span class="self">Self</span>::<span class="ident">from_micros</span>(<span class="ident">x</span>))
@@ -600,7 +600,7 @@
     <span class="doccomment">/// Subtract the specified value from `self`, returning `None` if the result</span>
     <span class="doccomment">/// overflows.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">checked_sub</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">checked_sub</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="comment">// FIXME: `Option::map` is not `const fn` yet</span>
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">x</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">micros</span>.<span class="ident">checked_sub</span>(<span class="ident">other</span>.<span class="ident">micros</span>) {
             <span class="prelude-val">Some</span>(<span class="self">Self</span>::<span class="ident">from_micros</span>(<span class="ident">x</span>))
@@ -622,7 +622,7 @@
     <span class="doccomment">/// range of the destination type.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The sub-microsecond part is rounded by truncating.</span>
-    <span class="kw">fn</span> <span class="ident">try_from</span>(<span class="ident">value</span>: <span class="ident">core</span>::<span class="ident">time</span>::<span class="ident">Duration</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">try_from</span>(<span class="ident">value</span>: <span class="ident">core</span>::<span class="ident">time</span>::<span class="ident">Duration</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="prelude-val">Ok</span>(<span class="self">Self</span>::<span class="ident">from_micros</span>(
             <span class="ident">value</span>
                 .<span class="ident">as_micros</span>()
@@ -638,7 +638,7 @@
     <span class="doccomment">/// Try to construct a `core::time::Duration` from the specified `Duration`.</span>
     <span class="doccomment">/// Returns an error if the specified `Duration` represents a negative time</span>
     <span class="doccomment">/// span.</span>
-    <span class="kw">fn</span> <span class="ident">try_from</span>(<span class="ident">value</span>: <span class="ident">Duration</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">try_from</span>(<span class="ident">value</span>: <span class="ident">Duration</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="ident">value</span>.<span class="ident">micros</span> <span class="op">&lt;</span> <span class="number">0</span> {
             <span class="prelude-val">Err</span>(<span class="ident">TryFromDurationError</span>(()))
         } <span class="kw">else</span> {
@@ -648,7 +648,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">Duration</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
         <span class="kw">let</span> <span class="ident">abs_dur</span> <span class="op">=</span> <span class="ident">core</span>::<span class="ident">time</span>::<span class="ident">Duration</span>::<span class="ident">from_micros</span>((<span class="self">self</span>.<span class="ident">micros</span> <span class="kw">as</span> <span class="ident">i64</span>).<span class="ident">abs</span>() <span class="kw">as</span> <span class="ident">u64</span>);
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">micros</span> <span class="op">&lt;</span> <span class="number">0</span> {
             <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;-&quot;</span>)<span class="question-mark">?</span>;
@@ -662,7 +662,7 @@
 
     <span class="doccomment">/// Perform a checked addition, panicking on overflow.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">add</span>(<span class="self">self</span>, <span class="ident">rhs</span>: <span class="self">Self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
+    <span class="kw">fn</span> <span class="ident">add</span>(<span class="self">self</span>, <span class="ident">rhs</span>: <span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
         <span class="self">self</span>.<span class="ident">checked_add</span>(<span class="ident">rhs</span>)
             .<span class="ident">expect</span>(<span class="string">&quot;overflow when adding durations&quot;</span>)
     }
@@ -681,7 +681,7 @@
 
     <span class="doccomment">/// Perform a checked subtraction, panicking on overflow.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">sub</span>(<span class="self">self</span>, <span class="ident">rhs</span>: <span class="self">Self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
+    <span class="kw">fn</span> <span class="ident">sub</span>(<span class="self">self</span>, <span class="ident">rhs</span>: <span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
         <span class="self">self</span>.<span class="ident">checked_sub</span>(<span class="ident">rhs</span>)
             .<span class="ident">expect</span>(<span class="string">&quot;overflow when subtracting durations&quot;</span>)
     }
@@ -700,7 +700,7 @@
 
     <span class="doccomment">/// Perform a checked multiplication, panicking on overflow.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">mul</span>(<span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
+    <span class="kw">fn</span> <span class="ident">mul</span>(<span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
         <span class="self">self</span>.<span class="ident">checked_mul</span>(<span class="ident">rhs</span>)
             .<span class="ident">expect</span>(<span class="string">&quot;overflow when multiplying duration by scalar&quot;</span>)
     }
@@ -711,7 +711,7 @@
 
     <span class="doccomment">/// Perform a checked multiplication, panicking on overflow.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">mul</span>(<span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">Duration</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
+    <span class="kw">fn</span> <span class="ident">mul</span>(<span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">Duration</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
         <span class="ident">rhs</span>.<span class="ident">checked_mul</span>(<span class="self">self</span>)
             .<span class="ident">expect</span>(<span class="string">&quot;overflow when multiplying duration by scalar&quot;</span>)
     }
@@ -730,7 +730,7 @@
 
     <span class="doccomment">/// Perform a checked division, panicking on overflow or when `rhs` is zero.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">div</span>(<span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
+    <span class="kw">fn</span> <span class="ident">div</span>(<span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span> {
         <span class="self">self</span>.<span class="ident">checked_div</span>(<span class="ident">rhs</span>)
             .<span class="ident">expect</span>(<span class="string">&quot;divide by zero or overflow when dividing duration by scalar&quot;</span>)
     }
@@ -746,7 +746,7 @@
 
 <span class="kw">impl</span> <span class="ident">core</span>::<span class="ident">iter</span>::<span class="ident">Sum</span> <span class="kw">for</span> <span class="ident">Duration</span> {
     <span class="doccomment">/// Perform a checked summation, panicking on overflow.</span>
-    <span class="kw">fn</span> <span class="ident">sum</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">Duration</span><span class="op">&gt;&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">sum</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">Duration</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">iter</span>.<span class="ident">fold</span>(<span class="ident">Duration</span>::<span class="ident">ZERO</span>, <span class="op">|</span><span class="ident">x</span>, <span class="ident">y</span><span class="op">|</span> {
             <span class="ident">x</span>.<span class="ident">checked_add</span>(<span class="ident">y</span>)
                 .<span class="ident">expect</span>(<span class="string">&quot;overflow in iter::sum over durations&quot;</span>)
@@ -756,7 +756,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">core</span>::<span class="ident">iter</span>::<span class="ident">Sum</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Duration</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Duration</span> {
     <span class="doccomment">/// Perform a checked summation, panicking on overflow.</span>
-    <span class="kw">fn</span> <span class="ident">sum</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Duration</span><span class="op">&gt;&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">sum</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Duration</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">iter</span>.<span class="ident">cloned</span>().<span class="ident">sum</span>()
     }
 }
@@ -790,7 +790,7 @@
     <span class="doccomment">///         .is_err()</span>
     <span class="doccomment">/// );</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">fn</span> <span class="ident">try_from</span>(<span class="ident">value</span>: <span class="ident">chrono</span>::<span class="ident">Duration</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">try_from</span>(<span class="ident">value</span>: <span class="ident">chrono</span>::<span class="ident">Duration</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="prelude-val">Ok</span>(<span class="self">Self</span>::<span class="ident">from_micros</span>(
             <span class="ident">value</span>
                 .<span class="ident">num_microseconds</span>()
@@ -814,7 +814,7 @@
     <span class="doccomment">///     ChronoDuration::microseconds(123_456),</span>
     <span class="doccomment">/// );</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">value</span>: <span class="ident">Duration</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">value</span>: <span class="ident">Duration</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span>::<span class="ident">microseconds</span>(<span class="ident">value</span>.<span class="ident">micros</span> <span class="kw">as</span> <span class="ident">i64</span>)
     }
 }

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/staticvec-0.10.2/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../staticvec/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/staticvec-0.10.3/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../staticvec/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
                 <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
@@ -2509,7 +2509,7 @@
   <span class="doccomment">/// assert_eq!(v.capacity(), 4);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
     <span class="self">Self</span> {
       <span class="ident">data</span>: <span class="self">Self</span>::<span class="ident">new_data_uninit</span>(),
       <span class="ident">length</span>: <span class="number">0</span>,
@@ -2529,7 +2529,7 @@
   <span class="doccomment">/// assert_eq!(v, [1, 2, 3]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_from_slice</span>(<span class="ident">values</span>: <span class="kw-2">&amp;</span>[<span class="ident">T</span>]) <span class="op">-&gt;</span> <span class="self">Self</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_from_slice</span>(<span class="ident">values</span>: <span class="kw-2">&amp;</span>[<span class="ident">T</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> {
     <span class="kw">let</span> <span class="ident">length</span> <span class="op">=</span> <span class="ident">values</span>.<span class="ident">len</span>().<span class="ident">min</span>(<span class="ident">N</span>);
     <span class="self">Self</span> {
@@ -2577,8 +2577,8 @@
   <span class="doccomment">/// let v = StaticVec::from([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_from_array</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N2</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">values</span>: [<span class="ident">T</span>; <span class="ident">N2</span>]) <span class="op">-&gt;</span> <span class="self">Self</span> {
-    <span class="kw">if</span> <span class="ident">N</span> <span class="op">==</span> <span class="ident">N2</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_from_array</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N2</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="ident">values</span>: [<span class="ident">T</span>; <span class="ident">N2</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">if</span> <span class="ident">N</span> <span class="op">=</span><span class="op">=</span> <span class="ident">N2</span> {
       <span class="self">Self</span>::<span class="ident">from</span>(<span class="ident">values</span>)
     } <span class="kw">else</span> {
       <span class="self">Self</span> {
@@ -2594,7 +2594,7 @@
             <span class="comment">// in any excess copying, so there should be no performance concerns for larger</span>
             <span class="comment">// input arrays.</span>
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">forgotten</span> <span class="op">=</span> <span class="ident">MaybeUninit</span>::<span class="ident">new</span>(<span class="ident">values</span>);
-            <span class="ident">ptr</span>::<span class="ident">drop_in_place</span>(<span class="ident">forgotten</span>.<span class="ident">get_mut</span>().<span class="ident">get_unchecked_mut</span>(<span class="ident">N2</span>.<span class="ident">min</span>(<span class="ident">N</span>)..<span class="ident">N2</span>));
+            <span class="ident">ptr</span>::<span class="ident">drop_in_place</span>(<span class="ident">forgotten</span>.<span class="ident">assume_init_mut</span>().<span class="ident">get_unchecked_mut</span>(<span class="ident">N2</span>.<span class="ident">min</span>(<span class="ident">N</span>)..<span class="ident">N2</span>));
             <span class="ident">data</span>
           }
         },
@@ -2624,7 +2624,7 @@
   <span class="doccomment">/// assert_eq!(v, staticvec![1, 2, 3, 4]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new_from_const_array</span>(<span class="ident">values</span>: [<span class="ident">T</span>; <span class="ident">N</span>]) <span class="op">-&gt;</span> <span class="self">Self</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new_from_const_array</span>(<span class="ident">values</span>: [<span class="ident">T</span>; <span class="ident">N</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
     <span class="self">Self</span> {
       <span class="ident">data</span>: <span class="ident">MaybeUninit</span>::<span class="ident">new</span>(<span class="ident">values</span>),
       <span class="ident">length</span>: <span class="ident">N</span>,
@@ -2643,7 +2643,7 @@
   <span class="doccomment">/// assert_eq!(staticvec![1].len(), 1);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
     <span class="self">self</span>.<span class="ident">length</span>
   }
 
@@ -2657,7 +2657,7 @@
   <span class="doccomment">/// assert_eq!(StaticVec::&lt;usize, 800&gt;::new().capacity(), 800);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">capacity</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">capacity</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
     <span class="ident">N</span>
   }
 
@@ -2670,7 +2670,7 @@
   <span class="doccomment">/// assert_eq!(StaticVec::&lt;f64, 12&gt;::cap(), 12)</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">cap</span>() <span class="op">-&gt;</span> <span class="ident">usize</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">cap</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
     <span class="ident">N</span>
   }
 
@@ -2695,7 +2695,7 @@
   <span class="doccomment">/// assert_eq!(vec.remaining_capacity(), 99);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">remaining_capacity</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">remaining_capacity</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
     <span class="ident">N</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">length</span>
   }
 
@@ -2716,7 +2716,7 @@
   <span class="doccomment">/// assert_eq!(w.size_in_bytes(), 64);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">size_in_bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">size_in_bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
     <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="self">self</span>.<span class="ident">length</span>
   }
 
@@ -2748,7 +2748,7 @@
     <span class="comment">// Most of the `unsafe` functions in this crate that are heavily used internally</span>
     <span class="comment">// have debug-build-only assertions where it&#39;s useful.</span>
     <span class="macro">debug_assert</span><span class="macro">!</span>(
-      <span class="ident">new_len</span> <span class="op">&lt;=</span> <span class="ident">N</span>,
+      <span class="ident">new_len</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">N</span>,
       <span class="string">&quot;In `StaticVec::set_len`, provided length {} exceeds the maximum capacity of {}!&quot;</span>,
       <span class="ident">new_len</span>,
       <span class="ident">N</span>
@@ -2764,8 +2764,8 @@
   <span class="doccomment">/// assert!(StaticVec::&lt;i32, 4&gt;::new().is_empty());</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
-    <span class="self">self</span>.<span class="ident">length</span> <span class="op">==</span> <span class="number">0</span>
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="self">self</span>.<span class="ident">length</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span>
   }
 
   <span class="doccomment">/// Returns true if the current length of the StaticVec is greater than 0.</span>
@@ -2780,7 +2780,7 @@
   <span class="comment">// sure.</span>
   <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">len_zero</span>)]</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_not_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_not_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
     <span class="self">self</span>.<span class="ident">length</span> <span class="op">&gt;</span> <span class="number">0</span>
   }
 
@@ -2792,8 +2792,8 @@
   <span class="doccomment">/// assert!(StaticVec::&lt;i32, 4&gt;::filled_with(|| 2).is_full());</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_full</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
-    <span class="self">self</span>.<span class="ident">length</span> <span class="op">==</span> <span class="ident">N</span>
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_full</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="self">self</span>.<span class="ident">length</span> <span class="op">=</span><span class="op">=</span> <span class="ident">N</span>
   }
 
   <span class="doccomment">/// Returns true if the current length of the StaticVec is less than its capacity.</span>
@@ -2804,7 +2804,7 @@
   <span class="doccomment">/// assert!(StaticVec::&lt;i32, 4&gt;::new().is_not_full());</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_not_full</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_not_full</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
     <span class="self">self</span>.<span class="ident">length</span> <span class="op">&lt;</span> <span class="ident">N</span>
   }
 
@@ -2821,7 +2821,7 @@
   <span class="doccomment">/// unsafe { assert_eq!(*p, &#39;A&#39;) };</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span> {
     <span class="self">Self</span>::<span class="ident">first_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>)
   }
 
@@ -2839,7 +2839,7 @@
   <span class="doccomment">/// assert_eq!(v, [&#39;X&#39;, &#39;B&#39;, &#39;C&#39;]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_mut_ptr</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_mut_ptr</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span> {
     <span class="self">Self</span>::<span class="ident">first_ptr_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">data</span>)
   }
 
@@ -2851,7 +2851,7 @@
   <span class="doccomment">/// assert_eq!(staticvec![1, 2, 3].as_slice(), &amp;[1, 2, 3]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_slice</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">T</span>] {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_slice</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">T</span>] {
     <span class="comment">// Safety: `self.as_ptr()` is a pointer to an array for which the first `length`</span>
     <span class="comment">// elements are guaranteed to be initialized. Therefore this is a valid slice.</span>
     <span class="ident">slice_from_raw_parts</span>(<span class="self">self</span>.<span class="ident">as_ptr</span>(), <span class="self">self</span>.<span class="ident">length</span>)
@@ -2868,7 +2868,7 @@
   <span class="doccomment">/// assert_eq!(v, [4, 9, 6]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_mut_slice</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">T</span>] {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">as_mut_slice</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">T</span>] {
     <span class="comment">// Safety: See as_slice.</span>
     <span class="ident">slice_from_raw_parts_mut</span>(<span class="self">self</span>.<span class="ident">as_mut_ptr</span>(), <span class="self">self</span>.<span class="ident">length</span>)
   }
@@ -2894,13 +2894,13 @@
   <span class="doccomment">/// }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">ptr_at_unchecked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span> {
+  <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">ptr_at_unchecked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span> {
     <span class="comment">// We check against `N` as opposed to `length` in our debug assertion here, as these</span>
     <span class="comment">// `_unchecked` versions of `ptr_at` and `mut_ptr_at` are primarily intended for</span>
     <span class="comment">// initialization-related purposes (and used extensively that way internally throughout the</span>
     <span class="comment">// crate.)</span>
     <span class="macro">debug_assert</span><span class="macro">!</span>(
-      <span class="ident">index</span> <span class="op">&lt;=</span> <span class="ident">N</span>,
+      <span class="ident">index</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">N</span>,
       <span class="string">&quot;In `StaticVec::ptr_at_unchecked`, provided index {} must be within `0..={}`!&quot;</span>,
       <span class="ident">index</span>,
       <span class="ident">N</span>
@@ -2934,13 +2934,13 @@
   <span class="doccomment">/// assert_eq!(v, [&quot;I&quot;, &quot;am&quot;, &quot;a&quot;, &quot;StaticVec!&quot;]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">mut_ptr_at_unchecked</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span> {
+  <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">mut_ptr_at_unchecked</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span> {
     <span class="comment">// We check against `N` as opposed to `length` in our debug assertion here, as these</span>
     <span class="comment">// `_unchecked` versions of `ptr_at` and `mut_ptr_at` are primarily intended for</span>
     <span class="comment">// initialization-related purposes (and used extensively that way internally throughout the</span>
     <span class="comment">// crate.)</span>
     <span class="macro">debug_assert</span><span class="macro">!</span>(
-      <span class="ident">index</span> <span class="op">&lt;=</span> <span class="ident">N</span>,
+      <span class="ident">index</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">N</span>,
       <span class="string">&quot;In `StaticVec::mut_ptr_at_unchecked`, provided index {} must be within `0..={}`!&quot;</span>,
       <span class="ident">index</span>,
       <span class="ident">N</span>
@@ -2960,7 +2960,7 @@
   <span class="doccomment">/// unsafe { assert_eq!(*p, &quot;StaticVec!&quot;) };</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr_at</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr_at</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span> {
     <span class="macro">assert</span><span class="macro">!</span>(
       <span class="ident">index</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">length</span>,
       <span class="string">&quot;In `StaticVec::ptr_at`, provided index {} must be within `0..{}`!&quot;</span>,
@@ -2983,7 +2983,7 @@
   <span class="doccomment">/// assert_eq!(v, [&quot;I&quot;, &quot;am&quot;, &quot;a&quot;, &quot;StaticVec!&quot;]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mut_ptr_at</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mut_ptr_at</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span> {
     <span class="macro">assert</span><span class="macro">!</span>(
       <span class="ident">index</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">length</span>,
       <span class="string">&quot;In `StaticVec::mut_ptr_at`, provided index {} must be within `0..{}`!&quot;</span>,
@@ -3011,7 +3011,7 @@
   <span class="doccomment">/// unsafe { assert_eq!(*staticvec![1, 2, 3].get_unchecked(1), 2) };</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">get_unchecked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">T</span> {
+  <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">get_unchecked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">T</span> {
     <span class="comment">// This function is used internally in places where `length` has been intentionally</span>
     <span class="comment">// temporarily set to zero, so we do our debug assertion against `N`.</span>
     <span class="macro">debug_assert</span><span class="macro">!</span>(
@@ -3042,7 +3042,7 @@
   <span class="doccomment">/// assert_eq!(v, [1, 9, 3]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">get_unchecked_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span> {
+  <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">get_unchecked_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span> {
     <span class="comment">// This function is used internally in places where `length` has been intentionally</span>
     <span class="comment">// temporarily set to zero, so we do our debug assertion against `N`.</span>
     <span class="macro">debug_assert</span><span class="macro">!</span>(
@@ -3098,7 +3098,7 @@
   <span class="doccomment">/// assert_eq!(v, [1, 2, 3]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">pop_unchecked</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">T</span> {
+  <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">pop_unchecked</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">T</span> {
     <span class="macro">debug_assert</span><span class="macro">!</span>(
       <span class="self">self</span>.<span class="ident">is_not_empty</span>(),
       <span class="string">&quot;`StaticVec::pop_unchecked` was called through an empty StaticVec!&quot;</span>
@@ -3120,7 +3120,7 @@
   <span class="doccomment">/// assert!(v2.try_push(1).is_ok());</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_push</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">PushCapacityError</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_push</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">PushCapacityError</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_not_full</span>() {
       <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">push_unchecked</span>(<span class="ident">value</span>) };
       <span class="prelude-val">Ok</span>(())
@@ -3161,7 +3161,7 @@
   <span class="doccomment">/// assert_eq!(v, [1, 2]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_empty</span>() {
       <span class="prelude-val">None</span>
     } <span class="kw">else</span> {
@@ -3181,7 +3181,7 @@
   <span class="doccomment">/// assert_eq!(None, v2.first());</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">first</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">T</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">first</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_empty</span>() {
       <span class="prelude-val">None</span>
     } <span class="kw">else</span> {
@@ -3202,7 +3202,7 @@
   <span class="doccomment">/// assert_eq!(x, &amp;[5, 1, 2]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">first_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">first_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_empty</span>() {
       <span class="prelude-val">None</span>
     } <span class="kw">else</span> {
@@ -3222,7 +3222,7 @@
   <span class="doccomment">/// assert_eq!(None, w.last());</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">last</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">T</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">last</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_empty</span>() {
       <span class="prelude-val">None</span>
     } <span class="kw">else</span> {
@@ -3243,7 +3243,7 @@
   <span class="doccomment">/// assert_eq!(x, &amp;[0, 1, 10]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">last_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">last_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_empty</span>() {
       <span class="prelude-val">None</span>
     } <span class="kw">else</span> {
@@ -3261,7 +3261,7 @@
   <span class="doccomment">/// assert_eq!(staticvec![1, 2, 3].remove(1), 2);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="ident">T</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">T</span> {
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
     <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">index</span> <span class="op">&lt;</span> <span class="ident">old_length</span>);
     <span class="kw">unsafe</span> {
@@ -3281,10 +3281,10 @@
   <span class="doccomment">/// assert_eq!(staticvec![1, 2, 2, 3].remove_item(&amp;2), Some(2));</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_item</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">item</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_item</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">item</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">PartialEq</span> {
     <span class="comment">// Adapted this from normal Vec&#39;s implementation.</span>
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pos</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">iter</span>().<span class="ident">position</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">x</span> <span class="op">==</span> <span class="kw-2">*</span><span class="ident">item</span>) {
+    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pos</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">iter</span>().<span class="ident">position</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">x</span> <span class="op">=</span><span class="op">=</span> <span class="kw-2">*</span><span class="ident">item</span>) {
       <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">remove</span>(<span class="ident">pos</span>))
     } <span class="kw">else</span> {
       <span class="prelude-val">None</span>
@@ -3303,7 +3303,7 @@
   <span class="doccomment">/// assert_eq!(v, [&quot;AAA&quot;, &quot;DDD&quot;, &quot;CCC&quot;]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">swap_pop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">swap_pop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">if</span> <span class="ident">index</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">length</span> {
       <span class="kw">unsafe</span> {
         <span class="kw">let</span> <span class="ident">new_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span> <span class="op">-</span> <span class="number">1</span>;
@@ -3328,7 +3328,7 @@
   <span class="doccomment">/// assert_eq!(v, [&quot;AAA&quot;, &quot;DDD&quot;, &quot;CCC&quot;]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">swap_remove</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="ident">T</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">swap_remove</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">T</span> {
     <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">index</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">length</span>);
     <span class="kw">unsafe</span> {
       <span class="kw">let</span> <span class="ident">new_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span> <span class="op">-</span> <span class="number">1</span>;
@@ -3352,7 +3352,7 @@
   <span class="attribute">#[<span class="ident">inline</span>]</span>
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">value</span>: <span class="ident">T</span>) {
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">old_length</span> <span class="op">&lt;</span> <span class="ident">N</span> <span class="op">&amp;&amp;</span> <span class="ident">index</span> <span class="op">&lt;=</span> <span class="ident">old_length</span>);
+    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">old_length</span> <span class="op">&lt;</span> <span class="ident">N</span> <span class="op">&amp;&amp;</span> <span class="ident">index</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">old_length</span>);
     <span class="kw">unsafe</span> {
       <span class="kw">let</span> <span class="ident">self_ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">index</span>);
       <span class="ident">self_ptr</span>.<span class="ident">copy_to</span>(<span class="ident">self_ptr</span>.<span class="ident">offset</span>(<span class="number">1</span>), <span class="ident">old_length</span> <span class="op">-</span> <span class="ident">index</span>);
@@ -3380,20 +3380,20 @@
   <span class="doccomment">/// assert_eq!(v, [1, 2, 3, 4, 5, 6, 7, 8]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_many</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">iter</span>: <span class="ident">I</span>)
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_many</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">iter</span>: <span class="ident">I</span>)
   <span class="kw">where</span> <span class="ident">I</span>::<span class="ident">IntoIter</span>: <span class="ident">ExactSizeIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
     <span class="macro">assert</span><span class="macro">!</span>(
-      <span class="ident">old_length</span> <span class="op">&lt;</span> <span class="ident">N</span> <span class="op">&amp;&amp;</span> <span class="ident">index</span> <span class="op">&lt;=</span> <span class="ident">old_length</span>,
+      <span class="ident">old_length</span> <span class="op">&lt;</span> <span class="ident">N</span> <span class="op">&amp;&amp;</span> <span class="ident">index</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">old_length</span>,
       <span class="string">&quot;Insufficient remaining capacity / out of bounds!&quot;</span>
     );
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">it</span> <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">into_iter</span>();
-    <span class="kw">if</span> <span class="ident">index</span> <span class="op">==</span> <span class="ident">old_length</span> {
+    <span class="kw">if</span> <span class="ident">index</span> <span class="op">=</span><span class="op">=</span> <span class="ident">old_length</span> {
       <span class="kw">return</span> <span class="self">self</span>.<span class="ident">extend</span>(<span class="ident">it</span>);
     }
     <span class="kw">let</span> <span class="ident">iter_size</span> <span class="op">=</span> <span class="ident">it</span>.<span class="ident">len</span>();
     <span class="macro">assert</span><span class="macro">!</span>(
-      <span class="ident">index</span> <span class="op">+</span> <span class="ident">iter_size</span> <span class="op">&gt;=</span> <span class="ident">index</span> <span class="op">&amp;&amp;</span> (<span class="ident">old_length</span> <span class="op">-</span> <span class="ident">index</span>) <span class="op">+</span> <span class="ident">iter_size</span> <span class="op">&lt;</span> <span class="ident">N</span>,
+      <span class="ident">index</span> <span class="op">+</span> <span class="ident">iter_size</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">index</span> <span class="op">&amp;&amp;</span> (<span class="ident">old_length</span> <span class="op">-</span> <span class="ident">index</span>) <span class="op">+</span> <span class="ident">iter_size</span> <span class="op">&lt;</span> <span class="ident">N</span>,
       <span class="string">&quot;Insufficient remaining capacity / out of bounds!&quot;</span>
     );
     <span class="kw">unsafe</span> {
@@ -3404,13 +3404,13 @@
       <span class="kw">while</span> <span class="ident">item_count</span> <span class="op">&lt;</span> <span class="ident">N</span> {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">item</span>) <span class="op">=</span> <span class="ident">it</span>.<span class="ident">next</span>() {
           <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">current</span> <span class="op">=</span> <span class="ident">self_ptr</span>.<span class="ident">add</span>(<span class="ident">item_count</span>);
-          <span class="kw">if</span> <span class="ident">item_count</span> <span class="op">&gt;=</span> <span class="ident">iter_size</span> {
+          <span class="kw">if</span> <span class="ident">item_count</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">iter_size</span> {
             <span class="ident">self_ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">index</span>);
             <span class="ident">current</span> <span class="op">=</span> <span class="ident">self_ptr</span>.<span class="ident">add</span>(<span class="ident">item_count</span>);
             <span class="ident">current</span>.<span class="ident">copy_to</span>(<span class="ident">current</span>.<span class="ident">offset</span>(<span class="number">1</span>), <span class="ident">old_length</span> <span class="op">-</span> <span class="ident">index</span>);
           }
           <span class="ident">current</span>.<span class="ident">write</span>(<span class="ident">item</span>);
-          <span class="ident">item_count</span> <span class="op">+=</span> <span class="number">1</span>;
+          <span class="ident">item_count</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
         } <span class="kw">else</span> {
           <span class="kw">break</span>;
         }
@@ -3430,9 +3430,9 @@
   <span class="doccomment">/// assert_eq!(vec.try_insert(2, 0), Err(CapacityError::&lt;5&gt; {}));</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_insert</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">value</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">CapacityError</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_insert</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">value</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">CapacityError</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
-    <span class="kw">if</span> <span class="ident">old_length</span> <span class="op">&lt;</span> <span class="ident">N</span> <span class="op">&amp;&amp;</span> <span class="ident">index</span> <span class="op">&lt;=</span> <span class="ident">old_length</span> {
+    <span class="kw">if</span> <span class="ident">old_length</span> <span class="op">&lt;</span> <span class="ident">N</span> <span class="op">&amp;&amp;</span> <span class="ident">index</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">old_length</span> {
       <span class="kw">unsafe</span> {
         <span class="kw">let</span> <span class="ident">self_ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">index</span>);
         <span class="ident">self_ptr</span>.<span class="ident">copy_to</span>(<span class="ident">self_ptr</span>.<span class="ident">offset</span>(<span class="number">1</span>), <span class="ident">old_length</span> <span class="op">-</span> <span class="ident">index</span>);
@@ -3456,9 +3456,9 @@
   <span class="doccomment">/// assert_eq!(staticvec![1, 2, 3].contains(&amp;4), false);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">PartialEq</span> {
-    <span class="self">self</span>.<span class="ident">iter</span>().<span class="ident">any</span>(<span class="op">|</span><span class="ident">current</span><span class="op">|</span> <span class="ident">current</span> <span class="op">==</span> <span class="ident">value</span>)
+    <span class="self">self</span>.<span class="ident">iter</span>().<span class="ident">any</span>(<span class="op">|</span><span class="ident">current</span><span class="op">|</span> <span class="ident">current</span> <span class="op">=</span><span class="op">=</span> <span class="ident">value</span>)
   }
 
   <span class="doccomment">/// Removes all contents from the StaticVec and sets its length back to 0.</span>
@@ -3491,7 +3491,7 @@
   <span class="doccomment">/// }</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">StaticVecIterConst</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StaticVecIterConst</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">start_ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">as_ptr</span>();
     <span class="kw">unsafe</span> {
       <span class="comment">// `start_ptr` will never be null, so this is a safe assumption to give the optimizer.</span>
@@ -3499,8 +3499,8 @@
       <span class="ident">StaticVecIterConst</span> {
         <span class="ident">start</span>: <span class="ident">start_ptr</span>,
         <span class="ident">end</span>: <span class="kw">match</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
-          <span class="number">0</span> <span class="op">=&gt;</span> (<span class="ident">start_ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>).<span class="ident">wrapping_add</span>(<span class="self">self</span>.<span class="ident">length</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>,
-          <span class="kw">_</span> <span class="op">=&gt;</span> <span class="ident">start_ptr</span>.<span class="ident">add</span>(<span class="self">self</span>.<span class="ident">length</span>),
+          <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">start_ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>).<span class="ident">wrapping_add</span>(<span class="self">self</span>.<span class="ident">length</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>,
+          <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">start_ptr</span>.<span class="ident">add</span>(<span class="self">self</span>.<span class="ident">length</span>),
         },
         <span class="ident">marker</span>: <span class="ident">PhantomData</span>,
       }
@@ -3520,7 +3520,7 @@
   <span class="doccomment">/// assert_eq!(v, [3, 2, 1, 0]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">StaticVecIterMut</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StaticVecIterMut</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">start_ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">as_mut_ptr</span>();
     <span class="kw">unsafe</span> {
       <span class="comment">// `start_ptr` will never be null, so this is a safe assumption to give the optimizer.</span>
@@ -3528,8 +3528,8 @@
       <span class="ident">StaticVecIterMut</span> {
         <span class="ident">start</span>: <span class="ident">start_ptr</span>,
         <span class="ident">end</span>: <span class="kw">match</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
-          <span class="number">0</span> <span class="op">=&gt;</span> (<span class="ident">start_ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>).<span class="ident">wrapping_add</span>(<span class="self">self</span>.<span class="ident">length</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>,
-          <span class="kw">_</span> <span class="op">=&gt;</span> <span class="ident">start_ptr</span>.<span class="ident">add</span>(<span class="self">self</span>.<span class="ident">length</span>),
+          <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">start_ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>).<span class="ident">wrapping_add</span>(<span class="self">self</span>.<span class="ident">length</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>,
+          <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">start_ptr</span>.<span class="ident">add</span>(<span class="self">self</span>.<span class="ident">length</span>),
         },
         <span class="ident">marker</span>: <span class="ident">PhantomData</span>,
       }
@@ -3553,7 +3553,7 @@
   <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
   <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>))]</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sorted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sorted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">Ord</span> {
     <span class="comment">// StaticVec uses specialization to have an optimized version of `Clone` for copy types.</span>
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">clone</span>();
@@ -3576,7 +3576,7 @@
   <span class="doccomment">/// );</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sorted_unstable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sorted_unstable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">Ord</span> {
     <span class="comment">// StaticVec uses specialization to have an optimized version of `Clone` for copy types.</span>
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">clone</span>();
@@ -3610,7 +3610,7 @@
   <span class="doccomment">/// );</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">quicksorted_unstable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">quicksorted_unstable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">PartialOrd</span> {
     <span class="kw">let</span> <span class="ident">length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
     <span class="kw">if</span> <span class="ident">length</span> <span class="op">&lt;</span> <span class="number">2</span> {
@@ -3667,7 +3667,7 @@
   <span class="doccomment">/// assert_eq!(staticvec![1, 2, 3].reversed(), [3, 2, 1]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reversed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reversed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> {
     <span class="self">Self</span> {
       <span class="ident">data</span>: <span class="ident">reverse_copy</span>(<span class="self">self</span>.<span class="ident">length</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>),
@@ -3690,13 +3690,13 @@
   <span class="doccomment">/// assert_eq!(v[3], 4);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">filled_with</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="ident">initializer</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="self">Self</span>
-  <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>() <span class="op">-&gt;</span> <span class="ident">T</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">filled_with</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="ident">initializer</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
+  <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">T</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
       <span class="kw">unsafe</span> {
         <span class="ident">res</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">i</span>).<span class="ident">write</span>(<span class="ident">initializer</span>());
-        <span class="ident">res</span>.<span class="ident">length</span> <span class="op">+=</span> <span class="number">1</span>;
+        <span class="ident">res</span>.<span class="ident">length</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
       }
     }
     <span class="ident">res</span>
@@ -3720,13 +3720,13 @@
   <span class="doccomment">/// assert_eq!(v[3], 4);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">filled_with_by_index</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="ident">initializer</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="self">Self</span>
-  <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="ident">T</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">filled_with_by_index</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="ident">initializer</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
+  <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">T</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
       <span class="kw">unsafe</span> {
         <span class="ident">res</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">i</span>).<span class="ident">write</span>(<span class="ident">initializer</span>(<span class="ident">i</span>));
-        <span class="ident">res</span>.<span class="ident">length</span> <span class="op">+=</span> <span class="number">1</span>;
+        <span class="ident">res</span>.<span class="ident">length</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
       }
     }
     <span class="ident">res</span>
@@ -3772,7 +3772,7 @@
   <span class="doccomment">/// assert_eq!(v, [1, 2, 3, 4]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_extend_from_slice</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span>[<span class="ident">T</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">CapacityError</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;&gt;</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_extend_from_slice</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span>[<span class="ident">T</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">CapacityError</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span><span class="op">&gt;</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> {
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
     <span class="kw">let</span> <span class="ident">added_length</span> <span class="op">=</span> <span class="ident">other</span>.<span class="ident">len</span>();
@@ -4000,7 +4000,7 @@
   <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
   <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>))]</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_vec</span>(<span class="kw-2">mut</span> <span class="ident">vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_vec</span>(<span class="kw-2">mut</span> <span class="ident">vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
     <span class="kw">let</span> <span class="ident">vec_len</span> <span class="op">=</span> <span class="ident">vec</span>.<span class="ident">len</span>();
     <span class="kw">let</span> <span class="ident">item_count</span> <span class="op">=</span> <span class="ident">vec_len</span>.<span class="ident">min</span>(<span class="ident">N</span>);
     <span class="self">Self</span> {
@@ -4041,7 +4041,7 @@
   <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
   <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>))]</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_vec</span>(<span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_vec</span>(<span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">with_capacity</span>(<span class="ident">N</span>);
     <span class="kw">let</span> <span class="ident">length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
     <span class="kw">unsafe</span> {
@@ -4074,7 +4074,7 @@
   <span class="doccomment">/// assert_eq!(a.unwrap(), [1, 2, 3, 4]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_inner</span>(<span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>[<span class="ident">T</span>; <span class="ident">N</span>], <span class="self">Self</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_inner</span>(<span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>[<span class="ident">T</span>; <span class="ident">N</span>], <span class="self">Self</span><span class="op">&gt;</span> {
     <span class="kw">if</span> <span class="self">self</span>.<span class="ident">length</span> <span class="op">&lt;</span> <span class="ident">N</span> {
       <span class="prelude-val">Err</span>(<span class="self">self</span>)
     } <span class="kw">else</span> {
@@ -4095,23 +4095,23 @@
   <span class="doccomment">/// assert_eq!(v, &amp;[1]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drain</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">range</span>: <span class="ident">R</span>) <span class="op">-&gt;</span> <span class="self">Self</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drain</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">range</span>: <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
   <span class="comment">// No Copy bounds here because the original StaticVec gives up all access to the values in</span>
   <span class="comment">// question.</span>
   <span class="kw">where</span> <span class="ident">R</span>: <span class="ident">RangeBounds</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
     <span class="comment">// Borrowed this part from normal Vec&#39;s implementation.</span>
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
     <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">range</span>.<span class="ident">start_bound</span>() {
-      <span class="ident">Included</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=&gt;</span> <span class="ident">idx</span>,
-      <span class="ident">Excluded</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=&gt;</span> <span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>,
-      <span class="ident">Unbounded</span> <span class="op">=&gt;</span> <span class="number">0</span>,
+      <span class="ident">Included</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">idx</span>,
+      <span class="ident">Excluded</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>,
+      <span class="ident">Unbounded</span> <span class="op">=</span><span class="op">&gt;</span> <span class="number">0</span>,
     };
     <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">range</span>.<span class="ident">end_bound</span>() {
-      <span class="ident">Included</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=&gt;</span> <span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>,
-      <span class="ident">Excluded</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=&gt;</span> <span class="ident">idx</span>,
-      <span class="ident">Unbounded</span> <span class="op">=&gt;</span> <span class="ident">old_length</span>,
+      <span class="ident">Included</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>,
+      <span class="ident">Excluded</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">idx</span>,
+      <span class="ident">Unbounded</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">old_length</span>,
     };
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">start</span> <span class="op">&lt;=</span> <span class="ident">end</span> <span class="op">&amp;&amp;</span> <span class="ident">end</span> <span class="op">&lt;=</span> <span class="ident">old_length</span>);
+    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">start</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">end</span> <span class="op">&amp;&amp;</span> <span class="ident">end</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">old_length</span>);
     <span class="kw">let</span> <span class="ident">res_length</span> <span class="op">=</span> <span class="ident">end</span> <span class="op">-</span> <span class="ident">start</span>;
     <span class="self">Self</span> {
       <span class="ident">data</span>: {
@@ -4142,21 +4142,21 @@
   <span class="doccomment">/// assert_eq!(v2, [6, 5, 4]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drain_iter</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">range</span>: <span class="ident">R</span>) <span class="op">-&gt;</span> <span class="ident">StaticVecDrain</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drain_iter</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">range</span>: <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StaticVecDrain</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span>
   <span class="kw">where</span> <span class="ident">R</span>: <span class="ident">RangeBounds</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
     <span class="comment">// Borrowed this part from normal Vec&#39;s implementation.</span>
     <span class="kw">let</span> <span class="ident">length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
     <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">range</span>.<span class="ident">start_bound</span>() {
-      <span class="ident">Included</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=&gt;</span> <span class="ident">idx</span>,
-      <span class="ident">Excluded</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=&gt;</span> <span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>,
-      <span class="ident">Unbounded</span> <span class="op">=&gt;</span> <span class="number">0</span>,
+      <span class="ident">Included</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">idx</span>,
+      <span class="ident">Excluded</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>,
+      <span class="ident">Unbounded</span> <span class="op">=</span><span class="op">&gt;</span> <span class="number">0</span>,
     };
     <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">range</span>.<span class="ident">end_bound</span>() {
-      <span class="ident">Included</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=&gt;</span> <span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>,
-      <span class="ident">Excluded</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=&gt;</span> <span class="ident">idx</span>,
-      <span class="ident">Unbounded</span> <span class="op">=&gt;</span> <span class="ident">length</span>,
+      <span class="ident">Included</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>,
+      <span class="ident">Excluded</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">idx</span>,
+      <span class="ident">Unbounded</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">length</span>,
     };
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">start</span> <span class="op">&lt;=</span> <span class="ident">end</span> <span class="op">&amp;&amp;</span> <span class="ident">end</span> <span class="op">&lt;=</span> <span class="ident">length</span>);
+    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">start</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">end</span> <span class="op">&amp;&amp;</span> <span class="ident">end</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">length</span>);
     <span class="kw">unsafe</span> {
       <span class="comment">// Set the length to 0 to avoid memory issues if anything goes wrong with</span>
       <span class="comment">// the Drain.</span>
@@ -4172,8 +4172,8 @@
         <span class="ident">iter</span>: <span class="ident">StaticVecIterConst</span> {
           <span class="ident">start</span>: <span class="ident">start_ptr</span>,
           <span class="ident">end</span>: <span class="kw">match</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
-            <span class="number">0</span> <span class="op">=&gt;</span> (<span class="self">self</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>).<span class="ident">wrapping_add</span>(<span class="ident">end</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>,
-            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">ptr_at_unchecked</span>(<span class="ident">end</span>),
+            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="self">self</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>).<span class="ident">wrapping_add</span>(<span class="ident">end</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">ptr_at_unchecked</span>(<span class="ident">end</span>),
           },
           <span class="ident">marker</span>: <span class="ident">PhantomData</span>,
         },
@@ -4195,8 +4195,8 @@
   <span class="doccomment">/// assert_eq!(odds, [1, 3, 5, 9, 11, 13, 15]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drain_filter</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">filter</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="self">Self</span>
-  <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drain_filter</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">filter</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
+  <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
     <span class="comment">// Temporarily set our length to 0 to avoid double drops and such if anything</span>
     <span class="comment">// goes wrong in the filter loop.</span>
@@ -4211,7 +4211,7 @@
           <span class="ident">res</span>
             .<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">res_length</span>)
             .<span class="ident">write</span>(<span class="self">self</span>.<span class="ident">ptr_at_unchecked</span>(<span class="ident">i</span>).<span class="ident">read</span>());
-          <span class="ident">res_length</span> <span class="op">+=</span> <span class="number">1</span>;
+          <span class="ident">res_length</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
         } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">res_length</span> <span class="op">&gt;</span> <span class="number">0</span> {
           <span class="self">self</span>
             .<span class="ident">ptr_at_unchecked</span>(<span class="ident">i</span>)
@@ -4237,7 +4237,7 @@
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">retain</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">filter</span>: <span class="ident">F</span>)
-  <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+  <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
     <span class="self">self</span>.<span class="ident">drain_filter</span>(<span class="op">|</span><span class="ident">val</span><span class="op">|</span> <span class="op">!</span><span class="ident">filter</span>(<span class="ident">val</span>));
   }
 
@@ -4277,9 +4277,9 @@
   <span class="doccomment">/// assert_eq!(v2, [2, 3]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">split_off</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">at</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">split_off</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">at</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">at</span> <span class="op">&lt;=</span> <span class="ident">old_length</span>);
+    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">at</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">old_length</span>);
     <span class="kw">let</span> <span class="ident">split_length</span> <span class="op">=</span> <span class="ident">old_length</span> <span class="op">-</span> <span class="ident">at</span>;
     <span class="self">Self</span> {
       <span class="ident">data</span>: <span class="kw">unsafe</span> {
@@ -4306,7 +4306,7 @@
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dedup_by</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">same_bucket</span>: <span class="ident">F</span>)
-  <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+  <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
     <span class="comment">// Mostly the same as Vec&#39;s version.</span>
     <span class="kw">let</span> <span class="ident">new_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">as_mut_slice</span>().<span class="ident">partition_dedup_by</span>(<span class="ident">same_bucket</span>).<span class="number">0</span>.<span class="ident">len</span>();
     <span class="self">self</span>.<span class="ident">truncate</span>(<span class="ident">new_length</span>);
@@ -4326,7 +4326,7 @@
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dedup</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>)
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">PartialEq</span> {
     <span class="comment">// Exactly the same as Vec&#39;s version.</span>
-    <span class="self">self</span>.<span class="ident">dedup_by</span>(<span class="op">|</span><span class="ident">a</span>, <span class="ident">b</span><span class="op">|</span> <span class="ident">a</span> <span class="op">==</span> <span class="ident">b</span>)
+    <span class="self">self</span>.<span class="ident">dedup_by</span>(<span class="op">|</span><span class="ident">a</span>, <span class="ident">b</span><span class="op">|</span> <span class="ident">a</span> <span class="op">=</span><span class="op">=</span> <span class="ident">b</span>)
   }
 
   <span class="doccomment">/// Removes all but the first of consecutive elements in the StaticVec that</span>
@@ -4342,10 +4342,10 @@
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dedup_by_key</span><span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">K</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">key</span>: <span class="ident">F</span>)
   <span class="kw">where</span>
-    <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">K</span>,
+    <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">K</span>,
     <span class="ident">K</span>: <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="ident">K</span><span class="op">&gt;</span>, {
     <span class="comment">// Exactly the same as Vec&#39;s version.</span>
-    <span class="self">self</span>.<span class="ident">dedup_by</span>(<span class="op">|</span><span class="ident">a</span>, <span class="ident">b</span><span class="op">|</span> <span class="ident">key</span>(<span class="ident">a</span>) <span class="op">==</span> <span class="ident">key</span>(<span class="ident">b</span>))
+    <span class="self">self</span>.<span class="ident">dedup_by</span>(<span class="op">|</span><span class="ident">a</span>, <span class="ident">b</span><span class="op">|</span> <span class="ident">key</span>(<span class="ident">a</span>) <span class="op">=</span><span class="op">=</span> <span class="ident">key</span>(<span class="ident">b</span>))
   }
 
   <span class="doccomment">/// Returns a new StaticVec representing the difference of `self` and `other` (that is,</span>
@@ -4367,13 +4367,13 @@
   <span class="doccomment">/// );</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">difference</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N2</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N2</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="self">Self</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">difference</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N2</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N2</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">PartialEq</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="kw">for</span> <span class="ident">left</span> <span class="kw">in</span> <span class="self">self</span> {
       <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">found</span> <span class="op">=</span> <span class="bool-val">false</span>;
       <span class="kw">for</span> <span class="ident">right</span> <span class="kw">in</span> <span class="ident">other</span> {
-        <span class="kw">if</span> <span class="ident">left</span> <span class="op">==</span> <span class="ident">right</span> {
+        <span class="kw">if</span> <span class="ident">left</span> <span class="op">=</span><span class="op">=</span> <span class="ident">right</span> {
           <span class="ident">found</span> <span class="op">=</span> <span class="bool-val">true</span>;
           <span class="kw">break</span>;
         }
@@ -4460,13 +4460,13 @@
   <span class="doccomment">/// );</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersection</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N2</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N2</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="self">Self</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersection</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N2</span>: <span class="ident">usize</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N2</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">PartialEq</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="kw">for</span> <span class="ident">left</span> <span class="kw">in</span> <span class="self">self</span> {
       <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">found</span> <span class="op">=</span> <span class="bool-val">false</span>;
       <span class="kw">for</span> <span class="ident">right</span> <span class="kw">in</span> <span class="ident">other</span> {
-        <span class="kw">if</span> <span class="ident">left</span> <span class="op">==</span> <span class="ident">right</span> {
+        <span class="kw">if</span> <span class="ident">left</span> <span class="op">=</span><span class="op">=</span> <span class="ident">right</span> {
           <span class="ident">found</span> <span class="op">=</span> <span class="bool-val">true</span>;
           <span class="kw">break</span>;
         }
@@ -4524,7 +4524,7 @@
   <span class="doccomment">/// assert_eq!(V.triple(), (V.as_ptr(), 4, 4));</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">triple</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> (<span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>, <span class="ident">usize</span>, <span class="ident">usize</span>) {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">triple</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>, <span class="ident">usize</span>, <span class="ident">usize</span>) {
     (<span class="self">self</span>.<span class="ident">as_ptr</span>(), <span class="self">self</span>.<span class="ident">length</span>, <span class="ident">N</span>)
   }
 
@@ -4542,7 +4542,7 @@
   <span class="doccomment">/// assert_eq!(v, [8, 5, 6, 7]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">triple_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> (<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>, <span class="ident">usize</span>, <span class="ident">usize</span>) {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">triple_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>, <span class="ident">usize</span>, <span class="ident">usize</span>) {
     (<span class="self">self</span>.<span class="ident">as_mut_ptr</span>(), <span class="self">self</span>.<span class="ident">length</span>, <span class="ident">N</span>)
   }
 
@@ -4565,7 +4565,7 @@
   <span class="doccomment">/// assert_eq!(A.added(&amp;B), [6.0, 8.0, 10.0, 12.0]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">added</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">added</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">Add</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span> {
     <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">is_full</span>() <span class="op">&amp;&amp;</span> <span class="ident">other</span>.<span class="ident">is_full</span>());
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
@@ -4599,7 +4599,7 @@
   <span class="doccomment">/// assert_eq!(A.subtracted(&amp;B), [2.0, 2.0, 2.0, 2.0]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">subtracted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">subtracted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">Sub</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span> {
     <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">is_full</span>() <span class="op">&amp;&amp;</span> <span class="ident">other</span>.<span class="ident">is_full</span>());
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
@@ -4633,7 +4633,7 @@
   <span class="doccomment">/// assert_eq!(A.multiplied(&amp;B), [8.0, 15.0, 24.0, 35.0]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">multiplied</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">multiplied</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">Mul</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span> {
     <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">is_full</span>() <span class="op">&amp;&amp;</span> <span class="ident">other</span>.<span class="ident">is_full</span>());
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
@@ -4667,7 +4667,7 @@
   <span class="doccomment">/// assert_eq!(A.divided(&amp;B), [2.0, 1.6666666666666667, 1.5, 1.4]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">divided</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">divided</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">Div</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span> {
     <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">is_full</span>() <span class="op">&amp;&amp;</span> <span class="ident">other</span>.<span class="ident">is_full</span>());
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
@@ -4685,7 +4685,7 @@
   <span class="doccomment">/// An internal convenience function to get an *uninitialized* instance of</span>
   <span class="doccomment">/// `MaybeUninit&lt;[T; N]&gt;`.</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new_data_uninit</span>() <span class="op">-&gt;</span> <span class="ident">MaybeUninit</span><span class="op">&lt;</span>[<span class="ident">T</span>; <span class="ident">N</span>]<span class="op">&gt;</span> {
+  <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new_data_uninit</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">MaybeUninit</span><span class="op">&lt;</span>[<span class="ident">T</span>; <span class="ident">N</span>]<span class="op">&gt;</span> {
     <span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>()
   }
 
@@ -4693,7 +4693,7 @@
   <span class="doccomment">/// Similar to [`MaybeUninit::first_ptr`](core::mem::MaybeUninit::first_ptr), but for arrays</span>
   <span class="doccomment">/// as opposed to slices.</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">first_ptr</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">MaybeUninit</span><span class="op">&lt;</span>[<span class="ident">T</span>; <span class="ident">N</span>]<span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span> {
+  <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">first_ptr</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">MaybeUninit</span><span class="op">&lt;</span>[<span class="ident">T</span>; <span class="ident">N</span>]<span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span> {
     <span class="ident">this</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">MaybeUninit</span><span class="op">&lt;</span>[<span class="ident">T</span>; <span class="ident">N</span>]<span class="op">&gt;</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>
   }
 
@@ -4701,7 +4701,7 @@
   <span class="doccomment">/// Similar to [`MaybeUninit::first_ptr_mut`](core::mem::MaybeUninit::first_ptr_mut), but for</span>
   <span class="doccomment">/// arrays as opposed to slices.</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">first_ptr_mut</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">MaybeUninit</span><span class="op">&lt;</span>[<span class="ident">T</span>; <span class="ident">N</span>]<span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span> {
+  <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">first_ptr_mut</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">MaybeUninit</span><span class="op">&lt;</span>[<span class="ident">T</span>; <span class="ident">N</span>]<span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span> {
     <span class="ident">this</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">MaybeUninit</span><span class="op">&lt;</span>[<span class="ident">T</span>; <span class="ident">N</span>]<span class="op">&gt;</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>
   }
 }
@@ -4712,7 +4712,7 @@
   <span class="doccomment">/// and the input `length` is the known-at-compile-time length of said literal.</span>
   <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new_from_str_data</span>(<span class="ident">data</span>: <span class="ident">MaybeUninit</span><span class="op">&lt;</span>[<span class="ident">u8</span>; <span class="ident">N</span>]<span class="op">&gt;</span>, <span class="ident">length</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+  <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new_from_str_data</span>(<span class="ident">data</span>: <span class="ident">MaybeUninit</span><span class="op">&lt;</span>[<span class="ident">u8</span>; <span class="ident">N</span>]<span class="op">&gt;</span>, <span class="ident">length</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
     <span class="self">Self</span> { <span class="ident">data</span>, <span class="ident">length</span> }
   }
 
@@ -4720,7 +4720,7 @@
   <span class="doccomment">/// representation of a proper `&amp;str` literal.</span>
   <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
   <span class="attribute">#[<span class="ident">inline</span>]</span>
-  <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">bytes_to_data</span>(<span class="ident">values</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) <span class="op">-&gt;</span> <span class="ident">MaybeUninit</span><span class="op">&lt;</span>[<span class="ident">u8</span>; <span class="ident">N</span>]<span class="op">&gt;</span> {
+  <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">bytes_to_data</span>(<span class="ident">values</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">MaybeUninit</span><span class="op">&lt;</span>[<span class="ident">u8</span>; <span class="ident">N</span>]<span class="op">&gt;</span> {
     <span class="comment">// What follows is an idea partially arrived at from reading the source of the `const-concat`</span>
     <span class="comment">// crate. Note that it amounts to effectively a `const fn` compatible implementation of what</span>
     <span class="comment">// `MaybeUninit::assume_uninit()` does, and is *only* used here due to there being no other way</span>
@@ -4753,7 +4753,7 @@
       <span class="comment">// so there&#39;s no concern that we might go out of bounds here (although that would still just</span>
       <span class="comment">// result in compilation not actually succeeding at all due to the `const` index error).</span>
       <span class="ident">res</span>[<span class="ident">i</span>] <span class="op">=</span> <span class="ident">MaybeUninit</span>::<span class="ident">new</span>(<span class="ident">values</span>[<span class="ident">i</span>]);
-      <span class="ident">i</span> <span class="op">+=</span> <span class="number">1</span>;
+      <span class="ident">i</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
     }
     <span class="comment">// Convert `res` from an instance of `[MaybeUninit&lt;u8&gt;; N]` to one of `[u8; N]`, and then return</span>
     <span class="comment">// it as an instance of `MaybeUninit&lt;[u8; N]&gt;` that can be used to construct a `StaticVec`.</span>
@@ -4765,10 +4765,10 @@
   <span class="doccomment">/// prefix and hide it from `rustdoc` anyways just so no one thinks it&#39;s for general use.</span>
   <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">__new_from_const_str</span>(<span class="ident">values</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+  <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">__new_from_const_str</span>(<span class="ident">values</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
     <span class="comment">// This works at compile time too, of course, thanks to the `const_panic` feature.</span>
     <span class="macro">assert</span><span class="macro">!</span>(
-      <span class="ident">values</span>.<span class="ident">len</span>() <span class="op">&lt;=</span> <span class="ident">N</span>,
+      <span class="ident">values</span>.<span class="ident">len</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="ident">N</span>,
       <span class="comment">// At the moment, I don&#39;t think this message is actually printed in any context when the</span>
       <span class="comment">// assertion gets triggered (currently it&#39;s just &quot;could not evaluate static initializer&quot;) but</span>
       <span class="comment">// I feel like it doesn&#39;t hurt to have here just in case the compiler-error behavior changes</span>

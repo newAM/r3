@@ -192,7 +192,7 @@
 <span class="doccomment">///</span>
 <span class="attribute">#[<span class="ident">macro_export</span>]</span>
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">use_gic</span> {
-    (<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">PortInterrupts</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span>:<span class="ident">ty</span>) <span class="op">=&gt;</span> {
+    (<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">PortInterrupts</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span>:<span class="ident">ty</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="kw">const</span> <span class="kw">_</span>: () <span class="op">=</span> {
             <span class="kw">use</span> <span class="macro-nonterminal">$</span><span class="kw">crate</span>::{
                 <span class="macro-nonterminal">constance</span>::<span class="ident">kernel</span>::{
@@ -207,7 +207,7 @@
 
             <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Gic</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">sys</span> {
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">gic_regs</span>() <span class="op">-&gt;</span> <span class="ident">imp</span>::<span class="ident">GicRegs</span> {
+                <span class="kw">fn</span> <span class="ident">gic_regs</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">imp</span>::<span class="ident">GicRegs</span> {
                     <span class="kw">unsafe</span> { <span class="ident">imp</span>::<span class="ident">GicRegs</span>::<span class="ident">from_system</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>() }
                 }
             }
@@ -219,42 +219,42 @@
                 <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">set_interrupt_line_priority</span>(
                     <span class="ident">line</span>: <span class="ident">InterruptNum</span>,
                     <span class="ident">priority</span>: <span class="ident">InterruptPriority</span>,
-                ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">SetInterruptLinePriorityError</span><span class="op">&gt;</span> {
+                ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">SetInterruptLinePriorityError</span><span class="op">&gt;</span> {
                     <span class="ident">imp</span>::<span class="ident">set_interrupt_line_priority</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>(<span class="ident">line</span>, <span class="ident">priority</span>)
                 }
 
                 <span class="attribute">#[<span class="ident">inline</span>]</span>
                 <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">enable_interrupt_line</span>(
                     <span class="ident">line</span>: <span class="ident">InterruptNum</span>,
-                ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">EnableInterruptLineError</span><span class="op">&gt;</span> {
+                ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">EnableInterruptLineError</span><span class="op">&gt;</span> {
                     <span class="ident">imp</span>::<span class="ident">enable_interrupt_line</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>(<span class="ident">line</span>)
                 }
 
                 <span class="attribute">#[<span class="ident">inline</span>]</span>
                 <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">disable_interrupt_line</span>(
                     <span class="ident">line</span>: <span class="ident">InterruptNum</span>,
-                ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">EnableInterruptLineError</span><span class="op">&gt;</span> {
+                ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">EnableInterruptLineError</span><span class="op">&gt;</span> {
                     <span class="ident">imp</span>::<span class="ident">disable_interrupt_line</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>(<span class="ident">line</span>)
                 }
 
                 <span class="attribute">#[<span class="ident">inline</span>]</span>
                 <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">pend_interrupt_line</span>(
                     <span class="ident">line</span>: <span class="ident">InterruptNum</span>,
-                ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">PendInterruptLineError</span><span class="op">&gt;</span> {
+                ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">PendInterruptLineError</span><span class="op">&gt;</span> {
                     <span class="ident">imp</span>::<span class="ident">pend_interrupt_line</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>(<span class="ident">line</span>)
                 }
 
                 <span class="attribute">#[<span class="ident">inline</span>]</span>
                 <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">clear_interrupt_line</span>(
                     <span class="ident">line</span>: <span class="ident">InterruptNum</span>,
-                ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">ClearInterruptLineError</span><span class="op">&gt;</span> {
+                ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">ClearInterruptLineError</span><span class="op">&gt;</span> {
                     <span class="ident">imp</span>::<span class="ident">clear_interrupt_line</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>(<span class="ident">line</span>)
                 }
 
                 <span class="attribute">#[<span class="ident">inline</span>]</span>
                 <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">is_interrupt_line_pending</span>(
                     <span class="ident">line</span>: <span class="ident">InterruptNum</span>,
-                ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">QueryInterruptLineError</span><span class="op">&gt;</span> {
+                ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">QueryInterruptLineError</span><span class="op">&gt;</span> {
                     <span class="ident">imp</span>::<span class="ident">is_interrupt_line_pending</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>(<span class="ident">line</span>)
                 }
             }
@@ -266,7 +266,7 @@
                 }
 
                 <span class="attribute">#[<span class="ident">inline</span>]</span>
-                <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">acknowledge_interrupt</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InterruptNum</span><span class="op">&gt;</span> {
+                <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">acknowledge_interrupt</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InterruptNum</span><span class="op">&gt;</span> {
                     <span class="ident">imp</span>::<span class="ident">acknowledge_interrupt</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>()
                 }
 
@@ -309,10 +309,10 @@
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">trait</span> <span class="ident">Gic</span> {
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
     <span class="doccomment">/// Get `GicRegs` representing the system-global GIC instance.</span>
-    <span class="kw">fn</span> <span class="ident">gic_regs</span>() <span class="op">-&gt;</span> <span class="ident">GicRegs</span>;
+    <span class="kw">fn</span> <span class="ident">gic_regs</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GicRegs</span>;
 
     <span class="doccomment">/// Get the number of supported interrupt lines.</span>
-    <span class="kw">fn</span> <span class="ident">num_interrupt_lines</span>() <span class="op">-&gt;</span> <span class="ident">InterruptNum</span> {
+    <span class="kw">fn</span> <span class="ident">num_interrupt_lines</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">InterruptNum</span> {
         <span class="kw">let</span> <span class="ident">distributor</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">gic_regs</span>().<span class="ident">distributor</span>;
         <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">distributor</span>.<span class="ident">TYPER</span>.<span class="ident">read</span>(<span class="ident">gic_regs</span>::<span class="ident">GICD_TYPER</span>::<span class="ident">ITLinesNumber</span>);
         (<span class="ident">raw</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="number">1</span>) <span class="op">*</span> <span class="number">32</span>
@@ -322,11 +322,11 @@
     <span class="kw">fn</span> <span class="ident">set_interrupt_line_trigger_mode</span>(
         <span class="ident">num</span>: <span class="ident">InterruptNum</span>,
         <span class="ident">mode</span>: <span class="ident">InterruptLineTriggerMode</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">SetInterruptLineTriggerModeError</span><span class="op">&gt;</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">SetInterruptLineTriggerModeError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">distributor</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">gic_regs</span>().<span class="ident">distributor</span>;
 
         <span class="comment">// SGI (num = `0..16`) doesn&#39;t support changing trigger mode</span>
-        <span class="kw">if</span> <span class="ident">num</span> <span class="op">&lt;</span> <span class="number">16</span> <span class="op">||</span> <span class="ident">num</span> <span class="op">&gt;=</span> <span class="self">Self</span>::<span class="ident">num_interrupt_lines</span>() {
+        <span class="kw">if</span> <span class="ident">num</span> <span class="op">&lt;</span> <span class="number">16</span> <span class="op">|</span><span class="op">|</span> <span class="ident">num</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">Self</span>::<span class="ident">num_interrupt_lines</span>() {
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">SetInterruptLineTriggerModeError</span>::<span class="ident">BadParam</span>);
         }
 

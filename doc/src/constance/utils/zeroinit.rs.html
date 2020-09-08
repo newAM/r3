@@ -128,7 +128,7 @@
             $( <span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">meta</span>:<span class="ident">meta</span>]</span> )<span class="op">*</span>
             <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ty</span>,
         )<span class="op">*</span>
-    ) <span class="op">=&gt;</span> {
+    ) <span class="op">=</span><span class="op">&gt;</span> {
         $(
             $( <span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">meta</span>]</span> )<span class="op">*</span>
             <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">ZeroInit</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span> {
@@ -182,13 +182,13 @@
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="kw">const</span> <span class="ident">LEN</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">ZeroInit</span> <span class="kw">for</span> [<span class="ident">T</span>; <span class="ident">LEN</span>] <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">ZeroInit</span> {}
 
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">fn_impl_zero_init</span> {
-    ( <span class="macro-nonterminal">$</span><span class="macro-nonterminal">h</span>:<span class="ident">ident</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>:<span class="ident">ident</span>,)<span class="op">*</span> ) <span class="op">=&gt;</span> {
-        <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Ret</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">h</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>,)<span class="kw-2">*</span><span class="op">&gt;</span> <span class="ident">ZeroInit</span> <span class="kw">for</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">fn</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">h</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>,)<span class="kw-2">*</span>) <span class="op">-&gt;</span> <span class="ident">Ret</span><span class="op">&gt;</span> {
+    ( <span class="macro-nonterminal">$</span><span class="macro-nonterminal">h</span>:<span class="ident">ident</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>:<span class="ident">ident</span>,)<span class="op">*</span> ) <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Ret</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">h</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>,)<span class="kw-2">*</span><span class="op">&gt;</span> <span class="ident">ZeroInit</span> <span class="kw">for</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">fn</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">h</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>,)<span class="kw-2">*</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ret</span><span class="op">&gt;</span> {
         }
 
         <span class="macro">fn_impl_zero_init</span><span class="macro">!</span> { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>,)<span class="op">*</span> }
     };
-    () <span class="op">=&gt;</span> {};
+    () <span class="op">=</span><span class="op">&gt;</span> {};
 }
 
 <span class="macro">fn_impl_zero_init</span><span class="macro">!</span> {

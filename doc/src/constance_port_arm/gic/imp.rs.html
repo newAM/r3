@@ -230,7 +230,7 @@
     <span class="doccomment">/// `GicOptions` should be configured correctly and the memory-mapped</span>
     <span class="doccomment">/// registers should be accessible.</span>
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_system</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">GicOptions</span><span class="op">&gt;</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_system</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">GicOptions</span><span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">distributor</span>: <span class="kw">unsafe</span> {
                 <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">System</span>::<span class="ident">GIC_DISTRIBUTOR_BASE</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gic_regs</span>::<span class="ident">GicDistributor</span>)
@@ -296,11 +296,11 @@
 
 <span class="doccomment">/// Implements [`crate::InterruptController::acknowledge_interrupt`].</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">acknowledge_interrupt</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Gic</span><span class="op">&gt;</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InterruptNum</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">acknowledge_interrupt</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Gic</span><span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InterruptNum</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">cpu_interface</span> <span class="op">=</span> <span class="ident">System</span>::<span class="ident">gic_regs</span>().<span class="ident">cpu_interface</span>;
     <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">cpu_interface</span>.<span class="ident">IAR</span>.<span class="ident">get</span>();
     <span class="kw">let</span> <span class="ident">interrupt_id</span> <span class="op">=</span> <span class="ident">raw</span> <span class="op">&amp;</span> <span class="number">0x3ff</span>;
-    <span class="kw">if</span> <span class="ident">interrupt_id</span> <span class="op">==</span> <span class="number">0x3ff</span> {
+    <span class="kw">if</span> <span class="ident">interrupt_id</span> <span class="op">=</span><span class="op">=</span> <span class="number">0x3ff</span> {
         <span class="prelude-val">None</span>
     } <span class="kw">else</span> {
         <span class="prelude-val">Some</span>(<span class="ident">interrupt_id</span> <span class="kw">as</span> <span class="kw">_</span>)
@@ -318,10 +318,10 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_interrupt_line_priority</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Gic</span><span class="op">&gt;</span>(
     <span class="ident">line</span>: <span class="ident">InterruptNum</span>,
     <span class="ident">priority</span>: <span class="ident">InterruptPriority</span>,
-) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">SetInterruptLinePriorityError</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">SetInterruptLinePriorityError</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">distributor</span> <span class="op">=</span> <span class="ident">System</span>::<span class="ident">gic_regs</span>().<span class="ident">distributor</span>;
 
-    <span class="kw">if</span> <span class="ident">line</span> <span class="op">&gt;=</span> <span class="ident">System</span>::<span class="ident">num_interrupt_lines</span>() <span class="op">||</span> <span class="ident">priority</span> <span class="op">&lt;</span> <span class="number">0</span> <span class="op">||</span> <span class="ident">priority</span> <span class="op">&gt;</span> <span class="number">255</span> {
+    <span class="kw">if</span> <span class="ident">line</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">System</span>::<span class="ident">num_interrupt_lines</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">priority</span> <span class="op">&lt;</span> <span class="number">0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">priority</span> <span class="op">&gt;</span> <span class="number">255</span> {
         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">SetInterruptLinePriorityError</span>::<span class="ident">BadParam</span>);
     }
 
@@ -333,15 +333,15 @@
 <span class="doccomment">/// Implements [`constance::kernel::PortInterrupts::enable_interrupt_line`].</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enable_interrupt_line</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Gic</span><span class="op">&gt;</span>(
     <span class="ident">line</span>: <span class="ident">InterruptNum</span>,
-) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">EnableInterruptLineError</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">EnableInterruptLineError</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">distributor</span> <span class="op">=</span> <span class="ident">System</span>::<span class="ident">gic_regs</span>().<span class="ident">distributor</span>;
 
     <span class="comment">// SGI (line `0..16`) does not support enabling/disabling.</span>
-    <span class="kw">if</span> <span class="ident">line</span> <span class="op">&lt;</span> <span class="number">16</span> <span class="op">||</span> <span class="ident">line</span> <span class="op">&gt;=</span> <span class="ident">System</span>::<span class="ident">num_interrupt_lines</span>() {
+    <span class="kw">if</span> <span class="ident">line</span> <span class="op">&lt;</span> <span class="number">16</span> <span class="op">|</span><span class="op">|</span> <span class="ident">line</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">System</span>::<span class="ident">num_interrupt_lines</span>() {
         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">EnableInterruptLineError</span>::<span class="ident">BadParam</span>);
     }
 
-    <span class="ident">distributor</span>.<span class="ident">ISENABLE</span>[<span class="ident">line</span> <span class="op">/</span> <span class="number">32</span>].<span class="ident">set</span>(<span class="number">1</span> <span class="op">&lt;&lt;</span> (<span class="ident">line</span> <span class="op">%</span> <span class="number">32</span>));
+    <span class="ident">distributor</span>.<span class="ident">ISENABLE</span>[<span class="ident">line</span> <span class="op">/</span> <span class="number">32</span>].<span class="ident">set</span>(<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">line</span> <span class="op">%</span> <span class="number">32</span>));
 
     <span class="prelude-val">Ok</span>(())
 }
@@ -349,29 +349,29 @@
 <span class="doccomment">/// Implements [`constance::kernel::PortInterrupts::disable_interrupt_line`].</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">disable_interrupt_line</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Gic</span><span class="op">&gt;</span>(
     <span class="ident">line</span>: <span class="ident">InterruptNum</span>,
-) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">EnableInterruptLineError</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">EnableInterruptLineError</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">distributor</span> <span class="op">=</span> <span class="ident">System</span>::<span class="ident">gic_regs</span>().<span class="ident">distributor</span>;
 
     <span class="comment">// SGI (line `0..16`) does not support enabling/disabling.</span>
-    <span class="kw">if</span> <span class="ident">line</span> <span class="op">&lt;</span> <span class="number">16</span> <span class="op">||</span> <span class="ident">line</span> <span class="op">&gt;=</span> <span class="ident">System</span>::<span class="ident">num_interrupt_lines</span>() {
+    <span class="kw">if</span> <span class="ident">line</span> <span class="op">&lt;</span> <span class="number">16</span> <span class="op">|</span><span class="op">|</span> <span class="ident">line</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">System</span>::<span class="ident">num_interrupt_lines</span>() {
         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">EnableInterruptLineError</span>::<span class="ident">BadParam</span>);
     }
 
-    <span class="ident">distributor</span>.<span class="ident">ICENABLE</span>[<span class="ident">line</span> <span class="op">/</span> <span class="number">32</span>].<span class="ident">set</span>(<span class="number">1</span> <span class="op">&lt;&lt;</span> (<span class="ident">line</span> <span class="op">%</span> <span class="number">32</span>));
+    <span class="ident">distributor</span>.<span class="ident">ICENABLE</span>[<span class="ident">line</span> <span class="op">/</span> <span class="number">32</span>].<span class="ident">set</span>(<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">line</span> <span class="op">%</span> <span class="number">32</span>));
 
     <span class="prelude-val">Ok</span>(())
 }
 
 <span class="doccomment">/// Implements [`constance::kernel::PortInterrupts::pend_interrupt_line`].</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pend_interrupt_line</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Gic</span><span class="op">&gt;</span>(<span class="ident">line</span>: <span class="ident">InterruptNum</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">PendInterruptLineError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pend_interrupt_line</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Gic</span><span class="op">&gt;</span>(<span class="ident">line</span>: <span class="ident">InterruptNum</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">PendInterruptLineError</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">distributor</span> <span class="op">=</span> <span class="ident">System</span>::<span class="ident">gic_regs</span>().<span class="ident">distributor</span>;
 
-    <span class="kw">if</span> <span class="ident">line</span> <span class="op">&gt;=</span> <span class="ident">System</span>::<span class="ident">num_interrupt_lines</span>() {
+    <span class="kw">if</span> <span class="ident">line</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">System</span>::<span class="ident">num_interrupt_lines</span>() {
         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">PendInterruptLineError</span>::<span class="ident">BadParam</span>);
     } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">line</span> <span class="op">&lt;</span> <span class="number">16</span> {
         <span class="ident">distributor</span>.<span class="ident">SPENDSGIR</span>[<span class="ident">line</span>].<span class="ident">set</span>(<span class="number">1</span>);
     } <span class="kw">else</span> {
-        <span class="ident">distributor</span>.<span class="ident">ISPEND</span>[<span class="ident">line</span> <span class="op">/</span> <span class="number">32</span>].<span class="ident">set</span>(<span class="number">1</span> <span class="op">&lt;&lt;</span> (<span class="ident">line</span> <span class="op">%</span> <span class="number">32</span>));
+        <span class="ident">distributor</span>.<span class="ident">ISPEND</span>[<span class="ident">line</span> <span class="op">/</span> <span class="number">32</span>].<span class="ident">set</span>(<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">line</span> <span class="op">%</span> <span class="number">32</span>));
     }
 
     <span class="prelude-val">Ok</span>(())
@@ -380,15 +380,15 @@
 <span class="doccomment">/// Implements [`constance::kernel::PortInterrupts::clear_interrupt_line`].</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear_interrupt_line</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Gic</span><span class="op">&gt;</span>(
     <span class="ident">line</span>: <span class="ident">InterruptNum</span>,
-) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">ClearInterruptLineError</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">ClearInterruptLineError</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">distributor</span> <span class="op">=</span> <span class="ident">System</span>::<span class="ident">gic_regs</span>().<span class="ident">distributor</span>;
 
-    <span class="kw">if</span> <span class="ident">line</span> <span class="op">&gt;=</span> <span class="ident">System</span>::<span class="ident">num_interrupt_lines</span>() {
+    <span class="kw">if</span> <span class="ident">line</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">System</span>::<span class="ident">num_interrupt_lines</span>() {
         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ClearInterruptLineError</span>::<span class="ident">BadParam</span>);
     } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">line</span> <span class="op">&lt;</span> <span class="number">16</span> {
         <span class="ident">distributor</span>.<span class="ident">CPENDSGIR</span>[<span class="ident">line</span>].<span class="ident">set</span>(<span class="number">1</span>);
     } <span class="kw">else</span> {
-        <span class="ident">distributor</span>.<span class="ident">ICPEND</span>[<span class="ident">line</span> <span class="op">/</span> <span class="number">32</span>].<span class="ident">set</span>(<span class="number">1</span> <span class="op">&lt;&lt;</span> (<span class="ident">line</span> <span class="op">%</span> <span class="number">32</span>));
+        <span class="ident">distributor</span>.<span class="ident">ICPEND</span>[<span class="ident">line</span> <span class="op">/</span> <span class="number">32</span>].<span class="ident">set</span>(<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">line</span> <span class="op">%</span> <span class="number">32</span>));
     }
 
     <span class="prelude-val">Ok</span>(())
@@ -397,14 +397,14 @@
 <span class="doccomment">/// Implements [`constance::kernel::PortInterrupts::is_interrupt_line_pending`].</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_interrupt_line_pending</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Gic</span><span class="op">&gt;</span>(
     <span class="ident">line</span>: <span class="ident">InterruptNum</span>,
-) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">QueryInterruptLineError</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">QueryInterruptLineError</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">distributor</span> <span class="op">=</span> <span class="ident">System</span>::<span class="ident">gic_regs</span>().<span class="ident">distributor</span>;
 
-    <span class="kw">if</span> <span class="ident">line</span> <span class="op">&gt;=</span> <span class="ident">System</span>::<span class="ident">num_interrupt_lines</span>() {
+    <span class="kw">if</span> <span class="ident">line</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">System</span>::<span class="ident">num_interrupt_lines</span>() {
         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">QueryInterruptLineError</span>::<span class="ident">BadParam</span>);
     }
 
-    <span class="prelude-val">Ok</span>((<span class="ident">distributor</span>.<span class="ident">ISPEND</span>[<span class="ident">line</span> <span class="op">/</span> <span class="number">32</span>].<span class="ident">get</span>() <span class="op">&amp;</span> (<span class="number">1</span> <span class="op">&lt;&lt;</span> (<span class="ident">line</span> <span class="op">%</span> <span class="number">32</span>))) <span class="op">!=</span> <span class="number">0</span>)
+    <span class="prelude-val">Ok</span>((<span class="ident">distributor</span>.<span class="ident">ISPEND</span>[<span class="ident">line</span> <span class="op">/</span> <span class="number">32</span>].<span class="ident">get</span>() <span class="op">&amp;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">line</span> <span class="op">%</span> <span class="number">32</span>))) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>)
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "constance_port_arm";</script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>

@@ -733,14 +733,14 @@
 <span class="comment">// ---------------------------------------------------------------------------</span>
 
 <span class="doccomment">/// A reference to a [`Wait`].</span>
-<span class="kw">struct</span> <span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">PortThreading</span><span class="op">&gt;</span>(<span class="ident">NonNull</span><span class="op">&lt;</span><span class="ident">Wait</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;&gt;</span>);
+<span class="kw">struct</span> <span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">PortThreading</span><span class="op">&gt;</span>(<span class="ident">NonNull</span><span class="op">&lt;</span><span class="ident">Wait</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span>);
 
 <span class="comment">// Safety: `Wait` is `Send + Sync`</span>
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">PortThreading</span><span class="op">&gt;</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {}
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">PortThreading</span><span class="op">&gt;</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {}
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">PortThreading</span><span class="op">&gt;</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span>(<span class="self">self</span>.<span class="number">0</span>)
     }
 }
@@ -748,14 +748,14 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">PortThreading</span><span class="op">&gt;</span> <span class="ident">Copy</span> <span class="kw">for</span> <span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {}
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">PortThreading</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_tuple</span>(<span class="string">&quot;WaitRef&quot;</span>).<span class="ident">field</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>).<span class="ident">finish</span>()
     }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">PortThreading</span><span class="op">&gt;</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="number">0</span> <span class="op">==</span> <span class="ident">other</span>.<span class="number">0</span>
+    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span><span class="op">=</span> <span class="ident">other</span>.<span class="number">0</span>
     }
 }
 
@@ -776,15 +776,15 @@
         <span class="doccomment">///</span>
         <span class="doccomment">/// All pointees to be accessed through the constructed `UnsafeStatic`</span>
         <span class="doccomment">/// must be valid.</span>
-        <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="self">Self</span> {
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="self">Self</span> {
             <span class="kw-2">&amp;</span><span class="self">Self</span> { <span class="ident">_nonexhaustive</span>: () }
         }
     }
 
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Port</span><span class="op">&gt;</span> <span class="ident">ops</span>::<span class="ident">Index</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;&gt;</span> <span class="kw">for</span> <span class="ident">UnsafeStatic</span> {
+    <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Port</span><span class="op">&gt;</span> <span class="ident">ops</span>::<span class="ident">Index</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">UnsafeStatic</span> {
         <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Wait</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>;
 
-        <span class="kw">fn</span> <span class="ident">index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Output</span> {
+        <span class="kw">fn</span> <span class="ident">index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Output</span> {
             <span class="comment">// Safety: See `wait_queue_accessor`.</span>
             <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">index</span>.<span class="number">0</span>.<span class="ident">as_ptr</span>() }
         }
@@ -797,7 +797,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// All elements of `$list` must be extant.</span>
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">wait_queue_accessor</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">list</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">key</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">list</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">key</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="ident">ListAccessorCell</span>::<span class="ident">new</span>(
             <span class="macro-nonterminal">$</span><span class="macro-nonterminal">list</span>,
             <span class="ident">UnsafeStatic</span>::<span class="ident">new</span>(),
@@ -821,10 +821,10 @@
     <span class="ident">task</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">TaskCb</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
 
     <span class="doccomment">/// Forms a linked list headed by `wait_queue.waits`.</span>
-    <span class="ident">link</span>: <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">intrusive_list</span>::<span class="ident">Link</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;&gt;</span><span class="op">&gt;&gt;</span>,
+    <span class="ident">link</span>: <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">intrusive_list</span>::<span class="ident">Link</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 
     <span class="doccomment">/// The containing [`WaitQueue`].</span>
-    <span class="ident">wait_queue</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">WaitQueue</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;&gt;</span>,
+    <span class="ident">wait_queue</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">WaitQueue</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 
     <span class="ident">payload</span>: <span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
 }
@@ -849,7 +849,7 @@
     <span class="doccomment">/// Waiting state.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// All elements of this linked list must be valid.</span>
-    <span class="ident">waits</span>: <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">intrusive_list</span>::<span class="ident">ListHead</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">waits</span>: <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">intrusive_list</span>::<span class="ident">ListHead</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 
     <span class="ident">order</span>: <span class="ident">QueueOrder</span>,
 }
@@ -877,11 +877,11 @@
     <span class="doccomment">/// be `None` iff the task is not in the Waiting state.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The pointee must be valid.</span>
-    <span class="ident">current_wait</span>: <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">current_wait</span>: <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 
     <span class="doccomment">/// The result of the last wait operation. Set by a wake-upper. Returned by</span>
     <span class="doccomment">/// [`WaitQueue::wait`].</span>
-    <span class="ident">wait_result</span>: <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">WaitTimeoutError</span><span class="op">&gt;&gt;</span>,
+    <span class="ident">wait_result</span>: <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">WaitTimeoutError</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">PortThreading</span><span class="op">&gt;</span> <span class="ident">Init</span> <span class="kw">for</span> <span class="ident">TaskWait</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
@@ -897,7 +897,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This macro is used inside a blocking operation with timeout.</span>
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">setup_timeout_wait</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lock</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">task_cb</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">duration_time32</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lock</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">task_cb</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">duration_time32</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="comment">// Create a timeout object.</span>
         <span class="kw">let</span> <span class="ident">timeout</span> <span class="op">=</span> <span class="ident">new_timeout_object_for_task</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lock</span>.<span class="ident">borrow_mut</span>(), <span class="macro-nonterminal">$</span><span class="macro-nonterminal">task_cb</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">duration_time32</span>);
         <span class="ident">pin_utils</span>::<span class="macro">pin_mut</span><span class="macro">!</span>(<span class="ident">timeout</span>);
@@ -917,7 +917,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">PortThreading</span><span class="op">&gt;</span> <span class="ident">WaitQueue</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Construct a `WaitQueue`.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">order</span>: <span class="ident">QueueOrder</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">order</span>: <span class="ident">QueueOrder</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">waits</span>: <span class="ident">Init</span>::<span class="ident">INIT</span>,
             <span class="ident">order</span>,
@@ -938,7 +938,7 @@
         <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="self">self</span>,
         <span class="kw-2">mut</span> <span class="ident">lock</span>: <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>,
         <span class="ident">payload</span>: <span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>, <span class="ident">WaitError</span><span class="op">&gt;</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>, <span class="ident">WaitError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">task</span> <span class="op">=</span> <span class="ident">System</span>::<span class="ident">state</span>().<span class="ident">running_task</span>(<span class="ident">lock</span>.<span class="ident">borrow_mut</span>()).<span class="ident">unwrap</span>();
         <span class="kw">let</span> <span class="ident">wait</span> <span class="op">=</span> <span class="ident">Wait</span> {
             <span class="ident">task</span>,
@@ -967,7 +967,7 @@
         <span class="kw-2">mut</span> <span class="ident">lock</span>: <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>,
         <span class="ident">payload</span>: <span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
         <span class="ident">duration_time32</span>: <span class="ident">timeout</span>::<span class="ident">Time32</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>, <span class="ident">WaitTimeoutError</span><span class="op">&gt;</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>, <span class="ident">WaitTimeoutError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">task</span> <span class="op">=</span> <span class="ident">System</span>::<span class="ident">state</span>().<span class="ident">running_task</span>(<span class="ident">lock</span>.<span class="ident">borrow_mut</span>()).<span class="ident">unwrap</span>();
         <span class="kw">let</span> <span class="ident">wait</span> <span class="op">=</span> <span class="ident">Wait</span> {
             <span class="ident">task</span>,
@@ -993,7 +993,7 @@
         <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="self">self</span>,
         <span class="kw-2">mut</span> <span class="ident">lock</span>: <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>,
         <span class="ident">wait</span>: <span class="kw-2">&amp;</span><span class="ident">Wait</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">WaitTimeoutError</span><span class="op">&gt;</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">WaitTimeoutError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">task</span> <span class="op">=</span> <span class="ident">wait</span>.<span class="ident">task</span>;
         <span class="kw">let</span> <span class="ident">wait_ref</span> <span class="op">=</span> <span class="ident">WaitRef</span>(<span class="ident">wait</span>.<span class="ident">into</span>());
 
@@ -1007,11 +1007,11 @@
         <span class="comment">// Safety: All elements of `self.waits` are extant.</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">accessor</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="macro">wait_queue_accessor</span><span class="macro">!</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">waits</span>, <span class="ident">lock</span>.<span class="ident">borrow_mut</span>()) };
         <span class="kw">let</span> <span class="ident">insert_at</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">order</span> {
-            <span class="ident">QueueOrder</span>::<span class="ident">Fifo</span> <span class="op">=&gt;</span> {
+            <span class="ident">QueueOrder</span>::<span class="ident">Fifo</span> <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="comment">// FIFO order - insert at the back</span>
                 <span class="prelude-val">None</span>
             }
-            <span class="ident">QueueOrder</span>::<span class="ident">TaskPriority</span> <span class="op">=&gt;</span> {
+            <span class="ident">QueueOrder</span>::<span class="ident">TaskPriority</span> <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="kw">let</span> <span class="ident">cur_task_pri</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">task</span>.<span class="ident">priority</span>.<span class="ident">read</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">accessor</span>.<span class="ident">cell_key</span>());
                 <span class="comment">// TODO: It&#39;s unfortunate that we need to pass</span>
                 <span class="comment">//       `&amp;ListAccessorCell`, which incurs a runtime cost because</span>
@@ -1043,16 +1043,16 @@
         <span class="ident">cur_task_pri</span>: <span class="ident">System</span>::<span class="ident">TaskPriority</span>,
         <span class="ident">accessor</span>: <span class="kw-2">&amp;</span><span class="ident">ListAccessorCell</span><span class="op">&lt;</span>
             <span class="lifetime">&#39;_</span>,
-            <span class="kw-2">&amp;</span><span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">intrusive_list</span>::<span class="ident">ListHead</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span>,
+            <span class="kw-2">&amp;</span><span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">intrusive_list</span>::<span class="ident">ListHead</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
             <span class="ident">UnsafeStatic</span>,
             <span class="ident">MapLink</span>,
             <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>,
         <span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;&gt;</span>
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span>
     <span class="kw">where</span>
         <span class="ident">MapLink</span>: <span class="ident">Fn</span>(
             <span class="kw-2">&amp;</span><span class="ident">Wait</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
-        ) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">intrusive_list</span>::<span class="ident">Link</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;&gt;</span><span class="op">&gt;&gt;</span>,
+        ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">intrusive_list</span>::<span class="ident">Link</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">insert_at</span> <span class="op">=</span> <span class="prelude-val">None</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cursor</span> <span class="op">=</span> <span class="ident">accessor</span>.<span class="ident">back</span>();
@@ -1082,8 +1082,8 @@
         <span class="ident">wait</span>: <span class="kw-2">&amp;</span><span class="ident">Wait</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
     ) {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">order</span> {
-            <span class="ident">QueueOrder</span>::<span class="ident">Fifo</span> <span class="op">=&gt;</span> <span class="kw">return</span>,
-            <span class="ident">QueueOrder</span>::<span class="ident">TaskPriority</span> <span class="op">=&gt;</span> {}
+            <span class="ident">QueueOrder</span>::<span class="ident">Fifo</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span>,
+            <span class="ident">QueueOrder</span>::<span class="ident">TaskPriority</span> <span class="op">=</span><span class="op">&gt;</span> {}
         }
 
         <span class="kw">let</span> <span class="ident">wait_ref</span> <span class="op">=</span> <span class="ident">WaitRef</span>(<span class="ident">wait</span>.<span class="ident">into</span>());
@@ -1107,7 +1107,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This method may make a task Ready, but doesn&#39;t yield the processor.</span>
     <span class="doccomment">/// Call `unlock_cpu_and_check_preemption` as needed.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">wake_up_one</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">lock</span>: <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">wake_up_one</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">lock</span>: <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="comment">// Get the first wait object</span>
         <span class="comment">// Safety: All elements of `self.waits` are extant.</span>
         <span class="kw">let</span> <span class="ident">wait_ref</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="macro">wait_queue_accessor</span><span class="macro">!</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">waits</span>, <span class="ident">lock</span>.<span class="ident">borrow_mut</span>()) }.<span class="ident">pop_front</span>();
@@ -1134,7 +1134,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This method may make a task Ready, but doesn&#39;t yield the processor.</span>
     <span class="doccomment">/// Call `unlock_cpu_and_check_preemption` as needed.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">wake_up_all</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">lock</span>: <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">wake_up_all</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">lock</span>: <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="comment">// Call `wake_up_one` repeatedly until it returns `false`. If the first</span>
         <span class="comment">// call returns `true`, the result of `wake_up_all` is `true`.</span>
         <span class="self">self</span>.<span class="ident">wake_up_one</span>(<span class="ident">lock</span>.<span class="ident">borrow_mut</span>()) <span class="op">&amp;&amp;</span> {
@@ -1150,7 +1150,7 @@
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">wake_up_all_conditional</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="kw-2">mut</span> <span class="ident">lock</span>: <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>,
-        <span class="kw-2">mut</span> <span class="ident">cond</span>: <span class="kw">impl</span> <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>,
+        <span class="kw-2">mut</span> <span class="ident">cond</span>: <span class="kw">impl</span> <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>,
     ) {
         <span class="comment">// Safety: All elements of `self.waits` are extant.</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cur</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="macro">wait_queue_accessor</span><span class="macro">!</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">waits</span>, <span class="ident">lock</span>.<span class="ident">borrow_mut</span>()) }.<span class="ident">front</span>();
@@ -1190,8 +1190,8 @@
 <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">with_current_wait_payload</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span>, <span class="ident">R</span><span class="op">&gt;</span>(
     <span class="ident">lock</span>: <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>,
     <span class="ident">task_cb</span>: <span class="kw-2">&amp;</span><span class="ident">TaskCb</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
-    <span class="ident">f</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;&gt;</span>) <span class="op">-&gt;</span> <span class="ident">R</span>,
-) <span class="op">-&gt;</span> <span class="ident">R</span> {
+    <span class="ident">f</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">R</span>,
+) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">R</span> {
     <span class="kw">let</span> <span class="ident">wait_ref</span> <span class="op">=</span> <span class="ident">task_cb</span>.<span class="ident">wait</span>.<span class="ident">current_wait</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">lock</span>);
 
     <span class="comment">// Safety: ... and `wait_ref` must point to an existing `Wait`</span>
@@ -1235,7 +1235,7 @@
 <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">wait_no_queue</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>(
     <span class="kw-2">mut</span> <span class="ident">lock</span>: <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>,
     <span class="ident">payload</span>: <span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
-) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>, <span class="ident">WaitError</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>, <span class="ident">WaitError</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">task</span> <span class="op">=</span> <span class="ident">System</span>::<span class="ident">state</span>().<span class="ident">running_task</span>(<span class="ident">lock</span>.<span class="ident">borrow_mut</span>()).<span class="ident">unwrap</span>();
     <span class="kw">let</span> <span class="ident">wait</span> <span class="op">=</span> <span class="ident">Wait</span> {
         <span class="ident">task</span>,
@@ -1265,7 +1265,7 @@
     <span class="kw-2">mut</span> <span class="ident">lock</span>: <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>,
     <span class="ident">payload</span>: <span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
     <span class="ident">duration_time32</span>: <span class="ident">timeout</span>::<span class="ident">Time32</span>,
-) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>, <span class="ident">WaitTimeoutError</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>, <span class="ident">WaitTimeoutError</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">task</span> <span class="op">=</span> <span class="ident">System</span>::<span class="ident">state</span>().<span class="ident">running_task</span>(<span class="ident">lock</span>.<span class="ident">borrow_mut</span>()).<span class="ident">unwrap</span>();
     <span class="kw">let</span> <span class="ident">wait</span> <span class="op">=</span> <span class="ident">Wait</span> {
         <span class="ident">task</span>,
@@ -1290,7 +1290,7 @@
 <span class="kw">fn</span> <span class="ident">wait_no_queue_inner</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>(
     <span class="kw-2">mut</span> <span class="ident">lock</span>: <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>,
     <span class="ident">wait</span>: <span class="kw-2">&amp;</span><span class="ident">Wait</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
-) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">WaitTimeoutError</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">WaitTimeoutError</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">task</span> <span class="op">=</span> <span class="ident">wait</span>.<span class="ident">task</span>;
     <span class="kw">let</span> <span class="ident">wait_ref</span> <span class="op">=</span> <span class="ident">WaitRef</span>(<span class="ident">wait</span>.<span class="ident">into</span>());
 
@@ -1368,9 +1368,9 @@
     <span class="kw-2">mut</span> <span class="ident">lock</span>: <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>,
     <span class="ident">task_cb</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">TaskCb</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
     <span class="ident">wait_result</span>: <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">WaitTimeoutError</span><span class="op">&gt;</span>,
-) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">BadObjectStateError</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">BadObjectStateError</span><span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">task_cb</span>.<span class="ident">st</span>.<span class="ident">read</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">lock</span>) {
-        <span class="ident">TaskSt</span>::<span class="ident">Waiting</span> <span class="op">=&gt;</span> {
+        <span class="ident">TaskSt</span>::<span class="ident">Waiting</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="comment">// Interrupt the ongoing wait operation.</span>
             <span class="kw">let</span> <span class="ident">wait_ref</span> <span class="op">=</span> <span class="ident">task_cb</span>.<span class="ident">wait</span>.<span class="ident">current_wait</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">lock</span>);
 
@@ -1391,7 +1391,7 @@
 
             <span class="prelude-val">Ok</span>(())
         }
-        <span class="kw">_</span> <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">BadObjectStateError</span>::<span class="ident">BadObjectState</span>),
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">BadObjectStateError</span>::<span class="ident">BadObjectState</span>),
     }
 }
 
@@ -1401,7 +1401,7 @@
     <span class="ident">lock</span>: <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>,
     <span class="ident">task_cb</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">TaskCb</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
     <span class="ident">duration_time32</span>: <span class="ident">timeout</span>::<span class="ident">Time32</span>,
-) <span class="op">-&gt;</span> <span class="ident">timeout</span>::<span class="ident">Timeout</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">timeout</span>::<span class="ident">Timeout</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
     <span class="comment">// Construct a `Timeout`, supplying our callback function</span>
     <span class="kw">let</span> <span class="ident">param</span> <span class="op">=</span> <span class="ident">task_cb</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="ident">usize</span>;
     <span class="kw">let</span> <span class="ident">timeout_object</span> <span class="op">=</span> <span class="ident">timeout</span>::<span class="ident">Timeout</span>::<span class="ident">new</span>(<span class="ident">interrupt_task_by_timeout</span>, <span class="ident">param</span>);
@@ -1410,14 +1410,14 @@
     <span class="kw">fn</span> <span class="ident">interrupt_task_by_timeout</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>(
         <span class="ident">param</span>: <span class="ident">usize</span>,
         <span class="kw-2">mut</span> <span class="ident">lock</span>: <span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
         <span class="comment">// Safety: We are just converting `param` back to the original form</span>
         <span class="kw">let</span> <span class="ident">task_cb</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">param</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TaskCb</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) };
 
         <span class="comment">// Interrupt the task</span>
         <span class="kw">match</span> <span class="ident">interrupt_task</span>(<span class="ident">lock</span>.<span class="ident">borrow_mut</span>(), <span class="ident">task_cb</span>, <span class="prelude-val">Err</span>(<span class="ident">WaitTimeoutError</span>::<span class="ident">Timeout</span>)) {
             <span class="comment">// Even if the task is already unblocked, we don&#39;t care</span>
-            <span class="prelude-val">Ok</span>(()) <span class="op">|</span> <span class="prelude-val">Err</span>(<span class="ident">BadObjectStateError</span>::<span class="ident">BadObjectState</span>) <span class="op">=&gt;</span> {}
+            <span class="prelude-val">Ok</span>(()) <span class="op">|</span> <span class="prelude-val">Err</span>(<span class="ident">BadObjectStateError</span>::<span class="ident">BadObjectState</span>) <span class="op">=</span><span class="op">&gt;</span> {}
         }
 
         <span class="ident">lock</span>

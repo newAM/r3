@@ -703,7 +703,7 @@
                 <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vname</span>:<span class="ident">ident</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vd</span>:<span class="ident">expr</span>
             ),<span class="op">*</span> $(,)<span class="op">*</span>
         }
-    ) <span class="op">=&gt;</span> {
+    ) <span class="op">=</span><span class="op">&gt;</span> {
         $( <span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">meta</span>]</span> )<span class="op">*</span>
         <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ResultCode</span> {
             $(
@@ -721,22 +721,22 @@
             <span class="doccomment">/// use constance::kernel::ResultCode;</span>
             <span class="doccomment">/// assert_eq!(ResultCode::BadObjectState.as_str(), &quot;BadObjectState&quot;);</span>
             <span class="doccomment">/// ```</span>
-            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_str</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
+            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_str</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
                 <span class="kw">match</span> <span class="self">self</span> {
                     $(
-                        <span class="self">Self</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vname</span> <span class="op">=&gt;</span> <span class="macro">stringify</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vname</span>),
+                        <span class="self">Self</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vname</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">stringify</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vname</span>),
                     )<span class="op">*</span>
                 }
             }
 
-            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
                 <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="self">self</span>.<span class="ident">as_str</span>())
             }
         }
 
         <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">ResultCode</span> {
             <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
                 (<span class="kw-2">*</span><span class="self">self</span>).<span class="ident">fmt</span>(<span class="ident">f</span>)
             }
         }
@@ -792,7 +792,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Failure codes have negative values.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_err</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_err</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         (<span class="self">self</span> <span class="kw">as</span> <span class="ident">i8</span>) <span class="op">&lt;</span> <span class="number">0</span>
     }
 
@@ -800,7 +800,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Success codes have non-negative values.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_ok</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_ok</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="op">!</span><span class="self">self</span>.<span class="ident">is_err</span>()
     }
 }
@@ -815,7 +815,7 @@
                 <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vname</span>:<span class="ident">ident</span>
             ),<span class="op">*</span> $(,)<span class="op">*</span>
         }
-    ) <span class="op">=&gt;</span> {
+    ) <span class="op">=</span><span class="op">&gt;</span> {
         $( <span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">meta</span>]</span> )<span class="op">*</span>
         <span class="doccomment">///</span>
         <span class="doccomment">/// See [`ResultCode`] for all result codes and generic descriptions.</span>
@@ -832,24 +832,24 @@
 
         <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span> {
             <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
                 <span class="ident">ResultCode</span>::<span class="ident">from</span>(<span class="kw-2">*</span><span class="self">self</span>).<span class="ident">fmt</span>(<span class="ident">f</span>)
             }
         }
 
-        <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&gt;&gt;</span> <span class="kw">for</span> <span class="ident">ResultCode</span> {
+        <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ResultCode</span> {
             <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">x</span>: <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+            <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">x</span>: <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
                 <span class="kw">match</span> <span class="ident">x</span> {
-                    <span class="prelude-val">Ok</span>(()) <span class="op">=&gt;</span> <span class="self">Self</span>::<span class="ident">Success</span>,
-                    <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=&gt;</span> <span class="self">Self</span>::<span class="ident">from</span>(<span class="ident">e</span>),
+                    <span class="prelude-val">Ok</span>(()) <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Success</span>,
+                    <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">from</span>(<span class="ident">e</span>),
                 }
             }
         }
 
         <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ResultCode</span> {
             <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">x</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+            <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">x</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
                 <span class="comment">// Safety: `ResultCode` and `$name` has the same representation</span>
                 <span class="comment">//         type, and the representation of `ResultCode` is a</span>
                 <span class="comment">//         superset of `x`.</span>
@@ -887,18 +887,18 @@
         }
 
         $($(
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">subty</span><span class="op">!</span>(<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>);
+            <span class="macro-nonterminal">$</span><span class="macro">subty</span><span class="macro">!</span>(<span class="kw">impl</span> <span class="macro-nonterminal">From</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>);
         )<span class="kw-2">*</span>)<span class="question-mark">?</span>
 
         <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_macros</span>)]</span>
         <span class="macro">macro_rules</span><span class="macro">!</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span> {
-            (<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">dest_ty</span>:<span class="ident">ty</span>) <span class="op">=&gt;</span> {
+            (<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">dest_ty</span>:<span class="ident">ty</span>) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">dest_ty</span> {
                     <span class="attribute">#[<span class="ident">inline</span>]</span>
-                    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">x</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+                    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">x</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
                         <span class="kw">match</span> <span class="ident">x</span> {
                             $(
-                                <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vname</span> <span class="op">=&gt;</span> <span class="self">Self</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vname</span>,
+                                <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vname</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vname</span>,
                             )<span class="op">*</span>
                         }
                     }
@@ -1091,10 +1091,10 @@
 
 <span class="kw">impl</span> <span class="ident">WaitTimeoutError</span> {
     <span class="doccomment">/// Convert `self` to `WaitError`, panicking if `self == Self::Timeout`.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">expect_not_timeout</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">WaitError</span> {
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">expect_not_timeout</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WaitError</span> {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="self">Self</span>::<span class="ident">Interrupted</span> <span class="op">=&gt;</span> <span class="ident">WaitError</span>::<span class="ident">Interrupted</span>,
-            <span class="self">Self</span>::<span class="ident">Timeout</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;got timeout result for a non-timeout wait&quot;</span>),
+            <span class="self">Self</span>::<span class="ident">Interrupted</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">WaitError</span>::<span class="ident">Interrupted</span>,
+            <span class="self">Self</span>::<span class="ident">Timeout</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;got timeout result for a non-timeout wait&quot;</span>),
         }
     }
 }

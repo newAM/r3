@@ -447,7 +447,7 @@
         <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vis</span>:<span class="ident">vis</span> <span class="kw">macro</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> {
             $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">text</span>:<span class="ident">tt</span>)<span class="op">*</span>
         }
-    ) <span class="op">=&gt;</span> {
+    ) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_text_macro</span><span class="macro">!</span> {
             @<span class="ident">internal</span>,
             <span class="ident">text</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">text</span>)<span class="op">*</span> }],
@@ -479,7 +479,7 @@
         <span class="comment">// The contents of the generated macro..</span>
         <span class="ident">macro_inner</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">macro_inner</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">define_macro</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">define_macro</span>:<span class="ident">tt</span>],
-    ) <span class="op">=&gt;</span> {
+    ) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_text_macro</span><span class="macro">!</span> {
             @<span class="ident">internal</span>,
             <span class="ident">text</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest_text</span>)<span class="op">*</span> }],
@@ -508,7 +508,7 @@
         <span class="ident">private_mod</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">private_mod</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">macro_inner</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">macro_inner</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">define_macro</span>: [{ <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vis</span>:<span class="ident">vis</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> }],
-    ) <span class="op">=&gt;</span> {
+    ) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_text_macro</span><span class="macro">!</span> {
             @<span class="ident">internal</span>,
             <span class="ident">text</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest_text</span>)<span class="op">*</span> }],
@@ -530,9 +530,9 @@
                 $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">macro_inner</span>)<span class="op">*</span>
 
                 <span class="comment">// Refers to the macro in the generated private module</span>
-                <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">free_ident</span><span class="op">!</span>(),
+                <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>::<span class="macro-nonterminal">$</span><span class="macro">free_ident</span><span class="macro">!</span>(),
             }],
-            <span class="ident">define_macro</span>: [{ <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vis</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span> }],
+            <span class="macro-nonterminal">define_macro</span>: [{ <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vis</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span> }],
         }
     },
 
@@ -548,7 +548,7 @@
         <span class="ident">private_mod</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">private_mod</span>:<span class="ident">tt</span>],
         <span class="ident">macro_inner</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">macro_inner</span>:<span class="ident">tt</span>],
         <span class="ident">define_macro</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">define_macro</span>:<span class="ident">tt</span>],
-    ) <span class="op">=&gt;</span> {
+    ) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_text_macro</span><span class="macro">!</span> {
             @<span class="ident">internal</span>,
             <span class="ident">text</span>: [{
@@ -572,7 +572,7 @@
         <span class="ident">private_mod</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">private_mod</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">macro_inner</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">macro_inner</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">define_macro</span>: [{ <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vis</span>:<span class="ident">vis</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> }],
-    ) <span class="op">=&gt;</span> {
+    ) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="comment">// No more text to munch, define the macro</span>
         <span class="kw">mod</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span> { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">private_mod</span>)<span class="op">*</span> }
 
@@ -589,7 +589,7 @@
         @<span class="ident">internal</span>,
         <span class="ident">unprocessed</span>: [{ : $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">unprocessed</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">code</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">code</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
-    ) <span class="op">=&gt;</span> {{
+    ) <span class="op">=</span><span class="op">&gt;</span> {{
         <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_llvm_asm</span><span class="macro">!</span>(
             @<span class="ident">done</span>,
             <span class="ident">unprocessed</span>: [{ : $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">unprocessed</span>)<span class="op">*</span> }],
@@ -600,7 +600,7 @@
         @<span class="ident">internal</span>,
         <span class="ident">unprocessed</span>: [{}],
         <span class="ident">code</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">code</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
-    ) <span class="op">=&gt;</span> {{
+    ) <span class="op">=</span><span class="op">&gt;</span> {{
         <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_llvm_asm</span><span class="macro">!</span>(
             @<span class="ident">done</span>,
             <span class="ident">unprocessed</span>: [{}],
@@ -612,7 +612,7 @@
         @<span class="ident">internal</span>,
         <span class="ident">unprocessed</span>: [{ <span class="macro-nonterminal">$</span><span class="macro-nonterminal">fragment</span>:<span class="ident">tt</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">unprocessed</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">code</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">code</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
-    ) <span class="op">=&gt;</span> {{
+    ) <span class="op">=</span><span class="op">&gt;</span> {{
         <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_llvm_asm</span><span class="macro">!</span>(
             @<span class="ident">internal</span>,
             <span class="ident">unprocessed</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">unprocessed</span>)<span class="op">*</span> }],
@@ -624,7 +624,7 @@
         @<span class="ident">done</span>,
         <span class="ident">unprocessed</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">unprocessed</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">code</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">code</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
-    ) <span class="op">=&gt;</span> {{
+    ) <span class="op">=</span><span class="op">&gt;</span> {{
         <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_text_macro</span><span class="macro">!</span> {
             <span class="kw">macro</span> <span class="ident">pp_llvm_asm_code</span> { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">code</span>)<span class="op">*</span> }
         }
@@ -635,7 +635,7 @@
     (
         <span class="comment">// TODO: remove `$l:lit`</span>
         <span class="macro-nonterminal">$</span><span class="macro-nonterminal">l</span>:<span class="ident">literal</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span>
-    ) <span class="op">=&gt;</span> {
+    ) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_llvm_asm</span><span class="macro">!</span>(
             @<span class="ident">internal</span>,
             <span class="ident">unprocessed</span>: [{ <span class="macro-nonterminal">$</span><span class="macro-nonterminal">l</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="op">*</span> }],
@@ -682,7 +682,7 @@
         @<span class="ident">internal</span>,
         <span class="ident">unprocessed</span>: [{ , $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">unprocessed</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">code</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">code</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
-    ) <span class="op">=&gt;</span> {{
+    ) <span class="op">=</span><span class="op">&gt;</span> {{
         <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_asm</span><span class="macro">!</span>(
             @<span class="ident">done</span>,
             <span class="ident">unprocessed</span>: [{ , $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">unprocessed</span>)<span class="op">*</span> }],
@@ -693,7 +693,7 @@
         @<span class="ident">internal</span>,
         <span class="ident">unprocessed</span>: [{}],
         <span class="ident">code</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">code</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
-    ) <span class="op">=&gt;</span> {{
+    ) <span class="op">=</span><span class="op">&gt;</span> {{
         <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_asm</span><span class="macro">!</span>(
             @<span class="ident">done</span>,
             <span class="ident">unprocessed</span>: [{}],
@@ -705,7 +705,7 @@
         @<span class="ident">internal</span>,
         <span class="ident">unprocessed</span>: [{ <span class="macro-nonterminal">$</span><span class="macro-nonterminal">fragment</span>:<span class="ident">tt</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">unprocessed</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">code</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">code</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
-    ) <span class="op">=&gt;</span> {{
+    ) <span class="op">=</span><span class="op">&gt;</span> {{
         <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_asm</span><span class="macro">!</span>(
             @<span class="ident">internal</span>,
             <span class="ident">unprocessed</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">unprocessed</span>)<span class="op">*</span> }],
@@ -717,7 +717,7 @@
         @<span class="ident">done</span>,
         <span class="ident">unprocessed</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">unprocessed</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">code</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">code</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
-    ) <span class="op">=&gt;</span> {{
+    ) <span class="op">=</span><span class="op">&gt;</span> {{
         <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_text_macro</span><span class="macro">!</span> {
             <span class="kw">macro</span> <span class="ident">pp_asm_code</span> { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">code</span>)<span class="op">*</span> }
         }
@@ -728,7 +728,7 @@
     (
         <span class="comment">// TODO: remove `$l:lit`</span>
         <span class="macro-nonterminal">$</span><span class="macro-nonterminal">l</span>:<span class="ident">literal</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span>
-    ) <span class="op">=&gt;</span> {
+    ) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_asm</span><span class="macro">!</span>(
             @<span class="ident">internal</span>,
             <span class="ident">unprocessed</span>: [{ <span class="macro-nonterminal">$</span><span class="macro-nonterminal">l</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="op">*</span> }],
@@ -783,33 +783,33 @@
             <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">std</span>;
             <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">borrow</span>::<span class="ident">ToOwned</span>;
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="string">&quot;hellofoo1&quot;</span>.<span class="ident">to_owned</span>();
-            <span class="ident">x</span> <span class="op">+=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) { <span class="string">&quot;foo2&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;bar2&quot;</span> };
-            <span class="ident">x</span> <span class="op">+=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) { <span class="string">&quot;foo3&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;&quot;</span> };
-            <span class="ident">x</span> <span class="op">+=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">all</span>()) { <span class="string">&quot;foo4&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;bar4&quot;</span> };
-            <span class="ident">x</span> <span class="op">+=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">all</span>()) { <span class="string">&quot;foo5&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;&quot;</span> };
+            <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) { <span class="string">&quot;foo2&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;bar2&quot;</span> };
+            <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) { <span class="string">&quot;foo3&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;&quot;</span> };
+            <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">all</span>()) { <span class="string">&quot;foo4&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;bar4&quot;</span> };
+            <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">all</span>()) { <span class="string">&quot;foo5&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;&quot;</span> };
 
             <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) {
-                <span class="ident">x</span> <span class="op">+=</span> <span class="string">&quot;foo6&quot;</span>;
-                <span class="ident">x</span> <span class="op">+=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) { <span class="string">&quot;hoge1&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;piyo1&quot;</span> };
-                <span class="ident">x</span> <span class="op">+=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">all</span>()) { <span class="string">&quot;hoge2&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;piyo2&quot;</span> };
-                <span class="ident">x</span> <span class="op">+=</span> <span class="string">&quot;foo7&quot;</span>;
+                <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="string">&quot;foo6&quot;</span>;
+                <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) { <span class="string">&quot;hoge1&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;piyo1&quot;</span> };
+                <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">all</span>()) { <span class="string">&quot;hoge2&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;piyo2&quot;</span> };
+                <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="string">&quot;foo7&quot;</span>;
             } <span class="kw">else</span> {
-                <span class="ident">x</span> <span class="op">+=</span> <span class="string">&quot;foo8&quot;</span>;
-                <span class="ident">x</span> <span class="op">+=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) { <span class="string">&quot;hoge3&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;piyo3&quot;</span> };
-                <span class="ident">x</span> <span class="op">+=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">all</span>()) { <span class="string">&quot;hoge4&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;piyo4&quot;</span> };
-                <span class="ident">x</span> <span class="op">+=</span> <span class="string">&quot;foo9&quot;</span>;
+                <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="string">&quot;foo8&quot;</span>;
+                <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) { <span class="string">&quot;hoge3&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;piyo3&quot;</span> };
+                <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">all</span>()) { <span class="string">&quot;hoge4&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;piyo4&quot;</span> };
+                <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="string">&quot;foo9&quot;</span>;
             }
             <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) {
-                <span class="ident">x</span> <span class="op">+=</span> <span class="string">&quot;foo10&quot;</span>;
-                <span class="ident">x</span> <span class="op">+=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) { <span class="string">&quot;hoge5&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;piyo5&quot;</span> };
-                <span class="ident">x</span> <span class="op">+=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">all</span>()) { <span class="string">&quot;hoge6&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;piyo6&quot;</span> };
-                <span class="ident">x</span> <span class="op">+=</span> <span class="string">&quot;foo11&quot;</span>;
+                <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="string">&quot;foo10&quot;</span>;
+                <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) { <span class="string">&quot;hoge5&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;piyo5&quot;</span> };
+                <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">all</span>()) { <span class="string">&quot;hoge6&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;piyo6&quot;</span> };
+                <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="string">&quot;foo11&quot;</span>;
             }
             <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">all</span>()) {
-                <span class="ident">x</span> <span class="op">+=</span> <span class="string">&quot;foo12&quot;</span>;
-                <span class="ident">x</span> <span class="op">+=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) { <span class="string">&quot;hoge7&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;piyo7&quot;</span> };
-                <span class="ident">x</span> <span class="op">+=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">all</span>()) { <span class="string">&quot;hoge8&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;piyo8&quot;</span> };
-                <span class="ident">x</span> <span class="op">+=</span> <span class="string">&quot;foo13&quot;</span>;
+                <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="string">&quot;foo12&quot;</span>;
+                <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) { <span class="string">&quot;hoge7&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;piyo7&quot;</span> };
+                <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">all</span>()) { <span class="string">&quot;hoge8&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;piyo8&quot;</span> };
+                <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="string">&quot;foo13&quot;</span>;
             }
 
             <span class="ident">x</span>

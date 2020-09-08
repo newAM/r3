@@ -193,7 +193,7 @@
 <span class="doccomment">/// Context type for [`BinaryHeap`]&#39;s operations.</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">BinaryHeapCtx</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Return `true` iff `x &lt; y`.</span>
-    <span class="kw">fn</span> <span class="ident">lt</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="kw-2">&amp;</span><span class="ident">Element</span>, <span class="ident">y</span>: <span class="kw-2">&amp;</span><span class="ident">Element</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">lt</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="kw-2">&amp;</span><span class="ident">Element</span>, <span class="ident">y</span>: <span class="kw-2">&amp;</span><span class="ident">Element</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Called when the element `e` is moved to the new position `new_index`.</span>
     <span class="kw">fn</span> <span class="ident">on_move</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">e</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Element</span>, <span class="ident">new_index</span>: <span class="ident">usize</span>) {
@@ -202,7 +202,7 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Ord</span><span class="op">&gt;</span> <span class="ident">BinaryHeapCtx</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> () {
-    <span class="kw">fn</span> <span class="ident">lt</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">y</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">lt</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">y</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw-2">*</span><span class="ident">x</span> <span class="op">&lt;</span> <span class="kw-2">*</span><span class="ident">y</span>
     }
 }
@@ -210,21 +210,21 @@
 <span class="doccomment">/// Min-heap.</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">BinaryHeap</span>: <span class="ident">VecLike</span> {
     <span class="doccomment">/// Remove the least item from the heap and return it.</span>
-    <span class="kw">fn</span> <span class="ident">heap_pop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw">impl</span> <span class="ident">BinaryHeapCtx</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">heap_pop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw">impl</span> <span class="ident">BinaryHeapCtx</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Remove the item at the specified position and return it.</span>
     <span class="kw">fn</span> <span class="ident">heap_remove</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">i</span>: <span class="ident">usize</span>,
         <span class="ident">ctx</span>: <span class="kw">impl</span> <span class="ident">BinaryHeapCtx</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Push an item onto the heap and return its position.</span>
-    <span class="kw">fn</span> <span class="ident">heap_push</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">item</span>: <span class="self">Self</span>::<span class="ident">Element</span>, <span class="ident">ctx</span>: <span class="kw">impl</span> <span class="ident">BinaryHeapCtx</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">usize</span>;
+    <span class="kw">fn</span> <span class="ident">heap_push</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">item</span>: <span class="self">Self</span>::<span class="ident">Element</span>, <span class="ident">ctx</span>: <span class="kw">impl</span> <span class="ident">BinaryHeapCtx</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">VecLike</span><span class="op">&gt;</span> <span class="ident">BinaryHeap</span> <span class="kw">for</span> <span class="ident">T</span> {
-    <span class="kw">fn</span> <span class="ident">heap_pop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw">impl</span> <span class="ident">BinaryHeapCtx</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">heap_pop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw">impl</span> <span class="ident">BinaryHeapCtx</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">heap_remove</span>(<span class="number">0</span>, <span class="ident">ctx</span>)
     }
 
@@ -232,8 +232,8 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">i</span>: <span class="ident">usize</span>,
         <span class="kw-2">mut</span> <span class="ident">ctx</span>: <span class="kw">impl</span> <span class="ident">BinaryHeapCtx</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">i</span> <span class="op">&gt;=</span> <span class="self">self</span>.<span class="ident">len</span>() {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span> {
+        <span class="kw">if</span> <span class="ident">i</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">len</span>() {
             <span class="kw">return</span> <span class="prelude-val">None</span>;
         }
 
@@ -263,7 +263,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">heap_push</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">item</span>: <span class="self">Self</span>::<span class="ident">Element</span>, <span class="ident">ctx</span>: <span class="kw">impl</span> <span class="ident">BinaryHeapCtx</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+    <span class="kw">fn</span> <span class="ident">heap_push</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">item</span>: <span class="self">Self</span>::<span class="ident">Element</span>, <span class="ident">ctx</span>: <span class="kw">impl</span> <span class="ident">BinaryHeapCtx</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Element</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
         <span class="kw">let</span> <span class="ident">i</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">len</span>();
         <span class="self">self</span>.<span class="ident">push</span>(<span class="ident">item</span>);
 
@@ -293,7 +293,7 @@
     <span class="ident">start</span>: <span class="ident">usize</span>,
     <span class="ident">pos</span>: <span class="ident">usize</span>,
     <span class="kw-2">mut</span> <span class="ident">ctx</span>: <span class="kw">impl</span> <span class="ident">BinaryHeapCtx</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span>,
-) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
     <span class="kw">unsafe</span> {
         <span class="comment">// Take out the value at `pos` and create a hole.</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">hole</span> <span class="op">=</span> <span class="ident">helpers</span>::<span class="ident">Hole</span>::<span class="ident">new</span>(<span class="ident">this</span>, <span class="ident">pos</span>);

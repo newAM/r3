@@ -5,7 +5,7 @@
         <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vis</span>:<span class="ident">vis</span> <span class="kw">macro</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> {
             $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">text</span>:<span class="ident">tt</span>)<span class="op">*</span>
         }
-    ) <span class="op">=&gt;</span> { ... };
+    ) <span class="op">=</span><span class="op">&gt;</span> { ... };
     (
         @<span class="ident">internal</span>,
         <span class="comment">// The text being munched</span>
@@ -20,7 +20,7 @@
         <span class="comment">// The contents of the generated macro..</span>
         <span class="ident">macro_inner</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">macro_inner</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">define_macro</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">define_macro</span>:<span class="ident">tt</span>],
-    ) <span class="op">=&gt;</span> { ... };
+    ) <span class="op">=</span><span class="op">&gt;</span> { ... };
     (
         @<span class="ident">internal</span>,
         <span class="ident">text</span>: [{
@@ -35,7 +35,7 @@
         <span class="ident">private_mod</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">private_mod</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">macro_inner</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">macro_inner</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">define_macro</span>: [{ <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vis</span>:<span class="ident">vis</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> }],
-    ) <span class="op">=&gt;</span> { ... };
+    ) <span class="op">=</span><span class="op">&gt;</span> { ... };
     (
         @<span class="ident">internal</span>,
         <span class="ident">text</span>: [{
@@ -48,7 +48,7 @@
         <span class="ident">private_mod</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">private_mod</span>:<span class="ident">tt</span>],
         <span class="ident">macro_inner</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">macro_inner</span>:<span class="ident">tt</span>],
         <span class="ident">define_macro</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">define_macro</span>:<span class="ident">tt</span>],
-    ) <span class="op">=&gt;</span> { ... };
+    ) <span class="op">=</span><span class="op">&gt;</span> { ... };
     (
         @<span class="ident">internal</span>,
         <span class="ident">text</span>: [{}],
@@ -56,7 +56,7 @@
         <span class="ident">private_mod</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">private_mod</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">macro_inner</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">macro_inner</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
         <span class="ident">define_macro</span>: [{ <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vis</span>:<span class="ident">vis</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> }],
-    ) <span class="op">=&gt;</span> { ... };
+    ) <span class="op">=</span><span class="op">&gt;</span> { ... };
 }</pre></div>
 </div><div class='docblock'><p>Define a macro that produces a string literal whose contents is revealed
 or masked based on the current build configuration (<code>cfg!</code>).</p>

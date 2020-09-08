@@ -63,7 +63,7 @@ $ edit src/main.rs &amp;&amp; cat $_
 <span class="comment">// use `main` as the entry point of this application</span>
 <span class="comment">// `main` is not allowed to return</span>
 <span class="attribute">#[<span class="ident">entry</span>]</span>
-<span class="kw">fn</span> <span class="ident">main</span>() <span class="op">-&gt;</span> <span class="op">!</span> {
+<span class="kw">fn</span> <span class="ident">main</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="op">!</span> {
     <span class="comment">// do something here</span>
     <span class="kw">loop</span> { }
 }</pre></div>
@@ -201,7 +201,7 @@ and implement wake-up in platform-dependent way (e.g. after waiting for a user i
 
 <div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="attribute">#[<span class="ident">export_name</span> <span class="op">=</span> <span class="string">&quot;_mp_hook&quot;</span>]</span>
-<span class="kw">pub</span> <span class="kw">extern</span> <span class="string">&quot;Rust&quot;</span> <span class="kw">fn</span> <span class="ident">mp_hook</span>() <span class="op">-&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">extern</span> <span class="string">&quot;Rust&quot;</span> <span class="kw">fn</span> <span class="ident">mp_hook</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
    <span class="comment">// ...</span>
 }</pre></div>
 <p>Default implementation of this function wakes hart 0 and busy-loops all the other harts.</p>
@@ -212,14 +212,14 @@ and implement wake-up in platform-dependent way (e.g. after waiting for a user i
 
 <div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="attribute">#[<span class="ident">export_name</span> <span class="op">=</span> <span class="string">&quot;ExceptionHandler&quot;</span>]</span>
-<span class="kw">fn</span> <span class="ident">custom_exception_handler</span>(<span class="ident">trap_frame</span>: <span class="kw-2">&amp;</span><span class="ident">riscv_rt</span>::<span class="ident">TrapFrame</span>) <span class="op">-&gt;</span> <span class="op">!</span> {
+<span class="kw">fn</span> <span class="ident">custom_exception_handler</span>(<span class="ident">trap_frame</span>: <span class="kw-2">&amp;</span><span class="ident">riscv_rt</span>::<span class="ident">TrapFrame</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="op">!</span> {
     <span class="comment">// ...</span>
 }</pre></div>
 <p>or</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="attribute">#[<span class="ident">no_mangle</span>]</span>
-<span class="kw">fn</span> <span class="ident">ExceptionHandler</span>(<span class="ident">trap_frame</span>: <span class="kw-2">&amp;</span><span class="ident">riscv_rt</span>::<span class="ident">TrapFrame</span>) <span class="op">-&gt;</span> <span class="op">!</span> {
+<span class="kw">fn</span> <span class="ident">ExceptionHandler</span>(<span class="ident">trap_frame</span>: <span class="kw-2">&amp;</span><span class="ident">riscv_rt</span>::<span class="ident">TrapFrame</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="op">!</span> {
     <span class="comment">// ...</span>
 }</pre></div>
 <p>Default implementation of this function stucks in a busy-loop.</p>

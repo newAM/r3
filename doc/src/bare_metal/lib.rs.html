@@ -122,19 +122,19 @@
     <span class="doccomment">/// Creates a new peripheral</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `address` is the base address of the register block</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">address</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">address</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">Peripheral</span> {
             <span class="ident">address</span>: <span class="ident">address</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>,
         }
     }
 
     <span class="doccomment">/// Borrows the peripheral for the duration of a critical section</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">borrow</span><span class="op">&lt;</span><span class="lifetime">&#39;cs</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_ctxt</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;cs</span> <span class="ident">CriticalSection</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;cs</span> <span class="ident">T</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">borrow</span><span class="op">&lt;</span><span class="lifetime">&#39;cs</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_ctxt</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;cs</span> <span class="ident">CriticalSection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;cs</span> <span class="ident">T</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="self">self</span>.<span class="ident">get</span>() }
     }
 
     <span class="doccomment">/// Returns a pointer to the register block</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span> {
         <span class="self">self</span>.<span class="ident">address</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>
     }
 }
@@ -151,7 +151,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This method is meant to be used to create safe abstractions rather than</span>
     <span class="doccomment">/// meant to be directly used in applications.</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">CriticalSection</span> { <span class="ident">_0</span>: () }
     }
 }
@@ -169,7 +169,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Creates a new mutex</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">value</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">value</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">Mutex</span> {
             <span class="ident">inner</span>: <span class="ident">UnsafeCell</span>::<span class="ident">new</span>(<span class="ident">value</span>),
         }
@@ -178,7 +178,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Borrows the data for the duration of the critical section</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">borrow</span><span class="op">&lt;</span><span class="lifetime">&#39;cs</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;cs</span> <span class="self">self</span>, <span class="ident">_cs</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;cs</span> <span class="ident">CriticalSection</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;cs</span> <span class="ident">T</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">borrow</span><span class="op">&lt;</span><span class="lifetime">&#39;cs</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;cs</span> <span class="self">self</span>, <span class="ident">_cs</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;cs</span> <span class="ident">CriticalSection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;cs</span> <span class="ident">T</span> {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">get</span>() }
     }
 }
@@ -195,7 +195,7 @@
 <span class="doccomment">/// Interrupt number</span>
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">trait</span> <span class="ident">Nr</span> {
     <span class="doccomment">/// Returns the number associated with an interrupt</span>
-    <span class="kw">fn</span> <span class="ident">nr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u8</span>;
+    <span class="kw">fn</span> <span class="ident">nr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span>;
 }
 
 <span class="comment">// NOTE A `Mutex` can be used as a channel so the protected data must be `Send`</span>

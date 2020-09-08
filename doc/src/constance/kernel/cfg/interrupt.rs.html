@@ -622,7 +622,7 @@
     <span class="doccomment">/// more than once.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`priority`]: CfgInterruptLineBuilder::priority</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">build</span>() <span class="op">-&gt;</span> <span class="ident">CfgInterruptLineBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">build</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CfgInterruptLineBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
         <span class="ident">CfgInterruptLineBuilder</span>::<span class="ident">new</span>()
     }
 }
@@ -639,7 +639,7 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Port</span><span class="op">&gt;</span> <span class="ident">CfgInterruptLineBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
-    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">_phantom</span>: <span class="ident">PhantomData</span>,
             <span class="ident">line</span>: <span class="prelude-val">None</span>,
@@ -649,7 +649,7 @@
     }
 
     <span class="doccomment">/// [**Required**] Specify the interrupt line to confiigure.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">line</span>(<span class="self">self</span>, <span class="ident">line</span>: <span class="ident">interrupt</span>::<span class="ident">InterruptNum</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">line</span>(<span class="self">self</span>, <span class="ident">line</span>: <span class="ident">interrupt</span>::<span class="ident">InterruptNum</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">line</span>.<span class="ident">is_none</span>(), <span class="string">&quot;`line` is specified twice&quot;</span>);
         <span class="self">Self</span> {
             <span class="ident">line</span>: <span class="prelude-val">Some</span>(<span class="ident">line</span>),
@@ -658,7 +658,7 @@
     }
 
     <span class="doccomment">/// Specify the initial priority.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">priority</span>(<span class="self">self</span>, <span class="ident">priority</span>: <span class="ident">interrupt</span>::<span class="ident">InterruptPriority</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">priority</span>(<span class="self">self</span>, <span class="ident">priority</span>: <span class="ident">interrupt</span>::<span class="ident">InterruptPriority</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">priority</span>.<span class="ident">is_none</span>(), <span class="string">&quot;`priority` is specified twice&quot;</span>);
         <span class="self">Self</span> {
             <span class="ident">priority</span>: <span class="prelude-val">Some</span>(<span class="ident">priority</span>),
@@ -668,13 +668,13 @@
 
     <span class="doccomment">/// Specify whether the interrupt linie should be enabled at system startup.</span>
     <span class="doccomment">/// Defaults to `false` (don&#39;t enable).</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">enabled</span>(<span class="self">self</span>, <span class="ident">enabled</span>: <span class="ident">bool</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">enabled</span>(<span class="self">self</span>, <span class="ident">enabled</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> { <span class="ident">enabled</span>, ..<span class="self">self</span> }
     }
 
     <span class="doccomment">/// Complete the configuration of an interrupt line, returning an</span>
     <span class="doccomment">/// `InterruptLine` object.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">finish</span>(<span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CfgBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">interrupt</span>::<span class="ident">InterruptLine</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">finish</span>(<span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CfgBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">interrupt</span>::<span class="ident">InterruptLine</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">cfg</span>.<span class="ident">inner</span>;
 
         <span class="comment">// FIXME: Work-around for `Option::expect` being not `const fn`</span>
@@ -686,7 +686,7 @@
 
         <span class="comment">// Create a `CfgBuilderInterruptLine` for `line_num` if it doesn&#39;t exist</span>
         <span class="comment">// yet</span>
-        <span class="kw">let</span> <span class="ident">i</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">i</span>) <span class="op">=</span> <span class="macro">vec_position</span><span class="macro">!</span>(<span class="ident">inner</span>.<span class="ident">interrupt_lines</span>, <span class="op">|</span><span class="ident">il</span><span class="op">|</span> <span class="ident">il</span>.<span class="ident">num</span> <span class="op">==</span> <span class="ident">line_num</span>) {
+        <span class="kw">let</span> <span class="ident">i</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">i</span>) <span class="op">=</span> <span class="macro">vec_position</span><span class="macro">!</span>(<span class="ident">inner</span>.<span class="ident">interrupt_lines</span>, <span class="op">|</span><span class="ident">il</span><span class="op">|</span> <span class="ident">il</span>.<span class="ident">num</span> <span class="op">=</span><span class="op">=</span> <span class="ident">line_num</span>) {
             <span class="ident">i</span>
         } <span class="kw">else</span> {
             <span class="ident">inner</span>.<span class="ident">interrupt_lines</span>.<span class="ident">push</span>(<span class="ident">CfgBuilderInterruptLine</span> {
@@ -727,16 +727,16 @@
 <span class="kw">impl</span> <span class="ident">CfgBuilderInterruptLine</span> {
     <span class="doccomment">/// Return `true` if the interrupt line is configured with a priority value</span>
     <span class="doccomment">/// that falls within a managed range.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_initially_managed</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Port</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_initially_managed</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Port</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">priority</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">priority</span> {
             <span class="kw">let</span> <span class="ident">range</span> <span class="op">=</span> <span class="ident">System</span>::<span class="ident">MANAGED_INTERRUPT_PRIORITY_RANGE</span>;
-            <span class="ident">priority</span> <span class="op">&gt;=</span> <span class="ident">range</span>.<span class="ident">start</span> <span class="op">&amp;&amp;</span> <span class="ident">priority</span> <span class="op">&lt;</span> <span class="ident">range</span>.<span class="ident">end</span>
+            <span class="ident">priority</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">range</span>.<span class="ident">start</span> <span class="op">&amp;&amp;</span> <span class="ident">priority</span> <span class="op">&lt;</span> <span class="ident">range</span>.<span class="ident">end</span>
         } <span class="kw">else</span> {
             <span class="bool-val">false</span>
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">to_init</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">interrupt</span>::<span class="ident">InterruptLineInit</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">to_init</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">interrupt</span>::<span class="ident">InterruptLineInit</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
         <span class="ident">interrupt</span>::<span class="ident">InterruptLineInit</span> {
             <span class="ident">line</span>: <span class="ident">interrupt</span>::<span class="ident">InterruptLine</span>::<span class="ident">from_num</span>(<span class="self">self</span>.<span class="ident">num</span>),
             <span class="comment">// FIXME: `Option::unwrap_or` is not `const fn` yet</span>
@@ -744,10 +744,10 @@
             <span class="ident">flags</span>: {
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">f</span> <span class="op">=</span> <span class="number">0</span>;
                 <span class="kw">if</span> <span class="self">self</span>.<span class="ident">priority</span>.<span class="ident">is_some</span>() {
-                    <span class="ident">f</span> <span class="op">|=</span> <span class="ident">interrupt</span>::<span class="ident">InterruptLineInitFlags</span>::<span class="ident">SET_PRIORITY</span>.<span class="ident">bits</span>();
+                    <span class="ident">f</span> <span class="op">|</span><span class="op">=</span> <span class="ident">interrupt</span>::<span class="ident">InterruptLineInitFlags</span>::<span class="ident">SET_PRIORITY</span>.<span class="ident">bits</span>();
                 }
                 <span class="kw">if</span> <span class="self">self</span>.<span class="ident">enabled</span> {
-                    <span class="ident">f</span> <span class="op">|=</span> <span class="ident">interrupt</span>::<span class="ident">InterruptLineInitFlags</span>::<span class="ident">ENABLE</span>.<span class="ident">bits</span>();
+                    <span class="ident">f</span> <span class="op">|</span><span class="op">=</span> <span class="ident">interrupt</span>::<span class="ident">InterruptLineInitFlags</span>::<span class="ident">ENABLE</span>.<span class="ident">bits</span>();
                 }
                 <span class="ident">interrupt</span>::<span class="ident">InterruptLineInitFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">f</span>)
             },
@@ -758,7 +758,7 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Port</span><span class="op">&gt;</span> <span class="ident">interrupt</span>::<span class="ident">InterruptHandler</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Construct a `CfgInterruptHandlerBuilder` to register an interrupt</span>
     <span class="doccomment">/// handler in [a configuration function](crate#static-configuration).</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">build</span>() <span class="op">-&gt;</span> <span class="ident">CfgInterruptHandlerBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">build</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CfgInterruptHandlerBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
         <span class="ident">CfgInterruptHandlerBuilder</span>::<span class="ident">new</span>()
     }
 }
@@ -776,7 +776,7 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Port</span><span class="op">&gt;</span> <span class="ident">CfgInterruptHandlerBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
-    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">_phantom</span>: <span class="ident">PhantomData</span>,
             <span class="ident">line</span>: <span class="prelude-val">None</span>,
@@ -788,7 +788,7 @@
     }
 
     <span class="doccomment">/// [**Required**] Specify the entry point.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">start</span>(<span class="self">self</span>, <span class="ident">start</span>: <span class="kw">fn</span>(<span class="ident">usize</span>)) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">start</span>(<span class="self">self</span>, <span class="ident">start</span>: <span class="kw">fn</span>(<span class="ident">usize</span>)) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">start</span>: <span class="prelude-val">Some</span>(<span class="ident">start</span>),
             ..<span class="self">self</span>
@@ -796,13 +796,13 @@
     }
 
     <span class="doccomment">/// Specify the parameter to `start`. Defaults to `0`.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">param</span>(<span class="self">self</span>, <span class="ident">param</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">param</span>(<span class="self">self</span>, <span class="ident">param</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> { <span class="ident">param</span>, ..<span class="self">self</span> }
     }
 
     <span class="doccomment">/// [**Required**] Specify the interrupt line to attach the interrupt</span>
     <span class="doccomment">/// handler to.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">line</span>(<span class="self">self</span>, <span class="ident">line</span>: <span class="ident">interrupt</span>::<span class="ident">InterruptNum</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">line</span>(<span class="self">self</span>, <span class="ident">line</span>: <span class="ident">interrupt</span>::<span class="ident">InterruptNum</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">line</span>.<span class="ident">is_none</span>(), <span class="string">&quot;`line` is specified twice&quot;</span>);
         <span class="self">Self</span> {
             <span class="ident">line</span>: <span class="prelude-val">Some</span>(<span class="ident">line</span>),
@@ -818,7 +818,7 @@
     <span class="doccomment">/// This should not be confused with [an interrupt line&#39;s priority].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [an interrupt line&#39;s priority]: CfgInterruptLineBuilder::priority</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">priority</span>(<span class="self">self</span>, <span class="ident">priority</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">priority</span>(<span class="self">self</span>, <span class="ident">priority</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> { <span class="ident">priority</span>, ..<span class="self">self</span> }
     }
 
@@ -838,7 +838,7 @@
     <span class="doccomment">/// handler.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [an unmanaged interrupt handler]: crate#interrupt-handling-framework</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">unmanaged</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">unmanaged</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">unmanaged</span>: <span class="bool-val">true</span>,
             ..<span class="self">self</span>
@@ -847,7 +847,7 @@
 
     <span class="doccomment">/// Complete the registration of an interrupt handler, returning an</span>
     <span class="doccomment">/// `InterruptHandler` object.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">finish</span>(<span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CfgBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">interrupt</span>::<span class="ident">InterruptHandler</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">finish</span>(<span class="self">self</span>, <span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CfgBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">interrupt</span>::<span class="ident">InterruptHandler</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">cfg</span>.<span class="ident">inner</span>;
 
         <span class="comment">// FIXME: Work-around for `Option::expect` being not `const fn`</span>
@@ -898,7 +898,7 @@
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">i</span> <span class="op">=</span> <span class="number">0</span>;
     <span class="kw">while</span> <span class="ident">i</span> <span class="op">&lt;</span> <span class="ident">interrupt_handlers</span>.<span class="ident">len</span>() {
         <span class="kw">let</span> <span class="ident">handler</span> <span class="op">=</span> <span class="ident">interrupt_handlers</span>.<span class="ident">get</span>(<span class="ident">i</span>);
-        <span class="ident">i</span> <span class="op">+=</span> <span class="number">1</span>;
+        <span class="ident">i</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
         <span class="kw">if</span> <span class="ident">handler</span>.<span class="ident">unmanaged</span> {
             <span class="kw">continue</span>;
         }
@@ -908,19 +908,19 @@
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">i</span> <span class="op">=</span> <span class="number">0</span>;
             <span class="kw">loop</span> {
                 <span class="kw">if</span> <span class="ident">i</span> <span class="op">&lt;</span> <span class="ident">lines</span>.<span class="ident">len</span>() {
-                    <span class="kw">if</span> <span class="ident">lines</span>[<span class="ident">i</span>] <span class="op">==</span> <span class="ident">handler</span>.<span class="ident">line</span> {
+                    <span class="kw">if</span> <span class="ident">lines</span>[<span class="ident">i</span>] <span class="op">=</span><span class="op">=</span> <span class="ident">handler</span>.<span class="ident">line</span> {
                         <span class="kw">break</span> <span class="bool-val">true</span>;
                     }
-                    <span class="ident">i</span> <span class="op">+=</span> <span class="number">1</span>;
+                    <span class="ident">i</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
                 } <span class="kw">else</span> {
                     <span class="kw">break</span> <span class="bool-val">false</span>;
                 }
             }
         };
 
-        <span class="kw">let</span> <span class="ident">managed_line_i</span> <span class="op">=</span> <span class="macro">vec_position</span><span class="macro">!</span>(<span class="ident">interrupt_lines</span>, <span class="op">|</span><span class="ident">line</span><span class="op">|</span> <span class="ident">line</span>.<span class="ident">num</span> <span class="op">==</span> <span class="ident">handler</span>.<span class="ident">line</span>
+        <span class="kw">let</span> <span class="ident">managed_line_i</span> <span class="op">=</span> <span class="macro">vec_position</span><span class="macro">!</span>(<span class="ident">interrupt_lines</span>, <span class="op">|</span><span class="ident">line</span><span class="op">|</span> <span class="ident">line</span>.<span class="ident">num</span> <span class="op">=</span><span class="op">=</span> <span class="ident">handler</span>.<span class="ident">line</span>
             <span class="op">&amp;&amp;</span> <span class="ident">line</span>.<span class="ident">is_initially_managed</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>());
-        <span class="kw">let</span> <span class="ident">is_line_managed</span> <span class="op">=</span> <span class="ident">managed_line_i</span>.<span class="ident">is_some</span>() <span class="op">||</span> <span class="ident">is_line_assumed_managed</span>;
+        <span class="kw">let</span> <span class="ident">is_line_managed</span> <span class="op">=</span> <span class="ident">managed_line_i</span>.<span class="ident">is_some</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">is_line_assumed_managed</span>;
 
         <span class="macro">assert</span><span class="macro">!</span>(
             <span class="ident">is_line_managed</span>,
@@ -938,9 +938,9 @@
     <span class="macro">sort_unstable_by</span><span class="macro">!</span>(
         <span class="ident">interrupt_handlers</span>.<span class="ident">len</span>(),
         <span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="ident">interrupt_handlers</span>.<span class="ident">get_mut</span>(<span class="ident">i</span>),
-        <span class="op">|</span><span class="ident">x</span>, <span class="ident">y</span><span class="op">|</span> <span class="kw">if</span> <span class="ident">x</span>.<span class="ident">line</span> <span class="op">!=</span> <span class="ident">y</span>.<span class="ident">line</span> {
+        <span class="op">|</span><span class="ident">x</span>, <span class="ident">y</span><span class="op">|</span> <span class="kw">if</span> <span class="ident">x</span>.<span class="ident">line</span> <span class="op">!</span><span class="op">=</span> <span class="ident">y</span>.<span class="ident">line</span> {
             <span class="ident">x</span>.<span class="ident">line</span> <span class="op">&lt;</span> <span class="ident">y</span>.<span class="ident">line</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">x</span>.<span class="ident">priority</span> <span class="op">!=</span> <span class="ident">y</span>.<span class="ident">priority</span> {
+        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">x</span>.<span class="ident">priority</span> <span class="op">!</span><span class="op">=</span> <span class="ident">y</span>.<span class="ident">priority</span> {
             <span class="ident">x</span>.<span class="ident">priority</span> <span class="op">&lt;</span> <span class="ident">y</span>.<span class="ident">priority</span>
         } <span class="kw">else</span> {
             <span class="ident">x</span>.<span class="ident">order</span> <span class="op">&lt;</span> <span class="ident">y</span>.<span class="ident">order</span>
@@ -971,7 +971,7 @@
     <span class="doccomment">/// Returns `None` if no interrupt handlers have been registered for the</span>
     <span class="doccomment">/// specified interrupt number.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">line</span>: <span class="ident">interrupt</span>::<span class="ident">InterruptNum</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InterruptHandlerFn</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">line</span>: <span class="ident">interrupt</span>::<span class="ident">InterruptNum</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InterruptHandlerFn</span><span class="op">&gt;</span> {
         <span class="comment">// FIXME: `[T]::get` is not `const fn` yet</span>
         <span class="kw">if</span> <span class="ident">line</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">storage</span>.<span class="ident">len</span>() {
             <span class="self">self</span>.<span class="ident">storage</span>[<span class="ident">line</span>]
@@ -1073,11 +1073,11 @@
     <span class="kw">const</span> <span class="ident">PROTO_COMBINED_HANDLERS_ARRAY</span>: [<span class="ident">ProtoCombinedHandlerFn</span>; <span class="ident">NUM_HANDLERS</span>] <span class="op">=</span>
         <span class="self">Self</span>::<span class="ident">proto_combined_handlers_array</span>();
 
-    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">proto_combined_handlers_array</span>() <span class="op">-&gt;</span> [<span class="ident">ProtoCombinedHandlerFn</span>; <span class="ident">NUM_HANDLERS</span>] {
+    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">proto_combined_handlers_array</span>() <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">ProtoCombinedHandlerFn</span>; <span class="ident">NUM_HANDLERS</span>] {
         <span class="comment">// FIXME: Unable to do this inside a `const` item because of</span>
         <span class="comment">//        &lt;https://github.com/rust-lang/rust/pull/72934&gt;</span>
         <span class="macro">const_array_from_fn</span><span class="macro">!</span> {
-            <span class="kw">fn</span> <span class="ident">iter</span><span class="op">&lt;</span>[<span class="ident">T</span>: <span class="ident">MakeCombinedHandlersTrait</span>], <span class="ident">I</span>: <span class="ident">Nat</span><span class="op">&gt;</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">cell</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">ProtoCombinedHandlerFn</span> {
+            <span class="kw">fn</span> <span class="ident">iter</span><span class="op">&lt;</span>[<span class="ident">T</span>: <span class="ident">MakeCombinedHandlersTrait</span>], <span class="ident">I</span>: <span class="ident">Nat</span><span class="op">&gt;</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">cell</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtoCombinedHandlerFn</span> {
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
                 <span class="kw">fn</span> <span class="ident">proto_combined_handler</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">MakeCombinedHandlersTrait</span>, <span class="ident">I</span>: <span class="ident">Nat</span><span class="op">&gt;</span>() {
                     <span class="kw">let</span> <span class="ident">handler</span> <span class="op">=</span> <span class="ident">T</span>::<span class="ident">HANDLERS</span>[<span class="ident">I</span>::<span class="ident">N</span>];
@@ -1085,7 +1085,7 @@
                     (<span class="ident">handler</span>.<span class="ident">start</span>)(<span class="ident">handler</span>.<span class="ident">param</span>);
 
                     <span class="kw">let</span> <span class="ident">next_i</span> <span class="op">=</span> <span class="ident">I</span>::<span class="ident">N</span> <span class="op">+</span> <span class="number">1</span>;
-                    <span class="kw">if</span> <span class="ident">next_i</span> <span class="op">&gt;=</span> <span class="ident">T</span>::<span class="ident">NUM_HANDLERS</span> <span class="op">||</span> <span class="ident">T</span>::<span class="ident">HANDLERS</span>[<span class="ident">next_i</span>].<span class="ident">line</span> <span class="op">!=</span> <span class="ident">handler</span>.<span class="ident">line</span> {
+                    <span class="kw">if</span> <span class="ident">next_i</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">T</span>::<span class="ident">NUM_HANDLERS</span> <span class="op">|</span><span class="op">|</span> <span class="ident">T</span>::<span class="ident">HANDLERS</span>[<span class="ident">next_i</span>].<span class="ident">line</span> <span class="op">!</span><span class="op">=</span> <span class="ident">handler</span>.<span class="ident">line</span> {
                         <span class="kw">return</span>;
                     }
 
@@ -1112,20 +1112,20 @@
     <span class="kw">const</span> <span class="ident">COMBINED_HANDLERS_ARRAY</span>: [<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InterruptHandlerFn</span><span class="op">&gt;</span>; <span class="ident">NUM_HANDLERS</span>] <span class="op">=</span>
         <span class="self">Self</span>::<span class="ident">combined_handlers_array</span>();
 
-    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">combined_handlers_array</span>() <span class="op">-&gt;</span> [<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InterruptHandlerFn</span><span class="op">&gt;</span>; <span class="ident">NUM_HANDLERS</span>] {
+    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">combined_handlers_array</span>() <span class="op">-</span><span class="op">&gt;</span> [<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InterruptHandlerFn</span><span class="op">&gt;</span>; <span class="ident">NUM_HANDLERS</span>] {
         <span class="comment">// FIXME: Unable to do this inside a `const` item because of</span>
         <span class="comment">//        &lt;https://github.com/rust-lang/rust/pull/72934&gt;</span>
         <span class="macro">const_array_from_fn</span><span class="macro">!</span> {
-            <span class="kw">fn</span> <span class="ident">iter</span><span class="op">&lt;</span>[<span class="ident">T</span>: <span class="ident">MakeCombinedHandlersTrait</span>], <span class="ident">I</span>: <span class="ident">Nat</span><span class="op">&gt;</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">cell</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InterruptHandlerFn</span><span class="op">&gt;</span> {
+            <span class="kw">fn</span> <span class="ident">iter</span><span class="op">&lt;</span>[<span class="ident">T</span>: <span class="ident">MakeCombinedHandlersTrait</span>], <span class="ident">I</span>: <span class="ident">Nat</span><span class="op">&gt;</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">cell</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InterruptHandlerFn</span><span class="op">&gt;</span> {
                 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">combined_handler</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">MakeCombinedHandlersTrait</span>, <span class="ident">I</span>: <span class="ident">Nat</span><span class="op">&gt;</span>() {
                     <span class="ident">T</span>::<span class="ident">PROTO_COMBINED_HANDLERS</span>[<span class="ident">I</span>::<span class="ident">N</span>]();
                 }
 
                 <span class="kw">let</span> <span class="ident">handler</span> <span class="op">=</span> <span class="ident">T</span>::<span class="ident">HANDLERS</span>[<span class="ident">I</span>::<span class="ident">N</span>];
-                <span class="kw">let</span> <span class="ident">is_first_handler_of_line</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">I</span>::<span class="ident">N</span> <span class="op">==</span> <span class="number">0</span> {
+                <span class="kw">let</span> <span class="ident">is_first_handler_of_line</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">I</span>::<span class="ident">N</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
                     <span class="bool-val">true</span>
                 } <span class="kw">else</span> {
-                    <span class="ident">T</span>::<span class="ident">HANDLERS</span>[<span class="ident">I</span>::<span class="ident">N</span> <span class="op">-</span> <span class="number">1</span>].<span class="ident">line</span> <span class="op">!=</span> <span class="ident">handler</span>.<span class="ident">line</span>
+                    <span class="ident">T</span>::<span class="ident">HANDLERS</span>[<span class="ident">I</span>::<span class="ident">N</span> <span class="op">-</span> <span class="number">1</span>].<span class="ident">line</span> <span class="op">!</span><span class="op">=</span> <span class="ident">handler</span>.<span class="ident">line</span>
                 };
 
                 <span class="kw">if</span> <span class="ident">is_first_handler_of_line</span> {
@@ -1150,26 +1150,26 @@
     <span class="ident">Handlers</span>: <span class="ident">CfgBuilderInterruptHandlerList</span>,
     <span class="kw">const</span> <span class="ident">NUM_LINES</span>: <span class="ident">usize</span>,
     <span class="kw">const</span> <span class="ident">NUM_HANDLERS</span>: <span class="ident">usize</span>,
-<span class="op">&gt;</span>() <span class="op">-&gt;</span> <span class="ident">InterruptHandlerTable</span><span class="op">&lt;</span>[<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InterruptHandlerFn</span><span class="op">&gt;</span>; <span class="ident">NUM_LINES</span>]<span class="op">&gt;</span> {
+<span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">InterruptHandlerTable</span><span class="op">&lt;</span>[<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InterruptHandlerFn</span><span class="op">&gt;</span>; <span class="ident">NUM_LINES</span>]<span class="op">&gt;</span> {
     <span class="comment">// Check generic parameters</span>
 
     <span class="comment">// Actually, these equality is automatically checked by</span>
     <span class="comment">// `const_array_from_fn!`, but do the check here as well to clarify</span>
     <span class="comment">// this function&#39;s precondition</span>
     <span class="comment">// FIXME: `assert_eq!` not supported in a const context yet</span>
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">NumLines</span>::<span class="ident">N</span> <span class="op">==</span> <span class="ident">NUM_LINES</span>);
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Handlers</span>::<span class="ident">NumHandlers</span>::<span class="ident">N</span> <span class="op">==</span> <span class="ident">NUM_HANDLERS</span>);
+    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">NumLines</span>::<span class="ident">N</span> <span class="op">=</span><span class="op">=</span> <span class="ident">NUM_LINES</span>);
+    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Handlers</span>::<span class="ident">NumHandlers</span>::<span class="ident">N</span> <span class="op">=</span><span class="op">=</span> <span class="ident">NUM_HANDLERS</span>);
 
     <span class="comment">// FIXME: Work-around for `for` being unsupported in `const fn`</span>
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">i</span> <span class="op">=</span> <span class="number">0</span>;
     <span class="kw">while</span> <span class="ident">i</span> <span class="op">&lt;</span> <span class="ident">NUM_HANDLERS</span> {
         <span class="kw">let</span> <span class="ident">handler</span> <span class="op">=</span> <span class="ident">Handlers</span>::<span class="ident">HANDLERS</span>[<span class="ident">i</span>];
         <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">handler</span>.<span class="ident">line</span> <span class="op">&lt;</span> <span class="ident">NUM_LINES</span>);
-        <span class="ident">i</span> <span class="op">+=</span> <span class="number">1</span>;
+        <span class="ident">i</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
     }
 
     <span class="kw">let</span> <span class="ident">storage</span> <span class="op">=</span> <span class="macro">const_array_from_fn</span><span class="macro">!</span> {
-        <span class="kw">fn</span> <span class="ident">iter</span><span class="op">&lt;</span>[<span class="ident">T</span>: <span class="ident">MakeCombinedHandlersTrait</span>], <span class="ident">I</span>: <span class="ident">Nat</span><span class="op">&gt;</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">cell</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InterruptHandlerFn</span><span class="op">&gt;</span> {
+        <span class="kw">fn</span> <span class="ident">iter</span><span class="op">&lt;</span>[<span class="ident">T</span>: <span class="ident">MakeCombinedHandlersTrait</span>], <span class="ident">I</span>: <span class="ident">Nat</span><span class="op">&gt;</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">cell</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InterruptHandlerFn</span><span class="op">&gt;</span> {
             <span class="comment">// The interrupt line</span>
             <span class="kw">let</span> <span class="ident">line</span> <span class="op">=</span> <span class="ident">I</span>::<span class="ident">N</span>;
 
@@ -1178,7 +1178,7 @@
             <span class="comment">// line.</span>
             <span class="kw">let</span> <span class="ident">i</span> <span class="op">=</span> <span class="macro">lower_bound</span><span class="macro">!</span>(<span class="ident">T</span>::<span class="ident">NUM_HANDLERS</span>, <span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="ident">T</span>::<span class="ident">HANDLERS</span>[<span class="ident">i</span>].<span class="ident">line</span> <span class="op">&lt;</span> <span class="ident">line</span>);
 
-            <span class="kw">if</span> <span class="ident">i</span> <span class="op">&gt;=</span> <span class="ident">T</span>::<span class="ident">NUM_HANDLERS</span> <span class="op">||</span> <span class="ident">T</span>::<span class="ident">HANDLERS</span>[<span class="ident">i</span>].<span class="ident">line</span> <span class="op">!=</span> <span class="ident">line</span> {
+            <span class="kw">if</span> <span class="ident">i</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">T</span>::<span class="ident">NUM_HANDLERS</span> <span class="op">|</span><span class="op">|</span> <span class="ident">T</span>::<span class="ident">HANDLERS</span>[<span class="ident">i</span>].<span class="ident">line</span> <span class="op">!</span><span class="op">=</span> <span class="ident">line</span> {
                 <span class="comment">// The interrupt line does not have an associated handler</span>
                 <span class="prelude-val">None</span>
             } <span class="kw">else</span> {
@@ -1200,7 +1200,7 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">num_required_interrupt_line_slots</span>(<span class="ident">handlers</span>: <span class="kw-2">&amp;</span>[<span class="ident">CfgBuilderInterruptHandler</span>]) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+<span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">num_required_interrupt_line_slots</span>(<span class="ident">handlers</span>: <span class="kw-2">&amp;</span>[<span class="ident">CfgBuilderInterruptHandler</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
     <span class="comment">// FIXME: Work-around for `for` being unsupported in `const fn`</span>
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">i</span> <span class="op">=</span> <span class="number">0</span>;
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out</span> <span class="op">=</span> <span class="number">0</span>;
@@ -1208,7 +1208,7 @@
         <span class="kw">if</span> <span class="ident">handlers</span>[<span class="ident">i</span>].<span class="ident">line</span> <span class="op">+</span> <span class="number">1</span> <span class="op">&gt;</span> <span class="ident">out</span> {
             <span class="ident">out</span> <span class="op">=</span> <span class="ident">handlers</span>[<span class="ident">i</span>].<span class="ident">line</span> <span class="op">+</span> <span class="number">1</span>;
         }
-        <span class="ident">i</span> <span class="op">+=</span> <span class="number">1</span>;
+        <span class="ident">i</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
     }
     <span class="ident">out</span>
 }

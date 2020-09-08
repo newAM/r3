@@ -254,57 +254,57 @@
 <span class="kw">impl</span> <span class="ident">Mstatus</span> {
     <span class="doccomment">/// User Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uie</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uie</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">0</span>)
     }
 
     <span class="doccomment">/// Supervisor Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sie</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sie</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">1</span>)
     }
 
     <span class="doccomment">/// Machine Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mie</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mie</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">3</span>)
     }
 
     <span class="doccomment">/// User Previous Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">upie</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">upie</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">4</span>)
     }
 
     <span class="doccomment">/// Supervisor Previous Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">spie</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">spie</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">5</span>)
     }
 
     <span class="doccomment">/// Machine Previous Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mpie</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mpie</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">7</span>)
     }
 
     <span class="doccomment">/// Supervisor Previous Privilege Mode</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">spp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">SPP</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">spp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SPP</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">8</span>) {
-            <span class="bool-val">true</span> <span class="op">=&gt;</span> <span class="ident">SPP</span>::<span class="ident">Supervisor</span>,
-            <span class="bool-val">false</span> <span class="op">=&gt;</span> <span class="ident">SPP</span>::<span class="ident">User</span>,
+            <span class="bool-val">true</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SPP</span>::<span class="ident">Supervisor</span>,
+            <span class="bool-val">false</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SPP</span>::<span class="ident">User</span>,
         }
     }
 
     <span class="doccomment">/// Machine Previous Privilege Mode</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mpp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">MPP</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mpp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">MPP</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bits</span>(<span class="number">11</span>..<span class="number">13</span>) {
-            <span class="number">0b00</span> <span class="op">=&gt;</span> <span class="ident">MPP</span>::<span class="ident">User</span>,
-            <span class="number">0b01</span> <span class="op">=&gt;</span> <span class="ident">MPP</span>::<span class="ident">Supervisor</span>,
-            <span class="number">0b11</span> <span class="op">=&gt;</span> <span class="ident">MPP</span>::<span class="ident">Machine</span>,
-            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+            <span class="number">0b00</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MPP</span>::<span class="ident">User</span>,
+            <span class="number">0b01</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MPP</span>::<span class="ident">Supervisor</span>,
+            <span class="number">0b11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MPP</span>::<span class="ident">Machine</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
         }
     }
 
@@ -313,13 +313,13 @@
     <span class="doccomment">/// Encodes the status of the floating-point unit,</span>
     <span class="doccomment">/// including the CSR `fcsr` and floating-point data registers `f0–f31`.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fs</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">FS</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fs</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FS</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bits</span>(<span class="number">13</span>..<span class="number">15</span>) {
-            <span class="number">0b00</span> <span class="op">=&gt;</span> <span class="ident">FS</span>::<span class="ident">Off</span>,
-            <span class="number">0b01</span> <span class="op">=&gt;</span> <span class="ident">FS</span>::<span class="ident">Initial</span>,
-            <span class="number">0b10</span> <span class="op">=&gt;</span> <span class="ident">FS</span>::<span class="ident">Clean</span>,
-            <span class="number">0b11</span> <span class="op">=&gt;</span> <span class="ident">FS</span>::<span class="ident">Dirty</span>,
-            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+            <span class="number">0b00</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">FS</span>::<span class="ident">Off</span>,
+            <span class="number">0b01</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">FS</span>::<span class="ident">Initial</span>,
+            <span class="number">0b10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">FS</span>::<span class="ident">Clean</span>,
+            <span class="number">0b11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">FS</span>::<span class="ident">Dirty</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
         }
     }
 
@@ -327,20 +327,20 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Encodes the status of additional user-mode extensions and associated state.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xs</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">XS</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xs</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">XS</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bits</span>(<span class="number">15</span>..<span class="number">17</span>) {
-            <span class="number">0b00</span> <span class="op">=&gt;</span> <span class="ident">XS</span>::<span class="ident">AllOff</span>,
-            <span class="number">0b01</span> <span class="op">=&gt;</span> <span class="ident">XS</span>::<span class="ident">NoneDirtyOrClean</span>,
-            <span class="number">0b10</span> <span class="op">=&gt;</span> <span class="ident">XS</span>::<span class="ident">NoneDirtySomeClean</span>,
-            <span class="number">0b11</span> <span class="op">=&gt;</span> <span class="ident">XS</span>::<span class="ident">SomeDirty</span>,
-            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+            <span class="number">0b00</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">XS</span>::<span class="ident">AllOff</span>,
+            <span class="number">0b01</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">XS</span>::<span class="ident">NoneDirtyOrClean</span>,
+            <span class="number">0b10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">XS</span>::<span class="ident">NoneDirtySomeClean</span>,
+            <span class="number">0b11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">XS</span>::<span class="ident">SomeDirty</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
         }
     }
 
     <span class="doccomment">/// Whether either the FS field or XS field</span>
     <span class="doccomment">/// signals the presence of some dirty state</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sd</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sd</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="number">8</span> <span class="op">-</span> <span class="number">1</span>)
     }
 }
@@ -352,34 +352,34 @@
 
 <span class="macro">set_clear_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// User Interrupt Enable</span>
-    , <span class="ident">set_uie</span>, <span class="ident">clear_uie</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">0</span>);
+    , <span class="ident">set_uie</span>, <span class="ident">clear_uie</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0</span>);
 
 <span class="macro">set_clear_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// Supervisor Interrupt Enable</span>
-    , <span class="ident">set_sie</span>, <span class="ident">clear_sie</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">1</span>);
+    , <span class="ident">set_sie</span>, <span class="ident">clear_sie</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>);
 
 <span class="macro">set_clear_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// Machine Interrupt Enable</span>
-    , <span class="ident">set_mie</span>, <span class="ident">clear_mie</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">3</span>);
+    , <span class="ident">set_mie</span>, <span class="ident">clear_mie</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>);
 
 <span class="macro">set_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// User Previous Interrupt Enable</span>
-    , <span class="ident">set_upie</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">4</span>);
+    , <span class="ident">set_upie</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">4</span>);
 
 <span class="macro">set_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// Supervisor Previous Interrupt Enable</span>
-    , <span class="ident">set_spie</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">5</span>);
+    , <span class="ident">set_spie</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>);
 
 <span class="macro">set_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// Machine Previous Interrupt Enable</span>
-    , <span class="ident">set_mpie</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">7</span>);
+    , <span class="ident">set_mpie</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">7</span>);
 
 <span class="doccomment">/// Supervisor Previous Privilege Mode</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">set_spp</span>(<span class="ident">spp</span>: <span class="ident">SPP</span>) {
     <span class="kw">match</span> <span class="ident">spp</span> {
-        <span class="ident">SPP</span>::<span class="ident">Supervisor</span> <span class="op">=&gt;</span> <span class="ident">_set</span>(<span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">8</span>),
-        <span class="ident">SPP</span>::<span class="ident">User</span> <span class="op">=&gt;</span> <span class="ident">_clear</span>(<span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">8</span>),
+        <span class="ident">SPP</span>::<span class="ident">Supervisor</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">_set</span>(<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>),
+        <span class="ident">SPP</span>::<span class="ident">User</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">_clear</span>(<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>),
     }
 }
 

@@ -343,19 +343,19 @@
     <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">U</span>::<span class="ident">N</span> <span class="op">*</span> <span class="number">2</span>;
 }
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">U</span>: <span class="ident">Nat</span><span class="op">&gt;</span> <span class="ident">Nat</span> <span class="kw">for</span> <span class="ident">UInt</span><span class="op">&lt;</span><span class="ident">U</span>, <span class="ident">B1</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Succ</span> <span class="op">=</span> <span class="ident">UInt</span><span class="op">&lt;&lt;</span><span class="ident">U</span> <span class="kw">as</span> <span class="ident">Nat</span><span class="op">&gt;</span>::<span class="ident">Succ</span>, <span class="ident">B0</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">Succ</span> <span class="op">=</span> <span class="ident">UInt</span><span class="op">&lt;</span><span class="op">&lt;</span><span class="ident">U</span> <span class="kw">as</span> <span class="ident">Nat</span><span class="op">&gt;</span>::<span class="ident">Succ</span>, <span class="ident">B0</span><span class="op">&gt;</span>;
     <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">U</span>::<span class="ident">N</span> <span class="op">*</span> <span class="number">2</span> <span class="op">+</span> <span class="number">1</span>;
 }
 
 <span class="doccomment">/// Convert a value to a bit type.</span>
-<span class="kw">type</span> <span class="ident">Bn</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">I</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">If</span><span class="macro">!</span> { <span class="kw">if</span> (<span class="ident">I</span> <span class="op">==</span> <span class="number">0</span>) { <span class="ident">B0</span> } <span class="kw">else</span> { <span class="ident">B1</span> } };
+<span class="kw">type</span> <span class="ident">Bn</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">I</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">If</span><span class="macro">!</span> { <span class="kw">if</span> (<span class="ident">I</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span>) { <span class="ident">B0</span> } <span class="kw">else</span> { <span class="ident">B1</span> } };
 
 <span class="doccomment">/// Convert a value to a binary integer type.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// `I` should be less than or equal to [`U_MAX`]. If it&#39;s larger than `U_MAX`,</span>
 <span class="doccomment">/// this type alias will “evaluate” to [`Overflow`].</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">U</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">I</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">If</span><span class="macro">!</span> {
-    <span class="kw">if</span> (<span class="ident">I</span> <span class="op">&lt;=</span> <span class="ident">U_MAX</span>) { <span class="ident">WrappingU</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span> } <span class="kw">else</span> { <span class="ident">Overflow</span> }
+    <span class="kw">if</span> (<span class="ident">I</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">U_MAX</span>) { <span class="ident">WrappingU</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span> } <span class="kw">else</span> { <span class="ident">Overflow</span> }
 };
 
 <span class="doccomment">/// Returned by [`U`] if the given value is larger than [`U_MAX`].</span>
@@ -379,7 +379,7 @@
                                                 <span class="ident">UInt</span><span class="op">&lt;</span>
                                                     <span class="ident">UInt</span><span class="op">&lt;</span>
                                                         <span class="ident">UInt</span><span class="op">&lt;</span>
-                                                            <span class="ident">UInt</span><span class="op">&lt;</span><span class="ident">U0</span>, <span class="ident">Bn</span><span class="op">&lt;</span>{ <span class="ident">I</span> <span class="op">&amp;</span> <span class="number">32768</span> }<span class="op">&gt;&gt;</span>,
+                                                            <span class="ident">UInt</span><span class="op">&lt;</span><span class="ident">U0</span>, <span class="ident">Bn</span><span class="op">&lt;</span>{ <span class="ident">I</span> <span class="op">&amp;</span> <span class="number">32768</span> }<span class="op">&gt;</span><span class="op">&gt;</span>,
                                                             <span class="ident">Bn</span><span class="op">&lt;</span>{ <span class="ident">I</span> <span class="op">&amp;</span> <span class="number">16384</span> }<span class="op">&gt;</span>,
                                                         <span class="op">&gt;</span>,
                                                         <span class="ident">Bn</span><span class="op">&lt;</span>{ <span class="ident">I</span> <span class="op">&amp;</span> <span class="number">8192</span> }<span class="op">&gt;</span>,
@@ -458,7 +458,7 @@
 
         <span class="comment">// `$len` must be `U&lt;ITERATION_COUNT&gt;`.</span>
         (<span class="number">0</span>..<span class="macro-nonterminal">$</span><span class="macro-nonterminal">len</span>:<span class="ident">ty</span>).<span class="ident">for_each</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="ident">iter</span>::<span class="op">&lt;</span>[$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ctx_t</span>:<span class="ident">ty</span>),<span class="kw-2">*</span>], <span class="ident">i</span><span class="op">&gt;</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ctx</span>:<span class="ident">expr</span>))
-    ) <span class="op">=&gt;</span> {{
+    ) <span class="op">=</span><span class="op">&gt;</span> {{
         <span class="kw">use</span> <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">utils</span>::<span class="ident">for_times</span>::{<span class="ident">Nat</span>, <span class="ident">U</span>, <span class="ident">IncrSat</span>};
 
         <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
@@ -509,18 +509,18 @@
         <span class="kw">fn</span> <span class="ident">iter</span><span class="op">&lt;</span>
             $(  [  <span class="macro-nonterminal">$</span><span class="macro-nonterminal">iter_gparam</span>:<span class="ident">ident</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">iter_gparam_bounds</span>:<span class="ident">tt</span>)<span class="op">*</span>  ],  )<span class="op">*</span>
             <span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>:<span class="ident">ident</span>: <span class="ident">Nat</span>
-        <span class="op">&gt;</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ctx_param</span>:<span class="ident">ident</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">iter_ctx_ty</span>:<span class="ident">ty</span>) <span class="op">-&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ty</span> {
+        <span class="op">&gt;</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ctx_param</span>:<span class="ident">ident</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">iter_ctx_ty</span>:<span class="ident">ty</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ty</span> {
             $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">iter</span>:<span class="ident">tt</span>)<span class="op">*</span>
         }
 
         <span class="comment">// `$len` must be `U&lt;$len_value&gt;`</span>
         (<span class="number">0</span>..<span class="macro-nonterminal">$</span><span class="macro-nonterminal">len_value</span>:<span class="ident">expr</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="ident">iter</span>::<span class="op">&lt;</span>[$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ctx_t</span>:<span class="ident">ty</span>),<span class="kw-2">*</span>], <span class="ident">i</span><span class="op">&gt;</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ctx</span>:<span class="ident">expr</span>)).<span class="ident">collect</span>::<span class="op">&lt;</span>[<span class="kw">_</span>; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">len</span>:<span class="ident">ty</span>]<span class="op">&gt;</span>()
-    ) <span class="op">=&gt;</span> {{
+    ) <span class="op">=</span><span class="op">&gt;</span> {{
         <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">MaybeUninit</span>;
         <span class="kw">use</span> <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">utils</span>::<span class="ident">for_times</span>::<span class="ident">Nat</span>;
         <span class="kw">let</span> <span class="ident">array</span> <span class="op">=</span> [<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>(); <span class="macro-nonterminal">$</span><span class="macro-nonterminal">len_value</span>];
 
-        <span class="kw">if</span> <span class="ident">array</span>.<span class="ident">len</span>() <span class="op">!=</span> <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">len</span> <span class="kw">as</span> <span class="ident">Nat</span><span class="op">&gt;</span>::<span class="ident">N</span> {
+        <span class="kw">if</span> <span class="ident">array</span>.<span class="ident">len</span>() <span class="op">!</span><span class="op">=</span> <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">len</span> <span class="kw">as</span> <span class="ident">Nat</span><span class="op">&gt;</span>::<span class="ident">N</span> {
             <span class="macro">unreachable</span><span class="macro">!</span>();
         }
 
@@ -551,7 +551,7 @@
         <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">__assume_init</span><span class="op">&lt;</span>
             $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">iter_gparam</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">iter_gparam_bounds</span>)<span class="kw-2">*</span>,)<span class="op">*</span>
             <span class="kw">const</span> <span class="ident">LEN</span>: <span class="ident">usize</span>
-        <span class="op">&gt;</span>(<span class="ident">array</span>: [<span class="ident">MaybeUninit</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span><span class="op">&gt;</span>; <span class="ident">LEN</span>]) <span class="op">-&gt;</span> [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>; <span class="ident">LEN</span>] {
+        <span class="op">&gt;</span>(<span class="ident">array</span>: [<span class="ident">MaybeUninit</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span><span class="op">&gt;</span>; <span class="ident">LEN</span>]) <span class="op">-</span><span class="op">&gt;</span> [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>; <span class="ident">LEN</span>] {
             <span class="comment">// Safety: This is equivalent to `transmute_copy(&amp;array)`. The</span>
             <span class="comment">// memory layout of `[MaybeUninit&lt;T&gt;; $len]` is identical to `[T; $len]`.</span>
             <span class="comment">// We initialized all elements in `array[0..$len]`, so it&#39;s safe to</span>
@@ -572,7 +572,7 @@
     <span class="kw">fn</span> <span class="ident">test</span>() {
         <span class="kw">struct</span> <span class="ident">Cell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">T</span>, <span class="ident">u128</span>);
 
-        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">got</span>() <span class="op">-&gt;</span> <span class="ident">u128</span> {
+        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">got</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u128</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cell</span> <span class="op">=</span> <span class="ident">Cell</span>(<span class="string">&quot;unused&quot;</span>, <span class="number">0</span>);
             <span class="macro">const_for_times</span><span class="macro">!</span> {
                 <span class="kw">fn</span> <span class="ident">iter</span><span class="op">&lt;</span>[<span class="ident">T</span>], <span class="ident">I</span>: <span class="ident">Nat</span><span class="op">&gt;</span>(<span class="ident">cell</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Cell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {
@@ -598,10 +598,10 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">const_array_from_fn</span>() {
         <span class="kw">struct</span> <span class="ident">Cell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">T</span>, <span class="ident">u128</span>);
-        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">got</span>() <span class="op">-&gt;</span> [<span class="ident">u128</span>; <span class="number">20</span>] {
+        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">got</span>() <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">u128</span>; <span class="number">20</span>] {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cell</span> <span class="op">=</span> <span class="ident">Cell</span>(<span class="string">&quot;unused&quot;</span>, <span class="number">0</span>);
             <span class="macro">const_array_from_fn</span><span class="macro">!</span> {
-                <span class="kw">fn</span> <span class="ident">iter</span><span class="op">&lt;</span>[<span class="ident">T</span>], <span class="ident">I</span>: <span class="ident">Nat</span><span class="op">&gt;</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">cell</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Cell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">u128</span> {
+                <span class="kw">fn</span> <span class="ident">iter</span><span class="op">&lt;</span>[<span class="ident">T</span>], <span class="ident">I</span>: <span class="ident">Nat</span><span class="op">&gt;</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">cell</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Cell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u128</span> {
                     <span class="ident">cell</span>.<span class="number">1</span> <span class="op">=</span> <span class="ident">cell</span>.<span class="number">1</span> <span class="op">*</span> <span class="number">10</span> <span class="op">+</span> <span class="ident">I</span>::<span class="ident">N</span> <span class="kw">as</span> <span class="ident">u128</span>;
                     <span class="ident">cell</span>.<span class="number">1</span>
                 }
@@ -613,14 +613,14 @@
         <span class="kw">let</span> <span class="ident">expected</span> <span class="op">=</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cell</span> <span class="op">=</span> <span class="ident">Cell</span>(<span class="string">&quot;unused&quot;</span>, <span class="number">0</span>);
 
-            <span class="kw">fn</span> <span class="ident">iter</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">cell</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Cell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">i</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="ident">u128</span> {
+            <span class="kw">fn</span> <span class="ident">iter</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">cell</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Cell</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">i</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u128</span> {
                 <span class="ident">cell</span>.<span class="number">1</span> <span class="op">=</span> <span class="ident">cell</span>.<span class="number">1</span> <span class="op">*</span> <span class="number">10</span> <span class="op">+</span> <span class="ident">i</span> <span class="kw">as</span> <span class="ident">u128</span>;
                 <span class="ident">cell</span>.<span class="number">1</span>
             }
 
             (<span class="number">0</span>..<span class="number">20</span>)
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="ident">iter</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">cell</span>, <span class="ident">i</span>))
-                .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;&gt;</span>()
+                .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>()
         };
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">got</span>()[..], <span class="kw-2">*</span><span class="ident">expected</span>);

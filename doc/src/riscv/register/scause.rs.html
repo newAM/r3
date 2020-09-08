@@ -165,34 +165,34 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Interrupt</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">nr</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">nr</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="kw">match</span> <span class="ident">nr</span> {
-            <span class="number">0</span> <span class="op">=&gt;</span> <span class="ident">Interrupt</span>::<span class="ident">UserSoft</span>,
-            <span class="number">1</span> <span class="op">=&gt;</span> <span class="ident">Interrupt</span>::<span class="ident">SupervisorSoft</span>,
-            <span class="number">4</span> <span class="op">=&gt;</span> <span class="ident">Interrupt</span>::<span class="ident">UserTimer</span>,
-            <span class="number">5</span> <span class="op">=&gt;</span> <span class="ident">Interrupt</span>::<span class="ident">SupervisorTimer</span>,
-            <span class="number">8</span> <span class="op">=&gt;</span> <span class="ident">Interrupt</span>::<span class="ident">UserExternal</span>,
-            <span class="number">9</span> <span class="op">=&gt;</span> <span class="ident">Interrupt</span>::<span class="ident">SupervisorExternal</span>,
-            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="ident">Interrupt</span>::<span class="ident">Unknown</span>,
+            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Interrupt</span>::<span class="ident">UserSoft</span>,
+            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Interrupt</span>::<span class="ident">SupervisorSoft</span>,
+            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Interrupt</span>::<span class="ident">UserTimer</span>,
+            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Interrupt</span>::<span class="ident">SupervisorTimer</span>,
+            <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Interrupt</span>::<span class="ident">UserExternal</span>,
+            <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Interrupt</span>::<span class="ident">SupervisorExternal</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Interrupt</span>::<span class="ident">Unknown</span>,
         }
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Exception</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">nr</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">nr</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="kw">match</span> <span class="ident">nr</span> {
-            <span class="number">0</span> <span class="op">=&gt;</span> <span class="ident">Exception</span>::<span class="ident">InstructionMisaligned</span>,
-            <span class="number">1</span> <span class="op">=&gt;</span> <span class="ident">Exception</span>::<span class="ident">InstructionFault</span>,
-            <span class="number">2</span> <span class="op">=&gt;</span> <span class="ident">Exception</span>::<span class="ident">IllegalInstruction</span>,
-            <span class="number">3</span> <span class="op">=&gt;</span> <span class="ident">Exception</span>::<span class="ident">Breakpoint</span>,
-            <span class="number">5</span> <span class="op">=&gt;</span> <span class="ident">Exception</span>::<span class="ident">LoadFault</span>,
-            <span class="number">6</span> <span class="op">=&gt;</span> <span class="ident">Exception</span>::<span class="ident">StoreMisaligned</span>,
-            <span class="number">7</span> <span class="op">=&gt;</span> <span class="ident">Exception</span>::<span class="ident">StoreFault</span>,
-            <span class="number">8</span> <span class="op">=&gt;</span> <span class="ident">Exception</span>::<span class="ident">UserEnvCall</span>,
-            <span class="number">12</span> <span class="op">=&gt;</span> <span class="ident">Exception</span>::<span class="ident">InstructionPageFault</span>,
-            <span class="number">13</span> <span class="op">=&gt;</span> <span class="ident">Exception</span>::<span class="ident">LoadPageFault</span>,
-            <span class="number">15</span> <span class="op">=&gt;</span> <span class="ident">Exception</span>::<span class="ident">StorePageFault</span>,
-            <span class="kw">_</span> <span class="op">=&gt;</span> <span class="ident">Exception</span>::<span class="ident">Unknown</span>,
+            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Exception</span>::<span class="ident">InstructionMisaligned</span>,
+            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Exception</span>::<span class="ident">InstructionFault</span>,
+            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Exception</span>::<span class="ident">IllegalInstruction</span>,
+            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Exception</span>::<span class="ident">Breakpoint</span>,
+            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Exception</span>::<span class="ident">LoadFault</span>,
+            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Exception</span>::<span class="ident">StoreMisaligned</span>,
+            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Exception</span>::<span class="ident">StoreFault</span>,
+            <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Exception</span>::<span class="ident">UserEnvCall</span>,
+            <span class="number">12</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Exception</span>::<span class="ident">InstructionPageFault</span>,
+            <span class="number">13</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Exception</span>::<span class="ident">LoadPageFault</span>,
+            <span class="number">15</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Exception</span>::<span class="ident">StorePageFault</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Exception</span>::<span class="ident">Unknown</span>,
         }
     }
 }
@@ -200,19 +200,19 @@
 <span class="kw">impl</span> <span class="ident">Scause</span> {
     <span class="doccomment">/// Returns the contents of the register as raw bits</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
         <span class="self">self</span>.<span class="ident">bits</span>
     }
 
     <span class="doccomment">/// Returns the code field</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">code</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
-        <span class="kw">let</span> <span class="ident">bit</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> (<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="number">8</span> <span class="op">-</span> <span class="number">1</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">code</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+        <span class="kw">let</span> <span class="ident">bit</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="number">8</span> <span class="op">-</span> <span class="number">1</span>);
         <span class="self">self</span>.<span class="ident">bits</span> <span class="op">&amp;</span> <span class="op">!</span><span class="ident">bit</span>
     }
 
     <span class="doccomment">/// Trap Cause</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cause</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Trap</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cause</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Trap</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_interrupt</span>() {
             <span class="ident">Trap</span>::<span class="ident">Interrupt</span>(<span class="ident">Interrupt</span>::<span class="ident">from</span>(<span class="self">self</span>.<span class="ident">code</span>()))
         } <span class="kw">else</span> {
@@ -222,13 +222,13 @@
 
     <span class="doccomment">/// Is trap cause an interrupt.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_interrupt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_interrupt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="number">8</span> <span class="op">-</span> <span class="number">1</span>)
     }
 
     <span class="doccomment">/// Is trap cause an exception.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_exception</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_exception</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="op">!</span><span class="self">self</span>.<span class="ident">is_interrupt</span>()
     }
 }

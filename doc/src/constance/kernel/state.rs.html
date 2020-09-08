@@ -59,7 +59,7 @@
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">task</span>, <span class="ident">utils</span>, <span class="ident">BadContextError</span>, <span class="ident">BoostPriorityError</span>, <span class="ident">Kernel</span>};
 
 <span class="doccomment">/// If the current context is not a task context, return `Err(BadContext)`.</span>
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">expect_task_context</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">BadContextError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">expect_task_context</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">BadContextError</span><span class="op">&gt;</span> {
     <span class="kw">if</span> <span class="op">!</span><span class="ident">System</span>::<span class="ident">is_task_context</span>() {
         <span class="prelude-val">Err</span>(<span class="ident">BadContextError</span>::<span class="ident">BadContext</span>)
     } <span class="kw">else</span> {
@@ -68,8 +68,8 @@
 }
 
 <span class="doccomment">/// If the current context is not waitable, return `Err(BadContext)`.</span>
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">expect_waitable_context</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">BadContextError</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">System</span>::<span class="ident">is_task_context</span>() <span class="op">||</span> <span class="ident">System</span>::<span class="ident">is_priority_boost_active</span>() {
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">expect_waitable_context</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">BadContextError</span><span class="op">&gt;</span> {
+    <span class="kw">if</span> <span class="op">!</span><span class="ident">System</span>::<span class="ident">is_task_context</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">System</span>::<span class="ident">is_priority_boost_active</span>() {
         <span class="prelude-val">Err</span>(<span class="ident">BadContextError</span>::<span class="ident">BadContext</span>)
     } <span class="kw">else</span> {
         <span class="prelude-val">Ok</span>(())
@@ -77,10 +77,10 @@
 }
 
 <span class="doccomment">/// Implements `Kernel::boost_priority`.</span>
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">boost_priority</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">BoostPriorityError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">boost_priority</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">BoostPriorityError</span><span class="op">&gt;</span> {
     <span class="kw">if</span> <span class="ident">System</span>::<span class="ident">is_cpu_lock_active</span>()
-        <span class="op">||</span> <span class="op">!</span><span class="ident">System</span>::<span class="ident">is_task_context</span>()
-        <span class="op">||</span> <span class="ident">System</span>::<span class="ident">is_priority_boost_active</span>()
+        <span class="op">|</span><span class="op">|</span> <span class="op">!</span><span class="ident">System</span>::<span class="ident">is_task_context</span>()
+        <span class="op">|</span><span class="op">|</span> <span class="ident">System</span>::<span class="ident">is_priority_boost_active</span>()
     {
         <span class="prelude-val">Err</span>(<span class="ident">BoostPriorityError</span>::<span class="ident">BadContext</span>)
     } <span class="kw">else</span> {
@@ -92,8 +92,8 @@
 }
 
 <span class="doccomment">/// Implements `Kernel::unboost_priority`.</span>
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">unboost_priority</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">BoostPriorityError</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">System</span>::<span class="ident">is_task_context</span>() <span class="op">||</span> <span class="op">!</span><span class="ident">System</span>::<span class="ident">is_priority_boost_active</span>() {
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">unboost_priority</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">BoostPriorityError</span><span class="op">&gt;</span> {
+    <span class="kw">if</span> <span class="op">!</span><span class="ident">System</span>::<span class="ident">is_task_context</span>() <span class="op">|</span><span class="op">|</span> <span class="op">!</span><span class="ident">System</span>::<span class="ident">is_priority_boost_active</span>() {
         <span class="prelude-val">Err</span>(<span class="ident">BoostPriorityError</span>::<span class="ident">BadContext</span>)
     } <span class="kw">else</span> {
         <span class="comment">// Acquire CPU Lock after checking other states so that</span>

@@ -51,13 +51,13 @@
 <span class="kw">impl</span> <span class="ident">Ustatus</span> {
     <span class="doccomment">/// User Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uie</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uie</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">0</span>)
     }
 
     <span class="doccomment">/// User Previous Interrupt Enable</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">upie</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">upie</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">bits</span>.<span class="ident">get_bit</span>(<span class="number">4</span>)
     }
 }
@@ -69,10 +69,10 @@
 
 <span class="macro">set_clear_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// User Interrupt Enable</span>
-    , <span class="ident">set_uie</span>, <span class="ident">clear_uie</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">0</span>);
+    , <span class="ident">set_uie</span>, <span class="ident">clear_uie</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0</span>);
 
 <span class="macro">set_csr</span><span class="macro">!</span>(
     <span class="doccomment">/// User Previous Interrupt Enable</span>
-    , <span class="ident">set_upie</span>, <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">4</span>);
+    , <span class="ident">set_upie</span>, <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">4</span>);
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "riscv";</script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>

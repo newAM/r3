@@ -218,28 +218,28 @@
 <span class="kw">use</span> <span class="ident">element</span>::<span class="ident">Stroke</span>;
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Optimizer</span> {
-    <span class="ident">elements</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">elements</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Optimizer</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">elements</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">Optimizer</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">elements</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Optimizer</span> {
         <span class="ident">Optimizer</span> {
             <span class="ident">elements</span>: <span class="ident">elements</span>,
         }
     }
 
 
-    <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">loc</span>: <span class="kw-2">&amp;</span><span class="ident">Loc</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">loc</span>: <span class="kw-2">&amp;</span><span class="ident">Loc</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">elements</span>.<span class="ident">get</span>(<span class="ident">loc</span>.<span class="ident">y</span> <span class="kw">as</span> <span class="ident">usize</span>) {
-            <span class="prelude-val">Some</span>(<span class="ident">row</span>) <span class="op">=&gt;</span> <span class="ident">row</span>.<span class="ident">get</span>(<span class="ident">loc</span>.<span class="ident">x</span> <span class="kw">as</span> <span class="ident">usize</span>),
-            <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="prelude-val">None</span>,
+            <span class="prelude-val">Some</span>(<span class="ident">row</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">row</span>.<span class="ident">get</span>(<span class="ident">loc</span>.<span class="ident">x</span> <span class="kw">as</span> <span class="ident">usize</span>),
+            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
         }
     }
 
 
 
     <span class="comment">// return the reduced element and the index of the matching element on this location</span>
-    <span class="kw">fn</span> <span class="ident">reduce</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">elm1</span>: <span class="kw-2">&amp;</span><span class="ident">Element</span>, <span class="ident">loc2</span>: <span class="kw-2">&amp;</span><span class="ident">Loc</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span>, <span class="ident">usize</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">reduce</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">elm1</span>: <span class="kw-2">&amp;</span><span class="ident">Element</span>, <span class="ident">loc2</span>: <span class="kw-2">&amp;</span><span class="ident">Loc</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span>, <span class="ident">usize</span>)<span class="op">&gt;</span> {
         <span class="comment">// try all the elments of this location</span>
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">elements2</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">get</span>(<span class="ident">loc2</span>){
             <span class="kw">if</span> <span class="ident">elements2</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="number">0</span> {
@@ -261,7 +261,7 @@
     <span class="doccomment">/// trace the and try to reduce this element against the elements</span>
     <span class="doccomment">/// at this location(loc),</span>
     <span class="doccomment">/// returns the reduced element, the location and index of the consumed element</span>
-    <span class="kw">fn</span> <span class="ident">trace_elements</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">element</span>: <span class="kw-2">&amp;</span><span class="ident">Element</span>, <span class="ident">loc</span>: <span class="kw-2">&amp;</span><span class="ident">Loc</span>) <span class="op">-&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Loc</span>, <span class="ident">usize</span>)<span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">trace_elements</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">element</span>: <span class="kw-2">&amp;</span><span class="ident">Element</span>, <span class="ident">loc</span>: <span class="kw-2">&amp;</span><span class="ident">Loc</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Loc</span>, <span class="ident">usize</span>)<span class="op">&gt;</span>) {
         <span class="comment">//trace to the right first</span>
         <span class="kw">let</span> <span class="ident">right</span> <span class="op">=</span> <span class="ident">loc</span>.<span class="ident">right</span>();
         <span class="kw">let</span> <span class="ident">bottom</span> <span class="op">=</span> <span class="ident">loc</span>.<span class="ident">bottom</span>();
@@ -318,7 +318,7 @@
 
 
     <span class="doccomment">/// grouped elements together that shares some end_points</span>
-    <span class="kw">fn</span> <span class="ident">group_elements</span><span class="op">&lt;</span><span class="lifetime">&#39;e</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">elements</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">group_elements</span><span class="op">&lt;</span><span class="lifetime">&#39;e</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">elements</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">consumed</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[]; 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">all_group</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
         <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">elm</span>) <span class="kw">in</span> <span class="ident">elements</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>(){
@@ -342,7 +342,7 @@
 
     <span class="comment">// TODO: order the elements in such a way that</span>
     <span class="comment">// the start -&gt; end -&gt; start chains nicely</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">optimize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_settings</span>: <span class="kw-2">&amp;</span><span class="ident">Settings</span>) <span class="op">-&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">optimize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_settings</span>: <span class="kw-2">&amp;</span><span class="ident">Settings</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tracing_consumed_locs</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Loc</span>,<span class="ident">usize</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">optimized</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
 
@@ -366,7 +366,7 @@
     }
 
     <span class="doccomment">/// arrange elements listing in the svg document</span>
-    <span class="kw">fn</span> <span class="ident">arrange_elements</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">elements</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">arrange_elements</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">elements</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Element</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">merged</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">solid_lines</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dashed_lines</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
@@ -377,37 +377,37 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">circles</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
         <span class="kw">for</span> <span class="ident">elm</span> <span class="kw">in</span> <span class="ident">elements</span> {
             <span class="kw">match</span> <span class="ident">elm</span> {
-                <span class="ident">Element</span>::<span class="ident">Circle</span>(<span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) <span class="op">=&gt;</span> {
+                <span class="ident">Element</span>::<span class="ident">Circle</span>(<span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">circles</span>.<span class="ident">push</span>(<span class="ident">elm</span>.<span class="ident">clone</span>());
                 }
-                <span class="ident">Element</span>::<span class="ident">Line</span>(<span class="kw">_</span>, <span class="kw">_</span>, <span class="kw-2">ref</span> <span class="ident">stroke</span>, <span class="kw-2">ref</span> <span class="ident">start_feature</span>, <span class="kw-2">ref</span> <span class="ident">end_feature</span>) <span class="op">=&gt;</span> {
-                    <span class="kw">if</span> <span class="kw-2">*</span><span class="ident">start_feature</span> <span class="op">==</span> <span class="ident">OpenCircle</span> <span class="op">||</span> <span class="kw-2">*</span><span class="ident">end_feature</span> <span class="op">==</span> <span class="ident">OpenCircle</span>
-                        <span class="op">||</span> <span class="kw-2">*</span><span class="ident">start_feature</span> <span class="op">==</span> <span class="ident">BigOpenCircle</span> <span class="op">||</span> <span class="kw-2">*</span><span class="ident">end_feature</span> <span class="op">==</span> <span class="ident">BigOpenCircle</span>{
+                <span class="ident">Element</span>::<span class="ident">Line</span>(<span class="kw">_</span>, <span class="kw">_</span>, <span class="kw-2">ref</span> <span class="ident">stroke</span>, <span class="kw-2">ref</span> <span class="ident">start_feature</span>, <span class="kw-2">ref</span> <span class="ident">end_feature</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                    <span class="kw">if</span> <span class="kw-2">*</span><span class="ident">start_feature</span> <span class="op">=</span><span class="op">=</span> <span class="ident">OpenCircle</span> <span class="op">|</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">end_feature</span> <span class="op">=</span><span class="op">=</span> <span class="ident">OpenCircle</span>
+                        <span class="op">|</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">start_feature</span> <span class="op">=</span><span class="op">=</span> <span class="ident">BigOpenCircle</span> <span class="op">|</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">end_feature</span> <span class="op">=</span><span class="op">=</span> <span class="ident">BigOpenCircle</span>{
                             <span class="ident">featured_circle_solid_lines</span>.<span class="ident">push</span>(<span class="ident">elm</span>.<span class="ident">clone</span>())
                         }
                     <span class="kw">else</span>{
                         <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">stroke</span> {
-                            <span class="ident">Stroke</span>::<span class="ident">Solid</span> <span class="op">=&gt;</span> {
+                            <span class="ident">Stroke</span>::<span class="ident">Solid</span> <span class="op">=</span><span class="op">&gt;</span> {
                                 <span class="ident">solid_lines</span>.<span class="ident">push</span>(<span class="ident">elm</span>.<span class="ident">clone</span>());
                             }
-                            <span class="ident">Stroke</span>::<span class="ident">Dashed</span> <span class="op">=&gt;</span> {
+                            <span class="ident">Stroke</span>::<span class="ident">Dashed</span> <span class="op">=</span><span class="op">&gt;</span> {
                                 <span class="ident">dashed_lines</span>.<span class="ident">push</span>(<span class="ident">elm</span>.<span class="ident">clone</span>());
                             }
                         }
                     }
                 },
-                <span class="ident">Element</span>::<span class="ident">Arc</span>(<span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw-2">ref</span> <span class="ident">stroke</span>, <span class="kw">_</span>, <span class="kw">_</span>) <span class="op">=&gt;</span> {
+                <span class="ident">Element</span>::<span class="ident">Arc</span>(<span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw-2">ref</span> <span class="ident">stroke</span>, <span class="kw">_</span>, <span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
 
                     <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">stroke</span> {
-                        <span class="ident">Stroke</span>::<span class="ident">Solid</span> <span class="op">=&gt;</span> {
+                        <span class="ident">Stroke</span>::<span class="ident">Solid</span> <span class="op">=</span><span class="op">&gt;</span> {
                             <span class="ident">solid_arcs</span>.<span class="ident">push</span>(<span class="ident">elm</span>.<span class="ident">clone</span>());
                         }
-                        <span class="ident">Stroke</span>::<span class="ident">Dashed</span> <span class="op">=&gt;</span> {
+                        <span class="ident">Stroke</span>::<span class="ident">Dashed</span> <span class="op">=</span><span class="op">&gt;</span> {
                             <span class="ident">dashed_arcs</span>.<span class="ident">push</span>(<span class="ident">elm</span>.<span class="ident">clone</span>());
                         }
                     }
                 },
-                <span class="ident">Element</span>::<span class="ident">Text</span>(<span class="kw">_</span>, <span class="kw">_</span>) <span class="op">=&gt;</span> <span class="ident">text</span>.<span class="ident">push</span>(<span class="ident">elm</span>.<span class="ident">clone</span>()),
+                <span class="ident">Element</span>::<span class="ident">Text</span>(<span class="kw">_</span>, <span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">text</span>.<span class="ident">push</span>(<span class="ident">elm</span>.<span class="ident">clone</span>()),
             }
         }
         <span class="ident">merged</span>.<span class="ident">extend</span>(<span class="ident">solid_lines</span>);
