@@ -408,6 +408,39 @@
 <span id="407">407</span>
 <span id="408">408</span>
 <span id="409">409</span>
+<span id="410">410</span>
+<span id="411">411</span>
+<span id="412">412</span>
+<span id="413">413</span>
+<span id="414">414</span>
+<span id="415">415</span>
+<span id="416">416</span>
+<span id="417">417</span>
+<span id="418">418</span>
+<span id="419">419</span>
+<span id="420">420</span>
+<span id="421">421</span>
+<span id="422">422</span>
+<span id="423">423</span>
+<span id="424">424</span>
+<span id="425">425</span>
+<span id="426">426</span>
+<span id="427">427</span>
+<span id="428">428</span>
+<span id="429">429</span>
+<span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Conditional string literal generation</span>
 
@@ -489,6 +522,31 @@
                 $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">macro_inner</span>)<span class="op">*</span>
 
                 <span class="macro-nonterminal">$</span><span class="macro-nonterminal">text</span>,
+            }],
+            <span class="ident">define_macro</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">define_macro</span>],
+        }
+    },
+
+    (
+        @<span class="ident">internal</span>,
+        <span class="ident">text</span>: [{
+            $(<span class="macro-nonterminal">$</span><span class="kw">macro</span>:<span class="macro-nonterminal">ident</span>)::<span class="op">+</span><span class="op">!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">params</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>)
+            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest_text</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        }],
+        <span class="ident">free_idents</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">free_idents</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
+        <span class="ident">private_mod</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">private_mod</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
+        <span class="ident">macro_inner</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">macro_inner</span>:<span class="ident">tt</span>)<span class="op">*</span> }],
+        <span class="ident">define_macro</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">define_macro</span>:<span class="ident">tt</span>],
+    ) <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">pptext</span>::<span class="macro">pp_text_macro</span><span class="macro">!</span> {
+            @<span class="ident">internal</span>,
+            <span class="ident">text</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest_text</span>)<span class="op">*</span> }],
+            <span class="ident">free_idents</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">free_idents</span>)<span class="op">*</span> }],
+            <span class="ident">private_mod</span>: [{ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">private_mod</span>)<span class="op">*</span> }],
+            <span class="ident">macro_inner</span>: [{
+                $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">macro_inner</span>)<span class="op">*</span>
+
+                $(<span class="macro-nonterminal">$</span><span class="kw">macro</span>)::<span class="op">+</span><span class="op">!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">params</span>)<span class="kw-2">*</span>),
             }],
             <span class="ident">define_macro</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">define_macro</span>],
         }
@@ -652,6 +710,9 @@
 <span class="doccomment">/// #![feature(asm)]</span>
 <span class="doccomment">/// #![feature(decl_macro)]</span>
 <span class="doccomment">///</span>
+<span class="doccomment">/// #[macro_export]  // work-around for mysterious macro hygienics behavior</span>
+<span class="doccomment">/// macro_rules! the_ultimate_answer { () =&gt; { &quot;42&quot; }; }</span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// // miri doesn&#39;t support inline assembly</span>
 <span class="doccomment">/// #[cfg(not(miri))]</span>
 <span class="doccomment">/// unsafe {</span>
@@ -662,17 +723,17 @@
 <span class="doccomment">///         // break.</span>
 <span class="doccomment">///         &quot;# hoge \n&quot;</span>
 <span class="doccomment">///         if cfg!(target_arch = &quot;x86_64&quot;) {</span>
-<span class="doccomment">///             &quot;mov {}, 42&quot;</span>
+<span class="doccomment">///             &quot;mov {}, &quot; crate::the_ultimate_answer!()</span>
 <span class="doccomment">///         }</span>
 <span class="doccomment">///         if cfg!(any(target_arch = &quot;aarch64&quot;, target_arch = &quot;arm&quot;)) {</span>
-<span class="doccomment">///             &quot;mov {}, #42&quot;</span>
+<span class="doccomment">///             &quot;mov {}, #&quot; crate::the_ultimate_answer!()</span>
 <span class="doccomment">///         }</span>
 <span class="doccomment">///         if cfg!(any(target_arch = &quot;riscv32&quot;, target_arch = &quot;riscv64&quot;)) {</span>
-<span class="doccomment">///             &quot;li {}, 42&quot;</span>
+<span class="doccomment">///             &quot;li {}, &quot; crate::the_ultimate_answer!()</span>
 <span class="doccomment">///         },</span>
 <span class="doccomment">///         out(reg) output</span>
 <span class="doccomment">///     );</span>
-<span class="doccomment">///     assert_eq!(output, 42);</span>
+<span class="doccomment">///     assert_eq!(output.to_string(), crate::the_ultimate_answer!());</span>
 <span class="doccomment">/// }</span>
 <span class="doccomment">/// ```</span>
 <span class="kw">pub</span> <span class="kw">macro</span> <span class="ident">pp_asm</span> {
@@ -741,11 +802,16 @@
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
 
+    <span class="kw">macro</span> <span class="ident">hoge_gen</span>() {
+        <span class="string">&quot;hoge&quot;</span>
+    }
+
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_pp_text</span>() {
         <span class="macro">pp_text_macro</span><span class="macro">!</span>(
             <span class="kw">macro</span> <span class="ident">got</span> {
                 <span class="string">&quot;hello&quot;</span>
+                <span class="macro">hoge_gen</span><span class="macro">!</span>()
                 <span class="string">&quot;foo1&quot;</span>
                 <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) { <span class="string">&quot;foo2&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;bar2&quot;</span> }
                 <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) { <span class="string">&quot;foo3&quot;</span> }
@@ -782,7 +848,7 @@
         <span class="kw">let</span> <span class="ident">expected</span> <span class="op">=</span> {
             <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">std</span>;
             <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">borrow</span>::<span class="ident">ToOwned</span>;
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="string">&quot;hellofoo1&quot;</span>.<span class="ident">to_owned</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="string">&quot;hellohogefoo1&quot;</span>.<span class="ident">to_owned</span>();
             <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) { <span class="string">&quot;foo2&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;bar2&quot;</span> };
             <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">any</span>()) { <span class="string">&quot;foo3&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;&quot;</span> };
             <span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">all</span>()) { <span class="string">&quot;foo4&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;bar4&quot;</span> };

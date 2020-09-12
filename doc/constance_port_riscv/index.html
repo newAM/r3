@@ -44,37 +44,57 @@
 <div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">struct</span> <span class="ident">ContextState</span> {
-    <span class="comment">// Second-level state</span>
+    <span class="comment">// Second-level state (SLS)</span>
+    <span class="comment">// ------------------------</span>
     <span class="comment">//</span>
     <span class="comment">// Includes everything that is not included in the first-level state. These</span>
     <span class="comment">// are moved between memory and registers only when switching tasks.</span>
-    <span class="comment">// TODO: Floating-point registers</span>
+
+    <span class="comment">// SLS.HDR: Second-level state, header</span>
+    <span class="comment">//</span>
+    <span class="comment">// The `mstatus` field preserves the state of `mstatus.FS[1]`.</span>
+    <span class="comment">// `mstatus.FS[0]` is assumed to `1`. This means `mstatus.FS` can only take</span>
+    <span class="comment">// one of the following states: Initial and Dirty.</span>
+    <span class="comment">// Irrelevant bits are don&#39;t-care (hence `_part`).</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;f&quot;</span>)]</span>
+    <span class="ident">mstatus_part</span>: <span class="ident">usize</span>,
+
+    <span class="comment">// SLS.F: Second-level state, FP registers</span>
+    <span class="comment">//</span>
+    <span class="comment">// This portion exists only if `mstatus.FS[1] != 0`.</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;f&quot;</span>)]</span>
+    <span class="ident">f8</span>: [<span class="ident">FReg</span>; <span class="number">2</span>],  <span class="comment">// fs0-fs1</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;f&quot;</span>)]</span>
+    <span class="ident">f18</span>: [<span class="ident">FReg</span>; <span class="number">10</span>], <span class="comment">// fs2-fs11</span>
+
+    <span class="comment">// SLS.X: Second-level state, X registers</span>
     <span class="ident">x8</span>: <span class="ident">usize</span>,  <span class="comment">// s0/fp</span>
     <span class="ident">x9</span>: <span class="ident">usize</span>,  <span class="comment">// s1</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">e</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;e&quot;</span>))]</span>
     <span class="ident">x18</span>: <span class="ident">usize</span>, <span class="comment">// s2</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">e</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;e&quot;</span>))]</span>
     <span class="ident">x19</span>: <span class="ident">usize</span>, <span class="comment">// s3</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">e</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;e&quot;</span>))]</span>
     <span class="ident">x20</span>: <span class="ident">usize</span>, <span class="comment">// s4</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">e</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;e&quot;</span>))]</span>
     <span class="ident">x21</span>: <span class="ident">usize</span>, <span class="comment">// s5</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">e</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;e&quot;</span>))]</span>
     <span class="ident">x22</span>: <span class="ident">usize</span>, <span class="comment">// s6</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">e</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;e&quot;</span>))]</span>
     <span class="ident">x23</span>: <span class="ident">usize</span>, <span class="comment">// s7</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">e</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;e&quot;</span>))]</span>
     <span class="ident">x24</span>: <span class="ident">usize</span>, <span class="comment">// s8</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">e</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;e&quot;</span>))]</span>
     <span class="ident">x25</span>: <span class="ident">usize</span>, <span class="comment">// s9</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">e</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;e&quot;</span>))]</span>
     <span class="ident">x26</span>: <span class="ident">usize</span>, <span class="comment">// s10</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">e</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;e&quot;</span>))]</span>
     <span class="ident">x27</span>: <span class="ident">usize</span>, <span class="comment">// s11</span>
 
-    <span class="comment">// First-level state</span>
+    <span class="comment">// First-level state (FLS)</span>
+    <span class="comment">// -----------------------</span>
     <span class="comment">//</span>
-    <span class="comment">// The GPR potion is comprised of caller-saved registers. In an exception</span>
+    <span class="comment">// This section is comprised of caller-saved registers. In an exception</span>
     <span class="comment">// handler, saving/restoring this set of registers at entry and exit allows</span>
     <span class="comment">// it to call Rust functions.</span>
     <span class="comment">//</span>
@@ -82,6 +102,20 @@
     <span class="comment">// them by their purposes, as done by Linux and FreeBSD) to improve the</span>
     <span class="comment">// compression ratio very slightly when transmitting the code over a</span>
     <span class="comment">// network.</span>
+
+    <span class="comment">// FLS.F: First-level state, FP registers</span>
+    <span class="comment">//</span>
+    <span class="comment">// This portion exists only if `mstatus.FS[1] != 0`.</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;f&quot;</span>)]</span>
+    <span class="ident">f0</span>: [<span class="ident">FReg</span>; <span class="number">8</span>],  <span class="comment">// ft0-ft7</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;f&quot;</span>)]</span>
+    <span class="ident">f10</span>: [<span class="ident">FReg</span>; <span class="number">8</span>], <span class="comment">// fa0-fa7</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;f&quot;</span>)]</span>
+    <span class="ident">f28</span>: [<span class="ident">FReg</span>; <span class="number">4</span>], <span class="comment">// ft8-ft11</span>
+    <span class="ident">fcsr</span>: <span class="ident">usize</span>,
+    <span class="ident">_pad</span>: [<span class="ident">u8</span>; (<span class="ident">max</span>(<span class="ident">FLEN</span>, <span class="ident">XLEN</span>) <span class="op">-</span> <span class="ident">XLEN</span>) <span class="op">/</span> <span class="number">8</span>],
+
+    <span class="comment">// FLS.X: First-level state, X registers</span>
     <span class="ident">x1</span>: <span class="ident">usize</span>,  <span class="comment">// ra</span>
     <span class="ident">x5</span>: <span class="ident">usize</span>,  <span class="comment">// t0</span>
     <span class="ident">x6</span>: <span class="ident">usize</span>,  <span class="comment">// t1</span>
@@ -109,6 +143,7 @@
 <p><code>x2</code> (<code>sp</code>) is stored in <a href="../constance/kernel/task/struct.TaskCb.html#structfield.port_task_state"><code>TaskCb::port_task_state</code></a>. The stored stack pointer is only aligned to word boundaries.</p>
 <p>The idle task (the implicit task that runs when <code>*</code><a href="../constance/kernel/struct.State.html#method.running_task_ptr"><code>running_task_ptr</code></a><code>().is_none()</code>) always execute with <code>sp == 0</code>. For the idle task, saving and restoring the context store is essentially replaced with no-op or loads of hard-coded values. In particular, <code>pc</code> is always “restored” with the entry point of the idle task.</p>
 <p>When a task is activated, a new context state is created inside the task's stack. By default, only essential registers are preloaded with known values. The <strong><code>preload-registers</code></strong> Cargo feature enables preloading for all <code>x</code> registers, which might help in debugging at the cost of performance and code size.</p>
+<p>The trap handler stores a first-level state directly below the current stack pointer. This means <strong>the stack pointer must be aligned to a <code>max(XLEN, FLEN)</code>-bit boundary all the time</strong>. This requirement is weaker than the standard ABI's requirement, so it shouldn't pose a problem for most cases.</p>
 <h2 id="processor-modes" class="section-header"><a href="#processor-modes">Processor Modes</a></h2>
 <p>All code executes in Machine mode. The value of <code>mstatus.MPP</code> is always <code>M</code> (<code>0b11</code>).</p>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
