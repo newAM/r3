@@ -323,6 +323,33 @@
 <span id="322">322</span>
 <span id="323">323</span>
 <span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
+<span id="350">350</span>
+<span id="351">351</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Event groups</span>
 <span class="kw">use</span> <span class="ident">core</span>::{
@@ -334,8 +361,8 @@
 <span class="kw">use</span> <span class="kw">super</span>::{
     <span class="ident">state</span>, <span class="ident">task</span>, <span class="ident">timeout</span>, <span class="ident">utils</span>,
     <span class="ident">wait</span>::{<span class="ident">WaitPayload</span>, <span class="ident">WaitQueue</span>},
-    <span class="ident">BadIdError</span>, <span class="ident">GetEventGroupError</span>, <span class="ident">Id</span>, <span class="ident">Kernel</span>, <span class="ident">Port</span>, <span class="ident">UpdateEventGroupError</span>, <span class="ident">WaitEventGroupError</span>,
-    <span class="ident">WaitEventGroupTimeoutError</span>,
+    <span class="ident">BadIdError</span>, <span class="ident">GetEventGroupError</span>, <span class="ident">Id</span>, <span class="ident">Kernel</span>, <span class="ident">PollEventGroupError</span>, <span class="ident">Port</span>, <span class="ident">UpdateEventGroupError</span>,
+    <span class="ident">WaitEventGroupError</span>, <span class="ident">WaitEventGroupTimeoutError</span>,
 };
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">time</span>::<span class="ident">Duration</span>, <span class="ident">utils</span>::<span class="ident">Init</span>};
 
@@ -488,6 +515,20 @@
 
         <span class="ident">wait_timeout</span>(<span class="ident">event_group_cb</span>, <span class="ident">lock</span>, <span class="ident">bits</span>, <span class="ident">flags</span>, <span class="ident">time32</span>)
     }
+
+    <span class="doccomment">/// Non-blocking version of [`wait`](Self::wait). Returns immediately with</span>
+    <span class="doccomment">/// [`PollEventGroupError::Timeout`] if the unblocking condition is not</span>
+    <span class="doccomment">/// satisfied.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">poll</span>(
+        <span class="self">self</span>,
+        <span class="ident">bits</span>: <span class="ident">EventGroupBits</span>,
+        <span class="ident">flags</span>: <span class="ident">EventGroupWaitFlags</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">EventGroupBits</span>, <span class="ident">PollEventGroupError</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">event_group_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">event_group_cb</span>()<span class="question-mark">?</span>;
+
+        <span class="ident">poll</span>(<span class="ident">event_group_cb</span>, <span class="ident">lock</span>, <span class="ident">bits</span>, <span class="ident">flags</span>)
+    }
 }
 
 <span class="doccomment">/// *Event group control block* - the state data of an event group.</span>
@@ -512,6 +553,19 @@
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;EventGroupCb&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;bits&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">bits</span>)
             .<span class="ident">finish</span>()
+    }
+}
+
+<span class="kw">fn</span> <span class="ident">poll</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>(
+    <span class="ident">event_group_cb</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">EventGroupCb</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
+    <span class="kw-2">mut</span> <span class="ident">lock</span>: <span class="ident">utils</span>::<span class="ident">CpuLockGuard</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
+    <span class="ident">bits</span>: <span class="ident">EventGroupBits</span>,
+    <span class="ident">flags</span>: <span class="ident">EventGroupWaitFlags</span>,
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">EventGroupBits</span>, <span class="ident">PollEventGroupError</span><span class="op">&gt;</span> {
+    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">original_value</span>) <span class="op">=</span> <span class="ident">poll_core</span>(<span class="ident">event_group_cb</span>.<span class="ident">bits</span>.<span class="ident">write</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="ident">lock</span>), <span class="ident">bits</span>, <span class="ident">flags</span>) {
+        <span class="prelude-val">Ok</span>(<span class="ident">original_value</span>)
+    } <span class="kw">else</span> {
+        <span class="prelude-val">Err</span>(<span class="ident">PollEventGroupError</span>::<span class="ident">Timeout</span>)
     }
 }
 

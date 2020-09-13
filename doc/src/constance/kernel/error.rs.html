@@ -690,6 +690,20 @@
 <span id="689">689</span>
 <span id="690">690</span>
 <span id="691">691</span>
+<span id="692">692</span>
+<span id="693">693</span>
+<span id="694">694</span>
+<span id="695">695</span>
+<span id="696">696</span>
+<span id="697">697</span>
+<span id="698">698</span>
+<span id="699">699</span>
+<span id="700">700</span>
+<span id="701">701</span>
+<span id="702">702</span>
+<span id="703">703</span>
+<span id="704">704</span>
+<span id="705">705</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">core</span>::{<span class="ident">fmt</span>, <span class="ident">mem</span>::<span class="ident">transmute</span>};
 
@@ -1201,6 +1215,20 @@
         <span class="ident">BadId</span>,
         <span class="doccomment">/// CPU Lock is active.</span>
         <span class="ident">BadContext</span>,
+    }
+}
+
+<span class="macro">define_error</span><span class="macro">!</span> {
+    <span class="kw">mod</span> <span class="ident">poll_event_group_error</span> {}
+    <span class="doccomment">/// Error type for [`EventGroup::poll`].</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [`EventGroup::poll`]: super::EventGroup::poll</span>
+    <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">PollEventGroupError</span>: <span class="ident">BadContextError</span>, <span class="ident">BadIdError</span> {
+        <span class="doccomment">/// The event group ID is out of range.</span>
+        <span class="ident">BadId</span>,
+        <span class="doccomment">/// CPU Lock is active.</span>
+        <span class="ident">BadContext</span>,
+        <span class="ident">Timeout</span>,
     }
 }
 
