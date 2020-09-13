@@ -96,8 +96,8 @@
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">kernel</span>::{<span class="ident">cfg</span>::<span class="ident">CfgBuilder</span>, <span class="ident">event_group</span>, <span class="ident">utils</span>::<span class="ident">CpuLockCell</span>, <span class="ident">wait</span>, <span class="ident">Port</span>};
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Port</span><span class="op">&gt;</span> <span class="ident">event_group</span>::<span class="ident">EventGroup</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Construct a `CfgTaskBuilder` to define a task in [a configuration</span>
-    <span class="doccomment">/// function](crate#static-configuration).</span>
+    <span class="doccomment">/// Construct a `CfgTaskBuilder` to define an event group in [a</span>
+    <span class="doccomment">/// configuration function](crate#static-configuration).</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">build</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CfgEventGroupBuilder</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
         <span class="ident">CfgEventGroupBuilder</span>::<span class="ident">new</span>()
     }

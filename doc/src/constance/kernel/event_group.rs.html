@@ -465,10 +465,10 @@
     }
 
     <span class="doccomment">/// Clear the specified bits.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear</span>(<span class="self">self</span>, <span class="ident">_bits</span>: <span class="ident">EventGroupBits</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">UpdateEventGroupError</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear</span>(<span class="self">self</span>, <span class="ident">bits</span>: <span class="ident">EventGroupBits</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">UpdateEventGroupError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">event_group_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">event_group_cb</span>()<span class="question-mark">?</span>;
-        <span class="ident">event_group_cb</span>.<span class="ident">bits</span>.<span class="ident">replace</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="ident">lock</span>, <span class="number">0</span>);
+        <span class="ident">event_group_cb</span>.<span class="ident">bits</span>.<span class="ident">replace_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="ident">lock</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">b</span> <span class="op">&amp;</span> <span class="op">!</span><span class="ident">bits</span>);
         <span class="prelude-val">Ok</span>(())
     }
 
