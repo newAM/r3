@@ -1,6 +1,7 @@
 (function() {var implementors = {};
 implementors["aho_corasick"] = [{"text":"impl Display for Error","synthetic":false,"types":[]}];
 implementors["base64"] = [{"text":"impl&lt;'a&gt; Display for Base64Display&lt;'a&gt;","synthetic":false,"types":[]},{"text":"impl Display for DecodeError","synthetic":false,"types":[]}];
+implementors["constance"] = [{"text":"impl&lt;System:&nbsp;Kernel, T:&nbsp;Display + 'static, '_&gt; Display for MutexGuard&lt;'_, System, T&gt;","synthetic":false,"types":[]}];
 implementors["constance_portkit"] = [{"text":"impl Display for CfgError","synthetic":false,"types":[]},{"text":"impl Display for CfgError","synthetic":false,"types":[]}];
 implementors["env_logger"] = [{"text":"impl Display for Timestamp","synthetic":false,"types":[]},{"text":"impl&lt;'a, T:&nbsp;Display&gt; Display for StyledValue&lt;'a, T&gt;","synthetic":false,"types":[]}];
 implementors["errno"] = [{"text":"impl Display for Errno","synthetic":false,"types":[]}];

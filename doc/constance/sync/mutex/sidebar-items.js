@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["LockError","Error type of [`Mutex::lock`]."],["TryLockError","Error type of [`Mutex::try_lock`]."]],"struct":[["Mutex","A mutual exclusion primitive useful for protecting shared data from concurrent access."],["MutexGuard","An RAII implementation of a \"scoped lock\" of a mutex. When this structure is dropped, the lock will be released."]]});

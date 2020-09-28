@@ -1,4 +1,5 @@
 (function() {var implementors = {};
+implementors["constance"] = [{"text":"impl&lt;System:&nbsp;Kernel, T:&nbsp;'static, '_&gt; DerefMut for MutexGuard&lt;'_, System, T&gt;","synthetic":false,"types":[]}];
 implementors["once_cell"] = [{"text":"impl&lt;T, F:&nbsp;FnOnce() -&gt; T&gt; DerefMut for Lazy&lt;T, F&gt;","synthetic":false,"types":[]},{"text":"impl&lt;T, F:&nbsp;FnOnce() -&gt; T&gt; DerefMut for Lazy&lt;T, F&gt;","synthetic":false,"types":[]}];
 implementors["regex_syntax"] = [{"text":"impl DerefMut for Literal","synthetic":false,"types":[]}];
 implementors["staticvec"] = [{"text":"impl&lt;T:&nbsp;Ord, const N:&nbsp;usize, '_&gt; DerefMut for StaticHeapPeekMut&lt;'_, T, N&gt;","synthetic":false,"types":[]},{"text":"impl&lt;const N:&nbsp;usize&gt; DerefMut for StaticString&lt;N&gt;","synthetic":false,"types":[]},{"text":"impl&lt;T, const N:&nbsp;usize&gt; DerefMut for StaticVec&lt;T, N&gt;","synthetic":false,"types":[]}];

@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Mutex",""]]});
+initSidebarItems({"mod":[["mutex",""]]});
