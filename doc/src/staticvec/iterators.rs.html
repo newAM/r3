@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/staticvec-0.10.3/src/iterators.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>iterators.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../staticvec/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/staticvec-0.10.5/src/iterators.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>iterators.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../staticvec/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
                 <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
@@ -684,12 +686,144 @@
 <span id="683">683</span>
 <span id="684">684</span>
 <span id="685">685</span>
+<span id="686">686</span>
+<span id="687">687</span>
+<span id="688">688</span>
+<span id="689">689</span>
+<span id="690">690</span>
+<span id="691">691</span>
+<span id="692">692</span>
+<span id="693">693</span>
+<span id="694">694</span>
+<span id="695">695</span>
+<span id="696">696</span>
+<span id="697">697</span>
+<span id="698">698</span>
+<span id="699">699</span>
+<span id="700">700</span>
+<span id="701">701</span>
+<span id="702">702</span>
+<span id="703">703</span>
+<span id="704">704</span>
+<span id="705">705</span>
+<span id="706">706</span>
+<span id="707">707</span>
+<span id="708">708</span>
+<span id="709">709</span>
+<span id="710">710</span>
+<span id="711">711</span>
+<span id="712">712</span>
+<span id="713">713</span>
+<span id="714">714</span>
+<span id="715">715</span>
+<span id="716">716</span>
+<span id="717">717</span>
+<span id="718">718</span>
+<span id="719">719</span>
+<span id="720">720</span>
+<span id="721">721</span>
+<span id="722">722</span>
+<span id="723">723</span>
+<span id="724">724</span>
+<span id="725">725</span>
+<span id="726">726</span>
+<span id="727">727</span>
+<span id="728">728</span>
+<span id="729">729</span>
+<span id="730">730</span>
+<span id="731">731</span>
+<span id="732">732</span>
+<span id="733">733</span>
+<span id="734">734</span>
+<span id="735">735</span>
+<span id="736">736</span>
+<span id="737">737</span>
+<span id="738">738</span>
+<span id="739">739</span>
+<span id="740">740</span>
+<span id="741">741</span>
+<span id="742">742</span>
+<span id="743">743</span>
+<span id="744">744</span>
+<span id="745">745</span>
+<span id="746">746</span>
+<span id="747">747</span>
+<span id="748">748</span>
+<span id="749">749</span>
+<span id="750">750</span>
+<span id="751">751</span>
+<span id="752">752</span>
+<span id="753">753</span>
+<span id="754">754</span>
+<span id="755">755</span>
+<span id="756">756</span>
+<span id="757">757</span>
+<span id="758">758</span>
+<span id="759">759</span>
+<span id="760">760</span>
+<span id="761">761</span>
+<span id="762">762</span>
+<span id="763">763</span>
+<span id="764">764</span>
+<span id="765">765</span>
+<span id="766">766</span>
+<span id="767">767</span>
+<span id="768">768</span>
+<span id="769">769</span>
+<span id="770">770</span>
+<span id="771">771</span>
+<span id="772">772</span>
+<span id="773">773</span>
+<span id="774">774</span>
+<span id="775">775</span>
+<span id="776">776</span>
+<span id="777">777</span>
+<span id="778">778</span>
+<span id="779">779</span>
+<span id="780">780</span>
+<span id="781">781</span>
+<span id="782">782</span>
+<span id="783">783</span>
+<span id="784">784</span>
+<span id="785">785</span>
+<span id="786">786</span>
+<span id="787">787</span>
+<span id="788">788</span>
+<span id="789">789</span>
+<span id="790">790</span>
+<span id="791">791</span>
+<span id="792">792</span>
+<span id="793">793</span>
+<span id="794">794</span>
+<span id="795">795</span>
+<span id="796">796</span>
+<span id="797">797</span>
+<span id="798">798</span>
+<span id="799">799</span>
+<span id="800">800</span>
+<span id="801">801</span>
+<span id="802">802</span>
+<span id="803">803</span>
+<span id="804">804</span>
+<span id="805">805</span>
+<span id="806">806</span>
+<span id="807">807</span>
+<span id="808">808</span>
+<span id="809">809</span>
+<span id="810">810</span>
+<span id="811">811</span>
+<span id="812">812</span>
+<span id="813">813</span>
+<span id="814">814</span>
+<span id="815">815</span>
+<span id="816">816</span>
+<span id="817">817</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">fmt</span>::{<span class="self">self</span>, <span class="ident">Debug</span>, <span class="ident">Formatter</span>};
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">intrinsics</span>;
+<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">intrinsics</span>::<span class="ident">assume</span>;
 <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">iter</span>::{<span class="ident">FusedIterator</span>, <span class="ident">TrustedLen</span>};
 <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">marker</span>::{<span class="ident">PhantomData</span>, <span class="ident">Send</span>, <span class="ident">Sync</span>};
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">MaybeUninit</span>;
+<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">mem</span>::{<span class="ident">size_of</span>, <span class="ident">MaybeUninit</span>};
 <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">ptr</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">utils</span>::{<span class="ident">distance_between</span>, <span class="ident">slice_from_raw_parts</span>, <span class="ident">slice_from_raw_parts_mut</span>};
@@ -736,6 +870,16 @@
   <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">vec</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span>,
 }
 
+<span class="doccomment">/// A &quot;splicing&quot; iterator, analogous to [`vec::Splice`](alloc::vec::Splice).</span>
+<span class="doccomment">/// Instances of [`StaticVecSplice`](crate::iterators::StaticVecSplice) are created</span>
+<span class="doccomment">/// by the [`splice`](crate::StaticVec::splice) method on [`StaticVec`](crate::StaticVec).</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StaticVecSplice</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> {
+  <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">start</span>: <span class="ident">usize</span>,
+  <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">end</span>: <span class="ident">usize</span>,
+  <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">replace_with</span>: <span class="ident">I</span>,
+  <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">vec</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span>,
+}
+
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="lifetime">&#39;a</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">StaticVecIterConst</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span> {
   <span class="doccomment">/// Returns a string displaying the current values of the</span>
   <span class="doccomment">/// iterator&#39;s `start` and `end` elements on two separate lines.</span>
@@ -777,15 +921,15 @@
       <span class="comment">// Safety: `self.start` and `self.end` are never null if `T` is not a ZST,</span>
       <span class="comment">// and the possibility that `self.end` specifically is null if `T` *is* a ZST</span>
       <span class="comment">// is accounted for.</span>
-      <span class="ident">intrinsics</span>::<span class="ident">assume</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">start</span>.<span class="ident">is_null</span>());
-      <span class="kw">if</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-        <span class="ident">intrinsics</span>::<span class="ident">assume</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">end</span>.<span class="ident">is_null</span>());
+      <span class="ident">assume</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">start</span>.<span class="ident">is_null</span>());
+      <span class="kw">if</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+        <span class="ident">assume</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">end</span>.<span class="ident">is_null</span>());
       }
       <span class="kw">match</span> <span class="ident">distance_between</span>(<span class="self">self</span>.<span class="ident">end</span>, <span class="self">self</span>.<span class="ident">start</span>) {
         <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
         <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {
           <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="self">self</span>.<span class="ident">start</span>);
-          <span class="self">self</span>.<span class="ident">start</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
+          <span class="self">self</span>.<span class="ident">start</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="self">self</span>.<span class="ident">start</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="number">1</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>,
             <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">start</span>.<span class="ident">offset</span>(<span class="number">1</span>),
           };
@@ -812,7 +956,7 @@
       <span class="prelude-val">None</span>
     } <span class="kw">else</span> {
       <span class="kw">unsafe</span> {
-        <span class="kw">match</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
+        <span class="kw">match</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
           <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">start</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="ident">n</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>;
             <span class="self">self</span>.<span class="ident">start</span> <span class="op">=</span> (<span class="ident">res</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="number">1</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>;
@@ -841,14 +985,14 @@
       <span class="comment">// Safety: `self.start` and `self.end` are never null if `T` is not a ZST,</span>
       <span class="comment">// and the possibility that `self.end` specifically is null if `T` *is* a ZST</span>
       <span class="comment">// is accounted for.</span>
-      <span class="ident">intrinsics</span>::<span class="ident">assume</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">start</span>.<span class="ident">is_null</span>());
-      <span class="kw">if</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-        <span class="ident">intrinsics</span>::<span class="ident">assume</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">end</span>.<span class="ident">is_null</span>());
+      <span class="ident">assume</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">start</span>.<span class="ident">is_null</span>());
+      <span class="kw">if</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+        <span class="ident">assume</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">end</span>.<span class="ident">is_null</span>());
       }
       <span class="kw">match</span> <span class="ident">distance_between</span>(<span class="self">self</span>.<span class="ident">end</span>, <span class="self">self</span>.<span class="ident">start</span>) {
         <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
         <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {
-          <span class="self">self</span>.<span class="ident">end</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
+          <span class="self">self</span>.<span class="ident">end</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="self">self</span>.<span class="ident">end</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">-</span> <span class="number">1</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>,
             <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">end</span>.<span class="ident">offset</span>(<span class="op">-</span><span class="number">1</span>),
           };
@@ -864,7 +1008,7 @@
       <span class="prelude-val">None</span>
     } <span class="kw">else</span> {
       <span class="kw">unsafe</span> {
-        <span class="self">self</span>.<span class="ident">end</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
+        <span class="self">self</span>.<span class="ident">end</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
           <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="self">self</span>.<span class="ident">end</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>).<span class="ident">wrapping_offset</span>(<span class="op">-</span>((<span class="ident">n</span> <span class="kw">as</span> <span class="ident">isize</span>) <span class="op">+</span> <span class="number">1</span>)) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>,
           <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">end</span>.<span class="ident">offset</span>(<span class="op">-</span>((<span class="ident">n</span> <span class="kw">as</span> <span class="ident">isize</span>) <span class="op">+</span> <span class="number">1</span>)),
         };
@@ -953,15 +1097,15 @@
       <span class="comment">// Safety: `self.start` and `self.end` are never null if `T` is not a ZST,</span>
       <span class="comment">// and the possibility that `self.end` specifically is null if `T` *is* a ZST</span>
       <span class="comment">// is accounted for.</span>
-      <span class="ident">intrinsics</span>::<span class="ident">assume</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">start</span>.<span class="ident">is_null</span>());
-      <span class="kw">if</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-        <span class="ident">intrinsics</span>::<span class="ident">assume</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">end</span>.<span class="ident">is_null</span>());
+      <span class="ident">assume</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">start</span>.<span class="ident">is_null</span>());
+      <span class="kw">if</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+        <span class="ident">assume</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">end</span>.<span class="ident">is_null</span>());
       }
       <span class="kw">match</span> <span class="ident">distance_between</span>(<span class="self">self</span>.<span class="ident">end</span>, <span class="self">self</span>.<span class="ident">start</span>) {
         <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
         <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {
           <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">start</span>);
-          <span class="self">self</span>.<span class="ident">start</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
+          <span class="self">self</span>.<span class="ident">start</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="self">self</span>.<span class="ident">start</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="number">1</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>,
             <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">start</span>.<span class="ident">offset</span>(<span class="number">1</span>),
           };
@@ -988,7 +1132,7 @@
       <span class="prelude-val">None</span>
     } <span class="kw">else</span> {
       <span class="kw">unsafe</span> {
-        <span class="kw">match</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
+        <span class="kw">match</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
           <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">start</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="ident">n</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>;
             <span class="self">self</span>.<span class="ident">start</span> <span class="op">=</span> (<span class="ident">res</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="number">1</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>;
@@ -1017,14 +1161,14 @@
       <span class="comment">// Safety: `self.start` and `self.end` are never null if `T` is not a ZST,</span>
       <span class="comment">// and the possibility that `self.end` specifically is null if `T` *is* a ZST</span>
       <span class="comment">// is accounted for.</span>
-      <span class="ident">intrinsics</span>::<span class="ident">assume</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">start</span>.<span class="ident">is_null</span>());
-      <span class="kw">if</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-        <span class="ident">intrinsics</span>::<span class="ident">assume</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">end</span>.<span class="ident">is_null</span>());
+      <span class="ident">assume</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">start</span>.<span class="ident">is_null</span>());
+      <span class="kw">if</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+        <span class="ident">assume</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">end</span>.<span class="ident">is_null</span>());
       }
       <span class="kw">match</span> <span class="ident">distance_between</span>(<span class="self">self</span>.<span class="ident">end</span>, <span class="self">self</span>.<span class="ident">start</span>) {
         <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
         <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {
-          <span class="self">self</span>.<span class="ident">end</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
+          <span class="self">self</span>.<span class="ident">end</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="self">self</span>.<span class="ident">end</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">-</span> <span class="number">1</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>,
             <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">end</span>.<span class="ident">offset</span>(<span class="op">-</span><span class="number">1</span>),
           };
@@ -1040,7 +1184,7 @@
       <span class="prelude-val">None</span>
     } <span class="kw">else</span> {
       <span class="kw">unsafe</span> {
-        <span class="self">self</span>.<span class="ident">end</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
+        <span class="self">self</span>.<span class="ident">end</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
           <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="self">self</span>.<span class="ident">end</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>).<span class="ident">wrapping_offset</span>(<span class="op">-</span>((<span class="ident">n</span> <span class="kw">as</span> <span class="ident">isize</span>) <span class="op">+</span> <span class="number">1</span>)) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>,
           <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">end</span>.<span class="ident">offset</span>(<span class="op">-</span>((<span class="ident">n</span> <span class="kw">as</span> <span class="ident">isize</span>) <span class="op">+</span> <span class="number">1</span>)),
         };
@@ -1367,6 +1511,128 @@
           .<span class="ident">copy_to</span>(<span class="ident">vec_ref</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">start</span>), <span class="ident">total_length</span>);
         <span class="ident">vec_ref</span>.<span class="ident">set_len</span>(<span class="ident">start</span> <span class="op">+</span> <span class="ident">total_length</span>);
       }
+    }
+  }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">StaticVecSplice</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>, <span class="ident">N</span><span class="op">&gt;</span> {
+  <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span>;
+
+  <span class="attribute">#[<span class="ident">inline</span>]</span>
+  <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="comment">// We contextually already know we&#39;re within an appropriate range, so bounds checking</span>
+    <span class="comment">// is not necessary for any of the `self.vec` method calls below.</span>
+    <span class="kw">match</span> <span class="self">self</span>.<span class="ident">end</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">start</span> {
+      <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
+      <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">replace_with</span>.<span class="ident">next</span>() {
+        <span class="prelude-val">Some</span>(<span class="ident">replace_with</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> {
+          <span class="kw">let</span> <span class="ident">removed</span> <span class="op">=</span>
+            <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">replace</span>((<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">vec</span>).<span class="ident">get_unchecked_mut</span>(<span class="self">self</span>.<span class="ident">start</span>), <span class="ident">replace_with</span>);
+          <span class="self">self</span>.<span class="ident">start</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+          <span class="prelude-val">Some</span>(<span class="ident">removed</span>)
+        },
+        <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> {
+          <span class="kw">let</span> <span class="ident">removed</span> <span class="op">=</span> (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">vec</span>).<span class="ident">remove_unchecked</span>(<span class="self">self</span>.<span class="ident">start</span>);
+          <span class="self">self</span>.<span class="ident">end</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
+          <span class="prelude-val">Some</span>(<span class="ident">removed</span>)
+        },
+      },
+    }
+  }
+
+  <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
+  <span class="kw">fn</span> <span class="ident">size_hint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">usize</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) {
+    <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">len</span>();
+    (<span class="ident">len</span>, <span class="prelude-val">Some</span>(<span class="ident">len</span>))
+  }
+
+  <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
+  <span class="kw">fn</span> <span class="ident">count</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+    <span class="self">self</span>.<span class="ident">len</span>()
+  }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">DoubleEndedIterator</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">DoubleEndedIterator</span>
+  <span class="kw">for</span> <span class="ident">StaticVecSplice</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>, <span class="ident">N</span><span class="op">&gt;</span>
+{
+  <span class="attribute">#[<span class="ident">inline</span>]</span>
+  <span class="kw">fn</span> <span class="ident">next_back</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="comment">// We contextually already know we&#39;re within an appropriate range, so bounds checking</span>
+    <span class="comment">// is not necessary for any of the `self.vec` method calls below.</span>
+    <span class="kw">match</span> <span class="self">self</span>.<span class="ident">end</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">start</span> {
+      <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
+      <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">replace_with</span>.<span class="ident">next_back</span>() {
+        <span class="prelude-val">Some</span>(<span class="ident">replace_with</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> {
+          <span class="kw">let</span> <span class="ident">removed</span> <span class="op">=</span> <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">replace</span>(
+            (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">vec</span>).<span class="ident">get_unchecked_mut</span>(<span class="self">self</span>.<span class="ident">end</span> <span class="op">-</span> <span class="number">1</span>),
+            <span class="ident">replace_with</span>,
+          );
+          <span class="self">self</span>.<span class="ident">end</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
+          <span class="prelude-val">Some</span>(<span class="ident">removed</span>)
+        },
+        <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> {
+          <span class="kw">let</span> <span class="ident">removed</span> <span class="op">=</span> (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">vec</span>).<span class="ident">remove_unchecked</span>(<span class="self">self</span>.<span class="ident">end</span> <span class="op">-</span> <span class="number">1</span>);
+          <span class="self">self</span>.<span class="ident">end</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
+          <span class="prelude-val">Some</span>(<span class="ident">removed</span>)
+        },
+      },
+    }
+  }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">ExactSizeIterator</span> <span class="kw">for</span> <span class="ident">StaticVecSplice</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>, <span class="ident">N</span><span class="op">&gt;</span> {
+  <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
+  <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+    <span class="self">self</span>.<span class="ident">end</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">start</span>
+  }
+
+  <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
+  <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="self">self</span>.<span class="ident">end</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">start</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span>
+  }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">FusedIterator</span> <span class="kw">for</span> <span class="ident">StaticVecSplice</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>, <span class="ident">N</span><span class="op">&gt;</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">TrustedLen</span> <span class="kw">for</span> <span class="ident">StaticVecSplice</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>, <span class="ident">N</span><span class="op">&gt;</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Sync</span>, <span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">StaticVecSplice</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>, <span class="ident">N</span><span class="op">&gt;</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Send</span>, <span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">StaticVecSplice</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>, <span class="ident">N</span><span class="op">&gt;</span> {}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Debug</span>, <span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">StaticVecSplice</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>, <span class="ident">N</span><span class="op">&gt;</span> {
+  <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
+  <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="comment">// Safety: `self.vec` will never be null, and `self.end` and `self.start` will always be within</span>
+    <span class="comment">// an appropriate range.</span>
+    <span class="kw">unsafe</span> {
+      <span class="kw">let</span> <span class="ident">items</span> <span class="op">=</span> <span class="ident">slice_from_raw_parts</span>(
+        (<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="self">self</span>.<span class="ident">vec</span>).<span class="ident">ptr_at_unchecked</span>(<span class="self">self</span>.<span class="ident">start</span>),
+        <span class="self">self</span>.<span class="ident">end</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">start</span>,
+      );
+      <span class="ident">f</span>.<span class="ident">debug_tuple</span>(<span class="string">&quot;StaticVecSplice&quot;</span>).<span class="ident">field</span>(<span class="kw-2">&amp;</span><span class="ident">items</span>).<span class="ident">finish</span>()
+    }
+  }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">StaticVecSplice</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>, <span class="ident">N</span><span class="op">&gt;</span> {
+  <span class="attribute">#[<span class="ident">inline</span>]</span>
+  <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+    <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw">_</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">next</span>() {}
+    <span class="kw">let</span> <span class="ident">vec_ref</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">vec</span> };
+    <span class="kw">for</span> <span class="ident">replace_with</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">replace_with</span>.<span class="ident">by_ref</span>() {
+      <span class="comment">// Stop looping if the StaticVec is at maximum capacity.</span>
+      <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="ident">vec_ref</span>.<span class="ident">length</span>;
+      <span class="kw">if</span> <span class="ident">old_length</span> <span class="op">=</span><span class="op">=</span> <span class="ident">N</span> {
+        <span class="kw">break</span>;
+      }
+      <span class="comment">// The next bit is just the code from `StaticVec::insert`, without the initial bounds check</span>
+      <span class="comment">// since we already know that we&#39;re within an appropriate range in this context.</span>
+      <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">end</span>;
+      <span class="kw">unsafe</span> {
+        <span class="kw">let</span> <span class="ident">vec_ptr</span> <span class="op">=</span> <span class="ident">vec_ref</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">index</span>);
+        <span class="ident">vec_ptr</span>.<span class="ident">copy_to</span>(<span class="ident">vec_ptr</span>.<span class="ident">offset</span>(<span class="number">1</span>), <span class="ident">old_length</span> <span class="op">-</span> <span class="ident">index</span>);
+        <span class="ident">vec_ptr</span>.<span class="ident">write</span>(<span class="ident">replace_with</span>);
+        <span class="ident">vec_ref</span>.<span class="ident">set_len</span>(<span class="ident">old_length</span> <span class="op">+</span> <span class="number">1</span>);
+      }
+      <span class="self">self</span>.<span class="ident">end</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
     }
   }
 }

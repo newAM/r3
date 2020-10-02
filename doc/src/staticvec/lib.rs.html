@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/staticvec-0.10.3/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../staticvec/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/staticvec-0.10.5/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../staticvec/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
                 <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
@@ -2388,6 +2390,181 @@
 <span id="2387">2387</span>
 <span id="2388">2388</span>
 <span id="2389">2389</span>
+<span id="2390">2390</span>
+<span id="2391">2391</span>
+<span id="2392">2392</span>
+<span id="2393">2393</span>
+<span id="2394">2394</span>
+<span id="2395">2395</span>
+<span id="2396">2396</span>
+<span id="2397">2397</span>
+<span id="2398">2398</span>
+<span id="2399">2399</span>
+<span id="2400">2400</span>
+<span id="2401">2401</span>
+<span id="2402">2402</span>
+<span id="2403">2403</span>
+<span id="2404">2404</span>
+<span id="2405">2405</span>
+<span id="2406">2406</span>
+<span id="2407">2407</span>
+<span id="2408">2408</span>
+<span id="2409">2409</span>
+<span id="2410">2410</span>
+<span id="2411">2411</span>
+<span id="2412">2412</span>
+<span id="2413">2413</span>
+<span id="2414">2414</span>
+<span id="2415">2415</span>
+<span id="2416">2416</span>
+<span id="2417">2417</span>
+<span id="2418">2418</span>
+<span id="2419">2419</span>
+<span id="2420">2420</span>
+<span id="2421">2421</span>
+<span id="2422">2422</span>
+<span id="2423">2423</span>
+<span id="2424">2424</span>
+<span id="2425">2425</span>
+<span id="2426">2426</span>
+<span id="2427">2427</span>
+<span id="2428">2428</span>
+<span id="2429">2429</span>
+<span id="2430">2430</span>
+<span id="2431">2431</span>
+<span id="2432">2432</span>
+<span id="2433">2433</span>
+<span id="2434">2434</span>
+<span id="2435">2435</span>
+<span id="2436">2436</span>
+<span id="2437">2437</span>
+<span id="2438">2438</span>
+<span id="2439">2439</span>
+<span id="2440">2440</span>
+<span id="2441">2441</span>
+<span id="2442">2442</span>
+<span id="2443">2443</span>
+<span id="2444">2444</span>
+<span id="2445">2445</span>
+<span id="2446">2446</span>
+<span id="2447">2447</span>
+<span id="2448">2448</span>
+<span id="2449">2449</span>
+<span id="2450">2450</span>
+<span id="2451">2451</span>
+<span id="2452">2452</span>
+<span id="2453">2453</span>
+<span id="2454">2454</span>
+<span id="2455">2455</span>
+<span id="2456">2456</span>
+<span id="2457">2457</span>
+<span id="2458">2458</span>
+<span id="2459">2459</span>
+<span id="2460">2460</span>
+<span id="2461">2461</span>
+<span id="2462">2462</span>
+<span id="2463">2463</span>
+<span id="2464">2464</span>
+<span id="2465">2465</span>
+<span id="2466">2466</span>
+<span id="2467">2467</span>
+<span id="2468">2468</span>
+<span id="2469">2469</span>
+<span id="2470">2470</span>
+<span id="2471">2471</span>
+<span id="2472">2472</span>
+<span id="2473">2473</span>
+<span id="2474">2474</span>
+<span id="2475">2475</span>
+<span id="2476">2476</span>
+<span id="2477">2477</span>
+<span id="2478">2478</span>
+<span id="2479">2479</span>
+<span id="2480">2480</span>
+<span id="2481">2481</span>
+<span id="2482">2482</span>
+<span id="2483">2483</span>
+<span id="2484">2484</span>
+<span id="2485">2485</span>
+<span id="2486">2486</span>
+<span id="2487">2487</span>
+<span id="2488">2488</span>
+<span id="2489">2489</span>
+<span id="2490">2490</span>
+<span id="2491">2491</span>
+<span id="2492">2492</span>
+<span id="2493">2493</span>
+<span id="2494">2494</span>
+<span id="2495">2495</span>
+<span id="2496">2496</span>
+<span id="2497">2497</span>
+<span id="2498">2498</span>
+<span id="2499">2499</span>
+<span id="2500">2500</span>
+<span id="2501">2501</span>
+<span id="2502">2502</span>
+<span id="2503">2503</span>
+<span id="2504">2504</span>
+<span id="2505">2505</span>
+<span id="2506">2506</span>
+<span id="2507">2507</span>
+<span id="2508">2508</span>
+<span id="2509">2509</span>
+<span id="2510">2510</span>
+<span id="2511">2511</span>
+<span id="2512">2512</span>
+<span id="2513">2513</span>
+<span id="2514">2514</span>
+<span id="2515">2515</span>
+<span id="2516">2516</span>
+<span id="2517">2517</span>
+<span id="2518">2518</span>
+<span id="2519">2519</span>
+<span id="2520">2520</span>
+<span id="2521">2521</span>
+<span id="2522">2522</span>
+<span id="2523">2523</span>
+<span id="2524">2524</span>
+<span id="2525">2525</span>
+<span id="2526">2526</span>
+<span id="2527">2527</span>
+<span id="2528">2528</span>
+<span id="2529">2529</span>
+<span id="2530">2530</span>
+<span id="2531">2531</span>
+<span id="2532">2532</span>
+<span id="2533">2533</span>
+<span id="2534">2534</span>
+<span id="2535">2535</span>
+<span id="2536">2536</span>
+<span id="2537">2537</span>
+<span id="2538">2538</span>
+<span id="2539">2539</span>
+<span id="2540">2540</span>
+<span id="2541">2541</span>
+<span id="2542">2542</span>
+<span id="2543">2543</span>
+<span id="2544">2544</span>
+<span id="2545">2545</span>
+<span id="2546">2546</span>
+<span id="2547">2547</span>
+<span id="2548">2548</span>
+<span id="2549">2549</span>
+<span id="2550">2550</span>
+<span id="2551">2551</span>
+<span id="2552">2552</span>
+<span id="2553">2553</span>
+<span id="2554">2554</span>
+<span id="2555">2555</span>
+<span id="2556">2556</span>
+<span id="2557">2557</span>
+<span id="2558">2558</span>
+<span id="2559">2559</span>
+<span id="2560">2560</span>
+<span id="2561">2561</span>
+<span id="2562">2562</span>
+<span id="2563">2563</span>
+<span id="2564">2564</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! **Note:** the complete list of things **not** available when using `default-features = false`</span>
 <span class="doccomment">//! for `#![no_std]` compatibility is as follows:</span>
@@ -2397,9 +2574,10 @@
 <span class="doccomment">//! - the implementation of the [`Read`](std::io::Read) trait for [`StaticVec`]</span>
 <span class="doccomment">//! - the implementation of the [`BufRead`](std::io::BufRead) trait for [`StaticVec`]</span>
 <span class="doccomment">//! - the implementation of the [`io::Write`](std::io::Write) trait for [`StaticVec`]</span>
-<span class="doccomment">//! - the implementation of [`From`] for [`StaticString`] from [`String`](alloc::string::String)</span>
+<span class="doccomment">//! - the implementation of [`From`] for [`StaticString`](crate::string::StaticString) from</span>
+<span class="doccomment">//!   [`String`](alloc::string::String)</span>
 <span class="doccomment">//! - the implementations of [`PartialEq`] and [`PartialOrd`] against</span>
-<span class="doccomment">//!   [`String`](alloc::string::String) for [`StaticString`]</span>
+<span class="doccomment">//!   [`String`](alloc::string::String) for [`StaticString`](crate::string::StaticString)</span>
 <span class="doccomment">//! - the implementation of [`Error`](std::error::Error) for [`StringError`]</span>
 <span class="doccomment">//! - the `bounds_to_string` function unique to this crate and implemented by several of the</span>
 <span class="doccomment">//!   iterators in it</span>
@@ -2427,6 +2605,7 @@
   <span class="ident">const_ptr_offset_from</span>,
   <span class="ident">const_raw_ptr_deref</span>,
   <span class="ident">const_raw_ptr_to_usize_cast</span>,
+  <span class="ident">const_slice_from_raw_parts</span>,
   <span class="ident">const_trait_impl</span>,
   <span class="ident">core_intrinsics</span>,
   <span class="ident">doc_cfg</span>,
@@ -2442,11 +2621,11 @@
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>, <span class="ident">feature</span>(<span class="ident">read_initializer</span>))]</span>
 
 <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">cmp</span>::{<span class="ident">Ord</span>, <span class="ident">PartialEq</span>};
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">intrinsics</span>;
+<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">intrinsics</span>::<span class="ident">assume</span>;
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">iter</span>::<span class="ident">FromIterator</span>;
 <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span>;
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">MaybeUninit</span>;
+<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">mem</span>::{<span class="ident">size_of</span>, <span class="ident">MaybeUninit</span>};
 <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">ops</span>::{
   <span class="ident">Add</span>, <span class="ident">Bound</span>::<span class="ident">Excluded</span>, <span class="ident">Bound</span>::<span class="ident">Included</span>, <span class="ident">Bound</span>::<span class="ident">Unbounded</span>, <span class="ident">Div</span>, <span class="ident">Mul</span>, <span class="ident">RangeBounds</span>, <span class="ident">Sub</span>,
 };
@@ -2457,7 +2636,7 @@
   <span class="ident">StaticHeap</span>, <span class="ident">StaticHeapDrainSorted</span>, <span class="ident">StaticHeapIntoIterSorted</span>, <span class="ident">StaticHeapPeekMut</span>,
 };
 <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">iterators</span>::{
-  <span class="ident">StaticVecDrain</span>, <span class="ident">StaticVecIntoIter</span>, <span class="ident">StaticVecIterConst</span>, <span class="ident">StaticVecIterMut</span>,
+  <span class="ident">StaticVecDrain</span>, <span class="ident">StaticVecIntoIter</span>, <span class="ident">StaticVecIterConst</span>, <span class="ident">StaticVecIterMut</span>, <span class="ident">StaticVecSplice</span>,
 };
 <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">string</span>::{<span class="ident">string_utils</span>, <span class="ident">StaticString</span>, <span class="ident">StringError</span>};
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">utils</span>::{
@@ -2501,12 +2680,17 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span> {
   <span class="doccomment">/// Returns a new StaticVec instance.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticVec;</span>
   <span class="doccomment">/// let v = StaticVec::&lt;i32, 4&gt;::new();</span>
   <span class="doccomment">/// assert_eq!(v.len(), 0);</span>
   <span class="doccomment">/// assert_eq!(v.capacity(), 4);</span>
+  <span class="doccomment">/// static CV: StaticVec&lt;i32, 4&gt; = StaticVec::new();</span>
+  <span class="doccomment">/// static LEN: usize = CV.len();</span>
+  <span class="doccomment">/// static CAP: usize = CV.capacity();</span>
+  <span class="doccomment">/// assert_eq!(LEN, 0);</span>
+  <span class="doccomment">/// assert_eq!(CAP, 4);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
   <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -2522,7 +2706,7 @@
   <span class="doccomment">/// any contents after that point are ignored.</span>
   <span class="doccomment">/// Locally requires that `T` implements [`Copy`](core::marker::Copy) to avoid soundness issues.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let v = StaticVec::&lt;i32, 8&gt;::new_from_slice(&amp;[1, 2, 3]);</span>
@@ -2558,7 +2742,7 @@
   <span class="doccomment">/// first wrapped in an instance of [`MaybeUninit`](core::mem::MaybeUninit) to inhibit the</span>
   <span class="doccomment">/// automatic calling of any destructors its contents may have.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticVec;</span>
   <span class="doccomment">/// // Same input length as the declared capacity:</span>
@@ -2617,7 +2801,7 @@
   <span class="doccomment">/// [`new_from_const_array`](crate::StaticVec::new_from_const_array), so you may also prefer</span>
   <span class="doccomment">/// to use them instead of it directly.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{staticvec, StaticVec};</span>
   <span class="doccomment">/// const v: StaticVec&lt;i32, 4&gt; = StaticVec::new_from_const_array([1, 2, 3, 4]);</span>
@@ -2637,7 +2821,7 @@
   <span class="doccomment">/// case that it has been set directly with the unsafe [`set_len`](crate::StaticVec::set_len)</span>
   <span class="doccomment">/// function.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// assert_eq!(staticvec![1].len(), 1);</span>
@@ -2651,7 +2835,7 @@
   <span class="doccomment">/// This is always equivalent to the generic `N` parameter it was declared with, which determines</span>
   <span class="doccomment">/// the fixed size of the backing array.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// assert_eq!(StaticVec::&lt;usize, 800&gt;::new().capacity(), 800);</span>
@@ -2664,7 +2848,7 @@
   <span class="doccomment">/// Does the same thing as [`capacity`](crate::StaticVec::capacity), but as an associated function</span>
   <span class="doccomment">/// rather than a method.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// assert_eq!(StaticVec::&lt;f64, 12&gt;::cap(), 12)</span>
@@ -2677,7 +2861,7 @@
   <span class="doccomment">/// Serves the same purpose as [`capacity`](crate::StaticVec::capacity), but as an associated</span>
   <span class="doccomment">/// constant rather than a method.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// assert_eq!(StaticVec::&lt;f64, 12&gt;::CAPACITY, 12)</span>
@@ -2687,7 +2871,7 @@
   <span class="doccomment">/// Returns the remaining capacity (which is to say, `self.capacity() - self.len()`) of the</span>
   <span class="doccomment">/// StaticVec.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut vec = StaticVec::&lt;i32, 100&gt;::new();</span>
@@ -2701,9 +2885,9 @@
 
   <span class="doccomment">/// Returns the total size of the inhabited part of the StaticVec (which may be zero if it has a</span>
   <span class="doccomment">/// length of zero or contains ZSTs) in bytes. Specifically, the return value of this function</span>
-  <span class="doccomment">/// amounts to a calculation of `size_of::&lt;T&gt;() * self.length`.</span>
+  <span class="doccomment">/// amounts to a calculation of `size_of::&lt;T&gt;() * self.len()`.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let x = StaticVec::&lt;u8, 8&gt;::from([1, 2, 3, 4, 5, 6, 7, 8]);</span>
@@ -2717,7 +2901,7 @@
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
   <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">size_in_bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
-    <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="self">self</span>.<span class="ident">length</span>
+    <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="self">self</span>.<span class="ident">length</span>
   }
 
   <span class="doccomment">/// Directly sets the length field of the StaticVec to `new_len`. Useful if you intend</span>
@@ -2730,7 +2914,7 @@
   <span class="doccomment">/// constant `N` parameter, and that the range of elements covered by a length of `new_len` is</span>
   <span class="doccomment">/// actually initialized. Failure to do so will almost certainly result in undefined behavior.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut vec = StaticVec::&lt;i32, 12&gt;::new();</span>
@@ -2758,7 +2942,7 @@
 
   <span class="doccomment">/// Returns true if the current length of the StaticVec is 0.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// assert!(StaticVec::&lt;i32, 4&gt;::new().is_empty());</span>
@@ -2770,7 +2954,7 @@
 
   <span class="doccomment">/// Returns true if the current length of the StaticVec is greater than 0.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// assert!(staticvec![staticvec![1, 1], staticvec![2, 2]].is_not_empty());</span>
@@ -2786,7 +2970,7 @@
 
   <span class="doccomment">/// Returns true if the current length of the StaticVec is equal to its capacity.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// assert!(StaticVec::&lt;i32, 4&gt;::filled_with(|| 2).is_full());</span>
@@ -2798,7 +2982,7 @@
 
   <span class="doccomment">/// Returns true if the current length of the StaticVec is less than its capacity.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// assert!(StaticVec::&lt;i32, 4&gt;::new().is_not_full());</span>
@@ -2813,7 +2997,7 @@
   <span class="doccomment">/// to make use of the returned pointer, as once the StaticVec is dropped the pointer will</span>
   <span class="doccomment">/// point to uninitialized or &quot;garbage&quot; memory.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let v = staticvec![&#39;A&#39;, &#39;B&#39;, &#39;C&#39;];</span>
@@ -2830,7 +3014,7 @@
   <span class="doccomment">/// to make use of the returned pointer, as once the StaticVec is dropped the pointer will</span>
   <span class="doccomment">/// point to uninitialized or &quot;garbage&quot; memory.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![&#39;A&#39;, &#39;B&#39;, &#39;C&#39;];</span>
@@ -2845,7 +3029,7 @@
 
   <span class="doccomment">/// Returns a constant reference to a slice of the StaticVec&#39;s inhabited area.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// assert_eq!(staticvec![1, 2, 3].as_slice(), &amp;[1, 2, 3]);</span>
@@ -2859,7 +3043,7 @@
 
   <span class="doccomment">/// Returns a mutable reference to a slice of the StaticVec&#39;s inhabited area.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![4, 5, 6];</span>
@@ -2884,7 +3068,7 @@
   <span class="doccomment">/// StaticVec&#39;s backing array, and that if reading from the returned pointer, it has *already*</span>
   <span class="doccomment">/// been initialized properly.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let v = staticvec![&quot;I&quot;, &quot;am&quot;, &quot;a&quot;, &quot;StaticVec!&quot;];</span>
@@ -2923,7 +3107,7 @@
   <span class="doccomment">/// initialize, and that if reading from the returned pointer, it has *already* been initialized</span>
   <span class="doccomment">/// properly.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![&quot;I&quot;, &quot;am&quot;, &quot;not a&quot;, &quot;StaticVec!&quot;];</span>
@@ -2952,7 +3136,7 @@
   <span class="doccomment">/// is within the range `0..self.length`, or panics if it is not. The return value of this</span>
   <span class="doccomment">/// function is equivalent to what would be returned from `as_ptr().add(index)`.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let v = staticvec![&quot;I&quot;, &quot;am&quot;, &quot;a&quot;, &quot;StaticVec!&quot;];</span>
@@ -2974,7 +3158,7 @@
   <span class="doccomment">/// is within the range `0..self.length`, or panics if it is not. The return value of this</span>
   <span class="doccomment">/// function is equivalent to what would be returned from `as_mut_ptr().add(index)`.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![&quot;I&quot;, &quot;am&quot;, &quot;not a&quot;, &quot;StaticVec!&quot;];</span>
@@ -3005,7 +3189,7 @@
   <span class="doccomment">///</span>
   <span class="doccomment">/// It is up to the caller to ensure that `index` is within the range `0..self.length`.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// unsafe { assert_eq!(*staticvec![1, 2, 3].get_unchecked(1), 2) };</span>
@@ -3033,7 +3217,7 @@
   <span class="doccomment">///</span>
   <span class="doccomment">/// It is up to the caller to ensure that `index` is within the range `0..self.length`.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![1, 2, 3];</span>
@@ -3063,7 +3247,7 @@
   <span class="doccomment">/// prior to using this function is less than `N`. Failure to do so will result</span>
   <span class="doccomment">/// in writing to an out-of-bounds memory region.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = StaticVec::&lt;i32, 4&gt;::from([1, 2]);</span>
@@ -3090,7 +3274,7 @@
   <span class="doccomment">/// element prior to using this function. Failure to do so will result in reading</span>
   <span class="doccomment">/// from uninitialized memory.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = StaticVec::&lt;i32, 4&gt;::from([1, 2, 3, 4]);</span>
@@ -3111,7 +3295,7 @@
   <span class="doccomment">/// Pushes `value` to the StaticVec if its current length is less than its capacity,</span>
   <span class="doccomment">/// or returns a [`PushCapacityError`](crate::errors::PushCapacityError) otherwise.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v1 = StaticVec::&lt;usize, 128&gt;::filled_with_by_index(|i| i * 4);</span>
@@ -3132,7 +3316,7 @@
   <span class="doccomment">/// Pushes a value to the end of the StaticVec. Panics if the collection is</span>
   <span class="doccomment">/// full; that is, if `self.len() == self.capacity()`.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = StaticVec::&lt;i32, 8&gt;::new();</span>
@@ -3152,7 +3336,7 @@
   <span class="doccomment">/// Removes the value at the last position of the StaticVec and returns it in `Some` if</span>
   <span class="doccomment">/// the StaticVec has a current length greater than 0, and returns `None` otherwise.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![1, 2, 3, 4];</span>
@@ -3172,7 +3356,7 @@
   <span class="doccomment">/// Returns a constant reference to the first element of the StaticVec in `Some` if the StaticVec</span>
   <span class="doccomment">/// is not empty, or `None` otherwise.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let v1 = staticvec![10, 40, 30];</span>
@@ -3192,7 +3376,7 @@
   <span class="doccomment">/// Returns a mutable reference to the first element of the StaticVec in `Some` if the StaticVec</span>
   <span class="doccomment">/// is not empty, or `None` otherwise.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut x = staticvec![0, 1, 2];</span>
@@ -3213,7 +3397,7 @@
   <span class="doccomment">/// Returns a constant reference to the last element of the StaticVec in `Some` if the StaticVec</span>
   <span class="doccomment">/// is not empty, or `None` otherwise.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let v = staticvec![10, 40, 30];</span>
@@ -3233,7 +3417,7 @@
   <span class="doccomment">/// Returns a mutable reference to the last element of the StaticVec in `Some` if the StaticVec is</span>
   <span class="doccomment">/// not empty, or `None` otherwise.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut x = staticvec![0, 1, 2];</span>
@@ -3251,11 +3435,25 @@
     }
   }
 
+  <span class="doccomment">/// A crate-local unchecked version of `remove`, currently only used in the implementation of</span>
+  <span class="doccomment">/// `StaticVecSplice`.</span>
+  <span class="attribute">#[<span class="ident">inline</span>]</span>
+  <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">remove_unchecked</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">T</span> {
+    <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
+    <span class="kw">unsafe</span> {
+      <span class="kw">let</span> <span class="ident">self_ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">index</span>);
+      <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">self_ptr</span>.<span class="ident">read</span>();
+      <span class="ident">self_ptr</span>.<span class="ident">offset</span>(<span class="number">1</span>).<span class="ident">copy_to</span>(<span class="ident">self_ptr</span>, <span class="ident">old_length</span> <span class="op">-</span> <span class="ident">index</span> <span class="op">-</span> <span class="number">1</span>);
+      <span class="self">self</span>.<span class="ident">set_len</span>(<span class="ident">old_length</span> <span class="op">-</span> <span class="number">1</span>);
+      <span class="ident">res</span>
+    }
+  }
+
   <span class="doccomment">/// Asserts that `index` is less than the current length of the StaticVec,</span>
   <span class="doccomment">/// and if so removes the value at that position and returns it. Any values</span>
   <span class="doccomment">/// that exist in later positions are shifted to the left.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// assert_eq!(staticvec![1, 2, 3].remove(1), 2);</span>
@@ -3263,7 +3461,10 @@
   <span class="attribute">#[<span class="ident">inline</span>]</span>
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">T</span> {
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">index</span> <span class="op">&lt;</span> <span class="ident">old_length</span>);
+    <span class="macro">assert</span><span class="macro">!</span>(
+      <span class="ident">index</span> <span class="op">&lt;</span> <span class="ident">old_length</span>,
+      <span class="string">&quot;Bounds check failure in `StaticVec::remove`!&quot;</span>
+    );
     <span class="kw">unsafe</span> {
       <span class="kw">let</span> <span class="ident">self_ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">index</span>);
       <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">self_ptr</span>.<span class="ident">read</span>();
@@ -3275,7 +3476,7 @@
 
   <span class="doccomment">/// Removes the first instance of `item` from the StaticVec if the item exists.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// assert_eq!(staticvec![1, 2, 2, 3].remove_item(&amp;2), Some(2));</span>
@@ -3295,7 +3496,7 @@
   <span class="doccomment">/// Otherwise, removes the value at that position and returns it in `Some`, and then</span>
   <span class="doccomment">/// moves the last value in the StaticVec into the empty slot.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![&quot;AAA&quot;, &quot;BBB&quot;, &quot;CCC&quot;, &quot;DDD&quot;];</span>
@@ -3320,7 +3521,7 @@
   <span class="doccomment">/// and if so removes the value at that position and returns it, and then</span>
   <span class="doccomment">/// moves the last value in the StaticVec into the empty slot.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![&quot;AAA&quot;, &quot;BBB&quot;, &quot;CCC&quot;, &quot;DDD&quot;];</span>
@@ -3329,7 +3530,10 @@
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">swap_remove</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">T</span> {
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">index</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">length</span>);
+    <span class="macro">assert</span><span class="macro">!</span>(
+      <span class="ident">index</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">length</span>,
+      <span class="string">&quot;Bounds check failure in `StaticVec::swap_remove`!&quot;</span>
+    );
     <span class="kw">unsafe</span> {
       <span class="kw">let</span> <span class="ident">new_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span> <span class="op">-</span> <span class="number">1</span>;
       <span class="kw">let</span> <span class="ident">last_value</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">ptr_at_unchecked</span>(<span class="ident">new_length</span>).<span class="ident">read</span>();
@@ -3342,7 +3546,7 @@
   <span class="doccomment">/// `index` is less than the length, and if so inserts `value` at that position.</span>
   <span class="doccomment">/// Any values that exist in positions after `index` are shifted to the right.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = StaticVec::&lt;i32, 5&gt;::from([1, 2, 3]);</span>
@@ -3352,7 +3556,10 @@
   <span class="attribute">#[<span class="ident">inline</span>]</span>
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">value</span>: <span class="ident">T</span>) {
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">old_length</span> <span class="op">&lt;</span> <span class="ident">N</span> <span class="op">&amp;&amp;</span> <span class="ident">index</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">old_length</span>);
+    <span class="macro">assert</span><span class="macro">!</span>(
+      <span class="ident">old_length</span> <span class="op">&lt;</span> <span class="ident">N</span> <span class="op">&amp;&amp;</span> <span class="ident">index</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">old_length</span>,
+      <span class="string">&quot;Insufficient remaining capacity or bounds check failure in `StaticVec::insert`!&quot;</span>
+    );
     <span class="kw">unsafe</span> {
       <span class="kw">let</span> <span class="ident">self_ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">index</span>);
       <span class="ident">self_ptr</span>.<span class="ident">copy_to</span>(<span class="ident">self_ptr</span>.<span class="ident">offset</span>(<span class="number">1</span>), <span class="ident">old_length</span> <span class="op">-</span> <span class="ident">index</span>);
@@ -3362,9 +3569,11 @@
   }
 
   <span class="doccomment">/// Functionally equivalent to [`insert`](crate::StaticVec::insert), except with multiple</span>
-  <span class="doccomment">/// items provided by an iterator as opposed to just one. This function will return immediately</span>
-  <span class="doccomment">/// if / when the StaticVec reaches maximum capacity, regardless of whether the iterator still has</span>
-  <span class="doccomment">/// more items to yield.</span>
+  <span class="doccomment">/// items provided by an iterator as opposed to just one. This function will panic up-front if</span>
+  <span class="doccomment">/// `index` is out of bounds or if the StaticVec does not have a sufficient amount of remaining</span>
+  <span class="doccomment">/// capacity, but once the iteration has started will just return immediately if / when the</span>
+  <span class="doccomment">/// StaticVec reaches maximum capacity, regardless of whether the iterator still has more items</span>
+  <span class="doccomment">/// to yield.</span>
   <span class="doccomment">///</span>
   <span class="doccomment">/// For safety reasons, as StaticVec cannot increase in capacity, the</span>
   <span class="doccomment">/// iterator is required to implement [`ExactSizeIterator`](core::iter::ExactSizeIterator)</span>
@@ -3372,7 +3581,7 @@
   <span class="doccomment">/// the appropriate checking internally to avoid dangerous outcomes in the event of a blatantly</span>
   <span class="doccomment">/// incorrect [`ExactSizeIterator`](core::iter::ExactSizeIterator) implementation.)</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = StaticVec::&lt;usize, 8&gt;::from([1, 2, 3, 4, 7, 8]);</span>
@@ -3385,7 +3594,7 @@
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
     <span class="macro">assert</span><span class="macro">!</span>(
       <span class="ident">old_length</span> <span class="op">&lt;</span> <span class="ident">N</span> <span class="op">&amp;&amp;</span> <span class="ident">index</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">old_length</span>,
-      <span class="string">&quot;Insufficient remaining capacity / out of bounds!&quot;</span>
+      <span class="string">&quot;Insufficient remaining capacity or bounds check failure in `StaticVec::insert_many`!&quot;</span>
     );
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">it</span> <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">into_iter</span>();
     <span class="kw">if</span> <span class="ident">index</span> <span class="op">=</span><span class="op">=</span> <span class="ident">old_length</span> {
@@ -3394,7 +3603,7 @@
     <span class="kw">let</span> <span class="ident">iter_size</span> <span class="op">=</span> <span class="ident">it</span>.<span class="ident">len</span>();
     <span class="macro">assert</span><span class="macro">!</span>(
       <span class="ident">index</span> <span class="op">+</span> <span class="ident">iter_size</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">index</span> <span class="op">&amp;&amp;</span> (<span class="ident">old_length</span> <span class="op">-</span> <span class="ident">index</span>) <span class="op">+</span> <span class="ident">iter_size</span> <span class="op">&lt;</span> <span class="ident">N</span>,
-      <span class="string">&quot;Insufficient remaining capacity / out of bounds!&quot;</span>
+      <span class="string">&quot;Insufficient remaining capacity or bounds check failure in `StaticVec::insert_many`!&quot;</span>
     );
     <span class="kw">unsafe</span> {
       <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">self_ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">index</span>);
@@ -3415,7 +3624,35 @@
           <span class="kw">break</span>;
         }
       }
-      <span class="self">self</span>.<span class="ident">length</span> <span class="op">=</span> <span class="ident">old_length</span> <span class="op">+</span> <span class="ident">item_count</span>;
+      <span class="self">self</span>.<span class="ident">set_len</span>(<span class="ident">old_length</span> <span class="op">+</span> <span class="ident">item_count</span>);
+    }
+  }
+
+  <span class="doccomment">/// Functionally equivalent to [`insert_many`](crate::StaticVec::insert_many), except with</span>
+  <span class="doccomment">/// multiple items provided by a slice reference as opposed to an arbitrary iterator. Locally</span>
+  <span class="doccomment">/// requires that `T` implements [`Copy`](core::marker::Copy) to avoid soundness issues.</span>
+  <span class="doccomment">///</span>
+  <span class="doccomment">/// # Example usage:</span>
+  <span class="doccomment">/// ```</span>
+  <span class="doccomment">/// # use staticvec::*;</span>
+  <span class="doccomment">/// let mut v = StaticVec::&lt;usize, 8&gt;::from([1, 2, 3, 4, 7, 8]);</span>
+  <span class="doccomment">/// v.insert_from_slice(4, &amp;[5, 6]);</span>
+  <span class="doccomment">/// assert_eq!(v, [1, 2, 3, 4, 5, 6, 7, 8]);</span>
+  <span class="doccomment">/// ```</span>
+  <span class="attribute">#[<span class="ident">inline</span>]</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_from_slice</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">values</span>: <span class="kw-2">&amp;</span>[<span class="ident">T</span>])
+  <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> {
+    <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
+    <span class="kw">let</span> <span class="ident">values_length</span> <span class="op">=</span> <span class="ident">values</span>.<span class="ident">len</span>();
+    <span class="macro">assert</span><span class="macro">!</span>(
+      <span class="ident">old_length</span> <span class="op">&lt;</span> <span class="ident">N</span> <span class="op">&amp;&amp;</span> <span class="ident">index</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">old_length</span> <span class="op">&amp;&amp;</span> <span class="ident">values_length</span> <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">remaining_capacity</span>(),
+      <span class="string">&quot;Insufficient remaining capacity or bounds check failure in `StaticVec::insert_from_slice`!&quot;</span>
+    );
+    <span class="kw">unsafe</span> {
+      <span class="kw">let</span> <span class="ident">self_ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">index</span>);
+      <span class="ident">self_ptr</span>.<span class="ident">copy_to</span>(<span class="ident">self_ptr</span>.<span class="ident">add</span>(<span class="ident">values_length</span>), <span class="ident">old_length</span> <span class="op">-</span> <span class="ident">index</span>);
+      <span class="ident">self_ptr</span>.<span class="ident">copy_from_nonoverlapping</span>(<span class="ident">values</span>.<span class="ident">as_ptr</span>(), <span class="ident">values_length</span>);
+      <span class="self">self</span>.<span class="ident">set_len</span>(<span class="ident">old_length</span> <span class="op">+</span> <span class="ident">values_length</span>);
     }
   }
 
@@ -3423,7 +3660,7 @@
   <span class="doccomment">/// is less than the length, or returns a [`CapacityError`](crate::errors::CapacityError)</span>
   <span class="doccomment">/// otherwise. Any values that exist in positions after `index` are shifted to the right.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut vec = StaticVec::&lt;i32, 5&gt;::from([1, 2, 3, 4, 5]);</span>
@@ -3438,8 +3675,45 @@
         <span class="ident">self_ptr</span>.<span class="ident">copy_to</span>(<span class="ident">self_ptr</span>.<span class="ident">offset</span>(<span class="number">1</span>), <span class="ident">old_length</span> <span class="op">-</span> <span class="ident">index</span>);
         <span class="ident">self_ptr</span>.<span class="ident">write</span>(<span class="ident">value</span>);
         <span class="self">self</span>.<span class="ident">set_len</span>(<span class="ident">old_length</span> <span class="op">+</span> <span class="number">1</span>);
-        <span class="prelude-val">Ok</span>(())
       }
+      <span class="prelude-val">Ok</span>(())
+    } <span class="kw">else</span> {
+      <span class="prelude-val">Err</span>(<span class="ident">CapacityError</span> {})
+    }
+  }
+
+  <span class="doccomment">/// Does the same thing as [`insert_from_slice`](crate::StaticVec::insert_from_slice), but returns</span>
+  <span class="doccomment">/// a [`CapacityError`](crate::errors::CapacityError) in the event that something goes wrong as</span>
+  <span class="doccomment">/// opposed to relying on internal assertions.</span>
+  <span class="doccomment">///</span>
+  <span class="doccomment">/// # Example usage:</span>
+  <span class="doccomment">/// ```</span>
+  <span class="doccomment">/// # use staticvec::*;</span>
+  <span class="doccomment">/// let mut v1 = StaticVec::&lt;usize, 8&gt;::from([1, 2, 3, 4, 7, 8]);</span>
+  <span class="doccomment">/// assert!(v1.try_insert_from_slice(4, &amp;[5, 6]).is_ok());</span>
+  <span class="doccomment">/// assert_eq!(v1, [1, 2, 3, 4, 5, 6, 7, 8]);</span>
+  <span class="doccomment">/// let mut v2 = StaticVec::&lt;usize, 8&gt;::from([1, 2, 3, 4, 7, 8]);</span>
+  <span class="doccomment">/// assert!(v2.try_insert_from_slice(207, &amp;[5, 6]).is_err());</span>
+  <span class="doccomment">/// ```</span>
+  <span class="attribute">#[<span class="ident">inline</span>]</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_insert_from_slice</span>(
+    <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
+    <span class="ident">index</span>: <span class="ident">usize</span>,
+    <span class="ident">values</span>: <span class="kw-2">&amp;</span>[<span class="ident">T</span>],
+  ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">CapacityError</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span><span class="op">&gt;</span>
+  <span class="kw">where</span>
+    <span class="ident">T</span>: <span class="ident">Copy</span>,
+  {
+    <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
+    <span class="kw">let</span> <span class="ident">values_length</span> <span class="op">=</span> <span class="ident">values</span>.<span class="ident">len</span>();
+    <span class="kw">if</span> <span class="ident">old_length</span> <span class="op">&lt;</span> <span class="ident">N</span> <span class="op">&amp;&amp;</span> <span class="ident">index</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">old_length</span> <span class="op">&amp;&amp;</span> <span class="ident">values_length</span> <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">remaining_capacity</span>() {
+      <span class="kw">unsafe</span> {
+        <span class="kw">let</span> <span class="ident">self_ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">index</span>);
+        <span class="ident">self_ptr</span>.<span class="ident">copy_to</span>(<span class="ident">self_ptr</span>.<span class="ident">add</span>(<span class="ident">values_length</span>), <span class="ident">old_length</span> <span class="op">-</span> <span class="ident">index</span>);
+        <span class="ident">self_ptr</span>.<span class="ident">copy_from_nonoverlapping</span>(<span class="ident">values</span>.<span class="ident">as_ptr</span>(), <span class="ident">values_length</span>);
+        <span class="self">self</span>.<span class="ident">set_len</span>(<span class="ident">old_length</span> <span class="op">+</span> <span class="ident">values_length</span>);
+      }
+      <span class="prelude-val">Ok</span>(())
     } <span class="kw">else</span> {
       <span class="prelude-val">Err</span>(<span class="ident">CapacityError</span> {})
     }
@@ -3449,7 +3723,7 @@
   <span class="doccomment">/// Locally requires that `T` implements [`PartialEq`](core::cmp::PartialEq)</span>
   <span class="doccomment">/// to make it possible to compare the elements of the StaticVec with `value`.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// assert_eq!(staticvec![1, 2, 3].contains(&amp;2), true);</span>
@@ -3463,7 +3737,7 @@
 
   <span class="doccomment">/// Removes all contents from the StaticVec and sets its length back to 0.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![1, 2, 3];</span>
@@ -3482,7 +3756,7 @@
   <span class="doccomment">/// Returns a [`StaticVecIterConst`](crate::iterators::StaticVecIterConst) over the StaticVec&#39;s</span>
   <span class="doccomment">/// inhabited area.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let v = staticvec![4, 3, 2, 1];</span>
@@ -3495,10 +3769,10 @@
     <span class="kw">let</span> <span class="ident">start_ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">as_ptr</span>();
     <span class="kw">unsafe</span> {
       <span class="comment">// `start_ptr` will never be null, so this is a safe assumption to give the optimizer.</span>
-      <span class="ident">intrinsics</span>::<span class="ident">assume</span>(<span class="op">!</span><span class="ident">start_ptr</span>.<span class="ident">is_null</span>());
+      <span class="ident">assume</span>(<span class="op">!</span><span class="ident">start_ptr</span>.<span class="ident">is_null</span>());
       <span class="ident">StaticVecIterConst</span> {
         <span class="ident">start</span>: <span class="ident">start_ptr</span>,
-        <span class="ident">end</span>: <span class="kw">match</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
+        <span class="ident">end</span>: <span class="kw">match</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
           <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">start_ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>).<span class="ident">wrapping_add</span>(<span class="self">self</span>.<span class="ident">length</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>,
           <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">start_ptr</span>.<span class="ident">add</span>(<span class="self">self</span>.<span class="ident">length</span>),
         },
@@ -3510,7 +3784,7 @@
   <span class="doccomment">/// Returns a [`StaticVecIterMut`](crate::iterators::StaticVecIterMut) over the StaticVec&#39;s</span>
   <span class="doccomment">/// inhabited area.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![4, 3, 2, 1];</span>
@@ -3524,10 +3798,10 @@
     <span class="kw">let</span> <span class="ident">start_ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">as_mut_ptr</span>();
     <span class="kw">unsafe</span> {
       <span class="comment">// `start_ptr` will never be null, so this is a safe assumption to give the optimizer.</span>
-      <span class="ident">intrinsics</span>::<span class="ident">assume</span>(<span class="op">!</span><span class="ident">start_ptr</span>.<span class="ident">is_null</span>());
+      <span class="ident">assume</span>(<span class="op">!</span><span class="ident">start_ptr</span>.<span class="ident">is_null</span>());
       <span class="ident">StaticVecIterMut</span> {
         <span class="ident">start</span>: <span class="ident">start_ptr</span>,
-        <span class="ident">end</span>: <span class="kw">match</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
+        <span class="ident">end</span>: <span class="kw">match</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
           <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">start_ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>).<span class="ident">wrapping_add</span>(<span class="self">self</span>.<span class="ident">length</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>,
           <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">start_ptr</span>.<span class="ident">add</span>(<span class="self">self</span>.<span class="ident">length</span>),
         },
@@ -3541,7 +3815,7 @@
   <span class="doccomment">/// [`Copy`](core::marker::Copy) to avoid soundness issues, and [`Ord`](core::cmp::Ord) to make</span>
   <span class="doccomment">/// the sorting possible.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{staticvec, StaticVec};</span>
   <span class="doccomment">/// const V: StaticVec&lt;StaticVec&lt;i32, 2&gt;, 2&gt; = staticvec![staticvec![1, 3], staticvec![4, 2]];</span>
@@ -3566,7 +3840,7 @@
   <span class="doccomment">/// [`Copy`](core::marker::Copy) to avoid soundness issues, and [`Ord`](core::cmp::Ord) to make</span>
   <span class="doccomment">/// the sorting possible.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{staticvec, StaticVec};</span>
   <span class="doccomment">/// const V: StaticVec&lt;StaticVec&lt;i32, 2&gt;, 2&gt; = staticvec![staticvec![1, 3], staticvec![4, 2]];</span>
@@ -3600,7 +3874,7 @@
   <span class="doccomment">/// [`Ord`](core::cmp::Ord) it&#39;s recommended that you use [`sorted`](crate::StaticVec::sorted) or</span>
   <span class="doccomment">/// [`sorted_unstable`](crate::StaticVec::sorted_unstable) instead of this function.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{staticvec, StaticVec};</span>
   <span class="doccomment">/// const V: StaticVec&lt;StaticVec&lt;i32, 2&gt;, 2&gt; = staticvec![staticvec![1, 3], staticvec![4, 2]];</span>
@@ -3631,7 +3905,7 @@
   <span class="doccomment">/// bound requirements) but operates in-place on the calling StaticVec instance rather than</span>
   <span class="doccomment">/// returning the sorted data in a new one.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![5.0, 4.0, 3.0, 2.0, 1.0];</span>
@@ -3653,7 +3927,7 @@
     }
     <span class="kw">let</span> <span class="ident">self_ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">as_mut_ptr</span>();
     <span class="comment">// We know self_ptr will never be null, so this is a safe hint to give the optimizer.</span>
-    <span class="kw">unsafe</span> { <span class="ident">intrinsics</span>::<span class="ident">assume</span>(<span class="op">!</span><span class="ident">self_ptr</span>.<span class="ident">is_null</span>()) };
+    <span class="kw">unsafe</span> { <span class="ident">assume</span>(<span class="op">!</span><span class="ident">self_ptr</span>.<span class="ident">is_null</span>()) };
     <span class="ident">quicksort_internal</span>(<span class="ident">self_ptr</span>, <span class="number">0</span>, (<span class="ident">length</span> <span class="op">-</span> <span class="number">1</span>) <span class="kw">as</span> <span class="ident">isize</span>);
   }
 
@@ -3661,7 +3935,7 @@
   <span class="doccomment">/// without modifying the original data. Locally requires that `T` implements</span>
   <span class="doccomment">/// [`Copy`](core::marker::Copy) to avoid soundness issues.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// assert_eq!(staticvec![1, 2, 3].reversed(), [3, 2, 1]);</span>
@@ -3678,7 +3952,7 @@
   <span class="doccomment">/// Returns a new StaticVec instance filled with the return value of an initializer function.</span>
   <span class="doccomment">/// The length field of the newly created StaticVec will be equal to its capacity.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticVec;</span>
   <span class="doccomment">/// let mut i = 0;</span>
@@ -3709,7 +3983,7 @@
   <span class="doccomment">/// [`filled_with_by_index`](crate::StaticVec::filled_with_by_index) is implemented with</span>
   <span class="doccomment">/// internally. The length field of the newly created StaticVec will be equal to its capacity.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticVec;</span>
   <span class="doccomment">/// let v = StaticVec::&lt;usize, 64&gt;::filled_with_by_index(|i| { i + 1 });</span>
@@ -3737,7 +4011,7 @@
   <span class="doccomment">/// StaticVec&#39;s remaining capacity, any contents after that point are ignored.</span>
   <span class="doccomment">/// Locally requires that `T` implements [`Copy`](core::marker::Copy) to avoid soundness issues.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = StaticVec::&lt;i32, 8&gt;::new();</span>
@@ -3746,13 +4020,13 @@
   <span class="doccomment">/// assert_eq!(v, [1, 2, 3, 4, 5, 6, 7, 8]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">extend_from_slice</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span>[<span class="ident">T</span>])
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">extend_from_slice</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">values</span>: <span class="kw-2">&amp;</span>[<span class="ident">T</span>])
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> {
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
-    <span class="kw">let</span> <span class="ident">added_length</span> <span class="op">=</span> <span class="ident">other</span>.<span class="ident">len</span>().<span class="ident">min</span>(<span class="ident">N</span> <span class="op">-</span> <span class="ident">old_length</span>);
-    <span class="comment">// Safety: added_length is &lt;= our remaining capacity and other.len.</span>
+    <span class="kw">let</span> <span class="ident">added_length</span> <span class="op">=</span> <span class="ident">values</span>.<span class="ident">len</span>().<span class="ident">min</span>(<span class="ident">N</span> <span class="op">-</span> <span class="ident">old_length</span>);
+    <span class="comment">// Safety: added_length is &lt;= our remaining capacity and values.len.</span>
     <span class="kw">unsafe</span> {
-      <span class="ident">other</span>
+      <span class="ident">values</span>
         .<span class="ident">as_ptr</span>()
         .<span class="ident">copy_to_nonoverlapping</span>(<span class="self">self</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">old_length</span>), <span class="ident">added_length</span>);
       <span class="self">self</span>.<span class="ident">set_len</span>(<span class="ident">old_length</span> <span class="op">+</span> <span class="ident">added_length</span>);
@@ -3763,7 +4037,7 @@
   <span class="doccomment">/// StaticVec&#39;s remaining capacity is greater than the length of the slice, or returns</span>
   <span class="doccomment">/// a [`CapacityError`](crate::errors::CapacityError) otherwise.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = StaticVec::&lt;i32, 8&gt;::new();</span>
@@ -3772,15 +4046,15 @@
   <span class="doccomment">/// assert_eq!(v, [1, 2, 3, 4]);</span>
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_extend_from_slice</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span>[<span class="ident">T</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">CapacityError</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span><span class="op">&gt;</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_extend_from_slice</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">values</span>: <span class="kw-2">&amp;</span>[<span class="ident">T</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">CapacityError</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span><span class="op">&gt;</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> {
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
-    <span class="kw">let</span> <span class="ident">added_length</span> <span class="op">=</span> <span class="ident">other</span>.<span class="ident">len</span>();
+    <span class="kw">let</span> <span class="ident">added_length</span> <span class="op">=</span> <span class="ident">values</span>.<span class="ident">len</span>();
     <span class="kw">if</span> <span class="ident">N</span> <span class="op">-</span> <span class="ident">old_length</span> <span class="op">&lt;</span> <span class="ident">added_length</span> {
       <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">CapacityError</span> {});
     }
     <span class="kw">unsafe</span> {
-      <span class="ident">other</span>
+      <span class="ident">values</span>
         .<span class="ident">as_ptr</span>()
         .<span class="ident">copy_to_nonoverlapping</span>(<span class="self">self</span>.<span class="ident">mut_ptr_at_unchecked</span>(<span class="ident">old_length</span>), <span class="ident">added_length</span>);
       <span class="self">self</span>.<span class="ident">set_len</span>(<span class="ident">old_length</span> <span class="op">+</span> <span class="ident">added_length</span>);
@@ -3796,7 +4070,7 @@
   <span class="doccomment">/// the constant `N2` constraint of `other` (which may or may not be the same as the `N`</span>
   <span class="doccomment">/// constraint of `self`.)</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut a = StaticVec::&lt;i32, 8&gt;::from([1, 2, 3, 4]);</span>
@@ -3845,7 +4119,7 @@
   /// avoid soundness issues and also allow for a more efficient implementation than would otherwise
   /// be possible.
   ///
-  /// Example usage:
+  /// # Example usage:
   /// ```
   /// # use staticvec::staticvec;
   /// assert!(staticvec![&#39;a&#39;, &#39;b&#39;].concat(&amp;staticvec![&#39;c&#39;, &#39;d&#39;]) == [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]);
@@ -3879,7 +4153,7 @@
   /// function is less efficient than [`concat`](crate::StaticVec::concat), so
   /// [`concat`](crate::StaticVec::concat) should be preferred whenever possible.
   ///
-  /// Example usage:
+  /// # Example usage:
   /// ```
   /// # use staticvec::staticvec;
   /// assert!(staticvec![&quot;a&quot;, &quot;b&quot;].concat_clone(&amp;staticvec![&quot;c&quot;, &quot;d&quot;]) == [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]);
@@ -3911,7 +4185,7 @@
   /// avoid soundness issues and also allow for a more efficient implementation than would otherwise
   /// be possible.
   ///
-  /// Example usage:
+  /// # Example usage:
   /// ```
   /// # use staticvec::staticvec;
   /// assert_eq!(
@@ -3958,7 +4232,7 @@
   /// [`intersperse`](crate::StaticVec::intersperse), so
   /// [`intersperse`](crate::StaticVec::intersperse) should be preferred whenever possible.
   ///
-  /// Example usage:
+  /// # Example usage:
   /// ```
   /// # use staticvec::staticvec;
   /// assert_eq!(
@@ -3990,7 +4264,7 @@
   <span class="doccomment">/// resulting StaticVec, any contents after that point are ignored. Note that using this function</span>
   <span class="doccomment">/// consumes the source [`Vec`](alloc::vec::Vec).</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = vec![1, 2, 3];</span>
@@ -4031,7 +4305,7 @@
   <span class="doccomment">/// [`len`](alloc::vec::Vec::len) and [`capacity`](alloc::vec::Vec::capacity) as the source</span>
   <span class="doccomment">/// StaticVec. Note that using this function consumes the source StaticVec.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut sv = staticvec![1, 2, 3];</span>
@@ -4060,7 +4334,7 @@
   <span class="doccomment">/// `MaybeUninit`) in `Ok` if and only if the StaticVec is at maximum capacity. Otherwise, the</span>
   <span class="doccomment">/// StaticVec itself is returned in `Err`.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v1 = StaticVec::&lt;i32, 4&gt;::new();</span>
@@ -4075,19 +4349,24 @@
   <span class="doccomment">/// ```</span>
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_inner</span>(<span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>[<span class="ident">T</span>; <span class="ident">N</span>], <span class="self">Self</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="self">self</span>.<span class="ident">length</span> <span class="op">&lt;</span> <span class="ident">N</span> {
+    <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_not_full</span>() {
       <span class="prelude-val">Err</span>(<span class="self">self</span>)
     } <span class="kw">else</span> {
       <span class="comment">// Set the length of `self` to 0 to prevent double-drops.</span>
       <span class="self">self</span>.<span class="ident">length</span> <span class="op">=</span> <span class="number">0</span>;
       <span class="comment">// Read out the contents of `data`.</span>
-      <span class="kw">unsafe</span> { <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">data</span>.<span class="ident">read</span>()) }
+      <span class="kw">unsafe</span> { <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">data</span>.<span class="ident">assume_init_read</span>()) }
     }
   }
 
   <span class="doccomment">/// Removes the specified range of elements from the StaticVec and returns them in a new one.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Panics</span>
+  <span class="doccomment">///</span>
+  <span class="doccomment">/// Panics if the range&#39;s starting point is greater than the end point or if the end point is</span>
+  <span class="doccomment">/// greater than the length of the StaticVec.</span>
+  <span class="doccomment">///</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![1, 2, 3];</span>
@@ -4111,7 +4390,10 @@
       <span class="ident">Excluded</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">idx</span>,
       <span class="ident">Unbounded</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">old_length</span>,
     };
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">start</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">end</span> <span class="op">&amp;&amp;</span> <span class="ident">end</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">old_length</span>);
+    <span class="macro">assert</span><span class="macro">!</span>(
+      <span class="ident">start</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">end</span> <span class="op">&amp;&amp;</span> <span class="ident">end</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">old_length</span>,
+      <span class="string">&quot;Bounds check failure in `StaticVec::drain`!&quot;</span>
+    );
     <span class="kw">let</span> <span class="ident">res_length</span> <span class="op">=</span> <span class="ident">end</span> <span class="op">-</span> <span class="ident">start</span>;
     <span class="self">Self</span> {
       <span class="ident">data</span>: {
@@ -4134,7 +4416,12 @@
   <span class="doccomment">/// Removes the specified range of elements from the StaticVec and returns them in a</span>
   <span class="doccomment">/// [`StaticVecDrain`](crate::iterators::StaticVecDrain).</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Panics</span>
+  <span class="doccomment">///</span>
+  <span class="doccomment">/// Panics if the range&#39;s starting point is greater than the end point or if the end point is</span>
+  <span class="doccomment">/// greater than the length of the StaticVec.</span>
+  <span class="doccomment">///</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v1 = staticvec![0, 4, 5, 6, 7];</span>
@@ -4156,22 +4443,24 @@
       <span class="ident">Excluded</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">idx</span>,
       <span class="ident">Unbounded</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">length</span>,
     };
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">start</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">end</span> <span class="op">&amp;&amp;</span> <span class="ident">end</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">length</span>);
+    <span class="macro">assert</span><span class="macro">!</span>(
+      <span class="ident">start</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">end</span> <span class="op">&amp;&amp;</span> <span class="ident">end</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">length</span>,
+      <span class="string">&quot;Bounds check failure in `StaticVec::drain_iter`!&quot;</span>
+    );
     <span class="kw">unsafe</span> {
-      <span class="comment">// Set the length to 0 to avoid memory issues if anything goes wrong with</span>
-      <span class="comment">// the Drain.</span>
+      <span class="comment">// Set the length to `start` to avoid memory issues if anything goes wrong with the Drain.</span>
       <span class="self">self</span>.<span class="ident">set_len</span>(<span class="ident">start</span>);
       <span class="kw">let</span> <span class="ident">start_ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">ptr_at_unchecked</span>(<span class="ident">start</span>);
       <span class="comment">// `start_ptr` will never be null, so this is a safe assumption to give to</span>
       <span class="comment">// the optimizer.</span>
-      <span class="ident">intrinsics</span>::<span class="ident">assume</span>(<span class="op">!</span><span class="ident">start_ptr</span>.<span class="ident">is_null</span>());
+      <span class="ident">assume</span>(<span class="op">!</span><span class="ident">start_ptr</span>.<span class="ident">is_null</span>());
       <span class="comment">// Create the StaticVecDrain from the specified range.</span>
       <span class="ident">StaticVecDrain</span> {
         <span class="ident">start</span>: <span class="ident">end</span>,
         <span class="ident">length</span>: <span class="ident">length</span> <span class="op">-</span> <span class="ident">end</span>,
         <span class="ident">iter</span>: <span class="ident">StaticVecIterConst</span> {
           <span class="ident">start</span>: <span class="ident">start_ptr</span>,
-          <span class="ident">end</span>: <span class="kw">match</span> <span class="ident">intrinsics</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
+          <span class="ident">end</span>: <span class="kw">match</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="self">self</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>).<span class="ident">wrapping_add</span>(<span class="ident">end</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>,
             <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">ptr_at_unchecked</span>(<span class="ident">end</span>),
           },
@@ -4185,7 +4474,7 @@
   <span class="doccomment">/// Removes all elements in the StaticVec for which `filter` returns true and returns them in a</span>
   <span class="doccomment">/// new one.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut numbers = staticvec![1, 2, 3, 4, 5, 6, 8, 9, 11, 13, 14, 15];</span>
@@ -4224,9 +4513,57 @@
     <span class="ident">res</span>
   }
 
+  <span class="doccomment">/// Replaces the specified range in the StaticVec with the contents of `replace_with` and returns</span>
+  <span class="doccomment">/// the removed items in an instance of [`StaticVecSplice`](crate::iterators::StaticVecSplice).</span>
+  <span class="doccomment">/// `replace_with` does not need to be the same length as `range`. Returns immediately if and when</span>
+  <span class="doccomment">/// the StaticVec reaches maximum capacity, regardless of whether or not `replace_with` still has</span>
+  <span class="doccomment">/// more items to yield.</span>
+  <span class="doccomment">///</span>
+  <span class="doccomment">/// # Panics</span>
+  <span class="doccomment">///</span>
+  <span class="doccomment">/// Panics if the range&#39;s starting point is greater than the end point or if the end point is</span>
+  <span class="doccomment">/// greater than the length of the StaticVec.</span>
+  <span class="doccomment">///</span>
+  <span class="doccomment">/// # Example usage:</span>
+  <span class="doccomment">/// ```</span>
+  <span class="doccomment">/// # use staticvec::*;</span>
+  <span class="doccomment">/// let mut v = staticvec![1, 2, 3];</span>
+  <span class="doccomment">/// let new = [7, 8];</span>
+  <span class="doccomment">/// let u: StaticVec&lt;u8, 2&gt; = v.splice(..2, new.iter().copied()).collect();</span>
+  <span class="doccomment">/// assert_eq!(v, [7, 8, 3]);</span>
+  <span class="doccomment">/// assert_eq!(u, [1, 2]);</span>
+  <span class="doccomment">/// ```</span>
+  <span class="attribute">#[<span class="ident">inline</span>]</span>
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">splice</span><span class="op">&lt;</span><span class="ident">R</span>, <span class="ident">I</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">range</span>: <span class="ident">R</span>, <span class="ident">replace_with</span>: <span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StaticVecSplice</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>::<span class="ident">IntoIter</span>, <span class="ident">N</span><span class="op">&gt;</span>
+  <span class="kw">where</span>
+    <span class="ident">R</span>: <span class="ident">RangeBounds</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
+    <span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span>, {
+    <span class="kw">let</span> <span class="ident">length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
+    <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">range</span>.<span class="ident">start_bound</span>() {
+      <span class="ident">Included</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">idx</span>,
+      <span class="ident">Excluded</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>,
+      <span class="ident">Unbounded</span> <span class="op">=</span><span class="op">&gt;</span> <span class="number">0</span>,
+    };
+    <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">range</span>.<span class="ident">end_bound</span>() {
+      <span class="ident">Included</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>,
+      <span class="ident">Excluded</span>(<span class="kw-2">&amp;</span><span class="ident">idx</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">idx</span>,
+      <span class="ident">Unbounded</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">length</span>,
+    };
+    <span class="macro">assert</span><span class="macro">!</span>(
+      <span class="ident">start</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">end</span> <span class="op">&amp;&amp;</span> <span class="ident">end</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">length</span>,
+      <span class="string">&quot;Bounds check failure in `StaticVec::splice`!&quot;</span>
+    );
+    <span class="ident">StaticVecSplice</span> {
+      <span class="ident">start</span>,
+      <span class="ident">end</span>,
+      <span class="ident">replace_with</span>: <span class="ident">replace_with</span>.<span class="ident">into_iter</span>(),
+      <span class="ident">vec</span>: <span class="self">self</span>,
+    }
+  }
+
   <span class="doccomment">/// Removes all elements in the StaticVec for which `filter` returns false.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![1, 2, 3, 4, 5];</span>
@@ -4244,7 +4581,7 @@
   <span class="doccomment">/// Shortens the StaticVec, keeping the first `length` elements and dropping the rest.</span>
   <span class="doccomment">/// Does nothing if `length` is greater than or equal to the current length of the StaticVec.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![1, 2, 3, 4, 5];</span>
@@ -4268,7 +4605,7 @@
   <span class="doccomment">/// Splits the StaticVec into two at the given index. The original StaticVec will contain elements</span>
   <span class="doccomment">/// `0..at`, and the new one will contain elements `at..self.len()`.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v1 = staticvec![1, 2, 3];</span>
@@ -4279,7 +4616,10 @@
   <span class="attribute">#[<span class="ident">inline</span>]</span>
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">split_off</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">at</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">at</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">old_length</span>);
+    <span class="macro">assert</span><span class="macro">!</span>(
+      <span class="ident">at</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">old_length</span>,
+      <span class="string">&quot;Bounds check failure in `StaticVec::split_off`!&quot;</span>
+    );
     <span class="kw">let</span> <span class="ident">split_length</span> <span class="op">=</span> <span class="ident">old_length</span> <span class="op">-</span> <span class="ident">at</span>;
     <span class="self">Self</span> {
       <span class="ident">data</span>: <span class="kw">unsafe</span> {
@@ -4297,7 +4637,7 @@
   <span class="doccomment">/// Removes all but the first of consecutive elements in the StaticVec satisfying a given equality</span>
   <span class="doccomment">/// relation.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![&quot;aaa&quot;, &quot;bbb&quot;, &quot;BBB&quot;, &quot;ccc&quot;, &quot;ddd&quot;];</span>
@@ -4315,7 +4655,7 @@
   <span class="doccomment">/// Removes consecutive repeated elements in the StaticVec according to the</span>
   <span class="doccomment">/// locally required [`PartialEq`](core::cmp::PartialEq) trait implementation for `T`.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![1, 2, 2, 3, 2];</span>
@@ -4332,7 +4672,7 @@
   <span class="doccomment">/// Removes all but the first of consecutive elements in the StaticVec that</span>
   <span class="doccomment">/// resolve to the same key.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// let mut v = staticvec![10, 20, 21, 30, 20];</span>
@@ -4358,7 +4698,7 @@
   <span class="doccomment">/// while accommodating for more types than [`Copy`](core::marker::Copy) would appropriately for</span>
   <span class="doccomment">/// this function, and [`PartialEq`](core::cmp::PartialEq) to make the item comparisons possible.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::staticvec;</span>
   <span class="doccomment">/// assert_eq!(</span>
@@ -4396,7 +4736,7 @@
   /// while accommodating for more types than [`Copy`](core::marker::Copy) would appropriately for
   /// this function, and [`PartialEq`](core::cmp::PartialEq) to make the item comparisons possible.
   ///
-  /// Example usage:
+  /// # Example usage:
   /// ```
   /// # use staticvec::staticvec;
   /// assert_eq!(
@@ -4451,7 +4791,7 @@
   <span class="doccomment">/// while accommodating for more types than [`Copy`](core::marker::Copy) would appropriately for</span>
   <span class="doccomment">/// this function, and [`PartialEq`](core::cmp::PartialEq) to make the item comparisons possible.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::staticvec;</span>
   <span class="doccomment">/// assert_eq!(</span>
@@ -4489,7 +4829,7 @@
   /// while accommodating for more types than [`Copy`](core::marker::Copy) would appropriately for
   /// this function, and [`PartialEq`](core::cmp::PartialEq) to make the item comparisons possible.
   ///
-  /// Example usage:
+  /// # Example usage:
   /// ```
   /// # use staticvec::staticvec;
   /// assert_eq!(
@@ -4517,7 +4857,7 @@
   <span class="doccomment">/// returns a tuple consisting of a constant pointer to the first element of the StaticVec,</span>
   <span class="doccomment">/// the length of the StaticVec, and the capacity of the StaticVec.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::*;</span>
   <span class="doccomment">/// static V: StaticVec&lt;usize, 4&gt; = staticvec![4, 5, 6, 7];</span>
@@ -4557,7 +4897,7 @@
   <span class="doccomment">/// and `other` are at full capacity, and will panic if that is not the case (that is,</span>
   <span class="doccomment">/// if `self.is_full() &amp;&amp; other.is_full()` is not equal to `true`.)</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{staticvec, StaticVec};</span>
   <span class="doccomment">/// const A: StaticVec&lt;f64, 4&gt; = staticvec![4.0, 5.0, 6.0, 7.0];</span>
@@ -4567,7 +4907,10 @@
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">added</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">Add</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">is_full</span>() <span class="op">&amp;&amp;</span> <span class="ident">other</span>.<span class="ident">is_full</span>());
+    <span class="macro">assert</span><span class="macro">!</span>(
+      <span class="self">self</span>.<span class="ident">is_full</span>() <span class="op">&amp;&amp;</span> <span class="ident">other</span>.<span class="ident">is_full</span>(),
+      <span class="string">&quot;In `StaticVec::added`, both `self` and `other` must be at maximum capacity!&quot;</span>
+    );
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
       <span class="kw">unsafe</span> {
@@ -4591,7 +4934,7 @@
   <span class="doccomment">/// and `other` are at full capacity, and will panic if that is not the case (that is,</span>
   <span class="doccomment">/// if `self.is_full() &amp;&amp; other.is_full()` is not equal to `true`.)</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{staticvec, StaticVec};</span>
   <span class="doccomment">/// const A: StaticVec&lt;f64, 4&gt; = staticvec![4.0, 5.0, 6.0, 7.0];</span>
@@ -4601,7 +4944,10 @@
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">subtracted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">Sub</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">is_full</span>() <span class="op">&amp;&amp;</span> <span class="ident">other</span>.<span class="ident">is_full</span>());
+    <span class="macro">assert</span><span class="macro">!</span>(
+      <span class="self">self</span>.<span class="ident">is_full</span>() <span class="op">&amp;&amp;</span> <span class="ident">other</span>.<span class="ident">is_full</span>(),
+      <span class="string">&quot;In `StaticVec::subtracted`, both `self` and `other` must be at maximum capacity!&quot;</span>
+    );
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
       <span class="kw">unsafe</span> {
@@ -4625,7 +4971,7 @@
   <span class="doccomment">/// and `other` are at full capacity, and will panic if that is not the case (that is,</span>
   <span class="doccomment">/// if `self.is_full() &amp;&amp; other.is_full()` is not equal to `true`.)</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{staticvec, StaticVec};</span>
   <span class="doccomment">/// const A: StaticVec&lt;f64, 4&gt; = staticvec![4.0, 5.0, 6.0, 7.0];</span>
@@ -4635,7 +4981,10 @@
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">multiplied</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">Mul</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">is_full</span>() <span class="op">&amp;&amp;</span> <span class="ident">other</span>.<span class="ident">is_full</span>());
+    <span class="macro">assert</span><span class="macro">!</span>(
+      <span class="self">self</span>.<span class="ident">is_full</span>() <span class="op">&amp;&amp;</span> <span class="ident">other</span>.<span class="ident">is_full</span>(),
+      <span class="string">&quot;In `StaticVec::multiplied`, both `self` and `other` must be at maximum capacity!&quot;</span>
+    );
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
       <span class="kw">unsafe</span> {
@@ -4659,7 +5008,7 @@
   <span class="doccomment">/// and `other` are at full capacity, and will panic if that is not the case (that is,</span>
   <span class="doccomment">/// if `self.is_full() &amp;&amp; other.is_full()` is not equal to `true`.)</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{staticvec, StaticVec};</span>
   <span class="doccomment">/// const A: StaticVec&lt;f64, 4&gt; = staticvec![4.0, 5.0, 6.0, 7.0];</span>
@@ -4669,7 +5018,10 @@
   <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
   <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">divided</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
   <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">Div</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">is_full</span>() <span class="op">&amp;&amp;</span> <span class="ident">other</span>.<span class="ident">is_full</span>());
+    <span class="macro">assert</span><span class="macro">!</span>(
+      <span class="self">self</span>.<span class="ident">is_full</span>() <span class="op">&amp;&amp;</span> <span class="ident">other</span>.<span class="ident">is_full</span>(),
+      <span class="string">&quot;In `StaticVec::divided`, both `self` and `other` must be at maximum capacity!&quot;</span>
+    );
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">new</span>();
     <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
       <span class="kw">unsafe</span> {

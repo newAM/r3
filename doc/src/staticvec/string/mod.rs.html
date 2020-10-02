@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/staticvec-0.10.3/src/string/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../staticvec/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/staticvec-0.10.5/src/string/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../staticvec/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
                 <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
@@ -1233,7 +1235,7 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">StaticString</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span> {
   <span class="doccomment">/// Returns a new StaticString instance.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let string = StaticString::&lt;20&gt;::new();</span>
@@ -1265,7 +1267,7 @@
   <span class="doccomment">/// The length of `string` must not exceed the declared capacity of the StaticString being</span>
   <span class="doccomment">/// created, as this would result in writing to an out-of-bounds memory region.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let string = unsafe { StaticString::&lt;20&gt;::from_str_unchecked(&quot;My String&quot;) };</span>
@@ -1281,7 +1283,7 @@
   <span class="doccomment">/// Creates a new StaticString from `string`, truncating `string` as necessary if it has</span>
   <span class="doccomment">/// a length greater than the StaticString&#39;s declared capacity.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let string = StaticString::&lt;20&gt;::from_str(&quot;My String&quot;);</span>
@@ -1309,7 +1311,7 @@
   <span class="doccomment">/// to the StaticString&#39;s declared capacity, or returns a</span>
   <span class="doccomment">/// [`CapacityError`](crate::errors::CapacityError) otherwise.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let string = StaticString::&lt;20&gt;::from(&quot;My String&quot;);</span>
@@ -1329,7 +1331,7 @@
   <span class="doccomment">/// the StaticString reaches maximum capacity regardless of whether or not the iterator still has</span>
   <span class="doccomment">/// more items to yield.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -1359,7 +1361,7 @@
   <span class="doccomment">/// than or equal to the StaticString&#39;s declared capacity, or returns a</span>
   <span class="doccomment">/// [`CapacityError`](crate::errors::CapacityError) otherwise.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let string = StaticString::&lt;300&gt;::try_from_iterator(</span>
@@ -1409,7 +1411,7 @@
   <span class="doccomment">/// less than or equal to the StaticString&#39;s declared capacity, or returns</span>
   <span class="doccomment">/// [`StringError::OutOfBounds`] otherwise.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -1442,7 +1444,7 @@
   <span class="doccomment">/// made in the internal implementation of StaticString will be silently invalidated, almost</span>
   <span class="doccomment">/// certainly eventually resulting in undefined behavior.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let string = unsafe { StaticString::&lt;20&gt;::from_utf8_unchecked(&quot;My String&quot;) };</span>
@@ -1461,7 +1463,7 @@
   <span class="doccomment">/// [`StringError::Utf8`] on invalid UTF-8 data, and truncating the input slice as necessary if</span>
   <span class="doccomment">/// it has a length greater than the declared capacity of the StaticString being created.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -1483,7 +1485,7 @@
   <span class="doccomment">/// invalid UTF-8 data or [`StringError::OutOfBounds`] if the slice has a length greater than</span>
   <span class="doccomment">/// the StaticString&#39;s declared capacity.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -1505,7 +1507,7 @@
   <span class="doccomment">/// data with `REPLACEMENT_CHARACTER` (�), and truncating the input slice as necessary if</span>
   <span class="doccomment">/// it has a length greater than the declared capacity of the StaticString being created.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let music = [0xD834, 0xDD1E, 0x006d, 0x0075, 0x0073, 0x0069, 0x0063];</span>
@@ -1531,7 +1533,7 @@
   <span class="doccomment">/// [`StringError::Utf16`] on invalid UTF-16 data, and truncating the input slice as necessary if</span>
   <span class="doccomment">/// it has a length greater than the declared capacity of the StaticString being created.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -1561,7 +1563,7 @@
   <span class="doccomment">/// invalid UTF-16 data or [`StringError::OutOfBounds`] if the slice has a length greater than the</span>
   <span class="doccomment">/// declared capacity of the StaticString being created.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticVec, StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -1586,7 +1588,7 @@
 
   <span class="doccomment">/// Extracts a `str` slice containing the entire contents of the StaticString.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let s = StaticString::&lt;20&gt;::from_str(&quot;My String&quot;);</span>
@@ -1599,7 +1601,7 @@
 
   <span class="doccomment">/// Extracts a mutable `str` slice containing the entire contents of the StaticString.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let mut s = StaticString::&lt;20&gt;::from_str(&quot;My String&quot;);</span>
@@ -1612,7 +1614,7 @@
 
   <span class="doccomment">/// Extracts a `u8` slice containing the entire contents of the StaticString.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let s = StaticString::&lt;20&gt;::from_str(&quot;My String&quot;);</span>
@@ -1626,7 +1628,7 @@
   <span class="doccomment">/// Returns the StaticString&#39;s internal instance of `StaticVec&lt;u8, N&gt;`.</span>
   <span class="doccomment">/// Note that using this function consumes the StaticString.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let s = StaticString::&lt;5&gt;::from(&quot;hello&quot;);</span>
@@ -1645,7 +1647,7 @@
   <span class="doccomment">/// Care must be taken to ensure that the returned `u8` slice is not mutated in such a way that</span>
   <span class="doccomment">/// it no longer amounts to valid UTF-8.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -1666,7 +1668,7 @@
   <span class="doccomment">/// Care must be taken to ensure that the returned StaticVec reference is not mutated in such a</span>
   <span class="doccomment">/// way that it no longer contains valid UTF-8.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -1684,7 +1686,7 @@
   <span class="doccomment">/// This is always equivalent to the generic `N` parameter it was declared with,</span>
   <span class="doccomment">/// which determines the fixed size of the backing StaticVec instance.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// assert_eq!(StaticString::&lt;32&gt;::new().capacity(), 32);</span>
@@ -1697,7 +1699,7 @@
   <span class="doccomment">/// Returns the remaining capacity (which is to say, `self.capacity() - self.len()`) of the</span>
   <span class="doccomment">/// StaticString.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// assert_eq!(StaticString::&lt;32&gt;::from(&quot;abcd&quot;).remaining_capacity(), 28);</span>
@@ -1715,7 +1717,7 @@
   <span class="doccomment">/// `self.len() + string.len()` must not exceed the total capacity of the StaticString</span>
   <span class="doccomment">/// instance, as this would result in writing to an out-of-bounds memory region.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString};</span>
   <span class="doccomment">/// let mut s = StaticString::&lt;6&gt;::from(&quot;foo&quot;);</span>
@@ -1735,7 +1737,7 @@
   <span class="doccomment">/// Attempts to push `string` to the StaticString, panicking if it is the case that `self.len() +</span>
   <span class="doccomment">/// string.len()` exceeds the StaticString&#39;s total capacity.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString};</span>
   <span class="doccomment">/// let mut s = StaticString::&lt;6&gt;::from(&quot;foo&quot;);</span>
@@ -1756,7 +1758,7 @@
   <span class="doccomment">/// nothing at all) if it is the case that `self.len() + string.len()` exceeds the</span>
   <span class="doccomment">/// StaticString&#39;s total capacity.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -1778,7 +1780,7 @@
   <span class="doccomment">/// the StaticString&#39;s total capacity, or returns a</span>
   <span class="doccomment">/// [`CapacityError`](crate::errors::CapacityError) otherwise.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let mut s = StaticString::&lt;300&gt;::from(&quot;My String&quot;);</span>
@@ -1807,7 +1809,7 @@
   <span class="doccomment">/// `self.len() + character.len_utf8()` must not exceed the total capacity of the StaticString</span>
   <span class="doccomment">/// instance, as this would result in writing to an out-of-bounds memory region.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -1839,7 +1841,7 @@
   <span class="doccomment">/// Appends the given char to the end of the StaticString, panicking if the StaticString</span>
   <span class="doccomment">/// is already at maximum capacity.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// let mut string = StaticString::&lt;2&gt;::new();</span>
@@ -1859,7 +1861,7 @@
   <span class="doccomment">/// Appends the given char to the end of the StaticString, returning [`StringError::OutOfBounds`]</span>
   <span class="doccomment">/// if the StaticString is already at maximum capacity.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -1886,7 +1888,7 @@
   <span class="doccomment">/// StaticString&#39;s current length, or does nothing otherwise. Panics if `new_len` does not lie</span>
   <span class="doccomment">/// at a valid UTF-8 character boundary.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let mut s = StaticString::&lt;20&gt;::from(&quot;My String&quot;);</span>
@@ -1910,7 +1912,7 @@
   <span class="doccomment">/// Returns the last character in the StaticString in `Some` if the StaticString&#39;s current length</span>
   <span class="doccomment">/// is greater than zero, or `None` otherwise.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -1931,7 +1933,7 @@
 
   <span class="doccomment">/// Removes all whitespace from the beginning and end of the StaticString, if any is present.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -1976,7 +1978,7 @@
   <span class="doccomment">/// Removes the char at `index` from the StaticString if `index` is both less than `self.len()`</span>
   <span class="doccomment">/// and also lies at a valid UTF-8 character boundary, or panics otherwise.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let mut s = StaticString::&lt;20&gt;::from(&quot;ABCD🤔&quot;);</span>
@@ -2005,7 +2007,7 @@
   <span class="doccomment">/// Removes all characters from the StaticString except for those specified by the predicate</span>
   <span class="doccomment">/// function.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let mut s = StaticString::&lt;20&gt;::from(&quot;ABCD🤔&quot;);</span>
@@ -2035,7 +2037,7 @@
   <span class="doccomment">/// assumptions made in the internal implementation of StaticString will be silently</span>
   <span class="doccomment">/// invalidated, almost certainly eventually resulting in undefined behavior.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -2063,7 +2065,7 @@
   <span class="doccomment">/// capacity of the StaticString and [`StringError::NotCharBoundary`] if `index` does not lie at</span>
   <span class="doccomment">/// a valid UTF-8 character boundary.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -2092,7 +2094,7 @@
   <span class="doccomment">/// Panics if `character.len_utf8() + self.len()` exceeds the total capacity of the StaticString</span>
   <span class="doccomment">/// or if `index` does not lie at a valid UTF-8 character boundary.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString};</span>
   <span class="doccomment">/// let mut s = StaticString::&lt;3&gt;::new();</span>
@@ -2122,7 +2124,7 @@
   <span class="doccomment">/// assumptions made in the internal implementation of StaticString will be silently</span>
   <span class="doccomment">/// invalidated, almost certainly eventually resulting in undefined behavior.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let mut s = StaticString::&lt;20&gt;::from_str(&quot;ABCD🤔&quot;);</span>
@@ -2152,7 +2154,7 @@
   <span class="doccomment">/// at a valid UTF-8 character boundary, as well as if `string.len() + self.len()` exceeds</span>
   <span class="doccomment">/// the total capacity of the StaticString.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let mut s = StaticString::&lt;20&gt;::from(&quot;ABCD🤔&quot;);</span>
@@ -2178,7 +2180,7 @@
   <span class="doccomment">/// capacity of the StaticString and [`StringError::NotCharBoundary`] if `index` does not</span>
   <span class="doccomment">/// lie at a valid UTF-8 character boundary.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -2208,7 +2210,7 @@
 
   <span class="doccomment">/// Returns the current length of the StaticString.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let mut s = StaticString::&lt;20&gt;::from(&quot;ABCD&quot;);</span>
@@ -2223,7 +2225,7 @@
 
   <span class="doccomment">/// Returns true if the StaticString has a current length of 0.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{staticstring, StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -2241,7 +2243,7 @@
 
   <span class="doccomment">/// Returns true if the StaticString&#39;s length is equal to its capacity.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{staticstring, StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -2265,7 +2267,7 @@
   <span class="doccomment">/// Panics if `at` is greater than the length of the StaticString or if it does not</span>
   <span class="doccomment">/// lie at a valid UTF-8 character boundary.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let mut ab = StaticString::&lt;4&gt;::from(&quot;ABCD&quot;);</span>
@@ -2288,7 +2290,7 @@
 
   <span class="doccomment">/// Removes all contents from the StaticString and sets its length back to zero.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::{StaticString, StringError};</span>
   <span class="doccomment">/// # fn main() -&gt; Result&lt;(), StringError&gt; {</span>
@@ -2309,7 +2311,7 @@
   <span class="doccomment">/// either the high or low bounds of the range exceed `self.len()` or do not lie at valid UTF-8</span>
   <span class="doccomment">/// character boundaries.</span>
   <span class="doccomment">///</span>
-  <span class="doccomment">/// Example usage:</span>
+  <span class="doccomment">/// # Example usage:</span>
   <span class="doccomment">/// ```</span>
   <span class="doccomment">/// # use staticvec::StaticString;</span>
   <span class="doccomment">/// let mut s = StaticString::&lt;20&gt;::from(&quot;ABCD🤔&quot;);</span>

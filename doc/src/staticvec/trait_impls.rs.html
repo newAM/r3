@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/staticvec-0.10.3/src/trait_impls.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>trait_impls.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../staticvec/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/staticvec-0.10.5/src/trait_impls.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>trait_impls.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../staticvec/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
                 <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
@@ -970,6 +972,8 @@
 <span id="969">969</span>
 <span id="970">970</span>
 <span id="971">971</span>
+<span id="972">972</span>
+<span id="973">973</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">borrow</span>::{<span class="ident">Borrow</span>, <span class="ident">BorrowMut</span>};
 <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">cmp</span>::{<span class="ident">Eq</span>, <span class="ident">Ord</span>, <span class="ident">Ordering</span>, <span class="ident">PartialEq</span>};
@@ -1590,7 +1594,8 @@
   }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">Index</span><span class="op">&lt;</span><span class="ident">RangeTo</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span> {
+<span class="attribute">#[<span class="ident">rustfmt</span>::<span class="ident">skip</span>]</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="kw">const</span> <span class="ident">Index</span><span class="op">&lt;</span><span class="ident">RangeTo</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span> {
   <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> [<span class="ident">T</span>];
   <span class="doccomment">/// Asserts that the upper bound of `index` is less than or equal to the</span>
   <span class="doccomment">/// current length of the StaticVec, and if so returns a constant reference</span>
@@ -1602,7 +1607,8 @@
   }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">IndexMut</span><span class="op">&lt;</span><span class="ident">RangeTo</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span> {
+<span class="attribute">#[<span class="ident">rustfmt</span>::<span class="ident">skip</span>]</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="kw">const</span> <span class="ident">IndexMut</span><span class="op">&lt;</span><span class="ident">RangeTo</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span> {
   <span class="doccomment">/// Asserts that the upper bound of `index` is less than or equal to the</span>
   <span class="doccomment">/// current length of the StaticVec, and if so returns a constant reference</span>
   <span class="doccomment">/// to a slice of elements `0..index.end`.</span>
@@ -1613,7 +1619,8 @@
   }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">Index</span><span class="op">&lt;</span><span class="ident">RangeToInclusive</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span> {
+<span class="attribute">#[<span class="ident">rustfmt</span>::<span class="ident">skip</span>]</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="kw">const</span> <span class="ident">Index</span><span class="op">&lt;</span><span class="ident">RangeToInclusive</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span> {
   <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> [<span class="ident">T</span>];
   <span class="doccomment">/// Asserts that the upper bound of `index` is less than the</span>
   <span class="doccomment">/// current length of the StaticVec, and if so returns a constant reference</span>
@@ -1625,7 +1632,8 @@
   }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">IndexMut</span><span class="op">&lt;</span><span class="ident">RangeToInclusive</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span> {
+<span class="attribute">#[<span class="ident">rustfmt</span>::<span class="ident">skip</span>]</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="kw">const</span> <span class="ident">IndexMut</span><span class="op">&lt;</span><span class="ident">RangeToInclusive</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">StaticVec</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">N</span><span class="op">&gt;</span> {
   <span class="doccomment">/// Asserts that the upper bound of `index` is less than the</span>
   <span class="doccomment">/// current length of the StaticVec, and if so returns a constant reference</span>
   <span class="doccomment">/// to a slice of elements `0..=index.end`.</span>
@@ -1749,22 +1757,22 @@
   <span class="kw">fn</span> <span class="ident">read</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">buf</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">current_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
     <span class="kw">let</span> <span class="ident">read_length</span> <span class="op">=</span> <span class="ident">current_length</span>.<span class="ident">min</span>(<span class="ident">buf</span>.<span class="ident">len</span>());
-    <span class="comment">// Safety:  read_length &lt;= buf.length and self.length. Rust borrowing</span>
-    <span class="comment">// rules mean that buf is guaranteed not to overlap with self.</span>
+    <span class="comment">// Safety: `read_length` &lt;= `buf.length` and `self.length`. Rust borrowing</span>
+    <span class="comment">// rules mean that `buf` is guaranteed not to overlap with self.</span>
     <span class="kw">unsafe</span> {
       <span class="ident">buf</span>
         .<span class="ident">as_mut_ptr</span>()
         .<span class="ident">copy_from_nonoverlapping</span>(<span class="self">self</span>.<span class="ident">as_ptr</span>(), <span class="ident">read_length</span>);
     }
     <span class="kw">if</span> <span class="ident">read_length</span> <span class="op">&lt;</span> <span class="ident">current_length</span> {
-      <span class="comment">// Safety: we just confirmed that read_length is less than our current length.</span>
+      <span class="comment">// Safety: we just confirmed that `read_length` is less than our current length.</span>
       <span class="kw">unsafe</span> {
         <span class="self">self</span>
           .<span class="ident">ptr_at_unchecked</span>(<span class="ident">read_length</span>)
           .<span class="ident">copy_to</span>(<span class="self">self</span>.<span class="ident">as_mut_ptr</span>(), <span class="ident">current_length</span> <span class="op">-</span> <span class="ident">read_length</span>)
       };
     }
-    <span class="comment">// Safety: 0 &lt;= read_length &lt;= current_length</span>
+    <span class="comment">// Safety: 0 &lt;= `read_length` &lt;= `current_length`.</span>
     <span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">set_len</span>(<span class="ident">current_length</span> <span class="op">-</span> <span class="ident">read_length</span>) };
     <span class="prelude-val">Ok</span>(<span class="ident">read_length</span>)
   }
@@ -1803,26 +1811,24 @@
 
   <span class="attribute">#[<span class="ident">inline</span>]</span>
   <span class="kw">fn</span> <span class="ident">read_vectored</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">bufs</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">IoSliceMut</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-    <span class="comment">// Minimize copies: copy to each output buf in sequence, then shift the</span>
+    <span class="comment">// Minimize copies: copy to each output buffer in sequence, then shift the</span>
     <span class="comment">// internal data only once. This as opposed to calling `read` in a loop,</span>
     <span class="comment">// which shifts the inner data each time.</span>
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">start_ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">as_ptr</span>();
     <span class="kw">let</span> <span class="ident">old_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>;
-    <span class="comment">// We update self.length inplace in the loop to track how many bytes</span>
+    <span class="comment">// We update `self.length` in place in the loop to track how many bytes</span>
     <span class="comment">// have been written. This means that when we perform the shift at the</span>
-    <span class="comment">// end, self.length is already correct.</span>
+    <span class="comment">// end, `self.length` is already correct.</span>
     <span class="kw">for</span> <span class="ident">buf</span> <span class="kw">in</span> <span class="ident">bufs</span> {
       <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_empty</span>() {
         <span class="kw">break</span>;
       }
-      <span class="comment">// The number of bytes we&#39;ll be reading out of self.</span>
+      <span class="comment">// Determine the number of bytes we&#39;ll be reading out of `self`.</span>
       <span class="kw">let</span> <span class="ident">read_length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>.<span class="ident">min</span>(<span class="ident">buf</span>.<span class="ident">len</span>());
-      <span class="comment">// Safety: start_ptr is known to point to the array in self, which</span>
-      <span class="comment">// is different than `buf`. read_length &lt;= self.length.</span>
+      <span class="comment">// Safety: `start_ptr` is known to point to the array in `self`, which</span>
+      <span class="comment">// is different than `buf`, and `read_length` &lt;= `self.length`.</span>
       <span class="kw">unsafe</span> {
-        <span class="ident">buf</span>
-          .<span class="ident">as_mut_ptr</span>()
-          .<span class="ident">copy_from_nonoverlapping</span>(<span class="ident">start_ptr</span>, <span class="ident">read_length</span>);
+        <span class="ident">start_ptr</span>.<span class="ident">copy_to_nonoverlapping</span>(<span class="ident">buf</span>.<span class="ident">as_mut_ptr</span>(), <span class="ident">read_length</span>);
         <span class="ident">start_ptr</span> <span class="op">=</span> <span class="ident">start_ptr</span>.<span class="ident">add</span>(<span class="ident">read_length</span>);
         <span class="self">self</span>.<span class="ident">length</span> <span class="op">-</span><span class="op">=</span> <span class="ident">read_length</span>;
       }
@@ -1833,8 +1839,8 @@
       <span class="kw">unsafe</span> {
         <span class="self">self</span>
           .<span class="ident">ptr_at_unchecked</span>(<span class="ident">total_read</span>)
-          .<span class="ident">copy_to</span>(<span class="self">self</span>.<span class="ident">as_mut_ptr</span>(), <span class="ident">current_length</span>)
-      };
+          .<span class="ident">copy_to</span>(<span class="self">self</span>.<span class="ident">as_mut_ptr</span>(), <span class="ident">current_length</span>);
+      }
     }
     <span class="prelude-val">Ok</span>(<span class="ident">total_read</span>)
   }
