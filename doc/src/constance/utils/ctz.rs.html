@@ -299,12 +299,18 @@
 <span id="296">296</span>
 <span id="297">297</span>
 <span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Count trailing zeros</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">if_same_then_else</span>)]</span>
 
 <span class="kw">const</span> <span class="ident">USIZE_BITS</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">usize</span>::<span class="ident">BITS</span>;
 
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">needless_bool</span>)]</span>
 <span class="kw">const</span> <span class="ident">HAS_CTZ</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;riscv32&quot;</span>) <span class="op">|</span><span class="op">|</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;riscv64&quot;</span>) {
     <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;b&quot;</span>) <span class="op">|</span><span class="op">|</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;experimental-b&quot;</span>)
 } <span class="kw">else</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;arm&quot;</span>) {
@@ -321,6 +327,7 @@
 };
 
 <span class="doccomment">/// Indicates whether the target includes a 32-bit hardware multiplier.</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">needless_bool</span>)]</span>
 <span class="kw">const</span> <span class="ident">HAS_MUL</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;riscv32&quot;</span>) <span class="op">|</span><span class="op">|</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;riscv64&quot;</span>) {
     <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;m&quot;</span>)
 } <span class="kw">else</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;msp430&quot;</span>) {
@@ -333,6 +340,7 @@
 };
 
 <span class="doccomment">/// Indicates whether the target includes a 32-bit barrel shifter.</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">needless_bool</span>)]</span>
 <span class="kw">const</span> <span class="ident">HAS_SHIFTER</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;msp430&quot;</span>) {
     <span class="bool-val">false</span>
 } <span class="kw">else</span> <span class="kw">if</span> <span class="macro">cfg</span><span class="macro">!</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;avr&quot;</span>) {
@@ -435,6 +443,8 @@
 <span class="doccomment">/// Implements [`trailing_zeros`] using a look-up table.</span>
 <span class="doccomment">/// `x` must be in range `1..8`.</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
+<span class="comment">// This code groups digits irregularly to express a specific meaning</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">inconsistent_digit_grouping</span>)]</span>
 <span class="kw">fn</span> <span class="ident">ctz3_lut_nonzero</span>(<span class="ident">x</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
     <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">&lt;</span> <span class="number">8</span>);
     <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>);
