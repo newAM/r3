@@ -726,6 +726,84 @@
 <span id="723">723</span>
 <span id="724">724</span>
 <span id="725">725</span>
+<span id="726">726</span>
+<span id="727">727</span>
+<span id="728">728</span>
+<span id="729">729</span>
+<span id="730">730</span>
+<span id="731">731</span>
+<span id="732">732</span>
+<span id="733">733</span>
+<span id="734">734</span>
+<span id="735">735</span>
+<span id="736">736</span>
+<span id="737">737</span>
+<span id="738">738</span>
+<span id="739">739</span>
+<span id="740">740</span>
+<span id="741">741</span>
+<span id="742">742</span>
+<span id="743">743</span>
+<span id="744">744</span>
+<span id="745">745</span>
+<span id="746">746</span>
+<span id="747">747</span>
+<span id="748">748</span>
+<span id="749">749</span>
+<span id="750">750</span>
+<span id="751">751</span>
+<span id="752">752</span>
+<span id="753">753</span>
+<span id="754">754</span>
+<span id="755">755</span>
+<span id="756">756</span>
+<span id="757">757</span>
+<span id="758">758</span>
+<span id="759">759</span>
+<span id="760">760</span>
+<span id="761">761</span>
+<span id="762">762</span>
+<span id="763">763</span>
+<span id="764">764</span>
+<span id="765">765</span>
+<span id="766">766</span>
+<span id="767">767</span>
+<span id="768">768</span>
+<span id="769">769</span>
+<span id="770">770</span>
+<span id="771">771</span>
+<span id="772">772</span>
+<span id="773">773</span>
+<span id="774">774</span>
+<span id="775">775</span>
+<span id="776">776</span>
+<span id="777">777</span>
+<span id="778">778</span>
+<span id="779">779</span>
+<span id="780">780</span>
+<span id="781">781</span>
+<span id="782">782</span>
+<span id="783">783</span>
+<span id="784">784</span>
+<span id="785">785</span>
+<span id="786">786</span>
+<span id="787">787</span>
+<span id="788">788</span>
+<span id="789">789</span>
+<span id="790">790</span>
+<span id="791">791</span>
+<span id="792">792</span>
+<span id="793">793</span>
+<span id="794">794</span>
+<span id="795">795</span>
+<span id="796">796</span>
+<span id="797">797</span>
+<span id="798">798</span>
+<span id="799">799</span>
+<span id="800">800</span>
+<span id="801">801</span>
+<span id="802">802</span>
+<span id="803">803</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">core</span>::{<span class="ident">fmt</span>, <span class="ident">ops</span>, <span class="ident">ptr</span>::<span class="ident">NonNull</span>};
 
@@ -789,6 +867,7 @@
         <span class="doccomment">///</span>
         <span class="doccomment">/// All pointees to be accessed through the constructed `UnsafeStatic`</span>
         <span class="doccomment">/// must be valid.</span>
+        <span class="attribute">#[<span class="ident">inline</span>]</span>
         <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="self">Self</span> {
             <span class="kw-2">&amp;</span><span class="self">Self</span> { <span class="ident">_nonexhaustive</span>: () }
         }
@@ -797,6 +876,7 @@
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Port</span><span class="op">&gt;</span> <span class="ident">ops</span>::<span class="ident">Index</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">UnsafeStatic</span> {
         <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Wait</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>;
 
+        <span class="attribute">#[<span class="ident">inline</span>]</span>
         <span class="kw">fn</span> <span class="ident">index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Output</span> {
             <span class="comment">// Safety: See `wait_queue_accessor`.</span>
             <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">index</span>.<span class="number">0</span>.<span class="ident">as_ptr</span>() }
@@ -1202,6 +1282,82 @@
             <span class="kw">unsafe</span> { <span class="macro">wait_queue_accessor</span><span class="macro">!</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">waits</span>, <span class="ident">lock</span>.<span class="ident">borrow_mut</span>()) }.<span class="ident">remove</span>(<span class="ident">wait_ref</span>);
             <span class="ident">complete_wait</span>(<span class="ident">lock</span>.<span class="ident">borrow_mut</span>(), <span class="ident">wait</span>, <span class="prelude-val">Ok</span>(()));
         }
+    }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">Wait</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+        <span class="macro">write</span><span class="macro">!</span>(
+            <span class="ident">f</span>,
+            <span class="string">&quot;{{ task: {:p}, payload: {:?} }}&quot;</span>,
+            <span class="self">self</span>.<span class="ident">task</span>, <span class="self">self</span>.<span class="ident">payload</span>
+        )
+    }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="self">Self</span>::<span class="ident">EventGroupBits</span> {
+                <span class="ident">bits</span>,
+                <span class="ident">flags</span>,
+                <span class="ident">orig_bits</span>,
+            } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">f</span>
+                .<span class="ident">debug_struct</span>(<span class="string">&quot;EventGroupBits&quot;</span>)
+                .<span class="ident">field</span>(<span class="string">&quot;bits&quot;</span>, <span class="ident">bits</span>)
+                .<span class="ident">field</span>(<span class="string">&quot;flags&quot;</span>, <span class="ident">flags</span>)
+                .<span class="ident">field</span>(<span class="string">&quot;orig_bits&quot;</span>, <span class="ident">orig_bits</span>)
+                .<span class="ident">finish</span>(),
+            <span class="self">Self</span>::<span class="ident">Semaphore</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;Semaphore&quot;</span>),
+            <span class="self">Self</span>::<span class="ident">Mutex</span>(<span class="ident">mutex</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;Mutex({:p})&quot;</span>, <span class="ident">mutex</span>),
+            <span class="self">Self</span>::<span class="ident">Park</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;Park&quot;</span>),
+            <span class="self">Self</span>::<span class="ident">Sleep</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;Sleep&quot;</span>),
+            <span class="self">Self</span>::<span class="ident">__Nonexhaustive</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+        }
+    }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">WaitQueue</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+        <span class="kw">struct</span> <span class="ident">WaitQueuePrinter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> {
+            <span class="ident">waits</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">intrusive_list</span>::<span class="ident">ListHead</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        }
+
+        <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">WaitQueuePrinter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span> {
+            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">lock</span>) <span class="op">=</span> <span class="kw">super</span>::<span class="ident">utils</span>::<span class="ident">lock_cpu</span>() {
+                    <span class="comment">// Safety: All elements of `self.waits` are extant.</span>
+                    <span class="kw">let</span> <span class="ident">accessor</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="macro">wait_queue_accessor</span><span class="macro">!</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">waits</span>, <span class="ident">lock</span>.<span class="ident">borrow_mut</span>()) };
+
+                    <span class="ident">f</span>.<span class="ident">debug_list</span>()
+                        .<span class="ident">entries</span>(<span class="ident">accessor</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span>.<span class="number">1</span>))
+                        .<span class="ident">finish</span>()
+                } <span class="kw">else</span> {
+                    <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;&lt; locked &gt;&quot;</span>)
+                }
+            }
+        }
+
+        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;WaitQueue&quot;</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;waits&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">WaitQueuePrinter</span> { <span class="ident">waits</span>: <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">waits</span> })
+            .<span class="ident">field</span>(<span class="string">&quot;order&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">order</span>)
+            .<span class="ident">finish</span>()
+    }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">TaskWait</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;TaskWait&quot;</span>)
+            .<span class="ident">field</span>(
+                <span class="string">&quot;current_wait&quot;</span>,
+                <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">current_wait</span>.<span class="ident">debug_fmt_with</span>(<span class="op">|</span><span class="ident">wait_ref</span>, <span class="ident">f</span><span class="op">|</span> {
+                    <span class="comment">// Safety: ... and `wait_ref` must point to an existing `Wait`</span>
+                    <span class="kw">let</span> <span class="ident">wait</span> <span class="op">=</span> <span class="ident">wait_ref</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="kw-2">&amp;</span><span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">r</span>.<span class="number">0</span>.<span class="ident">as_ptr</span>() }.<span class="ident">payload</span>);
+                    <span class="ident">wait</span>.<span class="ident">fmt</span>(<span class="ident">f</span>)
+                }),
+            )
+            .<span class="ident">field</span>(<span class="string">&quot;wait_result&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">wait_result</span>)
+            .<span class="ident">finish</span>()
     }
 }
 

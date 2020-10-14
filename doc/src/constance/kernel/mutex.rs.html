@@ -765,6 +765,21 @@
 <span id="762">762</span>
 <span id="763">763</span>
 <span id="764">764</span>
+<span id="765">765</span>
+<span id="766">766</span>
+<span id="767">767</span>
+<span id="768">768</span>
+<span id="769">769</span>
+<span id="770">770</span>
+<span id="771">771</span>
+<span id="772">772</span>
+<span id="773">773</span>
+<span id="774">774</span>
+<span id="775">775</span>
+<span id="776">776</span>
+<span id="777">777</span>
+<span id="778">778</span>
+<span id="779">779</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! ~~Mutices~~ Mutexes</span>
 <span class="comment">// FIXME: `debug_assert_matches` needing `assert_matches` is fixed by</span>
@@ -1227,9 +1242,24 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">MutexCb</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;MutexCb&quot;</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;self&quot;</span>, <span class="kw-2">&amp;</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>))
             .<span class="ident">field</span>(<span class="string">&quot;ceiling&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ceiling</span>)
             .<span class="ident">field</span>(<span class="string">&quot;inconsistent&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">inconsistent</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;prev_mutex_held&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">prev_mutex_held</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;wait_queue&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">wait_queue</span>)
+            .<span class="ident">field</span>(
+                <span class="string">&quot;prev_mutex_held&quot;</span>,
+                <span class="comment">// prevent O((# of held mutexes)²)-order debug printing</span>
+                <span class="kw-2">&amp;</span><span class="self">self</span>
+                    .<span class="ident">prev_mutex_held</span>
+                    .<span class="ident">debug_fmt_with</span>(<span class="op">|</span><span class="ident">x</span>, <span class="ident">f</span><span class="op">|</span> <span class="ident">x</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>).<span class="ident">fmt</span>(<span class="ident">f</span>)),
+            )
+            .<span class="ident">field</span>(
+                <span class="string">&quot;owning_task&quot;</span>,
+                <span class="comment">// break infinite recursion (TaskCb → MutxeCb → TaskCb → ...)</span>
+                <span class="kw-2">&amp;</span><span class="self">self</span>
+                    .<span class="ident">owning_task</span>
+                    .<span class="ident">debug_fmt_with</span>(<span class="op">|</span><span class="ident">x</span>, <span class="ident">f</span><span class="op">|</span> <span class="ident">x</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>).<span class="ident">fmt</span>(<span class="ident">f</span>)),
+            )
             .<span class="ident">finish</span>()
     }
 }

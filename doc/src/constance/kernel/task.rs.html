@@ -1055,6 +1055,20 @@
 <span id="1052">1052</span>
 <span id="1053">1053</span>
 <span id="1054">1054</span>
+<span id="1055">1055</span>
+<span id="1056">1056</span>
+<span id="1057">1057</span>
+<span id="1058">1058</span>
+<span id="1059">1059</span>
+<span id="1060">1060</span>
+<span id="1061">1061</span>
+<span id="1062">1062</span>
+<span id="1063">1063</span>
+<span id="1064">1064</span>
+<span id="1065">1065</span>
+<span id="1066">1066</span>
+<span id="1067">1067</span>
+<span id="1068">1068</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Tasks</span>
 <span class="kw">use</span> <span class="ident">core</span>::{
@@ -1460,10 +1474,23 @@
 {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;TaskCb&quot;</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;self&quot;</span>, <span class="kw-2">&amp;</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>))
             .<span class="ident">field</span>(<span class="string">&quot;port_task_state&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">port_task_state</span>)
             .<span class="ident">field</span>(<span class="string">&quot;attr&quot;</span>, <span class="self">self</span>.<span class="ident">attr</span>)
             .<span class="ident">field</span>(<span class="string">&quot;base_priority&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">base_priority</span>)
             .<span class="ident">field</span>(<span class="string">&quot;effective_priority&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">effective_priority</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;st&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">st</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;link&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">link</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;wait&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">wait</span>)
+            .<span class="ident">field</span>(
+                <span class="string">&quot;last_mutex_held&quot;</span>,
+                <span class="comment">// Don&#39;t print the content of the mutex. It&#39;ll be printed</span>
+                <span class="comment">// somewhere else in the debug printing of `KernelDebugPrinter`.</span>
+                <span class="kw-2">&amp;</span><span class="self">self</span>
+                    .<span class="ident">last_mutex_held</span>
+                    .<span class="ident">debug_fmt_with</span>(<span class="op">|</span><span class="ident">x</span>, <span class="ident">f</span><span class="op">|</span> <span class="ident">x</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>).<span class="ident">fmt</span>(<span class="ident">f</span>)),
+            )
+            .<span class="ident">field</span>(<span class="string">&quot;park_token&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">park_token</span>)
             .<span class="ident">finish</span>()
     }
 }
@@ -1734,6 +1761,7 @@
 }
 
 <span class="doccomment">/// Implements `PortToKernel::choose_running_task`.</span>
+<span class="attribute">#[<span class="ident">inline</span>]</span>
 <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">choose_next_running_task</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span>(
     <span class="kw-2">mut</span> <span class="ident">lock</span>: <span class="ident">utils</span>::<span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>,
 ) {
