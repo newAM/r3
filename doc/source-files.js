@@ -1,5 +1,6 @@
 var N = null;var sourcesIndex = {};
 sourcesIndex["aho_corasick"] = {"name":"","dirs":[{"name":"packed","dirs":[{"name":"teddy","files":["compile.rs","mod.rs","runtime.rs"]}],"files":["api.rs","mod.rs","pattern.rs","rabinkarp.rs","vector.rs"]}],"files":["ahocorasick.rs","automaton.rs","buffer.rs","byte_frequencies.rs","classes.rs","dfa.rs","error.rs","lib.rs","nfa.rs","prefilter.rs","state_id.rs"]};
+sourcesIndex["assert_matches"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["atomic_ref"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["atty"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["bare_metal"] = {"name":"","files":["lib.rs"]};
@@ -7,7 +8,7 @@ sourcesIndex["base64"] = {"name":"","dirs":[{"name":"read","files":["decoder.rs"
 sourcesIndex["bit_field"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["bitflags"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["cfg_if"] = {"name":"","files":["lib.rs"]};
-sourcesIndex["constance"] = {"name":"","dirs":[{"name":"kernel","dirs":[{"name":"cfg","files":["event_group.rs","hunk.rs","interrupt.rs","semaphore.rs","startup.rs","task.rs","timer.rs"]}],"files":["cfg.rs","error.rs","event_group.rs","hunk.rs","interrupt.rs","semaphore.rs","startup.rs","state.rs","task.rs","timeout.rs","timer.rs","utils.rs","wait.rs"]},{"name":"sync","files":["mutex.rs"]},{"name":"time","files":["duration.rs","time.rs"]},{"name":"utils","dirs":[{"name":"binary_heap","files":["helpers.rs","veclike.rs"]}],"files":["aligned_storage.rs","binary_heap.rs","binary_search.rs","convert.rs","ctz.rs","for_times.rs","init.rs","int.rs","intrusive_list.rs","mem.rs","pin.rs","prio_bitmap.rs","rawcell.rs","sort.rs","vec.rs","zeroinit.rs"]}],"files":["kernel.rs","lib.rs","sync.rs","time.rs","utils.rs"]};
+sourcesIndex["constance"] = {"name":"","dirs":[{"name":"kernel","dirs":[{"name":"cfg","files":["event_group.rs","hunk.rs","interrupt.rs","mutex.rs","semaphore.rs","startup.rs","task.rs","timer.rs"]}],"files":["cfg.rs","error.rs","event_group.rs","hunk.rs","interrupt.rs","mutex.rs","semaphore.rs","startup.rs","state.rs","task.rs","timeout.rs","timer.rs","utils.rs","wait.rs"]},{"name":"sync","files":["mutex.rs"]},{"name":"time","files":["duration.rs","time.rs"]},{"name":"utils","dirs":[{"name":"binary_heap","files":["helpers.rs","veclike.rs"]}],"files":["aligned_storage.rs","binary_heap.rs","binary_search.rs","convert.rs","ctz.rs","for_times.rs","init.rs","int.rs","intrusive_list.rs","mem.rs","pin.rs","prio_bitmap.rs","rawcell.rs","sort.rs","vec.rs","zeroinit.rs"]}],"files":["kernel.rs","lib.rs","sync.rs","time.rs","utils.rs"]};
 sourcesIndex["constance_port_arm"] = {"name":"","dirs":[{"name":"gic","files":["cfg.rs","gic_regs.rs","imp.rs"]},{"name":"sp804","files":["cfg.rs","imp.rs","sp804_regs.rs"]},{"name":"startup","files":["cfg.rs"]}],"files":["lib.rs"]};
 sourcesIndex["constance_port_arm_m"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["constance_port_riscv"] = {"name":"","dirs":[{"name":"plic","files":["cfg.rs","imp.rs","plic_regs.rs"]},{"name":"rt","files":["cfg.rs"]},{"name":"threading","files":["cfg.rs"]},{"name":"timer","files":["cfg.rs","imp.rs"]}],"files":["lib.rs"]};

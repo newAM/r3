@@ -927,6 +927,20 @@
 <span id="924">924</span>
 <span id="925">925</span>
 <span id="926">926</span>
+<span id="927">927</span>
+<span id="928">928</span>
+<span id="929">929</span>
+<span id="930">930</span>
+<span id="931">931</span>
+<span id="932">932</span>
+<span id="933">933</span>
+<span id="934">934</span>
+<span id="935">935</span>
+<span id="936">936</span>
+<span id="937">937</span>
+<span id="938">938</span>
+<span id="939">939</span>
+<span id="940">940</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! The RTOS kernel</span>
 <span class="kw">use</span> <span class="ident">core</span>::{
@@ -949,6 +963,7 @@
 <span class="kw">mod</span> <span class="ident">event_group</span>;
 <span class="kw">mod</span> <span class="ident">hunk</span>;
 <span class="kw">mod</span> <span class="ident">interrupt</span>;
+<span class="kw">mod</span> <span class="ident">mutex</span>;
 <span class="kw">mod</span> <span class="ident">semaphore</span>;
 <span class="kw">mod</span> <span class="ident">startup</span>;
 <span class="kw">mod</span> <span class="ident">state</span>;
@@ -958,8 +973,8 @@
 <span class="kw">mod</span> <span class="ident">utils</span>;
 <span class="kw">mod</span> <span class="ident">wait</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::{
-    <span class="ident">error</span>::<span class="kw-2">*</span>, <span class="ident">event_group</span>::<span class="kw-2">*</span>, <span class="ident">hunk</span>::<span class="kw-2">*</span>, <span class="ident">interrupt</span>::<span class="kw-2">*</span>, <span class="ident">semaphore</span>::<span class="kw-2">*</span>, <span class="ident">startup</span>::<span class="kw-2">*</span>, <span class="ident">task</span>::<span class="kw-2">*</span>, <span class="ident">timeout</span>::<span class="kw-2">*</span>,
-    <span class="ident">timer</span>::<span class="kw-2">*</span>, <span class="ident">wait</span>::<span class="kw-2">*</span>,
+    <span class="ident">error</span>::<span class="kw-2">*</span>, <span class="ident">event_group</span>::<span class="kw-2">*</span>, <span class="ident">hunk</span>::<span class="kw-2">*</span>, <span class="ident">interrupt</span>::<span class="kw-2">*</span>, <span class="ident">mutex</span>::<span class="kw-2">*</span>, <span class="ident">semaphore</span>::<span class="kw-2">*</span>, <span class="ident">startup</span>::<span class="kw-2">*</span>, <span class="ident">task</span>::<span class="kw-2">*</span>,
+    <span class="ident">timeout</span>::<span class="kw-2">*</span>, <span class="ident">timer</span>::<span class="kw-2">*</span>, <span class="ident">wait</span>::<span class="kw-2">*</span>,
 };
 
 <span class="doccomment">/// Numeric value used to identify various kinds of kernel objects.</span>
@@ -1734,6 +1749,18 @@
     <span class="comment">//        to be resolved because `EventGroupCb` includes interior mutability</span>
     <span class="comment">//        and can&#39;t be referred to by `const`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">mutex_cb_pool</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">MutexCb</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>];
+
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
+    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">get_mutex_cb</span>(<span class="ident">i</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">MutexCb</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="self">Self</span>::<span class="ident">mutex_cb_pool</span>().<span class="ident">get</span>(<span class="ident">i</span>)
+    }
+
+    <span class="comment">// FIXME: Waiting for &lt;https://github.com/rust-lang/const-eval/issues/11&gt;</span>
+    <span class="comment">//        to be resolved because `EventGroupCb` includes interior mutability</span>
+    <span class="comment">//        and can&#39;t be referred to by `const`</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
     <span class="kw">fn</span> <span class="ident">semaphore_cb_pool</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">SemaphoreCb</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>];
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -1764,8 +1791,9 @@
     <span class="ident">TaskPriority</span>: <span class="lifetime">&#39;static</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">System</span> <span class="kw">as</span> <span class="ident">KernelCfg1</span><span class="op">&gt;</span>::<span class="ident">TaskPriority</span>,
     <span class="ident">TimeoutHeap</span>: <span class="lifetime">&#39;static</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">System</span> <span class="kw">as</span> <span class="ident">KernelCfg2</span><span class="op">&gt;</span>::<span class="ident">TimeoutHeap</span>,
 <span class="op">&gt;</span> {
-    <span class="doccomment">/// The currently or recently running task. Can be in a Running or Waiting</span>
-    <span class="doccomment">/// state.</span>
+    <span class="doccomment">/// The currently or recently running task. Can be in a Running, Waiting, or</span>
+    <span class="doccomment">/// Ready state. The last two only can be observed momentarily around a</span>
+    <span class="doccomment">/// call to `yield_cpu` or in an interrupt handler.</span>
     <span class="ident">running_task</span>:
         <span class="ident">utils</span>::<span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">TaskCb</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">PortTaskState</span>, <span class="ident">TaskPriority</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 
