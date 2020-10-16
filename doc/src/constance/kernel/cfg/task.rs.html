@@ -408,7 +408,7 @@
             } <span class="kw">else</span> {
                 <span class="ident">task</span>::<span class="ident">TaskSt</span>::<span class="ident">Dormant</span>
             }),
-            <span class="ident">link</span>: <span class="ident">CpuLockCell</span>::<span class="ident">new</span>(<span class="prelude-val">None</span>),
+            <span class="ident">ready_queue_data</span>: <span class="ident">Init</span>::<span class="ident">INIT</span>,
             <span class="ident">wait</span>: <span class="ident">Init</span>::<span class="ident">INIT</span>,
             <span class="ident">park_token</span>: <span class="ident">CpuLockCell</span>::<span class="ident">new</span>(<span class="bool-val">false</span>),
             <span class="ident">last_mutex_held</span>: <span class="ident">CpuLockCell</span>::<span class="ident">new</span>(<span class="prelude-val">None</span>),
