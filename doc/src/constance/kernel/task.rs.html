@@ -1379,6 +1379,9 @@
 
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">st</span>: <span class="ident">utils</span>::<span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">TaskSt</span><span class="op">&gt;</span>,
 
+    <span class="doccomment">/// A flag indicating whether the task has a park token or not.</span>
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">park_token</span>: <span class="ident">utils</span>::<span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">bool</span><span class="op">&gt;</span>,
+
     <span class="doccomment">/// Allows `TaskCb` to participate in one of linked lists.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///  - In a `Ready` state, this forms the linked list headed by</span>
@@ -1392,9 +1395,6 @@
 
     <span class="doccomment">/// The last mutex locked by the task.</span>
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">last_mutex_held</span>: <span class="ident">utils</span>::<span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">mutex</span>::<span class="ident">MutexCb</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-
-    <span class="doccomment">/// A flag indicating whether the task has a park token or not.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">park_token</span>: <span class="ident">utils</span>::<span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">bool</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span>
