@@ -835,6 +835,31 @@
 <span id="832">832</span>
 <span id="833">833</span>
 <span id="834">834</span>
+<span id="835">835</span>
+<span id="836">836</span>
+<span id="837">837</span>
+<span id="838">838</span>
+<span id="839">839</span>
+<span id="840">840</span>
+<span id="841">841</span>
+<span id="842">842</span>
+<span id="843">843</span>
+<span id="844">844</span>
+<span id="845">845</span>
+<span id="846">846</span>
+<span id="847">847</span>
+<span id="848">848</span>
+<span id="849">849</span>
+<span id="850">850</span>
+<span id="851">851</span>
+<span id="852">852</span>
+<span id="853">853</span>
+<span id="854">854</span>
+<span id="855">855</span>
+<span id="856">856</span>
+<span id="857">857</span>
+<span id="858">858</span>
+<span id="859">859</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">core</span>::{<span class="ident">fmt</span>, <span class="ident">ops</span>, <span class="ident">ptr</span>::<span class="ident">NonNull</span>};
 
@@ -847,7 +872,7 @@
 };
 
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">utils</span>::{
-    <span class="ident">intrusive_list</span>::{<span class="self">self</span>, <span class="ident">ListAccessorCell</span>},
+    <span class="ident">intrusive_list</span>::{<span class="self">self</span>, <span class="ident">HandleInconsistencyUnchecked</span>, <span class="ident">ListAccessorCell</span>},
     <span class="ident">unwrap</span>::<span class="ident">UnwrapUnchecked</span>,
     <span class="ident">Init</span>,
 };
@@ -919,15 +944,17 @@
 <span class="doccomment">/// Get a `ListAccessorCell` used to access a wait queue.</span>
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">wait_queue_accessor</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">list</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">key</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
-        <span class="comment">// Safety: All elements are extant because we never drop a `Wait` when</span>
-        <span class="comment">//         it&#39;s still in a wait queue.</span>
         <span class="kw">unsafe</span> {
             <span class="ident">ListAccessorCell</span>::<span class="ident">new</span>(
                 <span class="macro-nonterminal">$</span><span class="macro-nonterminal">list</span>,
+                <span class="comment">// Safety: All elements are extant because we never drop a</span>
+                <span class="comment">//     `Wait` when it&#39;s still in a wait queue.</span>
                 <span class="ident">UnsafeStatic</span>::<span class="ident">new</span>(),
                 <span class="op">|</span><span class="ident">wait</span>: <span class="kw-2">&amp;</span><span class="ident">Wait</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">|</span> <span class="kw-2">&amp;</span><span class="ident">wait</span>.<span class="ident">link</span>,
                 <span class="macro-nonterminal">$</span><span class="macro-nonterminal">key</span>,
             )
+            <span class="comment">// Safety: This linked list is structurally sound.</span>
+            .<span class="ident">unchecked</span>()
         }
     };
 }
@@ -966,7 +993,38 @@
     <span class="ident">Mutex</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">mutex</span>::<span class="ident">MutexCb</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>),
     <span class="ident">Park</span>,
     <span class="ident">Sleep</span>,
-    <span class="ident">__Nonexhaustive</span>(<span class="ident">System</span>),
+    <span class="ident">__Nonexhaustive</span>,
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PortThreading</span><span class="op">&gt;</span> <span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// Return `self`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This might look redundant but is actually very important to maximize</span>
+    <span class="doccomment">/// performance of moving `WaitPayload`. Without this, the compiler would</span>
+    <span class="doccomment">/// try very hard to preserve the bit pattern of the unused space within</span>
+    <span class="doccomment">/// `payload` by using `memcpy`, which is extremely slow. I&#39;ve seen a 30%</span>
+    <span class="doccomment">/// decrease in the execution time in the `semaphore` benchmark as a result</span>
+    <span class="doccomment">/// of using this method.</span>
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
+    <span class="kw">fn</span> <span class="ident">r#move</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="self">Self</span>::<span class="ident">EventGroupBits</span> {
+                <span class="ident">bits</span>,
+                <span class="ident">flags</span>,
+                <span class="ident">orig_bits</span>,
+            } <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">EventGroupBits</span> {
+                <span class="ident">bits</span>,
+                <span class="ident">flags</span>,
+                <span class="ident">orig_bits</span>,
+
+            },
+            <span class="self">Self</span>::<span class="ident">Semaphore</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Semaphore</span>,
+            <span class="self">Self</span>::<span class="ident">Mutex</span>(<span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Mutex</span>(<span class="ident">x</span>),
+            <span class="self">Self</span>::<span class="ident">Park</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Park</span>,
+            <span class="self">Self</span>::<span class="ident">Sleep</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Sleep</span>,
+            <span class="self">Self</span>::<span class="ident">__Nonexhaustive</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">__Nonexhaustive</span>,
+        }
+    }
 }
 
 <span class="doccomment">/// A queue of wait objects ([`Wait`]) waiting on a particular waitable object.</span>
@@ -1073,7 +1131,7 @@
             <span class="ident">task</span>,
             <span class="ident">link</span>: <span class="ident">CpuLockCell</span>::<span class="ident">new</span>(<span class="prelude-val">None</span>),
             <span class="ident">wait_queue</span>: <span class="prelude-val">Some</span>(<span class="self">self</span>),
-            <span class="ident">payload</span>,
+            <span class="ident">payload</span>: <span class="ident">payload</span>.<span class="ident">r#move</span>(),
         };
 
         <span class="self">self</span>.<span class="ident">wait_inner</span>(<span class="ident">lock</span>, <span class="kw-2">&amp;</span><span class="ident">wait</span>)
@@ -1102,7 +1160,7 @@
             <span class="ident">task</span>,
             <span class="ident">link</span>: <span class="ident">CpuLockCell</span>::<span class="ident">new</span>(<span class="prelude-val">None</span>),
             <span class="ident">wait_queue</span>: <span class="prelude-val">Some</span>(<span class="self">self</span>),
-            <span class="ident">payload</span>,
+            <span class="ident">payload</span>: <span class="ident">payload</span>.<span class="ident">r#move</span>(),
         };
 
         <span class="comment">// Configure a timeout</span>
@@ -1150,9 +1208,8 @@
             }
         };
 
-        <span class="comment">// Safety: This linked list is structurally sound, so `insert` shouldn&#39;t</span>
-        <span class="comment">// return `InconsistentError`. `wait_ref` is not linked, so it shouldn&#39;t</span>
-        <span class="comment">// return `InsertError::AlreadyLinked` either.</span>
+        <span class="comment">// Safety: `wait_ref` is not linked, so it shouldn&#39;t return</span>
+        <span class="comment">//     `InsertError::AlreadyLinked`.</span>
         <span class="kw">unsafe</span> { <span class="ident">accessor</span>.<span class="ident">insert</span>(<span class="ident">wait_ref</span>, <span class="ident">insert_at</span>).<span class="ident">unwrap_unchecked</span>() };
 
         <span class="comment">// Set `task.current_wait`</span>
@@ -1180,6 +1237,7 @@
             <span class="ident">UnsafeStatic</span>,
             <span class="ident">MapLink</span>,
             <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>,
+            <span class="ident">HandleInconsistencyUnchecked</span>,
         <span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span>
     <span class="kw">where</span>
@@ -1188,9 +1246,7 @@
         ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">CpuLockCell</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">intrusive_list</span>::<span class="ident">Link</span><span class="op">&lt;</span><span class="ident">WaitRef</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">insert_at</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="comment">// Safety: This linked list is structurally sound, so it shouldn&#39;t</span>
-        <span class="comment">//         return `Err(InconsistentError)`</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cursor</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">accessor</span>.<span class="ident">back</span>().<span class="ident">unwrap_unchecked</span>() };
+        <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">cursor</span>) <span class="op">=</span> <span class="ident">accessor</span>.<span class="ident">back</span>();
         <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">next_cursor</span>) <span class="op">=</span> <span class="ident">cursor</span> {
             <span class="comment">// Should the new wait object inserted at this or an earlier</span>
             <span class="comment">// position?</span>
@@ -1203,8 +1259,8 @@
                 <span class="comment">// there might be a viable position that is even</span>
                 <span class="comment">// earlier.</span>
                 <span class="ident">insert_at</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">next_cursor</span>);
-                <span class="comment">// Safety: This linked list is structurally sound, so it shouldn&#39;t</span>
-                <span class="comment">//         return `Err(InconsistentError)`</span>
+                <span class="comment">// Safety: `next_cursor` is linked, so `prev` shouldn&#39;t return</span>
+                <span class="comment">//         `ItemError::Unlinked`.</span>
                 <span class="ident">cursor</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">accessor</span>.<span class="ident">prev</span>(<span class="ident">next_cursor</span>).<span class="ident">unwrap_unchecked</span>() };
             } <span class="kw">else</span> {
                 <span class="kw">break</span>;
@@ -1234,9 +1290,8 @@
 
         <span class="comment">// Remove `wait_ref` first.</span>
         <span class="comment">//</span>
-        <span class="comment">// Safety: This linked list is structurally sound, so `remove` shouldn&#39;t</span>
-        <span class="comment">// return `InconsistentError`. `wait_ref` is linked, so it shouldn&#39;t</span>
-        <span class="comment">// return `ItemError::Unlinked` either.</span>
+        <span class="comment">// Safety: `wait_ref` is linked, so it shouldn&#39;t return</span>
+        <span class="comment">//     `ItemError::Unlinked`.</span>
         <span class="kw">unsafe</span> {
             <span class="ident">accessor</span>.<span class="ident">remove</span>(<span class="ident">wait_ref</span>).<span class="ident">unwrap_unchecked</span>();
         }
@@ -1303,11 +1358,9 @@
         <span class="kw-2">mut</span> <span class="ident">lock</span>: <span class="ident">CpuLockGuardBorrowMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">System</span><span class="op">&gt;</span>,
         <span class="kw-2">mut</span> <span class="ident">cond</span>: <span class="kw">impl</span> <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">WaitPayload</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>,
     ) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cur</span> <span class="op">=</span> {
+        <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">cur</span>) <span class="op">=</span> {
             <span class="kw">let</span> <span class="ident">accessor</span> <span class="op">=</span> <span class="macro">wait_queue_accessor</span><span class="macro">!</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">waits</span>, <span class="ident">lock</span>.<span class="ident">borrow_mut</span>());
-            <span class="comment">// Safety: This linked list is structurally sound, so it shouldn&#39;t</span>
-            <span class="comment">//         return `Err(InconsistentError)`</span>
-            <span class="kw">unsafe</span> { <span class="ident">accessor</span>.<span class="ident">front</span>().<span class="ident">unwrap_unchecked</span>() }
+            <span class="ident">accessor</span>.<span class="ident">front</span>()
         };
 
         <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">wait_ref</span>) <span class="op">=</span> <span class="ident">cur</span> {
@@ -1315,9 +1368,8 @@
             <span class="comment">// from `self.waits`.</span>
             <span class="ident">cur</span> <span class="op">=</span> {
                 <span class="kw">let</span> <span class="ident">accessor</span> <span class="op">=</span> <span class="macro">wait_queue_accessor</span><span class="macro">!</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">waits</span>, <span class="ident">lock</span>.<span class="ident">borrow_mut</span>());
-                <span class="comment">// Safety: This linked list is structurally sound, so it</span>
-                <span class="comment">// shouldn&#39;t return `InconsistentError`. `wait_ref` is</span>
-                <span class="comment">// still linked, so it shouldn&#39;t return `ItemError::Unlinked`.</span>
+                <span class="comment">// Safety: `wait_ref` is still linked, so it shouldn&#39;t return</span>
+                <span class="comment">//         `ItemError::Unlinked`.</span>
                 <span class="kw">unsafe</span> { <span class="ident">accessor</span>.<span class="ident">next</span>(<span class="ident">wait_ref</span>).<span class="ident">unwrap_unchecked</span>() }
             };
 
@@ -1335,9 +1387,8 @@
 
             <span class="comment">// Wake up the task</span>
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">accessor</span> <span class="op">=</span> <span class="macro">wait_queue_accessor</span><span class="macro">!</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">waits</span>, <span class="ident">lock</span>.<span class="ident">borrow_mut</span>());
-            <span class="comment">// Safety: This linked list is structurally sound, so `remove`</span>
-            <span class="comment">// shouldn&#39;t return `InconsistentError`. `wait_ref` is still linked,</span>
-            <span class="comment">// so it shouldn&#39;t return `ItemError::Unlinked` either.</span>
+            <span class="comment">// Safety: `wait_ref` is still linked, so it shouldn&#39;t return</span>
+            <span class="comment">//         `ItemError::Unlinked`.</span>
             <span class="kw">unsafe</span> { <span class="ident">accessor</span>.<span class="ident">remove</span>(<span class="ident">wait_ref</span>).<span class="ident">unwrap_unchecked</span>() };
 
             <span class="ident">complete_wait</span>(<span class="ident">lock</span>.<span class="ident">borrow_mut</span>(), <span class="ident">wait</span>, <span class="prelude-val">Ok</span>(()));
@@ -1372,7 +1423,7 @@
             <span class="self">Self</span>::<span class="ident">Mutex</span>(<span class="ident">mutex</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;Mutex({:p})&quot;</span>, <span class="ident">mutex</span>),
             <span class="self">Self</span>::<span class="ident">Park</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;Park&quot;</span>),
             <span class="self">Self</span>::<span class="ident">Sleep</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;Sleep&quot;</span>),
-            <span class="self">Self</span>::<span class="ident">__Nonexhaustive</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+            <span class="self">Self</span>::<span class="ident">__Nonexhaustive</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
         }
     }
 }
@@ -1480,7 +1531,7 @@
         <span class="ident">task</span>,
         <span class="ident">link</span>: <span class="ident">CpuLockCell</span>::<span class="ident">new</span>(<span class="prelude-val">None</span>),
         <span class="ident">wait_queue</span>: <span class="prelude-val">None</span>,
-        <span class="ident">payload</span>,
+        <span class="ident">payload</span>: <span class="ident">payload</span>.<span class="ident">r#move</span>(),
     };
 
     <span class="ident">wait_no_queue_inner</span>(<span class="ident">lock</span>, <span class="kw-2">&amp;</span><span class="ident">wait</span>).<span class="ident">map_err</span>(<span class="ident">WaitTimeoutError</span>::<span class="ident">expect_not_timeout</span>)<span class="question-mark">?</span>;
@@ -1510,7 +1561,7 @@
         <span class="ident">task</span>,
         <span class="ident">link</span>: <span class="ident">CpuLockCell</span>::<span class="ident">new</span>(<span class="prelude-val">None</span>),
         <span class="ident">wait_queue</span>: <span class="prelude-val">None</span>,
-        <span class="ident">payload</span>,
+        <span class="ident">payload</span>: <span class="ident">payload</span>.<span class="ident">r#move</span>(),
     };
 
     <span class="comment">// Configure a timeout</span>
@@ -1622,9 +1673,8 @@
             <span class="comment">// Remove `wait` from the wait queue it belongs to</span>
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">wait_queue</span>) <span class="op">=</span> <span class="ident">wait</span>.<span class="ident">wait_queue</span> {
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">accessor</span> <span class="op">=</span> <span class="macro">wait_queue_accessor</span><span class="macro">!</span>(<span class="kw-2">&amp;</span><span class="ident">wait_queue</span>.<span class="ident">waits</span>, <span class="ident">lock</span>.<span class="ident">borrow_mut</span>());
-                <span class="comment">// Safety: This linked list is structurally sound, so `remove` shouldn&#39;t</span>
-                <span class="comment">// return `InconsistentError`. `wait_ref` is linked, so it shouldn&#39;t</span>
-                <span class="comment">// return `ItemError::Unlinked` either.</span>
+                <span class="comment">// Safety: `wait_ref` is linked, so it shouldn&#39;t return</span>
+                <span class="comment">//         `ItemError::Unlinked`.</span>
                 <span class="kw">unsafe</span> { <span class="ident">accessor</span>.<span class="ident">remove</span>(<span class="ident">wait_ref</span>).<span class="ident">unwrap_unchecked</span>() };
             }
 
