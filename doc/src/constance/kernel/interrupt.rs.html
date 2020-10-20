@@ -254,6 +254,14 @@
 <span id="251">251</span>
 <span id="252">252</span>
 <span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">core</span>::{<span class="ident">fmt</span>, <span class="ident">hash</span>, <span class="ident">marker</span>::<span class="ident">PhantomData</span>};
 
@@ -329,6 +337,7 @@
     <span class="doccomment">/// if the operation is unsafe.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [a managed range]: crate::kernel::PortInterrupts::MANAGED_INTERRUPT_PRIORITY_RANGE</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_priority</span>(
         <span class="self">self</span>,
         <span class="ident">value</span>: <span class="ident">InterruptPriority</span>,
@@ -366,6 +375,7 @@
     <span class="doccomment">/// interrupt handler.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [unmanaged-safe]: crate::kernel::cfg::CfgInterruptHandlerBuilder::unmanaged</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">set_priority_unchecked</span>(
         <span class="self">self</span>,
         <span class="ident">value</span>: <span class="ident">InterruptPriority</span>,
@@ -389,6 +399,7 @@
     <span class="doccomment">/// # Safety</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In addition to `set_priority_unchecked`,</span>
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">set_priority_unchecked_inner</span>(
         <span class="self">self</span>,
         <span class="ident">value</span>: <span class="ident">InterruptPriority</span>,
@@ -400,30 +411,35 @@
     }
 
     <span class="doccomment">/// Enable the interrupt line.</span>
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enable</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">EnableInterruptLineError</span><span class="op">&gt;</span> {
         <span class="comment">// Safety: We are the kernel, so it&#39;s okay to call `Port`&#39;s methods</span>
         <span class="kw">unsafe</span> { <span class="ident">System</span>::<span class="ident">enable_interrupt_line</span>(<span class="self">self</span>.<span class="number">0</span>) }
     }
 
     <span class="doccomment">/// Disable the interrupt line.</span>
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">disable</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">EnableInterruptLineError</span><span class="op">&gt;</span> {
         <span class="comment">// Safety: We are the kernel, so it&#39;s okay to call `Port`&#39;s methods</span>
         <span class="kw">unsafe</span> { <span class="ident">System</span>::<span class="ident">disable_interrupt_line</span>(<span class="self">self</span>.<span class="number">0</span>) }
     }
 
     <span class="doccomment">/// Set the pending flag of the interrupt line.</span>
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pend</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">PendInterruptLineError</span><span class="op">&gt;</span> {
         <span class="comment">// Safety: We are the kernel, so it&#39;s okay to call `Port`&#39;s methods</span>
         <span class="kw">unsafe</span> { <span class="ident">System</span>::<span class="ident">pend_interrupt_line</span>(<span class="self">self</span>.<span class="number">0</span>) }
     }
 
     <span class="doccomment">/// Clear the pending flag of the interrupt line.</span>
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">ClearInterruptLineError</span><span class="op">&gt;</span> {
         <span class="comment">// Safety: We are the kernel, so it&#39;s okay to call `Port`&#39;s methods</span>
         <span class="kw">unsafe</span> { <span class="ident">System</span>::<span class="ident">clear_interrupt_line</span>(<span class="self">self</span>.<span class="number">0</span>) }
     }
 
     <span class="doccomment">/// Read the pending flag of the interrupt line.</span>
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_pending</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">QueryInterruptLineError</span><span class="op">&gt;</span> {
         <span class="comment">// Safety: We are the kernel, so it&#39;s okay to call `Port`&#39;s methods</span>
         <span class="kw">unsafe</span> { <span class="ident">System</span>::<span class="ident">is_interrupt_line_pending</span>(<span class="self">self</span>.<span class="number">0</span>) }

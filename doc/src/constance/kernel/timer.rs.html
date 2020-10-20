@@ -665,6 +665,10 @@
 <span id="662">662</span>
 <span id="663">663</span>
 <span id="664">664</span>
+<span id="665">665</span>
+<span id="666">666</span>
+<span id="667">667</span>
+<span id="668">668</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Timers</span>
 <span class="kw">use</span> <span class="ident">core</span>::{<span class="ident">fmt</span>, <span class="ident">hash</span>, <span class="ident">marker</span>::<span class="ident">PhantomData</span>, <span class="ident">mem</span>::<span class="ident">ManuallyDrop</span>};
@@ -1049,6 +1053,7 @@
     <span class="doccomment">/// Start the timer (transition it into the Active state).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This method has no effect if the timer is already in the Active state.</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">start</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">StartTimerError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">timer_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">timer_cb</span>()<span class="question-mark">?</span>;
@@ -1059,6 +1064,7 @@
     <span class="doccomment">/// Stop the timer (transition it into the Dormant state).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This method has no effect if the timer is already in the Dormant state.</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stop</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">StopTimerError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">timer_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">timer_cb</span>()<span class="question-mark">?</span>;
@@ -1073,6 +1079,7 @@
     <span class="doccomment">/// following the activation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `None` means infinity (the timer will never fire).</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_delay</span>(<span class="self">self</span>, <span class="ident">delay</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Duration</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">SetTimerDelayError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">time32</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">x</span>) <span class="op">=</span> <span class="ident">delay</span> {
             <span class="ident">timeout</span>::<span class="ident">time32_from_duration</span>(<span class="ident">x</span>)<span class="question-mark">?</span>
@@ -1089,6 +1096,7 @@
     <span class="doccomment">/// absolute arrival time on every tick.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `None` means infinity.</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_period</span>(<span class="self">self</span>, <span class="ident">period</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Duration</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">SetTimerPeriodError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">time32</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">x</span>) <span class="op">=</span> <span class="ident">period</span> {
             <span class="ident">timeout</span>::<span class="ident">time32_from_duration</span>(<span class="ident">x</span>)<span class="question-mark">?</span>

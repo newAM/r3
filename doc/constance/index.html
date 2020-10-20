@@ -486,6 +486,7 @@ opt-level = 2
 <h1 id="cargo-features" class="section-header"><a href="#cargo-features">Cargo Features</a></h1>
 <ul>
 <li><strong><code>chrono</code></strong>: Enables conversion between our <a href="../constance/time/struct.Duration.html">duration</a> and <a href="../constance/time/struct.Time.html">timetamp</a> types and <code>::chrono</code>'s types.</li>
+<li><strong><code>inline-syscall</code></strong>: Allows (but does not force) inlining for all application-facing methods. Enabling this feature might lower the latency of system calls but there are the following downsides: (1) The decision of inlining is driven by the compiler's built-in heuristics, which takes many factors into consideration. Therefore, the performance improvement (or deterioration) varies unpredictably depending on the global structure of your application and the compiler version used, making it harder to design the system to meet real-time requirements. (2) Inlining increases the code working set size and can make the code run even slower. This is especially likely to happen on an execute-in-place (XIP) system with low-speed code memory such as an SPI flash.</li>
 </ul>
 <!--
 FIXME: Work-around for `svgbobdoc` not supporting `#[doc(include = ...)]`

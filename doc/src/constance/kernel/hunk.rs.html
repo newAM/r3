@@ -217,6 +217,13 @@
 <span id="214">214</span>
 <span id="215">215</span>
 <span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Hunks</span>
 <span class="kw">use</span> <span class="ident">core</span>::{<span class="ident">fmt</span>, <span class="ident">marker</span>::<span class="ident">PhantomData</span>, <span class="ident">mem</span>::<span class="ident">size_of</span>, <span class="ident">ops</span>::<span class="ident">Deref</span>, <span class="ident">ptr</span>::<span class="ident">slice_from_raw_parts</span>};
@@ -323,6 +330,7 @@
     <span class="comment">//        unresolved</span>
 
     <span class="doccomment">/// Get a raw pointer to the raw bytes of the hunk.</span>
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_bytes_ptr</span>(<span class="ident">this</span>: <span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> [<span class="ident">u8</span>] {
         <span class="ident">slice_from_raw_parts</span>(
             <span class="kw">unsafe</span> { <span class="ident">System</span>::<span class="ident">HUNK_ATTR</span>.<span class="ident">hunk_pool_ptr</span>().<span class="ident">add</span>(<span class="ident">this</span>.<span class="ident">start</span>) },
@@ -336,6 +344,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The result might include uninitialized bytes and/or interior mutability,</span>
     <span class="doccomment">/// so it might be unsafe to access.</span>
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">as_bytes</span>(<span class="ident">this</span>: <span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">u8</span>] {
         <span class="comment">// Safety: The caller is responsible for making sure interpreting the</span>
         <span class="comment">// contents as `[u8]` is safe</span>
@@ -345,6 +354,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span>, <span class="ident">T</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">Hunk</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">T</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Get a raw pointer to the hunk&#39;s contents.</span>
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_ptr</span>(<span class="ident">this</span>: <span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span> {
         <span class="self">Self</span>::<span class="ident">as_bytes_ptr</span>(<span class="ident">this</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>
     }
@@ -359,6 +369,7 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span>, <span class="ident">T</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">Hunk</span><span class="op">&lt;</span><span class="ident">System</span>, <span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">T</span>;
 
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Target</span> {
         <span class="self">self</span>.<span class="ident">as_ref</span>()
     }
@@ -366,6 +377,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span>, <span class="ident">T</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">Hunk</span><span class="op">&lt;</span><span class="ident">System</span>, [<span class="ident">T</span>]<span class="op">&gt;</span> {
     <span class="doccomment">/// Get a raw pointer to the hunk&#39;s contents.</span>
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_ptr</span>(<span class="ident">this</span>: <span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> [<span class="ident">T</span>] {
         <span class="ident">slice_from_raw_parts</span>(
             <span class="self">Self</span>::<span class="ident">as_bytes_ptr</span>(<span class="ident">this</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>,
@@ -375,6 +387,7 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span>, <span class="ident">T</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">T</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Hunk</span><span class="op">&lt;</span><span class="ident">System</span>, [<span class="ident">T</span>]<span class="op">&gt;</span> {
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">T</span>] {
         <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="self">Self</span>::<span class="ident">as_ptr</span>(<span class="kw-2">*</span><span class="self">self</span>) }
     }
@@ -383,6 +396,7 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span>, <span class="ident">T</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">Hunk</span><span class="op">&lt;</span><span class="ident">System</span>, [<span class="ident">T</span>]<span class="op">&gt;</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> [<span class="ident">T</span>];
 
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Target</span> {
         <span class="self">self</span>.<span class="ident">as_ref</span>()
     }

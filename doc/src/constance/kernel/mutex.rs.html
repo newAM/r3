@@ -780,6 +780,12 @@
 <span id="777">777</span>
 <span id="778">778</span>
 <span id="779">779</span>
+<span id="780">780</span>
+<span id="781">781</span>
+<span id="782">782</span>
+<span id="783">783</span>
+<span id="784">784</span>
+<span id="785">785</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! ~~Mutices~~ Mutexes</span>
 <span class="comment">// FIXME: `debug_assert_matches` needing `assert_matches` is fixed by</span>
@@ -1123,6 +1129,7 @@
     }
 
     <span class="doccomment">/// Get a flag indicating whether the mutex is currently locked.</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_locked</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">QueryMutexError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">mutex_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">mutex_cb</span>()<span class="question-mark">?</span>;
@@ -1133,6 +1140,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Mutexes must be unlocked in a lock-reverse order, or this method will</span>
     <span class="doccomment">/// return [`UnlockMutexError::BadObjectState`].</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unlock</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">UnlockMutexError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="ident">state</span>::<span class="ident">expect_waitable_context</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
@@ -1154,6 +1162,7 @@
     <span class="doccomment">/// allowed in [a non-waitable context] and will return `Err(BadContext)`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [a non-waitable context]: crate#contexts</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lock</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">LockMutexError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="ident">state</span>::<span class="ident">expect_waitable_context</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
@@ -1163,6 +1172,7 @@
     }
 
     <span class="doccomment">/// [`lock`](Self::lock) with timeout.</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lock_timeout</span>(<span class="self">self</span>, <span class="ident">timeout</span>: <span class="ident">Duration</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">LockMutexTimeoutError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">time32</span> <span class="op">=</span> <span class="ident">timeout</span>::<span class="ident">time32_from_duration</span>(<span class="ident">timeout</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
@@ -1180,6 +1190,7 @@
     <span class="doccomment">/// in a non-task context because a mutex lock needs an owning task.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`Semaphore::poll_one`]: crate::kernel::Semaphore::poll_one</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_lock</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">TryLockMutexError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="ident">state</span>::<span class="ident">expect_task_context</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
@@ -1195,6 +1206,7 @@
     <span class="doccomment">/// &gt; **Relation to Other Specifications:** Equivalent to</span>
     <span class="doccomment">/// &gt; `pthread_mutex_consistent` from POSIX.1-2008.</span>
     <span class="doccomment">///</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mark_consistent</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">MarkConsistentMutexError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">mutex_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">mutex_cb</span>()<span class="question-mark">?</span>;

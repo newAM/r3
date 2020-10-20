@@ -975,6 +975,20 @@
 <span id="972">972</span>
 <span id="973">973</span>
 <span id="974">974</span>
+<span id="975">975</span>
+<span id="976">976</span>
+<span id="977">977</span>
+<span id="978">978</span>
+<span id="979">979</span>
+<span id="980">980</span>
+<span id="981">981</span>
+<span id="982">982</span>
+<span id="983">983</span>
+<span id="984">984</span>
+<span id="985">985</span>
+<span id="986">986</span>
+<span id="987">987</span>
+<span id="988">988</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! The RTOS kernel</span>
 <span class="kw">use</span> <span class="ident">core</span>::{
@@ -1256,6 +1270,7 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Port</span> <span class="op">+</span> <span class="ident">KernelCfg2</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">Kernel</span> <span class="kw">for</span> <span class="ident">T</span> {
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">acquire_cpu_lock</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">CpuLockError</span><span class="op">&gt;</span> {
         <span class="comment">// Safety: `try_enter_cpu_lock` is only meant to be called by</span>
         <span class="comment">//         the kernel</span>
@@ -1266,6 +1281,7 @@
         }
     }
 
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">release_cpu_lock</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">CpuLockError</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="op">!</span><span class="self">Self</span>::<span class="ident">is_cpu_lock_active</span>() {
             <span class="prelude-val">Err</span>(<span class="ident">CpuLockError</span>::<span class="ident">BadContext</span>)
@@ -1276,44 +1292,55 @@
         }
     }
 
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">has_cpu_lock</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">Self</span>::<span class="ident">is_cpu_lock_active</span>()
     }
 
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">fn</span> <span class="ident">boost_priority</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">BoostPriorityError</span><span class="op">&gt;</span> {
         <span class="ident">state</span>::<span class="ident">boost_priority</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>()
     }
 
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">unboost_priority</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">BoostPriorityError</span><span class="op">&gt;</span> {
         <span class="ident">state</span>::<span class="ident">unboost_priority</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>()
     }
 
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">is_priority_boost_active</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">Self</span>::<span class="ident">state</span>().<span class="ident">priority_boost</span>.<span class="ident">load</span>(<span class="ident">Ordering</span>::<span class="ident">Relaxed</span>)
     }
 
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">fn</span> <span class="ident">time</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Time</span>, <span class="ident">TimeError</span><span class="op">&gt;</span> {
         <span class="ident">timeout</span>::<span class="ident">system_time</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>()
     }
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">fn</span> <span class="ident">set_time</span>(<span class="ident">time</span>: <span class="ident">Time</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">TimeError</span><span class="op">&gt;</span> {
         <span class="ident">timeout</span>::<span class="ident">set_system_time</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>(<span class="ident">time</span>)
     }
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">fn</span> <span class="ident">adjust_time</span>(<span class="ident">delta</span>: <span class="ident">Duration</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AdjustTimeError</span><span class="op">&gt;</span> {
         <span class="ident">timeout</span>::<span class="ident">adjust_system_and_event_time</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>(<span class="ident">delta</span>)
     }
 
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">exit_task</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="op">!</span>, <span class="ident">ExitTaskError</span><span class="op">&gt;</span> {
         <span class="comment">// Safety: Just forwarding the function call</span>
         <span class="kw">unsafe</span> { <span class="ident">exit_current_task</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>() }
     }
 
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">fn</span> <span class="ident">park</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">ParkError</span><span class="op">&gt;</span> {
         <span class="ident">task</span>::<span class="ident">park_current_task</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>()
     }
 
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">fn</span> <span class="ident">park_timeout</span>(<span class="ident">timeout</span>: <span class="ident">Duration</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">ParkTimeoutError</span><span class="op">&gt;</span> {
         <span class="ident">task</span>::<span class="ident">park_current_task_timeout</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>(<span class="ident">timeout</span>)
     }
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">fn</span> <span class="ident">sleep</span>(<span class="ident">timeout</span>: <span class="ident">Duration</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">SleepError</span><span class="op">&gt;</span> {
         <span class="ident">task</span>::<span class="ident">put_current_task_on_sleep_timeout</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>(<span class="ident">timeout</span>)
     }
@@ -1325,6 +1352,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that printing this object might consume a large amount of stack</span>
     <span class="doccomment">/// space.</span>
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">debug</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">DebugPrinter</span> {
         <span class="ident">KernelDebugPrinter</span>(<span class="ident">PhantomData</span>)
     }

@@ -354,6 +354,12 @@
 <span id="351">351</span>
 <span id="352">352</span>
 <span id="353">353</span>
+<span id="354">354</span>
+<span id="355">355</span>
+<span id="356">356</span>
+<span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Event groups</span>
 <span class="kw">use</span> <span class="ident">core</span>::{
@@ -461,6 +467,7 @@
     }
 
     <span class="doccomment">/// Set the specified bits.</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set</span>(<span class="self">self</span>, <span class="ident">bits</span>: <span class="ident">EventGroupBits</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">UpdateEventGroupError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">event_group_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">event_group_cb</span>()<span class="question-mark">?</span>;
@@ -469,6 +476,7 @@
     }
 
     <span class="doccomment">/// Clear the specified bits.</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear</span>(<span class="self">self</span>, <span class="ident">bits</span>: <span class="ident">EventGroupBits</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">UpdateEventGroupError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">event_group_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">event_group_cb</span>()<span class="question-mark">?</span>;
@@ -477,6 +485,7 @@
     }
 
     <span class="doccomment">/// Get the currently set bits.</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">EventGroupBits</span>, <span class="ident">GetEventGroupError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">event_group_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">event_group_cb</span>()<span class="question-mark">?</span>;
@@ -493,6 +502,7 @@
     <span class="doccomment">/// allowed in [a non-waitable context] and will return `Err(BadContext)`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [a non-waitable context]: crate#contexts</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wait</span>(
         <span class="self">self</span>,
         <span class="ident">bits</span>: <span class="ident">EventGroupBits</span>,
@@ -506,6 +516,7 @@
     }
 
     <span class="doccomment">/// [`wait`](Self::wait) with timeout.</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wait_timeout</span>(
         <span class="self">self</span>,
         <span class="ident">bits</span>: <span class="ident">EventGroupBits</span>,
@@ -523,6 +534,7 @@
     <span class="doccomment">/// Non-blocking version of [`wait`](Self::wait). Returns immediately with</span>
     <span class="doccomment">/// [`PollEventGroupError::Timeout`] if the unblocking condition is not</span>
     <span class="doccomment">/// satisfied.</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">poll</span>(
         <span class="self">self</span>,
         <span class="ident">bits</span>: <span class="ident">EventGroupBits</span>,
