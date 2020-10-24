@@ -1684,6 +1684,8 @@
 <span class="doccomment">///                                                                     (max_tick_count + 1)</span>
 <span class="doccomment">/// ```</span>
 <span class="doccomment">/// &lt;/center&gt;</span>
+<span class="doccomment">///</span>
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">include</span> <span class="op">=</span> <span class="string">&quot;../../constance/src/common.md&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TicklessStatelessCore</span>;
 
@@ -1912,8 +1914,6 @@
     <span class="kw">pub</span> <span class="ident">hw_ticks</span>: <span class="ident">u32</span>,
 }
 
-<span class="comment">// FIXME: `svgbobdoc` doesn&#39;t like `#[doc(include = ...)]`</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">include</span> <span class="op">=</span> <span class="string">&quot;../../constance/src/common.md&quot;</span>)]</span>
 <span class="kw">impl</span> <span class="ident">Init</span> <span class="kw">for</span> <span class="ident">TicklessStatelessCore</span> {
     <span class="kw">const</span> <span class="ident">INIT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>;
 }

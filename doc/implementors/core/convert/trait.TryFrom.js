@@ -1,3 +1,3 @@
 (function() {var implementors = {};
-implementors["constance"] = [{"text":"impl TryFrom&lt;Duration&gt; for Duration","synthetic":false,"types":[]},{"text":"impl TryFrom&lt;Duration&gt; for Duration","synthetic":false,"types":[]}];
+implementors["constance"] = [{"text":"impl TryFrom&lt;Duration&gt; for Duration","synthetic":false,"types":[]},{"text":"impl TryFrom&lt;Duration&gt; for Duration","synthetic":false,"types":[]},{"text":"impl TryFrom&lt;Duration&gt; for Duration","synthetic":false,"types":[]},{"text":"impl TryFrom&lt;DateTime&lt;Utc&gt;&gt; for Time","synthetic":false,"types":[]},{"text":"impl TryFrom&lt;Time&gt; for DateTime&lt;Utc&gt;","synthetic":false,"types":[]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

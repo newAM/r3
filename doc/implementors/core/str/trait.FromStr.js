@@ -1,4 +1,5 @@
 (function() {var implementors = {};
+implementors["chrono"] = [{"text":"impl FromStr for NaiveDate","synthetic":false,"types":[]},{"text":"impl FromStr for NaiveDateTime","synthetic":false,"types":[]},{"text":"impl FromStr for NaiveTime","synthetic":false,"types":[]},{"text":"impl FromStr for DateTime&lt;Utc&gt;","synthetic":false,"types":[]},{"text":"impl FromStr for DateTime&lt;FixedOffset&gt;","synthetic":false,"types":[]},{"text":"impl FromStr for Weekday","synthetic":false,"types":[]}];
 implementors["humantime"] = [{"text":"impl FromStr for Duration","synthetic":false,"types":[]},{"text":"impl FromStr for Timestamp","synthetic":false,"types":[]}];
 implementors["log"] = [{"text":"impl FromStr for Level","synthetic":false,"types":[]},{"text":"impl FromStr for LevelFilter","synthetic":false,"types":[]}];
 implementors["num_rational"] = [{"text":"impl&lt;T:&nbsp;FromStr + Clone + Integer&gt; FromStr for Ratio&lt;T&gt;","synthetic":false,"types":[]}];

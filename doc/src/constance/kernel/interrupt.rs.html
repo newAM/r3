@@ -337,7 +337,7 @@
     <span class="doccomment">/// if the operation is unsafe.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [a managed range]: crate::kernel::PortInterrupts::MANAGED_INTERRUPT_PRIORITY_RANGE</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline_syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_priority</span>(
         <span class="self">self</span>,
         <span class="ident">value</span>: <span class="ident">InterruptPriority</span>,
@@ -375,7 +375,7 @@
     <span class="doccomment">/// interrupt handler.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [unmanaged-safe]: crate::kernel::cfg::CfgInterruptHandlerBuilder::unmanaged</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline_syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">set_priority_unchecked</span>(
         <span class="self">self</span>,
         <span class="ident">value</span>: <span class="ident">InterruptPriority</span>,

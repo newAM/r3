@@ -410,7 +410,7 @@
     }
 
     <span class="doccomment">/// Remove all permits held by the semaphore.</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline_syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drain</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">DrainSemaphoreError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">semaphore_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">semaphore_cb</span>()<span class="question-mark">?</span>;
@@ -419,7 +419,7 @@
     }
 
     <span class="doccomment">/// Get the number of permits currently held by the semaphore.</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline_syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">SemaphoreValue</span>, <span class="ident">GetSemaphoreError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">semaphore_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">semaphore_cb</span>()<span class="question-mark">?</span>;
@@ -427,7 +427,7 @@
     }
 
     <span class="doccomment">/// Release `count` permits, returning them to the semaphore.</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline_syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">signal</span>(<span class="self">self</span>, <span class="ident">count</span>: <span class="ident">SemaphoreValue</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">SignalSemaphoreError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">semaphore_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">semaphore_cb</span>()<span class="question-mark">?</span>;
@@ -457,7 +457,7 @@
     <span class="doccomment">/// &gt; The support for multi-wait is relatively rare among operating systems.</span>
     <span class="doccomment">/// &gt; It&#39;s not supported by POSIX, RTEMS, TOPPERS, VxWorks, nor Win32. The</span>
     <span class="doccomment">/// &gt; rare exception is μT-Kernel.</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline_syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wait_one</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">WaitSemaphoreError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="ident">state</span>::<span class="ident">expect_waitable_context</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
@@ -467,7 +467,7 @@
     }
 
     <span class="doccomment">/// [`wait_one`](Self::wait_one) with timeout.</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline_syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wait_one_timeout</span>(<span class="self">self</span>, <span class="ident">timeout</span>: <span class="ident">Duration</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">WaitSemaphoreTimeoutError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">time32</span> <span class="op">=</span> <span class="ident">timeout</span>::<span class="ident">time32_from_duration</span>(<span class="ident">timeout</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
@@ -480,7 +480,7 @@
     <span class="doccomment">/// Non-blocking version of [`wait_one`](Self::wait_one). Returns</span>
     <span class="doccomment">/// immediately with [`PollSemaphoreError::Timeout`] if the unblocking</span>
     <span class="doccomment">/// condition is not satisfied.</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline_syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">poll_one</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">PollSemaphoreError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">semaphore_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">semaphore_cb</span>()<span class="question-mark">?</span>;

@@ -1015,11 +1015,13 @@
 <span id="1012">1012</span>
 <span id="1013">1013</span>
 <span id="1014">1014</span>
+<span id="1015">1015</span>
+<span id="1016">1016</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Tasks</span>
-<span class="kw">use</span> <span class="ident">core</span>::{
-    <span class="ident">cell</span>::<span class="ident">UnsafeCell</span>, <span class="ident">convert</span>::<span class="ident">TryFrom</span>, <span class="ident">fmt</span>, <span class="ident">hash</span>, <span class="ident">marker</span>::<span class="ident">PhantomData</span>, <span class="ident">mem</span>, <span class="ident">sync</span>::<span class="ident">atomic</span>::<span class="ident">Ordering</span>,
-};
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;priority_boost&quot;</span>)]</span>
+<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">sync</span>::<span class="ident">atomic</span>::<span class="ident">Ordering</span>;
+<span class="kw">use</span> <span class="ident">core</span>::{<span class="ident">cell</span>::<span class="ident">UnsafeCell</span>, <span class="ident">convert</span>::<span class="ident">TryFrom</span>, <span class="ident">fmt</span>, <span class="ident">hash</span>, <span class="ident">marker</span>::<span class="ident">PhantomData</span>, <span class="ident">mem</span>};
 <span class="kw">use</span> <span class="ident">num_traits</span>::<span class="ident">ToPrimitive</span>;
 
 <span class="kw">use</span> <span class="kw">super</span>::{
@@ -1082,11 +1084,10 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [thread]: crate#threads</span>
 <span class="doccomment">/// [activated]: Task::activate</span>
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">include</span> <span class="op">=</span> <span class="string">&quot;../common.md&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Task</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>(<span class="ident">Id</span>, <span class="ident">PhantomData</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>);
 
-<span class="comment">// FIXME: `svgbobdoc` doesn&#39;t like `#[doc(include = ...)]`</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">include</span> <span class="op">=</span> <span class="string">&quot;../common.md&quot;</span>)]</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">Task</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span>(<span class="self">self</span>.<span class="number">0</span>, <span class="self">self</span>.<span class="number">1</span>)
@@ -1150,7 +1151,7 @@
     <span class="doccomment">/// deferred until the control returns to a task, but the current interrupt</span>
     <span class="doccomment">/// handler could be interrupted by another interrrupt, which might do</span>
     <span class="doccomment">/// scheduling on return (whether this happens or not is unspecified).</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline_syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>, <span class="ident">GetCurrentTaskError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">task_cb</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">cb</span>) <span class="op">=</span> <span class="ident">System</span>::<span class="ident">state</span>().<span class="ident">running_task</span>(<span class="ident">lock</span>.<span class="ident">borrow_mut</span>()) {
@@ -1175,7 +1176,7 @@
     }
 
     <span class="doccomment">/// Start the execution of the task.</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline_syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">activate</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">ActivateTaskError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">task_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">task_cb</span>()<span class="question-mark">?</span>;
@@ -1190,7 +1191,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`WaitError::Interrupted`]: crate::kernel::WaitError::Interrupted</span>
     <span class="doccomment">/// [`WaitTimeoutError::Interrupted`]: crate::kernel::WaitTimeoutError::Interrupted</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline_syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">interrupt</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">InterruptTaskError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">task_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">task_cb</span>()<span class="question-mark">?</span>;
@@ -1216,7 +1217,7 @@
     <span class="doccomment">/// If the task is currently being blocked by `Kernel::park`, the token will</span>
     <span class="doccomment">/// be immediately consumed. Otherwise, it will be consumed on a next call</span>
     <span class="doccomment">/// to `Kernel::park`.</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline_syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unpark</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">UnparkError</span><span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">unpark_exact</span>() {
             <span class="prelude-val">Ok</span>(()) <span class="op">|</span> <span class="prelude-val">Err</span>(<span class="ident">UnparkExactError</span>::<span class="ident">QueueOverflow</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(()),
@@ -1236,7 +1237,7 @@
     <span class="doccomment">/// If the task is currently being blocked by `Kernel::park`, the token will</span>
     <span class="doccomment">/// be immediately consumed. Otherwise, it will be consumed on a next call</span>
     <span class="doccomment">/// to `Kernel::park`.</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline_syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unpark_exact</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">UnparkExactError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">task_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">task_cb</span>()<span class="question-mark">?</span>;
@@ -1260,7 +1261,7 @@
     <span class="doccomment">/// return [`SetTaskPriorityError::BadObjectState`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`num_task_priority_levels`]: crate::kernel::cfg::CfgBuilder::num_task_priority_levels</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline_syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_priority</span>(<span class="self">self</span>, <span class="ident">priority</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">SetTaskPriorityError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">task_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">task_cb</span>()<span class="question-mark">?</span>;
@@ -1271,7 +1272,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The task shouldn&#39;t be in the Dormant state. Otherwise, this method will</span>
     <span class="doccomment">/// return [`GetTaskPriorityError::BadObjectState`].</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline_syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">priority</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">GetTaskPriorityError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">task_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">task_cb</span>()<span class="question-mark">?</span>;
@@ -1293,7 +1294,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The task shouldn&#39;t be in the Dormant state. Otherwise, this method will</span>
     <span class="doccomment">/// return [`GetTaskPriorityError::BadObjectState`].</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline-syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;inline_syscall&quot;</span>), <span class="ident">inline</span>(<span class="ident">never</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">effective_priority</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">GetTaskPriorityError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">lock</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">lock_cpu</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">task_cb</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">task_cb</span>()<span class="question-mark">?</span>;
@@ -1533,10 +1534,13 @@
         <span class="ident">utils</span>::<span class="ident">assume_cpu_lock</span>::<span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>()
     };
 
-    <span class="comment">// If Priority Boost is active, deactivate it.</span>
-    <span class="ident">System</span>::<span class="ident">state</span>()
-        .<span class="ident">priority_boost</span>
-        .<span class="ident">store</span>(<span class="bool-val">false</span>, <span class="ident">Ordering</span>::<span class="ident">Release</span>);
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;priority_boost&quot;</span>)]</span>
+    {
+        <span class="comment">// If Priority Boost is active, deactivate it.</span>
+        <span class="ident">System</span>::<span class="ident">state</span>()
+            .<span class="ident">priority_boost</span>
+            .<span class="ident">store</span>(<span class="bool-val">false</span>, <span class="ident">Ordering</span>::<span class="ident">Release</span>);
+    }
 
     <span class="kw">let</span> <span class="ident">running_task</span> <span class="op">=</span> <span class="ident">System</span>::<span class="ident">state</span>().<span class="ident">running_task</span>(<span class="ident">lock</span>.<span class="ident">borrow_mut</span>()).<span class="ident">unwrap</span>();
 
