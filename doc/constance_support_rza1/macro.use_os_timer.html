@@ -6,7 +6,7 @@
     (<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">PortTimer</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ty</span>) <span class="op">=</span><span class="op">&gt;</span> { ... };
 }</pre></div>
 </div><div class='docblock'><p>Attach the implementation of <a href="../constance/kernel/trait.PortTimer.html"><code>PortTimer</code></a> that is based on RZ/A1 OS Timer
-to a given system type. This macro also implements <a href="../constance_port_arm/trait.Timer.html"><code>Timer</code></a> on the system
+to a given system type. This macro also implements <a href="../constance_port_arm/threading/cfg/trait.Timer.html"><code>Timer</code></a> on the system
 type.
 <strong>Requires <a href="../constance_support_rza1/trait.OsTimerOptions.html" title="OsTimerOptions"><code>OsTimerOptions</code></a> and <a href="../constance_port_arm/gic/cfg/trait.Gic.html"><code>Gic</code></a>.</strong></p>
 <p>You should do the following:</p>
