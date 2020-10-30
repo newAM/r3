@@ -1016,12 +1016,11 @@
 <span id="1013">1013</span>
 <span id="1014">1014</span>
 <span id="1015">1015</span>
-<span id="1016">1016</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Tasks</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;priority_boost&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">sync</span>::<span class="ident">atomic</span>::<span class="ident">Ordering</span>;
-<span class="kw">use</span> <span class="ident">core</span>::{<span class="ident">cell</span>::<span class="ident">UnsafeCell</span>, <span class="ident">convert</span>::<span class="ident">TryFrom</span>, <span class="ident">fmt</span>, <span class="ident">hash</span>, <span class="ident">marker</span>::<span class="ident">PhantomData</span>, <span class="ident">mem</span>};
+<span class="kw">use</span> <span class="ident">core</span>::{<span class="ident">convert</span>::<span class="ident">TryFrom</span>, <span class="ident">fmt</span>, <span class="ident">hash</span>, <span class="ident">marker</span>::<span class="ident">PhantomData</span>, <span class="ident">mem</span>};
 <span class="kw">use</span> <span class="ident">num_traits</span>::<span class="ident">ToPrimitive</span>;
 
 <span class="kw">use</span> <span class="kw">super</span>::{
@@ -1308,8 +1307,7 @@
 }
 
 <span class="doccomment">/// [`Hunk`] for a task stack.</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StackHunk</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>(<span class="ident">Hunk</span><span class="op">&lt;</span><span class="ident">System</span>, [<span class="ident">UnsafeCell</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>]<span class="op">&gt;</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StackHunk</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>(<span class="ident">Hunk</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>, <span class="ident">usize</span>);
 
 <span class="comment">// Safety: Safe code can&#39;t access the contents. Also, the port is responsible</span>
 <span class="comment">// for making sure `StackHunk` is used in the correct way.</span>
@@ -1325,14 +1323,14 @@
 <span class="comment">//       safety obligation of `StackHunk::from_hunk`.</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">StackHunk</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="self">self</span>.<span class="number">0</span>)
+        <span class="kw-2">*</span><span class="self">self</span>
     }
 }
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> <span class="ident">Copy</span> <span class="kw">for</span> <span class="ident">StackHunk</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {}
 
 <span class="comment">// TODO: Should we allow zero-sized `StackHunk`?</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> <span class="ident">Init</span> <span class="kw">for</span> <span class="ident">StackHunk</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
-    <span class="kw">const</span> <span class="ident">INIT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="ident">Init</span>::<span class="ident">INIT</span>);
+    <span class="kw">const</span> <span class="ident">INIT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="ident">Init</span>::<span class="ident">INIT</span>, <span class="number">0</span>);
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> <span class="ident">StackHunk</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
@@ -1344,20 +1342,20 @@
     <span class="doccomment">/// `hunk` is solely used for a single task&#39;s stack.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Also, `hunk` must be properly aligned for a stack region.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_hunk</span>(<span class="ident">hunk</span>: <span class="ident">Hunk</span><span class="op">&lt;</span><span class="ident">System</span>, [<span class="ident">UnsafeCell</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>]<span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">hunk</span>)
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_hunk</span>(<span class="ident">hunk</span>: <span class="ident">Hunk</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>, <span class="ident">len</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span>(<span class="ident">hunk</span>, <span class="ident">len</span>)
     }
 
-    <span class="doccomment">/// Get the inner `Hunk`, consuming `self`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_inner</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Hunk</span><span class="op">&lt;</span><span class="ident">System</span>, [<span class="ident">UnsafeCell</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>]<span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="number">0</span>
+    <span class="doccomment">/// Get the inner `Hunk` and the length, consuming `self`.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_inner</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">Hunk</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span>, <span class="ident">usize</span>) {
+        (<span class="self">self</span>.<span class="number">0</span>, <span class="self">self</span>.<span class="number">1</span>)
     }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">System</span>: <span class="ident">Kernel</span><span class="op">&gt;</span> <span class="ident">StackHunk</span><span class="op">&lt;</span><span class="ident">System</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Get a raw pointer to the hunk&#39;s contents.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] {
-        <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="self">self</span>.<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw">_</span>
+        <span class="ident">core</span>::<span class="ident">ptr</span>::<span class="ident">slice_from_raw_parts_mut</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">as_ptr</span>(), <span class="self">self</span>.<span class="number">1</span>)
     }
 }
 

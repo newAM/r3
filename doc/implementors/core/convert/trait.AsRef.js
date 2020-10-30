@@ -1,5 +1,5 @@
 (function() {var implementors = {};
-implementors["constance"] = [{"text":"impl&lt;System:&nbsp;Kernel, T:&nbsp;'static&gt; AsRef&lt;T&gt; for Hunk&lt;System, T&gt;","synthetic":false,"types":[]},{"text":"impl&lt;System:&nbsp;Kernel, T:&nbsp;'static&gt; AsRef&lt;[T]&gt; for Hunk&lt;System, [T]&gt;","synthetic":false,"types":[]}];
+implementors["constance"] = [{"text":"impl&lt;System:&nbsp;Kernel, T:&nbsp;?Sized&gt; AsRef&lt;T&gt; for Hunk&lt;System, T&gt;","synthetic":false,"types":[]}];
 implementors["humantime"] = [{"text":"impl AsRef&lt;Duration&gt; for Duration","synthetic":false,"types":[]},{"text":"impl AsRef&lt;SystemTime&gt; for Timestamp","synthetic":false,"types":[]}];
 implementors["regex_syntax"] = [{"text":"impl AsRef&lt;[u8]&gt; for Literal","synthetic":false,"types":[]}];
 implementors["staticvec"] = [{"text":"impl&lt;T, const N:&nbsp;usize&gt; AsRef&lt;T&gt; for PushCapacityError&lt;T, N&gt;","synthetic":false,"types":[]},{"text":"impl&lt;const N:&nbsp;usize&gt; AsRef&lt;str&gt; for StaticString&lt;N&gt;","synthetic":false,"types":[]},{"text":"impl&lt;const N:&nbsp;usize&gt; AsRef&lt;[u8]&gt; for StaticString&lt;N&gt;","synthetic":false,"types":[]},{"text":"impl&lt;T, const N:&nbsp;usize&gt; AsRef&lt;[T]&gt; for StaticVec&lt;T, N&gt;","synthetic":false,"types":[]}];
