@@ -66,10 +66,12 @@
 <span id="63">63</span>
 <span id="64">64</span>
 <span id="65">65</span>
+<span id="66">66</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::<span class="ident">atomic</span>;
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">iterpool</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">atom2</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">HasAtomicEquivalent</span> {
     <span class="kw">type</span> <span class="ident">AtomicEquivalent</span>;
@@ -124,8 +126,8 @@
     <span class="kw">fn</span> <span class="ident">lock</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">LockGuard</span>;
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="ident">LockConsuming</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">try_lock</span>::<span class="ident">TryLock</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">LockGuard</span> <span class="op">=</span> <span class="ident">try_lock</span>::<span class="ident">Locked</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span>;
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="ident">LockConsuming</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">try_mutex</span>::<span class="ident">TryMutex</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">type</span> <span class="ident">LockGuard</span> <span class="op">=</span> <span class="ident">try_mutex</span>::<span class="ident">TryMutexGuard</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span>;
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">lock</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">LockGuard</span> {

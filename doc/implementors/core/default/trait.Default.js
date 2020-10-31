@@ -1,6 +1,5 @@
 (function() {var implementors = {};
 implementors["aho_corasick"] = [{"text":"impl Default for AhoCorasickBuilder","synthetic":false,"types":[]},{"text":"impl Default for MatchKind","synthetic":false,"types":[]},{"text":"impl Default for MatchKind","synthetic":false,"types":[]},{"text":"impl Default for Config","synthetic":false,"types":[]},{"text":"impl Default for Builder","synthetic":false,"types":[]}];
-implementors["atomic_ref"] = [{"text":"impl&lt;'a, T&gt; Default for AtomicRef&lt;'a, T&gt;","synthetic":false,"types":[]}];
 implementors["chrono"] = [{"text":"impl Default for Parsed","synthetic":false,"types":[]}];
 implementors["constance"] = [{"text":"impl Default for Duration","synthetic":false,"types":[]},{"text":"impl Default for Time","synthetic":false,"types":[]}];
 implementors["env_logger"] = [{"text":"impl Default for Builder","synthetic":false,"types":[]},{"text":"impl Default for Target","synthetic":false,"types":[]},{"text":"impl Default for WriteStyle","synthetic":false,"types":[]},{"text":"impl Default for TimestampPrecision","synthetic":false,"types":[]},{"text":"impl Default for Builder","synthetic":false,"types":[]},{"text":"impl&lt;'a&gt; Default for Env&lt;'a&gt;","synthetic":false,"types":[]}];
@@ -14,5 +13,5 @@ implementors["syn"] = [{"text":"impl Default for Underscore","synthetic":false,"
 implementors["termcolor"] = [{"text":"impl Default for ColorSpec","synthetic":false,"types":[]}];
 implementors["thread_local"] = [{"text":"impl&lt;T:&nbsp;Send&gt; Default for CachedThreadLocal&lt;T&gt;","synthetic":false,"types":[]},{"text":"impl&lt;T:&nbsp;Send&gt; Default for ThreadLocal&lt;T&gt;","synthetic":false,"types":[]}];
 implementors["tokenlock"] = [{"text":"impl&lt;T:&nbsp;Default + ?Sized, I:&nbsp;Default&gt; Default for TokenLock&lt;T, I&gt;","synthetic":false,"types":[]}];
-implementors["try_lock"] = [{"text":"impl&lt;T:&nbsp;Default&gt; Default for TryLock&lt;T&gt;","synthetic":false,"types":[]}];
+implementors["try_mutex"] = [{"text":"impl&lt;T:&nbsp;Default&gt; Default for TryMutex&lt;T&gt;","synthetic":false,"types":[]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
