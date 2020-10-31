@@ -1766,7 +1766,7 @@
     <span class="doccomment">/// Error type for [`Mutex::lock_timeout`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`Mutex::lock_timeout`]: super::Mutex::lock_timeout</span>
-    <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">LockMutexTimeoutError</span>: <span class="ident">BadContextError</span>, <span class="ident">BadIdError</span>, <span class="ident">WaitTimeoutError</span>, 
+    <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">LockMutexTimeoutError</span>: <span class="ident">BadContextError</span>, <span class="ident">BadIdError</span>, <span class="ident">WaitTimeoutError</span>,
         <span class="ident">BadParamError</span>, <span class="ident">LockMutexPrecheckError</span>
     {
         <span class="doccomment">/// The mutex ID is out of range.</span>
