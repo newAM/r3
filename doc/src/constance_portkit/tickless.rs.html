@@ -1685,7 +1685,7 @@
 <span class="doccomment">/// ```</span>
 <span class="doccomment">/// &lt;/center&gt;</span>
 <span class="doccomment">///</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">include</span> <span class="op">=</span> <span class="string">&quot;../../constance/src/common.md&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">include</span> <span class="op">=</span> <span class="string">&quot;./common.md&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TicklessStatelessCore</span>;
 
@@ -1703,7 +1703,7 @@
 }
 
 <span class="doccomment">/// Operations implemented by all valid instantiations of [`TicklessState`].</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">include</span> <span class="op">=</span> <span class="string">&quot;../../constance/src/common.md&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">include</span> <span class="op">=</span> <span class="string">&quot;./common.md&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TicklessStateTrait</span>: <span class="ident">Init</span> <span class="op">+</span> <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">core</span>::<span class="ident">fmt</span>::<span class="ident">Debug</span> {
     <span class="doccomment">/// Mark the given hardware tick count as the origin (where</span>
     <span class="doccomment">/// OS tick count is exactly zero).</span>
