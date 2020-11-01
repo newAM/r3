@@ -1,10 +1,12 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `riscv_rt` crate."><meta name="keywords" content="rust, rustlang, rust-lang, riscv_rt"><title>riscv_rt - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script src="../storage.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../riscv_rt/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><p class='location'>Crate riscv_rt</p><div class='block version'><p>Version 0.8.0</p></div><div class="sidebar-elems"><a id='all-types' href='all.html'><p>See all riscv_rt's items</p></a><div class="block items"><ul><li><a href="#reexports">Re-exports</a></li><li><a href="#structs">Structs</a></li><li><a href="#functions">Functions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'riscv_rt', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
-                <a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/riscv_rt/lib.rs.html#1-550' title='goto source code'>[src]</a></span><span class='in-band'>Crate <a class="mod" href=''>riscv_rt</a></span></h1><div class='docblock'><p>Minimal startup / runtime for RISC-V CPU's</p>
+<link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../riscv_rt/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><p class='location'>Crate riscv_rt</p><div class='block version'><p>Version 0.6.2</p></div><div class="sidebar-elems"><a id='all-types' href='all.html'><p>See all riscv_rt's items</p></a><div class="block items"><ul><li><a href="#functions">Functions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'riscv_rt', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/riscv_rt/lib.rs.html#1-355' title='goto source code'>[src]</a></span><span class='in-band'>Crate <a class="mod" href=''>riscv_rt</a></span></h1><div class='docblock'><p>Minimal startup / runtime for RISC-V CPU's</p>
 <h1 id="minimum-supported-rust-version-msrv" class="section-header"><a href="#minimum-supported-rust-version-msrv">Minimum Supported Rust Version (MSRV)</a></h1>
-<p>This crate is guaranteed to compile on stable Rust 1.42 and up. It <em>might</em>
-compile with older versions but that may change in any new patch release.</p>
+<p>This crate is guaranteed to compile on stable Rust 1.31 and up. It <em>might</em>
+compile with older versions but that may change in any new patch release.
+Note that <code>riscv64imac-unknown-none-elf</code> and <code>riscv64gc-unknown-none-elf</code> targets
+are not supported on stable yet.</p>
 <h1 id="features" class="section-header"><a href="#features">Features</a></h1>
 <p>This crate provides</p>
 <ul>
@@ -207,75 +209,7 @@ and implement wake-up in platform-dependent way (e.g. after waiting for a user i
    <span class="comment">// ...</span>
 }</pre></div>
 <p>Default implementation of this function wakes hart 0 and busy-loops all the other harts.</p>
-<h3 id="exceptionhandler" class="section-header"><a href="#exceptionhandler"><code>ExceptionHandler</code></a></h3>
-<p>This function is called when exception is occured. The exception reason can be decoded from the
-<code>mcause</code> register.</p>
-<p>This function can be redefined in the following way:</p>
-
-<div class="example-wrap"><pre class="rust rust-example-rendered">
-<span class="attribute">#[<span class="ident">export_name</span> <span class="op">=</span> <span class="string">&quot;ExceptionHandler&quot;</span>]</span>
-<span class="kw">fn</span> <span class="ident">custom_exception_handler</span>(<span class="ident">trap_frame</span>: <span class="kw-2">&amp;</span><span class="ident">riscv_rt</span>::<span class="ident">TrapFrame</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="op">!</span> {
-    <span class="comment">// ...</span>
-}</pre></div>
-<p>or</p>
-
-<div class="example-wrap"><pre class="rust rust-example-rendered">
-<span class="attribute">#[<span class="ident">no_mangle</span>]</span>
-<span class="kw">fn</span> <span class="ident">ExceptionHandler</span>(<span class="ident">trap_frame</span>: <span class="kw-2">&amp;</span><span class="ident">riscv_rt</span>::<span class="ident">TrapFrame</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="op">!</span> {
-    <span class="comment">// ...</span>
-}</pre></div>
-<p>Default implementation of this function stucks in a busy-loop.</p>
-<h3 id="core-interrupt-handlers" class="section-header"><a href="#core-interrupt-handlers">Core interrupt handlers</a></h3>
-<p>This functions are called when corresponding interrupt is occured.
-You can define an interrupt handler with one of the following names:</p>
-<ul>
-<li><code>UserSoft</code></li>
-<li><code>SupervisorSoft</code></li>
-<li><code>MachineSoft</code></li>
-<li><code>UserTimer</code></li>
-<li><code>SupervisorTimer</code></li>
-<li><code>MachineTimer</code></li>
-<li><code>UserExternal</code></li>
-<li><code>SupervisorExternal</code></li>
-<li><code>MachineExternal</code></li>
-</ul>
-<p>For example:</p>
-
-<div class="example-wrap"><pre class="rust rust-example-rendered">
-<span class="attribute">#[<span class="ident">export_name</span> <span class="op">=</span> <span class="string">&quot;MachineTimer&quot;</span>]</span>
-<span class="kw">fn</span> <span class="ident">custom_timer_handler</span>() {
-    <span class="comment">// ...</span>
-}</pre></div>
-<p>or</p>
-
-<div class="example-wrap"><pre class="rust rust-example-rendered">
-<span class="attribute">#[<span class="ident">no_mangle</span>]</span>
-<span class="kw">fn</span> <span class="ident">MachineTimer</span>() {
-    <span class="comment">// ...</span>
-}</pre></div>
-<p>If interrupt handler is not explicitly defined, <code>DefaultHandler</code> is called.</p>
-<h3 id="defaulthandler" class="section-header"><a href="#defaulthandler"><code>DefaultHandler</code></a></h3>
-<p>This function is called when interrupt without defined interrupt handler is occured.
-The interrupt reason can be decoded from the <code>mcause</code> register.</p>
-<p>This function can be redefined in the following way:</p>
-
-<div class="example-wrap"><pre class="rust rust-example-rendered">
-<span class="attribute">#[<span class="ident">export_name</span> <span class="op">=</span> <span class="string">&quot;DefaultHandler&quot;</span>]</span>
-<span class="kw">fn</span> <span class="ident">custom_interrupt_handler</span>() {
-    <span class="comment">// ...</span>
-}</pre></div>
-<p>or</p>
-
-<div class="example-wrap"><pre class="rust rust-example-rendered">
-<span class="attribute">#[<span class="ident">no_mangle</span>]</span>
-<span class="kw">fn</span> <span class="ident">DefaultHandler</span>() {
-    <span class="comment">// ...</span>
-}</pre></div>
-<p>Default implementation of this function stucks in a busy-loop.</p>
-</div><h2 id='reexports' class='section-header'><a href="#reexports">Re-exports</a></h2>
-<table><tr><td><code>pub use self::Interrupt as interrupt;</code></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
-<table><tr class='module-item'><td><a class="struct" href="struct.TrapFrame.html" title='riscv_rt::TrapFrame struct'>TrapFrame</a></td><td class='docblock-short'><p>Registers saved in trap handler</p>
-</td></tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+</div><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
 <table><tr class='module-item'><td><a class="fn" href="fn.start_rust.html" title='riscv_rt::start_rust fn'>start_rust</a><a title='unsafe function' href='#'><sup>⚠</sup></a></td><td class='docblock-short'><p>Rust entry point (_start_rust)</p>
 </td></tr><tr class='module-item'><td><a class="fn" href="fn.start_trap_rust.html" title='riscv_rt::start_trap_rust fn'>start_trap_rust</a></td><td class='docblock-short'><p>Trap entry point rust (_start_trap_rust)</p>
 </td></tr></table><h2 id='attributes' class='section-header'><a href="#attributes">Attribute Macros</a></h2>

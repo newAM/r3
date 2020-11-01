@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/riscv-0.6.0/src/register/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/riscv-0.5.4/src/register/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
 <link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../riscv/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
                 <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
@@ -101,6 +101,9 @@
 <span id="98"> 98</span>
 <span id="99"> 99</span>
 <span id="100">100</span>
+<span id="101">101</span>
+<span id="102">102</span>
+<span id="103">103</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! RISC-V CSR&#39;s</span>
 <span class="doccomment">//!</span>
@@ -117,68 +120,68 @@
 <span class="attribute">#[<span class="ident">macro_use</span>]</span>
 <span class="kw">mod</span> <span class="ident">macros</span>;
 
-<span class="comment">// User Trap Setup</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">uie</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ustatus</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">utvec</span>;
+<span class="comment">// TODO: User Trap Setup</span>
 
-<span class="comment">// User Trap Handling</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ucause</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">uepc</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">uip</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">uscratch</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">utval</span>;
+
+<span class="comment">// TODO: User Trap Handling</span>
+
 
 <span class="comment">// User Floating-Point CSRs</span>
 <span class="comment">// TODO: frm, fflags</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">fcsr</span>;
 
+
 <span class="comment">// User Counter/Timers</span>
 <span class="comment">// TODO: cycle[h], instret[h]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">time</span>;
-<span class="attribute">#[<span class="ident">rustfmt</span>::<span class="ident">skip</span>]</span> <span class="comment">// long macro use</span>
 <span class="kw">mod</span> <span class="ident">hpmcounterx</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">hpmcounterx</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">timeh</span>;
 
+
 <span class="comment">// Supervisor Trap Setup</span>
 <span class="comment">// TODO: sedeleg, sideleg</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sie</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sstatus</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sie</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">stvec</span>;
 <span class="comment">// TODO: scounteren</span>
 
+
 <span class="comment">// Supervisor Trap Handling</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">scause</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sepc</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sip</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sscratch</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sepc</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">scause</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">stval</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sip</span>;
+
 
 <span class="comment">// Supervisor Protection and Translation</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">satp</span>;
 
+
 <span class="comment">// Machine Information Registers</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">marchid</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mhartid</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mimpid</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mvendorid</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">marchid</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mimpid</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mhartid</span>;
+
 
 <span class="comment">// Machine Trap Setup</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">misa</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mstatus</span>;
-<span class="comment">// TODO: medeleg</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mideleg</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">misa</span>;
+<span class="comment">// TODO: medeleg, mideleg</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mie</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mtvec</span>;
 <span class="comment">// TODO: mcounteren</span>
 
+
 <span class="comment">// Machine Trap Handling</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mcause</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mepc</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mip</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mscratch</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mepc</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mcause</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mtval</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mip</span>;
+
 
 <span class="comment">// Machine Protection and Translation</span>
 <span class="kw">mod</span> <span class="ident">pmpcfgx</span>;
@@ -186,20 +189,23 @@
 <span class="kw">mod</span> <span class="ident">pmpaddrx</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">pmpaddrx</span>::<span class="kw-2">*</span>;
 
+
 <span class="comment">// Machine Counter/Timers</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mcycle</span>;
-<span class="attribute">#[<span class="ident">rustfmt</span>::<span class="ident">skip</span>]</span> <span class="comment">// long macro use</span>
-<span class="kw">mod</span> <span class="ident">mhpmcounterx</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">minstret</span>;
+<span class="kw">mod</span> <span class="ident">mhpmcounterx</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">mhpmcounterx</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mcycleh</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">minstreth</span>;
+
 
 <span class="comment">// Machine Counter Setup</span>
 <span class="kw">mod</span> <span class="ident">mhpmeventx</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">mhpmeventx</span>::<span class="kw-2">*</span>;
 
+
 <span class="comment">// TODO: Debug/Trace Registers (shared with Debug Mode)</span>
+
 
 <span class="comment">// TODO: Debug Mode Registers</span>
 </pre></div>

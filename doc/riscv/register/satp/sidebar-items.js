@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["read","Reads the CSR"],["write","Writes the CSR"]],"struct":[["Satp","satp register"]]});
+initSidebarItems({"fn":[["read","Reads the CSR"]],"struct":[["Satp","satp register"]]});
