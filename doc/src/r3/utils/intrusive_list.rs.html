@@ -788,6 +788,7 @@
 <span id="785">785</span>
 <span id="786">786</span>
 <span id="787">787</span>
+<span id="788">788</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Intrusive doubly linked list backed by a container implementing</span>
 <span class="doccomment">//! `std::ops::Index`.</span>
@@ -1258,6 +1259,7 @@
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ItemError</span>::<span class="ident">NotLinked</span>);
         }
 
+        <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span> <span class="comment">// FIXME: This macro somehow appears on rustdoc</span>
         <span class="kw">macro</span> <span class="ident">on_inconsistency</span>() {{
             <span class="comment">// If the closure body refers to `self`, the closure would capture</span>
             <span class="comment">// the whole `self` by reference, which conflicts with mutable</span>
