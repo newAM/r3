@@ -1,6 +1,7 @@
 var N = null;var sourcesIndex = {};
 sourcesIndex["aho_corasick"] = {"name":"","dirs":[{"name":"packed","dirs":[{"name":"teddy","files":["compile.rs","mod.rs","runtime.rs"]}],"files":["api.rs","mod.rs","pattern.rs","rabinkarp.rs","vector.rs"]}],"files":["ahocorasick.rs","automaton.rs","buffer.rs","byte_frequencies.rs","classes.rs","dfa.rs","error.rs","lib.rs","nfa.rs","prefilter.rs","state_id.rs"]};
 sourcesIndex["assert_matches"] = {"name":"","files":["lib.rs"]};
+sourcesIndex["atomic_ref"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["atty"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["bare_metal"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["base64"] = {"name":"","dirs":[{"name":"read","files":["decoder.rs","mod.rs"]},{"name":"write","files":["encoder.rs","mod.rs"]}],"files":["chunked_encoder.rs","decode.rs","display.rs","encode.rs","lib.rs","tables.rs"]};
@@ -29,7 +30,7 @@ sourcesIndex["r3"] = {"name":"","dirs":[{"name":"kernel","dirs":[{"name":"cfg","
 sourcesIndex["r3_port_arm"] = {"name":"","dirs":[{"name":"gic","files":["cfg.rs","gic_regs.rs","imp.rs"]},{"name":"sp804","files":["cfg.rs","imp.rs","sp804_regs.rs"]},{"name":"startup","files":["cfg.rs"]},{"name":"threading","files":["cfg.rs"]}],"files":["lib.rs"]};
 sourcesIndex["r3_port_arm_m"] = {"name":"","dirs":[{"name":"systick_tickful","files":["cfg.rs"]},{"name":"threading","files":["cfg.rs"]}],"files":["lib.rs"]};
 sourcesIndex["r3_port_riscv"] = {"name":"","dirs":[{"name":"plic","files":["cfg.rs","imp.rs","plic_regs.rs"]},{"name":"rt","files":["cfg.rs"]},{"name":"threading","files":["cfg.rs"]},{"name":"timer","files":["cfg.rs","imp.rs"]}],"files":["lib.rs"]};
-sourcesIndex["r3_port_std"] = {"name":"","dirs":[{"name":"utils","files":["atom2.rs","iterpool.rs"]}],"files":["lib.rs","sched.rs","threading_unix.rs","ums.rs","utils.rs"]};
+sourcesIndex["r3_port_std"] = {"name":"","dirs":[{"name":"utils","files":["iterpool.rs"]}],"files":["lib.rs","sched.rs","threading_unix.rs","ums.rs","utils.rs"]};
 sourcesIndex["r3_portkit"] = {"name":"","dirs":[{"name":"num","files":["wrapping.rs"]}],"files":["lib.rs","num.rs","pptext.rs","tickful.rs","tickless.rs","utils.rs"]};
 sourcesIndex["r3_support_rza1"] = {"name":"","dirs":[{"name":"os_timer","files":["cfg.rs","imp.rs"]}],"files":["lib.rs"]};
 sourcesIndex["rand"] = {"name":"","dirs":[{"name":"distributions","files":["bernoulli.rs","float.rs","integer.rs","mod.rs","other.rs","uniform.rs"]},{"name":"prng","files":["chacha.rs","hc128.rs","isaac.rs","isaac64.rs","isaac_array.rs","mod.rs","xorshift.rs"]},{"name":"rngs","dirs":[{"name":"adapter","files":["mod.rs","reseeding.rs"]}],"files":["jitter.rs","mock.rs","mod.rs","small.rs","std.rs"]}],"files":["lib.rs","prelude.rs"]};

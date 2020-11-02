@@ -1,4 +1,5 @@
 (function() {var implementors = {};
+implementors["atomic_ref"] = [{"text":"impl&lt;'a, T&gt; From&lt;Option&lt;&amp;'a T&gt;&gt; for AtomicRef&lt;'a, T&gt;","synthetic":false,"types":[]}];
 implementors["chrono"] = [{"text":"impl From&lt;DateTime&lt;Utc&gt;&gt; for DateTime&lt;FixedOffset&gt;","synthetic":false,"types":[]},{"text":"impl From&lt;DateTime&lt;FixedOffset&gt;&gt; for DateTime&lt;Utc&gt;","synthetic":false,"types":[]}];
 implementors["env_logger"] = [{"text":"impl&lt;'a, T&gt; From&lt;T&gt; for Env&lt;'a&gt; <span class=\"where fmt-newline\">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: Into&lt;Cow&lt;'a, str&gt;&gt;,&nbsp;</span>","synthetic":false,"types":[]}];
 implementors["errno"] = [{"text":"impl From&lt;Errno&gt; for Error","synthetic":false,"types":[]}];
