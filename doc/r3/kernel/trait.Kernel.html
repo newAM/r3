@@ -52,10 +52,23 @@ sufficient trait <code>impl</code>s to instantiate the kernel.</p>
  *
  * # Usage
  *
+ * ## Normal
+ *
  *     <div class="admonition-follows"></div>
  *
  *     > **Title:** lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
  *     > lorem ipsum
+ *
+ * ## Collapsible
+ *
+ *     <div class="admonition-follows"></div>
+ *
+ *     > <details>
+ *     > <summary>Title</summary>
+ *     >
+ *     > lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+ *     >
+ *     > </details>
  */
 .admonition-follows + blockquote {
     background: rgba(128, 128, 128, 0.1) !important;
@@ -64,6 +77,20 @@ sufficient trait <code>impl</code>s to instantiate the kernel.</p>
 }
 .admonition-follows + blockquote::after { /* collapsible padding */
     content: ""; display: block; margin-top: 1em;
+}
+
+.admonition-follows + blockquote summary {
+    cursor: pointer;
+    will-change: opacity;
+    user-select: none;
+    -webkit-user-select: none;
+    font-weight: bold;
+}
+.admonition-follows + blockquote summary:not([open]):not(:hover) {
+    opacity: 0.5;
+}
+.admonition-follows + blockquote summary + * {
+    margin-top: 1em;
 }
 
 /* Display a warning if some Cargo features are disabled. */
@@ -109,7 +136,7 @@ body.theme-ayu span.center img, body.theme-ayu center img {
 <script type="application/javascript">
 <!--
 // Monitors the current rustdoc theme and adds `.theme-NAME` to `<body>`
-(function () {
+function initThemeMonitor() {
     if (typeof getCurrentValue !== 'function' ||
         typeof switchTheme !== 'function' ||
         typeof getSystemValue !== 'function' ||
@@ -136,7 +163,13 @@ body.theme-ayu span.center img, body.theme-ayu center img {
         onApplyTheme(newTheme);
         originalSwitchTheme.apply(this, arguments);
     };
-})();
+}
+
+if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    initThemeMonitor();
+} else {
+    document.addEventListener('DOMContentLoaded', initThemeMonitor);
+}
 -->
 </script></div><h2 id='associated-types' class='small-section-header'>Associated Types<a href='#associated-types' class='anchor'></a></h2><div class='methods'><h3 id='associatedtype.DebugPrinter' class='method'><code>type <a href='#associatedtype.DebugPrinter' class="type">DebugPrinter</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a></code></h3></div><span class='loading-content'>Loading content...</span><h2 id='required-methods' class='small-section-header'>Required methods<a href='#required-methods' class='anchor'></a></h2><div class='methods'><h3 id='tymethod.debug' class='method'><code>fn <a href='#tymethod.debug' class='fnname'>debug</a>() -&gt; Self::<a class="type" href="../../r3/kernel/trait.Kernel.html#associatedtype.DebugPrinter" title="type r3::kernel::Kernel::DebugPrinter">DebugPrinter</a></code></h3><div class='docblock'><p>Get an object that implements <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html"><code>Debug</code></a> for dumping the
 current kernel state.</p>

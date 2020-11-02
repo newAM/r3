@@ -786,6 +786,24 @@
 <span id="783">783</span>
 <span id="784">784</span>
 <span id="785">785</span>
+<span id="786">786</span>
+<span id="787">787</span>
+<span id="788">788</span>
+<span id="789">789</span>
+<span id="790">790</span>
+<span id="791">791</span>
+<span id="792">792</span>
+<span id="793">793</span>
+<span id="794">794</span>
+<span id="795">795</span>
+<span id="796">796</span>
+<span id="797">797</span>
+<span id="798">798</span>
+<span id="799">799</span>
+<span id="800">800</span>
+<span id="801">801</span>
+<span id="802">802</span>
+<span id="803">803</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! ~~Mutices~~ Mutexes</span>
 <span class="comment">// FIXME: `debug_assert_matches` needing `assert_matches` is fixed by</span>
@@ -911,8 +929,11 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// &lt;div class=&quot;admonition-follows&quot;&gt;&lt;/div&gt;</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// &gt; **Relation to Other Specifications:** This behavior is based on robust</span>
-<span class="doccomment">/// &gt; mutexes from POSIX.1-2008 (`PTHREAD_MUTEX_ROBUST`) with one difference:</span>
+<span class="doccomment">/// &gt; &lt;details&gt;</span>
+<span class="doccomment">/// &gt; &lt;summary&gt;Relation to Other Specifications&lt;/summary&gt;</span>
+<span class="doccomment">/// &gt;</span>
+<span class="doccomment">/// &gt; This behavior is based on robust mutexes from POSIX.1-2008</span>
+<span class="doccomment">/// &gt; (`PTHREAD_MUTEX_ROBUST`) with one difference:</span>
 <span class="doccomment">/// &gt; A mutex never falls into an irrecoverable state — [`Mutex::lock`] would</span>
 <span class="doccomment">/// &gt; repeatedly return `Err(Abandoned)` until [`Mutex::mark_consistent`] is</span>
 <span class="doccomment">/// &gt; called. This change reduces the internal state bits and the complexity of</span>
@@ -930,12 +951,17 @@
 <span class="doccomment">/// &gt; All of the other operating systems&#39; behavior described above can be</span>
 <span class="doccomment">/// &gt; emulated by having a per-mutex flag and performing additional tasks in the</span>
 <span class="doccomment">/// &gt; API translation layer.</span>
+<span class="doccomment">/// &gt;</span>
+<span class="doccomment">/// &gt; &lt;/details&gt;</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// [Win32 mutex]: https://docs.microsoft.com/en-us/windows/win32/sync/mutex-objects</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// &lt;div class=&quot;admonition-follows&quot;&gt;&lt;/div&gt;</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// &gt; **Rationale:** Every customization option brings an additional overhead.</span>
+<span class="doccomment">/// &gt; &lt;details&gt;</span>
+<span class="doccomment">/// &gt; &lt;summary&gt;Rationale&lt;/summary&gt;</span>
+<span class="doccomment">/// &gt;</span>
+<span class="doccomment">/// &gt; Every customization option brings an additional overhead.</span>
 <span class="doccomment">/// &gt; The overhead introduced by the robustness is likely to outweigh the</span>
 <span class="doccomment">/// &gt; overhead to provide choices. Therefore, we decided not to add an attribute</span>
 <span class="doccomment">/// &gt; to control the robustness.</span>
@@ -951,6 +977,8 @@
 <span class="doccomment">/// &gt; accessed again. To ensure this recommendation is followed correctly</span>
 <span class="doccomment">/// &gt; (unless explicitly opted out), we decided to make the robustness the</span>
 <span class="doccomment">/// &gt; default behavior.</span>
+<span class="doccomment">/// &gt;</span>
+<span class="doccomment">/// &gt; &lt;/details&gt;</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Locking Protocols</span>
 <span class="doccomment">///</span>
@@ -966,7 +994,9 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// &lt;div class=&quot;admonition-follows&quot;&gt;&lt;/div&gt;</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// &gt; **Relation to Other Specifications:**</span>
+<span class="doccomment">/// &gt; &lt;details&gt;</span>
+<span class="doccomment">/// &gt; &lt;summary&gt;Relation to Other Specifications&lt;/summary&gt;</span>
+<span class="doccomment">/// &gt;</span>
 <span class="doccomment">/// &gt; POSIX supports specifying a locking protocol by</span>
 <span class="doccomment">/// &gt; `pthread_mutexattr_setprotocol`. The following protocols are supported:</span>
 <span class="doccomment">/// &gt; `PTHREAD_PRIO_NONE` (none), `PTHREAD_PRIO_INHERIT`</span>
@@ -1017,12 +1047,16 @@
 <span class="doccomment">/// &gt;  - The **Lower Priority** column indicates whether an owning task&#39;s</span>
 <span class="doccomment">/// &gt;    priority may be lowered whenever it unlocks a mutex or only when it</span>
 <span class="doccomment">/// &gt;    unlocks the last mutex held.</span>
+<span class="doccomment">/// &gt;</span>
+<span class="doccomment">/// &gt; &lt;/details&gt;</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// [the priority inheritance protocol]: https://en.wikipedia.org/wiki/Priority_inheritance</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// &lt;div class=&quot;admonition-follows&quot;&gt;&lt;/div&gt;</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// &gt; **Rationale:**</span>
+<span class="doccomment">/// &gt; &lt;details&gt;</span>
+<span class="doccomment">/// &gt; &lt;summary&gt;Rationale&lt;/summary&gt;</span>
+<span class="doccomment">/// &gt;</span>
 <span class="doccomment">/// &gt; There are numerous reasons that led to the decision not to implement the</span>
 <span class="doccomment">/// &gt; priority inheritance protocol.</span>
 <span class="doccomment">/// &gt;</span>
@@ -1067,6 +1101,8 @@
 <span class="doccomment">/// &gt;</span>
 <span class="doccomment">/// &gt; We decided to restrict the unlocking order to a lock-reverse order to</span>
 <span class="doccomment">/// &gt; minimize the cost of maintaining the list of mutexes held by a task.</span>
+<span class="doccomment">/// &gt;</span>
+<span class="doccomment">/// &gt; &lt;/details&gt;</span>
 <span class="doccomment">///</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">include</span> <span class="op">=</span> <span class="string">&quot;../common.md&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>

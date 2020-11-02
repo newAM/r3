@@ -49,10 +49,23 @@ implementation.</p>
  *
  * # Usage
  *
+ * ## Normal
+ *
  *     <div class="admonition-follows"></div>
  *
  *     > **Title:** lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
  *     > lorem ipsum
+ *
+ * ## Collapsible
+ *
+ *     <div class="admonition-follows"></div>
+ *
+ *     > <details>
+ *     > <summary>Title</summary>
+ *     >
+ *     > lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+ *     >
+ *     > </details>
  */
 .admonition-follows + blockquote {
     background: rgba(128, 128, 128, 0.1) !important;
@@ -61,6 +74,20 @@ implementation.</p>
 }
 .admonition-follows + blockquote::after { /* collapsible padding */
     content: ""; display: block; margin-top: 1em;
+}
+
+.admonition-follows + blockquote summary {
+    cursor: pointer;
+    will-change: opacity;
+    user-select: none;
+    -webkit-user-select: none;
+    font-weight: bold;
+}
+.admonition-follows + blockquote summary:not([open]):not(:hover) {
+    opacity: 0.5;
+}
+.admonition-follows + blockquote summary + * {
+    margin-top: 1em;
 }
 
 /* Display a warning if some Cargo features are disabled. */
@@ -106,7 +133,7 @@ body.theme-ayu span.center img, body.theme-ayu center img {
 <script type="application/javascript">
 <!--
 // Monitors the current rustdoc theme and adds `.theme-NAME` to `<body>`
-(function () {
+function initThemeMonitor() {
     if (typeof getCurrentValue !== 'function' ||
         typeof switchTheme !== 'function' ||
         typeof getSystemValue !== 'function' ||
@@ -133,7 +160,13 @@ body.theme-ayu span.center img, body.theme-ayu center img {
         onApplyTheme(newTheme);
         originalSwitchTheme.apply(this, arguments);
     };
-})();
+}
+
+if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    initThemeMonitor();
+} else {
+    document.addEventListener('DOMContentLoaded', initThemeMonitor);
+}
 -->
 </script></div><h2 id='associated-const' class='small-section-header'>Associated Constants<a href='#associated-const' class='anchor'></a></h2><div class='methods'><h3 id='associatedconstant.MANAGED_INTERRUPT_PRIORITY_RANGE' class='method'><code>const <a href='#associatedconstant.MANAGED_INTERRUPT_PRIORITY_RANGE' class="constant"><b>MANAGED_INTERRUPT_PRIORITY_RANGE</b></a>: <a class="struct" href="https://doc.rust-lang.org/nightly/core/ops/range/struct.Range.html" title="struct core::ops::range::Range">Range</a>&lt;<a class="type" href="../../r3/kernel/type.InterruptPriority.html" title="type r3::kernel::InterruptPriority">InterruptPriority</a>&gt;</code></h3><div class='docblock'><p>The range of interrupt priority values considered <a href="../../r3/index.html#interrupt-handling-framework">managed</a>.</p>
 <p>Defaults to <code>0..0</code> (empty) when unspecified.</p>

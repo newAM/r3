@@ -43,10 +43,23 @@ OSEK/VDX), initialization routine (μITRON4.0), last function (TI-RTOS).</p>
  *
  * # Usage
  *
+ * ## Normal
+ *
  *     <div class="admonition-follows"></div>
  *
  *     > **Title:** lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
  *     > lorem ipsum
+ *
+ * ## Collapsible
+ *
+ *     <div class="admonition-follows"></div>
+ *
+ *     > <details>
+ *     > <summary>Title</summary>
+ *     >
+ *     > lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+ *     >
+ *     > </details>
  */
 .admonition-follows + blockquote {
     background: rgba(128, 128, 128, 0.1) !important;
@@ -55,6 +68,20 @@ OSEK/VDX), initialization routine (μITRON4.0), last function (TI-RTOS).</p>
 }
 .admonition-follows + blockquote::after { /* collapsible padding */
     content: ""; display: block; margin-top: 1em;
+}
+
+.admonition-follows + blockquote summary {
+    cursor: pointer;
+    will-change: opacity;
+    user-select: none;
+    -webkit-user-select: none;
+    font-weight: bold;
+}
+.admonition-follows + blockquote summary:not([open]):not(:hover) {
+    opacity: 0.5;
+}
+.admonition-follows + blockquote summary + * {
+    margin-top: 1em;
 }
 
 /* Display a warning if some Cargo features are disabled. */
@@ -100,7 +127,7 @@ body.theme-ayu span.center img, body.theme-ayu center img {
 <script type="application/javascript">
 <!--
 // Monitors the current rustdoc theme and adds `.theme-NAME` to `<body>`
-(function () {
+function initThemeMonitor() {
     if (typeof getCurrentValue !== 'function' ||
         typeof switchTheme !== 'function' ||
         typeof getSystemValue !== 'function' ||
@@ -127,7 +154,13 @@ body.theme-ayu span.center img, body.theme-ayu center img {
         onApplyTheme(newTheme);
         originalSwitchTheme.apply(this, arguments);
     };
-})();
+}
+
+if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    initThemeMonitor();
+} else {
+    document.addEventListener('DOMContentLoaded', initThemeMonitor);
+}
 -->
 </script></div><h2 id='implementations' class='small-section-header'>Implementations<a href='#implementations' class='anchor'></a></h2><h3 id='impl' class='impl'><code class='in-band'>impl&lt;System:&nbsp;<a class="trait" href="../../r3/kernel/trait.Port.html" title="trait r3::kernel::Port">Port</a>&gt; <a class="struct" href="../../r3/kernel/struct.StartupHook.html" title="struct r3::kernel::StartupHook">StartupHook</a>&lt;System&gt;</code><a href='#impl' class='anchor'></a><a class='srclink' href='../../src/r3/kernel/cfg/startup.rs.html#8-14' title='goto source code'>[src]</a></h3><div class='impl-items'><h4 id='method.build' class="method"><code>pub const fn <a href='#method.build' class='fnname'>build</a>() -&gt; <a class="struct" href="../../r3/kernel/cfg/struct.CfgStartupHookBuilder.html" title="struct r3::kernel::cfg::CfgStartupHookBuilder">CfgStartupHookBuilder</a>&lt;System&gt;</code><a class='srclink' href='../../src/r3/kernel/cfg/startup.rs.html#11-13' title='goto source code'>[src]</a></h4><div class='docblock'><p>Construct a <code>CfgStartupHookBuilder</code> to register a startup hook in
 <a href="../../r3/index.html#static-configuration">a configuration function</a>.</p>
